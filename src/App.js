@@ -22,9 +22,7 @@ class App extends Component {
     return (
       <div>
         <ul>
-        {Object.keys(response).map((index) =>
-          <li key={index}>Company name: {response.companyName}. Latest price: {response.latestPrice}</li>
-        )}
+          <li>Company name: {response ? response.companyName : 'Loading'}. Latest price: {response.latestPrice}</li>
         </ul>
       </div>
     );
