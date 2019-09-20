@@ -26,7 +26,7 @@ server.listen(port, () => console.log(`Listening on port ${port}`));
 const getApiAndEmit = async socket => {
     try {
       const res = await axios.get(
-        "https://cloud.iexapis.com/stable/tops?token=sk_72576fe17dd04de4907aff14eb6507c2&symbols=aapl"
+        "https://cloud.iexapis.com/stable/stock/AAPL/quote?token=sk_72576fe17dd04de4907aff14eb6507c2"
       );
       socket.emit("FromAPI", res.data);
     } catch (error) {

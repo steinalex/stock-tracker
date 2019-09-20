@@ -21,9 +21,11 @@ class App extends Component {
     const { response } = this.state;
     return (
       <div>
+        <ul>
         {Object.keys(response).map((index) =>
-          <span>"Last sale price is:"{response[index].lastSalePrice}</span>
+          <li key={index}>Company name: {response.companyName}. Latest price: {response.latestPrice}</li>
         )}
+        </ul>
       </div>
     );
   }
