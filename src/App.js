@@ -16,18 +16,18 @@ class App extends Component {
     socket.on("FromAPI", data => this.setState({ response: data }));
   }
 
+
   render() {
     const { response } = this.state;
     return (
-      <div style={{ textAlign: "center" }}>
-        {
-          response
-            ? <ul><li>Quote: {JSON.stringify(response)}</li></ul>
-            : <p>Loading...</p>
-        }
+      <div>
+        {Object.keys(response).map((index) =>
+          <span>"Last sale price is:"{response[index].lastSalePrice}</span>
+        )}
       </div>
     );
   }
 }
+
 
 export default App;
