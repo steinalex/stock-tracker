@@ -9,13 +9,22 @@ app.use(index);
 const server = http.createServer(app);
 const io = socketIo(server);
 
+let stockName;
+
 let interval;
 io.on("connection", socket => {
   console.log("New client connected");
   if (interval) {
     clearInterval(interval);
   }
-  interval = setInterval(() => getApiAndEmit(socket), 1000);
+  socket.on("test", (stockName) => {
+    if (interval) {
+      clearInterval(interval);
+    }
+    console.log("test recieved")
+    console.log(stockName)
+    interval = setInterval(() => getApiAndEmit(socket, stockName), 1000);
+  });
   socket.on("disconnect", () => {
     console.log("Client disconnected");
   });
@@ -23,13 +32,19 @@ io.on("connection", socket => {
 
 server.listen(port, () => console.log(`Listening on port ${port}`));
 
-const getApiAndEmit = async socket => {
+const getApiAndEmit = async (socket, stockName) => {
     try {
+      console.log(stockName)
       const res = await axios.get(
-        "https://cloud.iexapis.com/stable/stock/AAPL/quote?token=sk_72576fe17dd04de4907aff14eb6507c2"
+        'https://cloud.iexapis.com/stable/stock/' + stockName + '/quote?token=sk_72576fe17dd04de4907aff14eb6507c2'
       );
-      socket.emit("FromAPI", res.data);
+      const test = {
+        companyName: res.data.companyName
+      }
+
+      socket.emit("FromAPI", test);
     } catch (error) {
-      console.error(`Error: ${error.code}`);
+      //TODO: Handle error
+      console.error(`Error: ${error}`);
     }
   };

@@ -6,9 +6,7 @@ class App extends Component {
     super();
     this.state = {
       response: false,
-      endpoint: "http://127.0.0.1:4000",
-      dataPoints: ["companyName"],
-      displayData: {}
+      endpoint: "http://127.0.0.1:4000"
     };
   }
 
@@ -16,6 +14,7 @@ class App extends Component {
     const { endpoint } = this.state;
     const socket = socketIOClient(endpoint);
     socket.on("FromAPI", data => this.setState({ response: data }));
+    socket.emit("test", "AAPL");
   }
 
   render() {
