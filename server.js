@@ -8,7 +8,7 @@ const app = express();
 app.use(index);
 const server = http.createServer(app);
 const io = socketIo(server);
-let stockObject = {};
+let stockList = {};
 
 
 let interval;
@@ -17,11 +17,10 @@ io.on("connection", socket => {
   if (interval) {
     clearInterval(interval);
   }
-  socket.on("test", (stockName) => {
+  socket.on("stockName", (stockName) => {
     if (interval) {
       clearInterval(interval);
     }
-    console.log("test recieved")
     console.log(stockName)
     interval = setInterval(() => getApiAndEmit(socket, stockName), 5000);
   });
@@ -50,7 +49,7 @@ const getApiAndEmit = async (socket, stockName) => {
         `https://sandbox.iexapis.com/stable/stock/${stockName}/earnings/1/actualEPS?token=Tsk_d2f1890612194476b41d39992a3ad835`
       );
 
-      stockObject = {
+      stockList = {
         companyName: res.data.companyName,
         symbol:res.data.symbol,
         currency:res2.data[0].currency,
@@ -86,7 +85,7 @@ const getApiAndEmit = async (socket, stockName) => {
 
       }
 
-      socket.emit("FromAPI", stockObject);
+      socket.emit("FromAPI", stockList);
     } catch (error) {
       //TODO: Handle error
       console.error(`Error: ${error}`);

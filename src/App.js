@@ -13,7 +13,7 @@ function App() {
       setResponse(payload);
     });
 
-    socket.emit("test", stock);
+    socket.emit('stockName', stock);
   }, [stock]);
 
   return (
