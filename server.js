@@ -23,7 +23,7 @@ io.on("connection", socket => {
     }
     console.log("test recieved")
     console.log(stockName)
-    interval = setInterval(() => getApiAndEmit(socket, stockName), 1000);
+    interval = setInterval(() => getApiAndEmit(socket, stockName), 5000);
   });
   socket.on("disconnect", () => {
     console.log("Client disconnected");

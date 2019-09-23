@@ -1,34 +1,29 @@
-import React, { Component } from "react";
-import socketIOClient from "socket.io-client";
+import React, { useState, useEffect } from "react";
 
-class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      response: false,
-      endpoint: "http://127.0.0.1:4000"
-    };
-  }
+const io = require('socket.io-client');
+const socket = io('http://localhost:4000');
 
-  componentDidMount() {
-    const { endpoint } = this.state;
-    const socket = socketIOClient(endpoint);
-    socket.on("FromAPI", data => this.setState({ response: data }));
-    socket.emit("test", "AAPL");
-  }
+function App() {
+  const [response, setResponse] = useState(false);
+  const [stock, setStock] = useState("AAPL");
 
-  render() {
-    const { response } = this.state;
-    return (
-      <>
-        <ul>
-          {Object.keys(response).map((key, index) =>
-            <li key={index}>{key}: {response[key]}</li>
-          )}
-        </ul>
-      </>
-    );
-  }
+  useEffect(() => {
+    socket.on('FromAPI', payload => {
+      setResponse(payload);
+    });
+
+    socket.emit("test", stock);
+  }, [stock]);
+
+  return (
+    <>
+      <ul>
+        {Object.keys(response).map((key, index) =>
+          <li key={index}>{key}: {response[key]}</li>
+        )}
+      </ul>
+    </>
+  );
 }
 
 export default App;
