@@ -8,6 +8,8 @@ const app = express();
 app.use(index);
 const server = http.createServer(app);
 const io = socketIo(server);
+let stockObject = {};
+
 
 let interval;
 io.on("connection", socket => {
@@ -33,9 +35,16 @@ server.listen(port, () => console.log(`Listening on port ${port}`));
 const getApiAndEmit = async (socket, stockName) => {
     try {
       const res = await axios.get(
-        `https://cloud.iexapis.com/stable/stock/${stockName}/quote?token=sk_72576fe17dd04de4907aff14eb6507c2`
+        `https://sandbox.iexapis.com/stable/stock/${stockName}/quote?token=Tsk_d2f1890612194476b41d39992a3ad835`
       );
-      const test = {
+      const res1 = await axios.get(
+        `https://sandbox.iexapis.com/stable/stock/${stockName}/company?token=Tsk_835d9028dfb54aed86937de0c1f44f8f`
+      );
+      const res2 = await axios.get(
+        `https://sandbox.iexapis.com/stable/stock/${stockName}/dividends?token=Tsk_835d9028dfb54aed86937de0c1f44f8f`
+      );
+      console.log(res1.dividends[exDate]);
+       stockObject = {
         companyName: res.data.companyName,
         symbol:res.data.symbol,
         primaryExchange:res.data.primaryExchange,
@@ -51,12 +60,15 @@ const getApiAndEmit = async (socket, stockName) => {
         week52High:res.data.week52High,
         week52Low:res.data.week52Low,
         ytdChange:res.data.ytdChange,
-        isUSMarketOpen:res.data.isUSMarketOpen
-
+        isUSMarketOpen:res.data.isUSMarketOpen,
+        sector:res1.data.sector,
+        website:res1.data.website,
+        description:res1.data.description,
+        // currency:res2
 
       }
 
-      socket.emit("FromAPI", test);
+      socket.emit("FromAPI", stockObject);
     } catch (error) {
       //TODO: Handle error
       console.error(`Error: ${error}`);
