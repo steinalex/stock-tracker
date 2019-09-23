@@ -20,11 +20,13 @@ class App extends Component {
   render() {
     const { response } = this.state;
     return (
-      <div>
-        {Object.keys(response).map((key, index) =>
-          <li key={index}>{key}: {response[key]}</li>
-        )}
-      </div>
+      <>
+        <ul>
+          {Object.keys(response).map((key, index) =>
+            <li key={index}>{key}: {response[key]}</li>
+          )}
+        </ul>
+      </>
     );
   }
 }
