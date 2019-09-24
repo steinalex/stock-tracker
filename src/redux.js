@@ -13,10 +13,10 @@ export const store = createStore(
 
 function reducer(state, {type, payload}){
     switch(type){
-        case 'UPDATE_RESPONSE':
+        case 'SET_RESPONSE':
             return {
                 ...state,
-                response: [...state.response, payload]
+                response: payload
             }
         case 'UPDATE_STOCK':
             return {

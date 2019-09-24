@@ -1,9 +1,17 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
-export const RenderTable = ({response}) => (
+const KeyStats = () => {
+
+  const response = useSelector((state) => state.response)
+
+  return (
     <ul>
-        {Object.keys(response).map((key, index) =>
+      {Object.keys(response).map((key, index) =>
         <li key={index}>{key}: {response[key]}</li>
-        )}
-  </ul>
-)
+      )}
+    </ul>
+  )
+}
+
+export default KeyStats

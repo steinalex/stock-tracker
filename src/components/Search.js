@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { updateStockAction  } from '../redux'
+import { updateStockAction  } from '../redux';
 
-export default({socket}) => {
+const Search = () => {
 
     const [stock, setStock] = useState('');
     const dispatch = useDispatch();
@@ -22,3 +22,5 @@ export default({socket}) => {
         <input type="text" value={stock} onChange={onChange} onKeyPress={onSubmit} />
     )
 }
+
+export default Search;
