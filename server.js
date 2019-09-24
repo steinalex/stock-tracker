@@ -48,6 +48,9 @@ const getApiAndEmit = async (socket, stockName) => {
       const res4 = await axios.get(
         `https://sandbox.iexapis.com/stable/stock/${stockName}/earnings/1/actualEPS?token=Tsk_d2f1890612194476b41d39992a3ad835`
       );
+      const res5 = await axios.get(
+        `https://sandbox.iexapis.com/stable/stock/${stockName}/chart/1m?token=Tsk_835d9028dfb54aed86937de0c1f44f8f`
+      );
 
       stockList = {
         companyName: res.data.companyName,
@@ -81,11 +84,14 @@ const getApiAndEmit = async (socket, stockName) => {
         news4Source:res3.data[3].source,
         news5:res3.data[4].headline,
         news5Source:res3.data[4].source,
-        EPS: res4.data
+        EPS: res4.data,
 
       }
 
-      socket.emit("FromAPI", stockList);
+      
+      const monthData= res5.data.map(data => ({close: data.close, date:data.date}))
+
+      socket.emit("FromAPI", stockList, monthData);
     } catch (error) {
       //TODO: Handle error
       console.error(`Error: ${error}`);
