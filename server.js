@@ -21,6 +21,7 @@ io.on("connection", socket => {
     if (interval) {
       clearInterval(interval);
     }
+    else if (stockName === "") { return }
     console.log(stockName)
     interval = setInterval(() => getApiAndEmit(socket, stockName), 5000);
   });

@@ -9,29 +9,30 @@ import { useDispatch, useSelector } from 'react-redux';
 const io = require('socket.io-client');
 const socket = io('http://localhost:4000');
 
-function App() { 
+function App() {
 
   const stock = useSelector((state) => state.stock)
 
-  const [response, setResponse] = useState('');
+  const response = useSelector((state) => state.response)
   const dispatch = useDispatch();
   const addResponse = (data) => dispatch(updateResponseAction(data));
 
   useEffect(() => {
-    socket.emit('stockName', stock);
-
     socket.on('FromAPI', payload => {
       addResponse(payload);
     });
-    
-  }, [stock, response]);
-  
+  })
+
+  useEffect(() => {
+    socket.emit('stockName', stock);
+  }, [stock]);
+
   return (
     <>
       <Search />
       <p>Current search: {stock}</p>
       <KeyStats />
-      </>
+    </>
   );
 }
 
