@@ -51,6 +51,10 @@ const getApiAndEmit = async (socket, stockName) => {
       const res5 = await axios.get(
         `https://sandbox.iexapis.com/stable/stock/${stockName}/chart/max?token=Tsk_835d9028dfb54aed86937de0c1f44f8f`
       );
+      const res6 = await axios.get(
+        `https://sandbox.iexapis.com/stable/stock/${stockName}/peers?token=Tsk_d2f1890612194476b41d39992a3ad835`
+      );
+      
 
       stockList = {
         companyName: res.data.companyName,
@@ -85,6 +89,8 @@ const getApiAndEmit = async (socket, stockName) => {
         news5:res3.data[4].headline,
         news5Source:res3.data[4].source,
         EPS: res4.data,
+        peers:res6.data.join(',')
+
 
       }
 
