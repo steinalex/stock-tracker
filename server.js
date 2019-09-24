@@ -49,7 +49,7 @@ const getApiAndEmit = async (socket, stockName) => {
         `https://sandbox.iexapis.com/stable/stock/${stockName}/earnings/1/actualEPS?token=Tsk_d2f1890612194476b41d39992a3ad835`
       );
       const res5 = await axios.get(
-        `https://sandbox.iexapis.com/stable/stock/${stockName}/chart/1m?token=Tsk_835d9028dfb54aed86937de0c1f44f8f`
+        `https://sandbox.iexapis.com/stable/stock/${stockName}/chart/max?token=Tsk_835d9028dfb54aed86937de0c1f44f8f`
       );
 
       stockList = {

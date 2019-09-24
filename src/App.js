@@ -15,7 +15,6 @@ function App() {
     socket.on('FromAPI', (payload1, payload2,payload3) => {
       setResponse(payload1);
       setChartData(payload2);
-      console.log(payload2)
     });
     
 
@@ -48,6 +47,12 @@ function App() {
           <li key={index}>{key}: {response[key]}</li>
         )}
       </ul>
+      <button>1D</button>
+      <button>5D</button>
+      <button>1M</button>
+      <button>1Y</button>
+      <button>5Y</button>
+      <button>MAX</button>
         <AreaChart width={600} height={400} data={chartData}
               margin={{top: 10, right: 30, left: 0, bottom: 0}}>
           <CartesianGrid strokeDasharray="3 3"/>
