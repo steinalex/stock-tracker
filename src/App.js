@@ -8,7 +8,7 @@ import { store } from './redux'
 const io = require('socket.io-client');
 const socket = io('http://localhost:4000');
 
-function App() {
+function App() { 
   const [response, setResponse] = useState(false);
   const [symbol, setSymbol] = useState('');
 

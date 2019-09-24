@@ -2,7 +2,7 @@ import { createStore } from 'redux';
 
 const initialState = {
     response: false,
-    stock: 'AAPL'
+    stock: ''
 }
 
 export const store = createStore(

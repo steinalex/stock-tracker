@@ -2,30 +2,22 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateStockAction  } from '../redux'
 
-const Search = ({socket}) => {
+export default({socket}) => {
 
     const [stock, setStock] = useState('');
     const dispatch = useDispatch();
     const addStock = (stock) => dispatch(updateStockAction(stock));
 
+    
     const onChange = event => {
         setStock(event.target.value)
     }
     const onSubmit = event => {
+        console.log(event.target.value)
         event.preventDefault();
-
         addStock({
             stock: event.target.value
         })
-
-     
-  useEffect(() => {
-    socket.on('FromAPI', payload => {
-      setResponse(payload);
-    });
-
-
-  });
     }
 
     return (
@@ -36,12 +28,10 @@ const Search = ({socket}) => {
         <input
                 type="text"
                 value={stock}
-                onChange={e => onChange={onChange}}
+                onChange={onChange}
             />
         </label>
         <input type="submit" value="Submit" />
     </form>
     )
 }
-
-export default Search;
