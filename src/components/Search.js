@@ -13,24 +13,12 @@ export default({socket}) => {
         setStock(event.target.value)
     }
     const onSubmit = (event) => {
-        event.preventDefault();
-        addStock({
-            stock: stock
-        })
+        if (event.key === 'Enter') {
+            addStock(stock)
+        }
     }
 
     return (
-    
-    <form onSubmit={onSubmit}>
-        <label>
-            Symbol:
-        <input
-                type="text"
-                value={stock}
-                onChange={onChange}
-            />
-        </label>
-        <input type="submit" value="Submit" />
-    </form>
+        <input type="text" value={stock} onChange={onChange} onKeyPress={onSubmit} />
     )
 }

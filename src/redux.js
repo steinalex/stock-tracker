@@ -21,7 +21,7 @@ function reducer(state, {type, payload}){
         case 'UPDATE_STOCK':
             return {
                 ...state,
-                stock: [...state.stock, payload]
+                stock: payload
             }
         default:
             return state;
