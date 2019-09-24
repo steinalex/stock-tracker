@@ -12,11 +12,10 @@ export default({socket}) => {
     const onChange = event => {
         setStock(event.target.value)
     }
-    const onSubmit = event => {
-        console.log(event.target.value)
+    const onSubmit = (event) => {
         event.preventDefault();
         addStock({
-            stock: event.target.value
+            stock: stock
         })
     }
 
