@@ -5,8 +5,8 @@ const KeyStats = () => {
 
     const response = useSelector((state) => state.response)
     return (
-        <>
-            <h1>KeyStats</h1>
+        <div class="key-stats">
+            <h1>Key Stats</h1>
             <table>
                 <tbody>
                     <tr>Previous Close: <span className='space'>{response.previousClose}</span> Open: <span className='space'>{response.open}</span></tr>
@@ -16,7 +16,7 @@ const KeyStats = () => {
                     <tr>P/E Ratio: <span className='space'>{response.peRatio}</span>Dividend & Yield: <span className='space'>{response.ytdChange}</span></tr>
                 </tbody>
             </table>
-        </>
+        </div>
     )
 }
 

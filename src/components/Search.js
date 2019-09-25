@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { updateStockAction  } from '../redux';
+import { updateStockAction } from '../redux';
 
 const Search = () => {
 
@@ -8,7 +8,7 @@ const Search = () => {
     const dispatch = useDispatch();
     const addStock = (stock) => dispatch(updateStockAction(stock));
 
-    
+
     const onChange = event => {
         setStock(event.target.value)
     }
@@ -19,7 +19,9 @@ const Search = () => {
     }
 
     return (
-        <input type="text" value={stock} onChange={onChange} onKeyPress={onSubmit} />
+        <div class="search-bar">
+            <input type="text" class="search-bar__input" value={stock} onChange={onChange} onKeyPress={onSubmit}/>
+        </div>
     )
 }
 

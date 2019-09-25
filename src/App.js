@@ -30,16 +30,14 @@ function App() {
   }, [stock]);
 
   return (
-    <>
+    <div class="grid-container">
       <Search />
-      <p>Current search: {stock}</p>
-      <KeyStats />
       <Chart />
       <LatestNews />
+      <KeyStats />
       <Company />
       <Peers />
-
-    </>
+    </div>
   );
 }
 

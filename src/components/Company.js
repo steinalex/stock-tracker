@@ -6,7 +6,7 @@ const Company = () => {
     const response = useSelector((state) => state.response)
 
     return (
-        <>
+        <div class="company-overview">
             <h1>Company Overview</h1>
             <table>
                 <tbody>
@@ -15,7 +15,7 @@ const Company = () => {
                     <tr>{response.description}</tr>
                 </tbody>
             </table>
-        </>
+        </div>
     )
 }
 
