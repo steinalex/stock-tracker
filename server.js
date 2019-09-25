@@ -66,6 +66,8 @@ const getApiAndEmit = async (socket, stockName) => {
         latestPrice:res.data.latestPrice,
         latestTime:res.data.latestTime,
         open:res.data.open,
+        high:res.data.high,
+        low:res.data.low,
         previousClose:res.data.previousClose,
         previousVolume:res.data.previousVolume,
         change:res.data.change,
