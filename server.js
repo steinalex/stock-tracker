@@ -23,6 +23,7 @@ io.on("connection", socket => {
     }
     else if (stockName === "") { return }
     console.log(stockName)
+    getApiAndEmit(socket, stockName)
     interval = setInterval(() => getApiAndEmit(socket, stockName), 5000);
   });
   socket.on("disconnect", () => {
