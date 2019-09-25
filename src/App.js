@@ -13,7 +13,6 @@ function App() {
 
   const stock = useSelector((state) => state.stock)
 
-  const response = useSelector((state) => state.response)
   const dispatch = useDispatch();
   const addResponse = (data) => dispatch(updateResponseAction(data));
 
