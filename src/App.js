@@ -2,6 +2,7 @@ import React, {useEffect } from "react";
 import Search from './components/Search';
 import Chart from './components/Chart';
 import KeyStats from './components/KeyStats';
+import LatestNews from './components/LatestNews';
 import { updateResponseAction, updateChartAction } from './redux';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -32,6 +33,7 @@ function App() {
       <p>Current search: {stock}</p>
       <KeyStats />
       <Chart />
+      <LatestNews />
 
     </>
   );
