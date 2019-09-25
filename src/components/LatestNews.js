@@ -6,7 +6,7 @@ const LatestNews = () => {
     const response = useSelector((state) => state.response)
 
     return (
-        <>
+        <div class="latest-news">
             <h1>LatestNews</h1>
             <table>
                 <tbody>
@@ -22,7 +22,7 @@ const LatestNews = () => {
                     <tr>{response.news5Source}</tr>
                 </tbody>
             </table>
-        </>
+        </div>
     )
 }
 
