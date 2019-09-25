@@ -2,7 +2,8 @@ import { createStore } from 'redux';
 
 const initialState = {
     response: false,
-    stock: ''
+    stock: '',
+    chartData: ''
 }
 
 export const store = createStore(
@@ -23,6 +24,11 @@ function reducer(state, {type, payload}){
                 ...state,
                 stock: payload
             }
+        case 'UPDATE_CHART':
+            return {
+                ...state,
+                chartData: payload
+            }
         default:
             return state;
     }
@@ -35,5 +41,10 @@ export const updateResponseAction = (action) => ({
 
 export const updateStockAction = (action) => ({
     type: 'UPDATE_STOCK',
+    payload: action
+})
+
+export const updateChartAction = (action) => ({
+    type: 'UPDATE_CHART',
     payload: action
 })
