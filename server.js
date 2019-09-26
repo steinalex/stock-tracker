@@ -11,7 +11,6 @@ const io = socketIo(server);
 
 let dailyList = {};
 let monthData;
-// const timerIDs = {};
 
 const timerIDs = {}
 io.on("connection", socket => {
@@ -26,8 +25,6 @@ io.on("connection", socket => {
     }
     else if (stockName === "") { return }
     console.log(stockName)
-    // getApiAndEmit(socket, stockName)
-    // interval = setInterval(() => getApiAndEmit(socket, stockName), 5000);
     realTimeInterval(socket, stockName);
     dailyInterval(socket, stockName);
     timerIDs.realTime = setInterval(() => realTimeInterval(socket, stockName), 5000);
@@ -40,28 +37,31 @@ io.on("connection", socket => {
 
 server.listen(port, () => console.log(`Listening on port ${port}`));
 
-const dailyInterval = async (socket, stockName) => {
+const HOST = 'https://sandbox.iexapis.com/stable/stock/'
+
+const dailyInterval = async (socket, stockName, timeRange) => {
+  console.log()
   try {
     const quote = axios.get(
-      `https://sandbox.iexapis.com/stable/stock/${stockName}/quote?token=Tsk_d2f1890612194476b41d39992a3ad835`
+      `${HOST}${stockName}/quote?token=Tsk_d2f1890612194476b41d39992a3ad835`
     );
     const company = axios.get(
-      `https://sandbox.iexapis.com/stable/stock/${stockName}/company?token=Tsk_835d9028dfb54aed86937de0c1f44f8f`
+      `${HOST}${stockName}/company?token=Tsk_835d9028dfb54aed86937de0c1f44f8f`
     );
     const dividends = axios.get(
-      `https://sandbox.iexapis.com/stable/stock/${stockName}/dividends/1y?token=Tsk_835d9028dfb54aed86937de0c1f44f8f`
+      `${HOST}${stockName}/dividends/1y?token=Tsk_835d9028dfb54aed86937de0c1f44f8f`
     );
     const news = axios.get(
-      `https://sandbox.iexapis.com/stable/stock/${stockName}/news?token=Tsk_d2f1890612194476b41d39992a3ad835`
+      `${HOST}${stockName}/news?token=Tsk_d2f1890612194476b41d39992a3ad835`
     );
     const earnings = axios.get(
-      `https://sandbox.iexapis.com/stable/stock/${stockName}/earnings/1/actualEPS?token=Tsk_d2f1890612194476b41d39992a3ad835`
+      `${HOST}${stockName}/earnings/1/actualEPS?token=Tsk_d2f1890612194476b41d39992a3ad835`
     );
     const chart = axios.get(
-      `https://sandbox.iexapis.com/stable/stock/${stockName}/chart/max?token=Tsk_835d9028dfb54aed86937de0c1f44f8f`
+      `${HOST}${stockName}/chart/max?token=Tsk_835d9028dfb54aed86937de0c1f44f8f`
     );
     const peers = axios.get(
-      `https://sandbox.iexapis.com/stable/stock/${stockName}/peers?token=Tsk_d2f1890612194476b41d39992a3ad835`
+      `${HOST}${stockName}/peers?token=Tsk_d2f1890612194476b41d39992a3ad835`
     );
     const companySymbols = axios.get(
       `https://sandbox.iexapis.com/stable//ref-data/symbols?token=Tsk_835d9028dfb54aed86937de0c1f44f8f`
@@ -110,9 +110,6 @@ const dailyInterval = async (socket, stockName) => {
       peers: res6.data.join(',')
     }
     monthData = res5.data.map(data => ({ close: data.close, date: data.date }))
-
-
-    // socket.emit("FromAPI", returnedTarget, monthData);
   } catch (error) {
     //TODO: Handle error
     console.error(`Error: ${error}`);

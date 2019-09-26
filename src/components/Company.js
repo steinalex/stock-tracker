@@ -1,24 +1,16 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import Peers from "./peers";
 
-const Company = () => {
+export const Company = ({stock}) =>
+    <div class="company-overview">
+        <h1 className="title">Company Overview</h1>
+        <table>
+            <tbody>
+                <tr>{stock.companyName} ({stock.symbol})</tr>
+                <tr>{stock.website}</tr>
+                <tr>{stock.description}</tr>
+            </tbody>
+        </table>
+        <Peers />
+    </div>
 
-    const response = useSelector((state) => state.response)
-
-    return (
-        <div class="company-overview">
-            <h1 className="title">Company Overview</h1>
-            <table>
-                <tbody>
-                    <tr>{response.companyName} ({response.symbol})</tr>
-                    <tr>{response.website}</tr>
-                    <tr>{response.description}</tr>
-                </tbody>
-            </table>
-            <Peers />
-        </div>
-    )
-}
-
-export default Company

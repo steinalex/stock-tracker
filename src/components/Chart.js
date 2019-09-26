@@ -5,14 +5,16 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 const Chart = () => {
     const chartData = useSelector((state) => state.chartData)
 
+    const updateTimeRange = useSelector((state) => state.timeRange)
+
     return (
         <div class="chart">
-            <button>1D</button>
-            <button>5D</button>
-            <button>1M</button>
-            <button>1Y</button>
-            <button>5Y</button>
-            <button>MAX</button>
+            <button onClick={updateTimeRange} value='1d'>1D</button>
+            <button onClick={updateTimeRange}>5D</button>
+            <button onClick={updateTimeRange}>1M</button>
+            <button onClick={updateTimeRange}>1Y</button>
+            <button onClick={updateTimeRange}>5Y</button>
+            <button onClick={updateTimeRange}>MAX</button>
             <ResponsiveContainer height='100%' width='100%'>
                 <AreaChart data={chartData}
                     margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
