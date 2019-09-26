@@ -8,11 +8,9 @@ const app = express();
 app.use(index);
 const server = http.createServer(app);
 const io = socketIo(server);
-let stockList = {};
 
-
-let interval;
 io.on("connection", socket => {
+  let interval;
   console.log("New client connected");
   if (interval) {
     clearInterval(interval);
@@ -35,30 +33,31 @@ server.listen(port, () => console.log(`Listening on port ${port}`));
 
 const getApiAndEmit = async (socket, stockName) => {
     try {
-      const res = await axios.get(
+      const resPromise = axios.get(
         `https://sandbox.iexapis.com/stable/stock/${stockName}/quote?token=Tsk_d2f1890612194476b41d39992a3ad835`
       );
-      const res1 = await axios.get(
+      const resPromise1 = axios.get(
         `https://sandbox.iexapis.com/stable/stock/${stockName}/company?token=Tsk_835d9028dfb54aed86937de0c1f44f8f`
       );
-      const res2 = await axios.get(
+      const resPromise2 = axios.get(
         `https://sandbox.iexapis.com/stable/stock/${stockName}/dividends/1y?token=Tsk_835d9028dfb54aed86937de0c1f44f8f`
       );
-      const res3 = await axios.get(
+      const resPromise3 = axios.get(
         `https://sandbox.iexapis.com/stable/stock/${stockName}/news?token=Tsk_d2f1890612194476b41d39992a3ad835`
       );
-      const res4 = await axios.get(
+      const resPromise4 = axios.get(
         `https://sandbox.iexapis.com/stable/stock/${stockName}/earnings/1/actualEPS?token=Tsk_d2f1890612194476b41d39992a3ad835`
       );
-      const res5 = await axios.get(
+      const resPromise5 = axios.get(
         `https://sandbox.iexapis.com/stable/stock/${stockName}/chart/max?token=Tsk_835d9028dfb54aed86937de0c1f44f8f`
       );
-      const res6 = await axios.get(
+      const resPromise6 = axios.get(
         `https://sandbox.iexapis.com/stable/stock/${stockName}/peers?token=Tsk_d2f1890612194476b41d39992a3ad835`
       );
-      
 
-      stockList = {
+      const [res, res1, res2, res3, res4, res5, res6] = await Promise.all([resPromise, resPromise1, resPromise2, resPromise3, resPromise4, resPromise5, resPromise6])
+
+      const stockList = {
         companyName: res.data.companyName,
         symbol:res.data.symbol,
         currency:res2.data[0].currency,
