@@ -7,7 +7,7 @@ const Company = () => {
 
     return (
         <div class="company-overview">
-            <h1>Company Overview</h1>
+            <h1 className="title">Company Overview</h1>
             <table>
                 <tbody>
                     <tr>{response.companyName} ({response.symbol})</tr>

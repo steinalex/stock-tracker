@@ -7,7 +7,7 @@ const LatestNews = () => {
 
     return (
         <div class="latest-news">
-            <h1>LatestNews</h1>
+            <h1 className="title">Latest News</h1>
             <table>
                 <tbody>
                     <tr>{response.news1}</tr>

@@ -4,9 +4,12 @@ import { useSelector } from 'react-redux';
 const KeyStats = () => {
 
     const response = useSelector((state) => state.response)
+
+    const dayRange = response.low-response.high;
+
     return (
         <div className="key-stats">
-            <h1>Key Stats</h1>
+            <h1 className="title">Key Stats</h1>
             <div className="key-stats__wrapper">
                 <table className="key-stats__table">
                     <tbody>
@@ -14,7 +17,7 @@ const KeyStats = () => {
                             <td>Previous Close:</td><td>{response.previousClose}</td>
                         </tr>
                         <tr>
-                            <td>Day Range:</td> <td>{response.low}-{response.high}</td>
+                            <td>Day Range:</td> <td>{dayRange ? dayRange : 'N/A'}</td>
                         </tr>
                         <tr>
                             <td>Volume:</td> <td>{response.previousVolume}</td>
@@ -26,7 +29,7 @@ const KeyStats = () => {
                             <td>P/E Ratio:</td> <td> {response.peRatio} </td>
                         </tr>
                         <tr>
-                            <td>Open:</td> <td>{response.open}</td>
+                            <td>Open:</td> <td>{response.open ? response.open : 'N/A'}</td>
                         </tr>
                         <tr>
                             <td>52 Week Range:</td> <td>{response.week52High}-{response.week52Low}</td>
@@ -38,7 +41,7 @@ const KeyStats = () => {
                             <td>Earning per share:</td> <td> {response.EPS}</td>
                         </tr>
                         <tr>
-                            <td> Open: </td> <td>{response.open} </td>
+                            <td> Dividend &amp; Yeild: </td> <td>{response.ytdChange} </td>
                         </tr>
                     </tbody>
                 </table>

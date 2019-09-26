@@ -33,32 +33,40 @@ server.listen(port, () => console.log(`Listening on port ${port}`));
 
 const getApiAndEmit = async (socket, stockName) => {
     try {
-      const resPromise = axios.get(
+      const quote = axios.get(
         `https://sandbox.iexapis.com/stable/stock/${stockName}/quote?token=Tsk_d2f1890612194476b41d39992a3ad835`
       );
-      const resPromise1 = axios.get(
+      const company = axios.get(
         `https://sandbox.iexapis.com/stable/stock/${stockName}/company?token=Tsk_835d9028dfb54aed86937de0c1f44f8f`
       );
-      const resPromise2 = axios.get(
+      const dividends = axios.get(
         `https://sandbox.iexapis.com/stable/stock/${stockName}/dividends/1y?token=Tsk_835d9028dfb54aed86937de0c1f44f8f`
       );
-      const resPromise3 = axios.get(
+      const news = axios.get(
         `https://sandbox.iexapis.com/stable/stock/${stockName}/news?token=Tsk_d2f1890612194476b41d39992a3ad835`
       );
-      const resPromise4 = axios.get(
+      const earnings = axios.get(
         `https://sandbox.iexapis.com/stable/stock/${stockName}/earnings/1/actualEPS?token=Tsk_d2f1890612194476b41d39992a3ad835`
       );
-      const resPromise5 = axios.get(
+      const chart = axios.get(
         `https://sandbox.iexapis.com/stable/stock/${stockName}/chart/max?token=Tsk_835d9028dfb54aed86937de0c1f44f8f`
       );
-      const resPromise6 = axios.get(
+      const peers = axios.get(
         `https://sandbox.iexapis.com/stable/stock/${stockName}/peers?token=Tsk_d2f1890612194476b41d39992a3ad835`
       );
+      const companySymbols =axios.get(
+        `https://sandbox.iexapis.com/stable//ref-data/symbols?token=Tsk_835d9028dfb54aed86937de0c1f44f8f`
+      )
 
-      const [res, res1, res2, res3, res4, res5, res6] = await Promise.all([resPromise, resPromise1, resPromise2, resPromise3, resPromise4, resPromise5, resPromise6])
+      const [res, res1, res2, res3, res4, res5, res6, res7] = await Promise.all([quote, company, dividends, news, earnings, chart, peers, companySymbols])
       const {companyName, symbol, primaryExchange, latestPrice, latestTime, open, high, low, previousClose, previousVolume, change, changePercent,avgTotalVolume, marketCap, peRatio, week52High, week52Low, ytdChange, isUSMarketOpen} =res.data
       const {sector, website, description} =res1.data
       const {currency} =res2.data[0]
+      
+      const allSymbol = res7.data.map(data =>(data.symbol))
+
+      console.log(allSymbol)
+
       const stockList = {
         companyName,
         symbol,
@@ -97,6 +105,7 @@ const getApiAndEmit = async (socket, stockName) => {
         peers:res6.data.join(',')
       }
       const monthData= res5.data.map(data => ({close: data.close, date:data.date}))
+
 
       socket.emit("FromAPI", stockList, monthData);
     } catch (error) {
