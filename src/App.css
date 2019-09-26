@@ -8,6 +8,10 @@ body {
   font-family: Lato-Regular;
 }
 
+.header {
+  grid-area: header;
+}
+
 .search-bar {
   grid-area: search-bar;
 }
@@ -32,7 +36,8 @@ body {
   display: grid;
   grid-gap: 10px;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-areas:"search-bar  search-bar  search-bar" 
+  grid-template-areas:"header header header"
+                      "search-bar  search-bar  search-bar" 
                       "chart chart latest-news" 
                       "key-stats  key-stats  company-overview";
   color: #fff;
@@ -40,4 +45,21 @@ body {
 
 .search-bar__input {
   width: 100%;
+  background: none;
+  border: none;
+  border-bottom: 2px solid #fff;
+  font-size: 26px;
+  color: #fff;
+}
+
+.key-stats__wrapper {
+  column-count:2;
+}
+
+.key-stats__table {
+  width: 100%;
+}
+
+.key-stats__table td:nth-child(even){
+  text-align: right;
 }
