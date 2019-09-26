@@ -9,6 +9,9 @@ app.use(index);
 const server = http.createServer(app);
 const io = socketIo(server);
 
+
+const timerIDs = {};
+
 io.on("connection", socket => {
   let interval;
   console.log("New client connected");
@@ -21,8 +24,12 @@ io.on("connection", socket => {
     }
     else if (stockName === "") { return }
     console.log(stockName)
-    getApiAndEmit(socket, stockName)
-    interval = setInterval(() => getApiAndEmit(socket, stockName), 5000);
+    // getApiAndEmit(socket, stockName)
+    // interval = setInterval(() => getApiAndEmit(socket, stockName), 5000);
+    realTimeInterval(socket, stockName);
+    dailyInterval(socket, stockName);
+    timerIDs.realTime = setInterval(() => realTimeInterval(socket, stockName), 5000);
+    timerIDs.daily = setInterval(() => dailyInterval(socket, stockName), 86400000);
   });
   socket.on("disconnect", () => {
     console.log("Client disconnected");
@@ -31,7 +38,30 @@ io.on("connection", socket => {
 
 server.listen(port, () => console.log(`Listening on port ${port}`));
 
-const getApiAndEmit = async (socket, stockName) => {
+const realTimeInterval = async (socket, stockName) => {
+    try {
+      const quote = axios.get(
+        `https://sandbox.iexapis.com/stable/stock/${stockName}/quote?token=Tsk_d2f1890612194476b41d39992a3ad835`
+      );
+
+      const [res] = await Promise.all([quote])
+      const {latestPrice, latestTime, change, changePercent} = res.data;
+
+      const realTimeList = {
+        latestPrice,
+        latestTime,
+        change,
+        changePercent,
+      }
+
+      socket.emit("Real Time Data", realTimeList);
+    } catch (error) {
+      //TODO: Handle error
+      console.error(`Error: ${error}`);
+    }
+  };
+
+const dailyInterval = async (socket, stockName) => {
     try {
       const quote = axios.get(
         `https://sandbox.iexapis.com/stable/stock/${stockName}/quote?token=Tsk_d2f1890612194476b41d39992a3ad835`
@@ -59,7 +89,7 @@ const getApiAndEmit = async (socket, stockName) => {
       )
 
       const [res, res1, res2, res3, res4, res5, res6, res7] = await Promise.all([quote, company, dividends, news, earnings, chart, peers, companySymbols])
-      const {companyName, symbol, primaryExchange, latestPrice, latestTime, open, high, low, previousClose, previousVolume, change, changePercent,avgTotalVolume, marketCap, peRatio, week52High, week52Low, ytdChange, isUSMarketOpen} =res.data
+      const {companyName, symbol, primaryExchange, open, high, low, previousClose, previousVolume, avgTotalVolume, marketCap, peRatio, week52High, week52Low, ytdChange, isUSMarketOpen} =res.data
       const {sector, website, description} =res1.data
       const {currency} =res2.data[0]
       
@@ -67,20 +97,16 @@ const getApiAndEmit = async (socket, stockName) => {
 
       console.log(allSymbol)
 
-      const stockList = {
+      const dailyList = {
         companyName,
         symbol,
         currency,
         primaryExchange,
-        latestPrice,
-        latestTime,
         open,
         high,
         low,
         previousClose,
         previousVolume,
-        change,
-        changePercent,
         avgTotalVolume,
         marketCap,
         peRatio,
@@ -107,7 +133,7 @@ const getApiAndEmit = async (socket, stockName) => {
       const monthData= res5.data.map(data => ({close: data.close, date:data.date}))
 
 
-      socket.emit("FromAPI", stockList, monthData);
+      socket.emit("Daily Data", dailyList, monthData);
     } catch (error) {
       //TODO: Handle error
       console.error(`Error: ${error}`);
