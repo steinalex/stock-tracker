@@ -6,7 +6,6 @@ import LatestNews from './components/LatestNews';
 import { updateResponseAction, updateChartAction } from './redux';
 import { useDispatch, useSelector } from 'react-redux';
 import Company from "./components/Company";
-import Peers from "./components/peers";
 import Headline from "./components/Headline";
 
 
@@ -39,7 +38,6 @@ function App() {
       <LatestNews />
       <KeyStats />
       <Company />
-      <Peers />
     </div>
   );
 }
