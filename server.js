@@ -54,11 +54,19 @@ const getApiAndEmit = async (socket, stockName) => {
       const resPromise6 = axios.get(
         `https://sandbox.iexapis.com/stable/stock/${stockName}/peers?token=Tsk_d2f1890612194476b41d39992a3ad835`
       );
+      const resPromise7 =axios.get(
+        `https://sandbox.iexapis.com/stable//ref-data/symbols?token=Tsk_835d9028dfb54aed86937de0c1f44f8f`
+      )
 
-      const [res, res1, res2, res3, res4, res5, res6] = await Promise.all([resPromise, resPromise1, resPromise2, resPromise3, resPromise4, resPromise5, resPromise6])
+      const [res, res1, res2, res3, res4, res5, res6, res7] = await Promise.all([resPromise, resPromise1, resPromise2, resPromise3, resPromise4, resPromise5, resPromise6, resPromise7])
       const {companyName, symbol, primaryExchange, latestPrice, latestTime, open, high, low, previousClose, previousVolume, change, changePercent,avgTotalVolume, marketCap, peRatio, week52High, week52Low, ytdChange, isUSMarketOpen} =res.data
       const {sector, website, description} =res1.data
       const {currency} =res2.data[0]
+      
+      const allSymbol = res7.data.map(data =>(data.symbol))
+
+      console.log(allSymbol)
+
       const stockList = {
         companyName,
         symbol,
@@ -97,6 +105,7 @@ const getApiAndEmit = async (socket, stockName) => {
         peers:res6.data.join(',')
       }
       const monthData= res5.data.map(data => ({close: data.close, date:data.date}))
+
 
       socket.emit("FromAPI", stockList, monthData);
     } catch (error) {
