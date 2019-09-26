@@ -6,14 +6,23 @@ const LatestNews = () => {
     const response = useSelector((state) => state.response)
 
     return (
-        <>
+        <div class="latest-news">
             <h1>LatestNews</h1>
-            <ul>
-                {Object.keys(response).map((key, index) =>
-                    <li key={index}>{key}: {response[key]}</li>
-                )}
-            </ul>
-        </>
+            <table>
+                <tbody>
+                    <tr>{response.news1}</tr>
+                    <tr>{response.news1Source}</tr>
+                    <tr>{response.news2}</tr>
+                    <tr>{response.news2Source}</tr>
+                    <tr>{response.news3}</tr>
+                    <tr>{response.news3Source}</tr>
+                    <tr>{response.news4}</tr>
+                    <tr>{response.news4Source}</tr>
+                    <tr>{response.news5}</tr>
+                    <tr>{response.news5Source}</tr>
+                </tbody>
+            </table>
+        </div>
     )
 }
 
