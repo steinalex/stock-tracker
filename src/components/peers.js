@@ -13,4 +13,4 @@ const Peers = () => {
     )
 }
 
-export default Peers
+export default Peers    

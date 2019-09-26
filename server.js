@@ -56,31 +56,34 @@ const getApiAndEmit = async (socket, stockName) => {
       );
 
       const [res, res1, res2, res3, res4, res5, res6] = await Promise.all([resPromise, resPromise1, resPromise2, resPromise3, resPromise4, resPromise5, resPromise6])
-
+      const {companyName, symbol, primaryExchange, latestPrice, latestTime, open, high, low, previousClose, previousVolume, change, changePercent,avgTotalVolume, marketCap, peRatio, week52High, week52Low, ytdChange, isUSMarketOpen} =res.data
+      const {sector, website, description} =res1.data
+      const {currency} =res2.data[0]
       const stockList = {
-        companyName: res.data.companyName,
-        symbol:res.data.symbol,
-        currency:res2.data[0].currency,
-        primaryExchange:res.data.primaryExchange,
-        latestPrice:res.data.latestPrice,
-        latestTime:res.data.latestTime,
-        open:res.data.open,
-        high:res.data.high,
-        low:res.data.low,
-        previousClose:res.data.previousClose,
-        previousVolume:res.data.previousVolume,
-        change:res.data.change,
-        changePercent:res.data.changePercent,
-        avgTotalVolume:res.data.avgTotalVolume,
-        marketCap:res.data.marketCap,
-        peRatio:res.data.peRatio,
-        week52High:res.data.week52High,
-        week52Low:res.data.week52Low,
-        ytdChange:res.data.ytdChange,
-        isUSMarketOpen:res.data.isUSMarketOpen,
-        sector:res1.data.sector,
-        website:res1.data.website,
-        description:res1.data.description,
+        companyName,
+        symbol,
+        currency,
+        primaryExchange,
+        latestPrice,
+        latestTime,
+        open,
+        high,
+        low,
+        previousClose,
+        previousVolume,
+        change,
+        changePercent,
+        avgTotalVolume,
+        marketCap,
+        peRatio,
+        week52High,
+        week52Low,
+        ytdChange,
+        isUSMarketOpen,
+        sector,
+        website,
+        description,
+        EPS: res4.data,
         news1:res3.data[0].headline,
         news1Source:res3.data[0].source,
         news2:res3.data[1].headline,
@@ -91,13 +94,8 @@ const getApiAndEmit = async (socket, stockName) => {
         news4Source:res3.data[3].source,
         news5:res3.data[4].headline,
         news5Source:res3.data[4].source,
-        EPS: res4.data,
         peers:res6.data.join(',')
-
-
       }
-
-      
       const monthData= res5.data.map(data => ({close: data.close, date:data.date}))
 
       socket.emit("FromAPI", stockList, monthData);
