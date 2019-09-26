@@ -3,30 +3,61 @@ import { useSelector } from 'react-redux';
 
 const KeyStats = () => {
 
-    const response = useSelector((state) => state.response)
-    return (
-        <div class="key-stats">
-            <h1>Key Stats</h1>
-            <table  >
-                <tbody>
-                    <tr>Previous Close: <span className='space'>{response.previousClose}</span> Open: <span className='space'>{response.open}</span></tr>
-                    <tr>Day Range: <span className='space'>{response.low}-{response.high}</span>52 Week Range: <span className='space'>{response.week52High}-{response.week52Low}</span></tr>
-                    <tr>Volume: <span className='space'>{response.previousVolume}</span>Total Avg Volume: <span className='space'>{response.avgTotalVolume}</span></tr>
-                    <tr>Market Cap: <span className='space'>{response.marketCap}</span> Earning per share: <span className='space'>{response.EPS}</span></tr>
-                    <tr>P/E Ratio: <span className='space'>{response.peRatio}</span>Dividend & Yield: <span className='space'>{response.ytdChange}</span></tr>
-                </tbody>
-            </table>
-            <table >
-                <tbody>
-                    <tr> Open: <span className='space'>{response.open}</span></tr>
-                    <tr>52 Week Range: <span className='space'>{response.week52High}-{response.week52Low}</span></tr>
-                    <tr>Total Avg Volume: <span className='space'>{response.avgTotalVolume}</span></tr>
-                    <tr>Earning per share: <span className='space'>{response.EPS}</span></tr>
-                    <tr>Dividend & Yield: <span className='space'>{response.ytdChange}</span></tr>
-                </tbody>
-            </table>
-        </div>
-    )
+  const response = useSelector((state) => state.response)
+  return (
+    <div className="key-stats">
+      <h1>Key Stats</h1>
+      <table  >
+        <tbody>
+          <tr>
+            <td>Previous Close:</td><td>{response.previousClose}</td>
+          </tr>
+          <tr>
+            <td>Day Range:</td> <td>{response.low}-{response.high}</td>
+          </tr>
+          <tr>
+            <td>Volume:</td> <td>{response.previousVolume}</td>
+          </tr>
+          <tr>
+            <td>Market Cap:</td> <td> {response.marketCap} </td>
+          </tr>
+          <tr>
+            <td>P/E Ratio:</td> <td> {response.peRatio} </td>
+          </tr>
+          <tr>
+            <td>Open:</td> {response.open}
+          </tr>
+          <tr>
+            <td>52 Week Range:</td> <td>{response.week52High}-{response.week52Low}</td>
+          </tr>
+          <tr>
+            <td>Total Avg Volume:</td> <td>{response.avgTotalVolume}</td>
+          </tr>
+          <tr>
+            <td>Earning per share:</td> <td> {response.EPS}</td>
+          </tr>
+          <tr>
+            <td>Dividend & Yield:</td> <td> {response.ytdChange}</td>
+          </tr>
+          <tr>
+            <td> Open: </td> <td>{response.open} </td>
+          </tr>
+          <tr>
+            <td>52 Week Range:</td> <td> {response.week52High}-{response.week52Low}</td>
+          </tr>
+          <tr>
+            <td>Total Avg Volume:</td> <td>{response.avgTotalVolume}</td>
+          </tr>
+          <tr>
+            <td>Earning per share:</td> <td> {response.EPS}</td>
+          </tr>
+          <tr>
+            <td>Dividend & Yield:</td> <td>{response.ytdChange}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  )
 }
 
 export default KeyStats

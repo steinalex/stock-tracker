@@ -7,6 +7,8 @@ import { updateResponseAction, updateChartAction } from './redux';
 import { useDispatch, useSelector } from 'react-redux';
 import Company from "./components/Company";
 import Peers from "./components/peers";
+import Headline from "./components/Headline";
+
 
 const io = require('socket.io-client');
 const socket = io('http://localhost:4000');
@@ -31,6 +33,7 @@ function App() {
 
   return (
     <div class="grid-container">
+      <Headline />
       <Search />
       <Chart />
       <LatestNews />
