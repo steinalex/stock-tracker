@@ -21,18 +21,11 @@ function App() {
   const addChartData = (data) => dispatch(updateChartAction(data));
 
   useEffect(() => {
-    socket.on('Real Time Data', (payload1) => {
-      addResponse(payload1);
-    });
-  })
-
-  useEffect(() => {
-    socket.on('Daily Data', (payload1, payload2) => {
+    socket.on('FromAPI', (payload1, payload2) => {
       addResponse(payload1);
       addChartData(payload2);
     });
   })
-
 
   useEffect(() => {
     socket.emit('stockName', stock);
