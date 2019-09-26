@@ -7,7 +7,7 @@ const Peers = () => {
 
     return (
         <>
-            <h1>Peers</h1>
+            <h1 className="title">Top Peers</h1>
             <tr>{response.peers}</tr>
         </>
     )
