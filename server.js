@@ -58,7 +58,7 @@ const dailyInterval = async (socket, stockName, timeRange) => {
       `${HOST}${stockName}/earnings/1/actualEPS?token=Tsk_d2f1890612194476b41d39992a3ad835`
     );
     const chart = axios.get(
-      `${HOST}${stockName}/chart/${timeRange}?token=Tsk_835d9028dfb54aed86937de0c1f44f8f`
+      `${HOST}${stockName}/chart/max?token=Tsk_835d9028dfb54aed86937de0c1f44f8f`
     );
     const peers = axios.get(
       `${HOST}${stockName}/peers?token=Tsk_d2f1890612194476b41d39992a3ad835`
@@ -76,6 +76,8 @@ const dailyInterval = async (socket, stockName, timeRange) => {
 
     console.log(allSymbol)
 
+    monthData = res5.data.map(data => ({ close: data.close, date: data.date }))
+    
     dailyList = {
       companyName,
       symbol,
@@ -107,9 +109,9 @@ const dailyInterval = async (socket, stockName, timeRange) => {
       news4Source: res3.data[3].source,
       news5: res3.data[4].headline,
       news5Source: res3.data[4].source,
-      peers: res6.data.join(',')
+      peers: res6.data.join(','),
+      monthData: monthData
     }
-    monthData = res5.data.map(data => ({ close: data.close, date: data.date }))
   } catch (error) {
     //TODO: Handle error
     console.error(`Error: ${error}`);
@@ -133,7 +135,7 @@ const realTimeInterval = async (socket, stockName) => {
     }
     
     const returnedTarget = Object.assign(dailyList, realTimeList);
-    socket.emit("FromAPI", returnedTarget, monthData);
+    socket.emit("FromAPI", returnedTarget);
   } catch (error) {
     //TODO: Handle error
     console.error(`Error: ${error}`);

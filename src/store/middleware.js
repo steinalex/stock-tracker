@@ -27,6 +27,7 @@ export const startupMiddleware = store => next => action => {
 
 
 export const stockMiddleware = store => next => action => {
+    console.log("payload is", action.payload)
 
     if (action.type === UPDATE_SELECTED_STOCK) {
         socket.emit('stockName', action.payload)
@@ -34,6 +35,7 @@ export const stockMiddleware = store => next => action => {
     else if (action.type === UPDATE_CHART_RANGE) {
         socket.emit ('timeRange', action.payload)
     }
+
 
     return next(action)
 }

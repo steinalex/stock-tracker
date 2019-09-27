@@ -2,7 +2,7 @@ import React from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 const Chart = (chartData, {updateChartRange}) => {
-    console.log(chartData.chartData)
+    console.log("Chart data is", chartData.chartData)
     return (
         <div class="chart">
             <button value='1d'>1D</button>
