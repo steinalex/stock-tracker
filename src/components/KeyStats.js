@@ -26,7 +26,7 @@ const KeyStats = ({ stock }) => {
                             <td>P/E Ratio:</td><td>{stock.peRatio}</td>
                         </tr>
                         <tr>
-                            <td>Open:</td><td>{stock.open ? stock.open : 'N/A'}</td>
+                            <td>Open:</td><td>{stock.open}</td>
                         </tr>
                         <tr>
                             <td>52 Week Range:</td><td>{stock.week52High}-{stock.week52Low}</td>
