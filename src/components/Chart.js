@@ -1,8 +1,8 @@
 import React from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
-const Chart = ({chartData}) => {
-    console.log({chartData})
+const Chart = (chartData, {updateChartRange}) => {
+    console.log(chartData.chartData)
     return (
         <div class="chart">
             <button value='1d'>1D</button>
@@ -12,7 +12,7 @@ const Chart = ({chartData}) => {
             <button>5Y</button>
             <button>MAX</button>
             <ResponsiveContainer height='100%' width='100%'>
-                <AreaChart data={chartData}
+                <AreaChart data={chartData.chartData}
                     margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="date" />

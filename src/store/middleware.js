@@ -1,4 +1,4 @@
-import { UPDATE_SELECTED_STOCK, BOOTSTRAP } from './constants'
+import { UPDATE_SELECTED_STOCK, UPDATE_CHART_RANGE, BOOTSTRAP } from './constants'
 import { updateResponseAction } from './actions'
 
 const io = require('socket.io-client')
@@ -30,6 +30,9 @@ export const stockMiddleware = store => next => action => {
 
     if (action.type === UPDATE_SELECTED_STOCK) {
         socket.emit('stockName', action.payload)
+    }
+    else if (action.type === UPDATE_CHART_RANGE) {
+        socket.emit ('timeRange', action.payload)
     }
 
     return next(action)

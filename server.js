@@ -58,7 +58,7 @@ const dailyInterval = async (socket, stockName, timeRange) => {
       `${HOST}${stockName}/earnings/1/actualEPS?token=Tsk_d2f1890612194476b41d39992a3ad835`
     );
     const chart = axios.get(
-      `${HOST}${stockName}/chart/max?token=Tsk_835d9028dfb54aed86937de0c1f44f8f`
+      `${HOST}${stockName}/chart/${timeRange}?token=Tsk_835d9028dfb54aed86937de0c1f44f8f`
     );
     const peers = axios.get(
       `${HOST}${stockName}/peers?token=Tsk_d2f1890612194476b41d39992a3ad835`
