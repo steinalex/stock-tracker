@@ -1,7 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { updateStockAction } from './store/actions';
+import { updateStockAction,updateResponseAction, updateChartAction } from './store/actions';
 import Search from './components/Search';
+import { Headline } from "./components/Headline";
 
 const App = () => {
   const state = useSelector((state) => state)
@@ -11,6 +12,8 @@ const App = () => {
     <div className="grid-container">
       <p>{state.selectedStock}</p>
       <Search updateStock={(stock) => dispatch(updateStockAction(stock))} />
+      <Headline stock = {(stock) => dispatch(updateResponseAction(stock))} />
+
       {/* <Headline stock={stock} />
       <Chart stock={stock} />
       <LatestNews />

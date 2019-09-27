@@ -1,4 +1,4 @@
-import { ON_STOCK_DATA_RECIEVED, UPDATE_SELECTED_STOCK, UPDATE_CHART_RANGE, BOOTSTRAP } from '../constants'
+import { ON_STOCK_DATA_RECIEVED, UPDATE_SELECTED_STOCK, UPDATE_CHART_RANGE, BOOTSTRAP } from './constants'
 
 export const bootstrap = () => ({ type: BOOTSTRAP })
 
