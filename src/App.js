@@ -14,13 +14,12 @@ import Peers from "./components/peers";
 const App = () => {
   const state = useSelector((state) => state)
   const dispatch = useDispatch()
-  console.log("App.js", state.stockData)
   return (
     <div className="grid-container">
       <p>{state.selectedStock}</p>
       <Search updateStock={(stock) => dispatch(updateStockAction(stock))} />
       <Headline stock={state.stockData} />
-      <Chart stock={state.stockData.monthData} />
+      <Chart stock={state.stockData.monthData} updateChartRange={(stock) => dispatch(updateChartAction(stock))}/>
       <LatestNews stock={state.stockData} />
       <KeyStats stock={state.stockData} />
       <Company stock={state.stockData} /> 

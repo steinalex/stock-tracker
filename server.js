@@ -27,6 +27,7 @@ io.on("connection", socket => {
     console.log(stockName)
     realTimeInterval(socket, stockName);
     dailyInterval(socket, stockName, timeRange);
+    console.log(timeRange)
     timerIDs.realTime = setInterval(() => realTimeInterval(socket, stockName), 5000);
     timerIDs.daily = setInterval(() => dailyInterval(socket, stockName), 86400000);
   });

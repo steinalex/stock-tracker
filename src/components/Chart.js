@@ -1,16 +1,18 @@
 import React from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
-const Chart = ({stock}, {updateChartRange}) => {
-    console.log("Chart data is", stock)
+const Chart = ({stock, updateChartRange}) => {
+    const updateTimeRange = event =>{
+        updateChartRange(event.target.value)        
+    }
     return (
         <div className="chart">
-            <button value='1d'>1D</button>
-            <button>5D</button>
-            <button>1M</button>
-            <button>1Y</button>
-            <button>5Y</button>
-            <button>MAX</button>
+            <button onClick={updateTimeRange} value='1d'>1D</button>
+            <button onClick={updateTimeRange} value='5d'>5D</button>
+            <button onClick={updateTimeRange} value='1m'>1M</button>
+            <button onClick={updateTimeRange} value='1y'>1Y</button>
+            <button onClick={updateTimeRange} value='5y'>5Y</button>
+            <button onClick={updateTimeRange} value='max'>MAX</button>
             <ResponsiveContainer height='100%' width='100%'>
                 <AreaChart data={stock}
                     margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
