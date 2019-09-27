@@ -3,20 +3,20 @@ import React from 'react';
 const LatestNews = ({stock}) => {
 
     return (
-        <div class="latest-news">
+        <div className="latest-news">
             <h1 className="title">Latest News</h1>
             <table>
                 <tbody>
-                    <tr>{stock.news1}</tr>
-                    <tr>{stock.news1Source}</tr>
-                    <tr>{stock.news2}</tr>
-                    <tr>{stock.news2Source}</tr>
-                    <tr>{stock.news3}</tr>
-                    <tr>{stock.news3Source}</tr>
-                    <tr>{stock.news4}</tr>
-                    <tr>{stock.news4Source}</tr>
-                    <tr>{stock.news5}</tr>
-                    <tr>{stock.news5Source}</tr>
+                    <tr><td>{stock.news1}</td></tr>
+                    <tr><td>{stock.news1Source}</td></tr>
+                    <tr><td>{stock.news2}</td></tr>
+                    <tr><td>{stock.news2Source}</td></tr>
+                    <tr><td>{stock.news3}</td></tr>
+                    <tr><td>{stock.news3Source}</td></tr>
+                    <tr><td>{stock.news4}</td></tr>
+                    <tr><td>{stock.news4Source}</td></tr>
+                    <tr><td>{stock.news5}</td></tr>
+                    <tr><td>{stock.news5Source}</td></tr>
                 </tbody>
             </table>
         </div>

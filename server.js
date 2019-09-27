@@ -19,17 +19,21 @@ io.on("connection", socket => {
   if (interval) {
     clearInterval(interval);
   }
-  socket.on("stockName", (stockName) => {
+  socket.on("stockName", (stockName, timeRange) => {
     if (interval) {
       clearInterval(interval);
     }
     else if (stockName === "") { return }
     console.log(stockName)
     realTimeInterval(socket, stockName);
-    dailyInterval(socket, stockName);
+    dailyInterval(socket, stockName, timeRange);
     timerIDs.realTime = setInterval(() => realTimeInterval(socket, stockName), 5000);
     timerIDs.daily = setInterval(() => dailyInterval(socket, stockName), 86400000);
   });
+  socket.on('timeRange', (stockName, timeRange) => {
+
+  }
+  )
   socket.on("disconnect", () => {
     console.log("Client disconnected");
   });
@@ -58,7 +62,7 @@ const dailyInterval = async (socket, stockName, timeRange) => {
       `${HOST}${stockName}/earnings/1/actualEPS?token=Tsk_d2f1890612194476b41d39992a3ad835`
     );
     const chart = axios.get(
-      `${HOST}${stockName}/chart/max?token=Tsk_835d9028dfb54aed86937de0c1f44f8f`
+      `${HOST}${stockName}/chart/${timeRange}?token=Tsk_835d9028dfb54aed86937de0c1f44f8f`
     );
     const peers = axios.get(
       `${HOST}${stockName}/peers?token=Tsk_d2f1890612194476b41d39992a3ad835`

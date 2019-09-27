@@ -5,8 +5,8 @@ import { bootstrap } from './actions'
 
 const initialState = {
     stockData: {},
-    selectedStock: 'AAPL',
-    selectedChartRange: '1d'
+    selectedStock: '',
+    selectedChartRange: ''
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

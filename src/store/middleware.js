@@ -14,9 +14,9 @@ export const startupMiddleware = store => next => action => {
 
     if (action.type === BOOTSTRAP) {
 
-        socket.on('FromAPI', (payload1, payload2) => {
-            console.info('Data has been receieved', payload1, payload2)
-            store.dispatch(updateResponseAction(payload1, payload2))
+        socket.on('FromAPI', (payload1) => {
+            console.info('Data has been receieved', payload1)
+            store.dispatch(updateResponseAction(payload1))
         });
 
         console.info('Application has been bootstrapped')
@@ -30,7 +30,7 @@ export const stockMiddleware = store => next => action => {
     console.log("payload is", action.payload)
 
     if (action.type === UPDATE_SELECTED_STOCK) {
-        socket.emit('stockName', action.payload)
+        socket.emit('stockName', action.payload, '5y')
     }
     else if (action.type === UPDATE_CHART_RANGE) {
         socket.emit ('timeRange', action.payload)

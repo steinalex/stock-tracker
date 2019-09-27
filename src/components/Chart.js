@@ -4,7 +4,7 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 const Chart = ({stock}, {updateChartRange}) => {
     console.log("Chart data is", stock)
     return (
-        <div class="chart">
+        <div className="chart">
             <button value='1d'>1D</button>
             <button>5D</button>
             <button>1M</button>
