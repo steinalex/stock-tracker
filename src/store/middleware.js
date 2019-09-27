@@ -28,12 +28,13 @@ export const startupMiddleware = store => next => action => {
 
 export const stockMiddleware = store => next => action => {
     console.log("payload is", action.payload)
+    console.log(store.getState())
 
     if (action.type === UPDATE_SELECTED_STOCK) {
-        socket.emit('stockName', action.payload, '5y')
+        socket.emit('stockName', action.payload, store.getState().selectedChartRange)
     }
     else if (action.type === UPDATE_CHART_RANGE) {
-        socket.emit ('timeRange', action.payload)
+        socket.emit ('timeRange' , store.getState().selectedStock,action.payload)
     }
 
 

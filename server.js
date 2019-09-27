@@ -32,9 +32,13 @@ io.on("connection", socket => {
     timerIDs.daily = setInterval(() => dailyInterval(socket, stockName), 86400000);
   });
   socket.on('timeRange', (stockName, timeRange) => {
-
-  }
-  )
+    if (interval) {
+      clearInterval(interval);
+    }
+    else if (timeRange === "") { return }
+    console.log(timeRange)
+    dailyInterval(socket, stockName, timeRange);
+  });
   socket.on("disconnect", () => {
     console.log("Client disconnected");
   });
