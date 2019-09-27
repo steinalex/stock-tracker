@@ -32,6 +32,10 @@ body {
   grid-area: company-overview;
 }
 
+.peers {
+  grid-area: peers;
+}
+
 .grid-container {
   display: grid;
   grid-gap: 20px;
@@ -39,7 +43,8 @@ body {
   grid-template-areas: "header header header" 
                         "search-bar  search-bar  search-bar" 
                         "chart chart latest-news" 
-                        "key-stats  key-stats  company-overview";
+                        "key-stats  key-stats  company-overview"
+                        "   .           .   peers";
   color: #fff;
 }
 

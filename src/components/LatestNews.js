@@ -1,25 +1,22 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 
-const LatestNews = () => {
-
-    const response = useSelector((state) => state.response)
+const LatestNews = ({stock}) => {
 
     return (
-        <div class="latest-news">
+        <div className="latest-news">
             <h1 className="title">Latest News</h1>
             <table>
                 <tbody>
-                    <tr>{response.news1}</tr>
-                    <tr>{response.news1Source}</tr>
-                    <tr>{response.news2}</tr>
-                    <tr>{response.news2Source}</tr>
-                    <tr>{response.news3}</tr>
-                    <tr>{response.news3Source}</tr>
-                    <tr>{response.news4}</tr>
-                    <tr>{response.news4Source}</tr>
-                    <tr>{response.news5}</tr>
-                    <tr>{response.news5Source}</tr>
+                    <tr><td>{stock.news1}</td></tr>
+                    <tr><td>{stock.news1Source}</td></tr>
+                    <tr><td>{stock.news2}</td></tr>
+                    <tr><td>{stock.news2Source}</td></tr>
+                    <tr><td>{stock.news3}</td></tr>
+                    <tr><td>{stock.news3Source}</td></tr>
+                    <tr><td>{stock.news4}</td></tr>
+                    <tr><td>{stock.news4Source}</td></tr>
+                    <tr><td>{stock.news5}</td></tr>
+                    <tr><td>{stock.news5Source}</td></tr>
                 </tbody>
             </table>
         </div>
