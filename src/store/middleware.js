@@ -15,7 +15,7 @@ export const startupMiddleware = store => next => action => {
     if (action.type === BOOTSTRAP) {
 
         socket.on('FromAPI', (payload1, payload2) => {
-            console.info('Data has been receieved', payload1)
+            console.info('Data has been receieved', payload1, payload2)
             store.dispatch(updateResponseAction(payload1, payload2))
         });
 

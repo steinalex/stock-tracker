@@ -17,3 +17,4 @@ export const store = createStore(reducer, initialState,
     ))
 
 store.dispatch(bootstrap())
+

@@ -1,5 +1,4 @@
 import React from 'react';
-import Peers from "./peers";
 
 export const Company = ({stock}) =>
     <div class="company-overview">
@@ -11,6 +10,5 @@ export const Company = ({stock}) =>
                 <tr>{stock.description}</tr>
             </tbody>
         </table>
-        <Peers />
     </div>
 

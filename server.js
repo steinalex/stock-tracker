@@ -140,3 +140,4 @@ const realTimeInterval = async (socket, stockName) => {
   }
 };
 
+

@@ -2,23 +2,27 @@ import React from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { updateStockAction,updateResponseAction, updateChartAction } from './store/actions';
 import Search from './components/Search';
-import { Headline } from "./components/Headline";
+import {Headline} from "./components/Headline";
+import Chart from "./components/Chart";
+import LatestNews from "./components/LatestNews"
+import KeyStats from "./components/KeyStats"
+import {Company} from "./components/Company"
+import Peers from "./components/peers";
 
 const App = () => {
   const state = useSelector((state) => state)
   const dispatch = useDispatch()
-  
+  console.log("App.js", state.stockData)
   return (
     <div className="grid-container">
       <p>{state.selectedStock}</p>
       <Search updateStock={(stock) => dispatch(updateStockAction(stock))} />
-      <Headline stock = {(stock) => dispatch(updateResponseAction(stock))} />
-
-      {/* <Headline stock={stock} />
-      <Chart stock={stock} />
-      <LatestNews />
-      <KeyStats />
-      <Company /> */}
+      <Headline stock={state.stockData} />
+      <Chart stock={state.selectedChartRange} />
+      <LatestNews stock={state.stockData} />
+      <KeyStats stock={state.stockData} />
+      <Company stock={state.stockData} /> 
+      <Peers stock={state.stockData}/>
     </div>
   );
 }
