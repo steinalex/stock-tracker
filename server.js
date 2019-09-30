@@ -9,10 +9,7 @@ app.use(index);
 const server = http.createServer(app);
 const io = socketIo(server);
 
-let dailyList = {};
-let monthData;
-
-io.on("connection", socket => {
+io.on("connection", async socket => {
   const timerIDs = {}
   console.log("New client connected");
   socket.on("stockName", (stockName, timeRange) => {
@@ -20,14 +17,44 @@ io.on("connection", socket => {
     clearInterval(timerIDs.realTime);
     if (stockName === "") { return }
     console.log("Stock entered: ", stockName)
-    realTimeInterval(socket, stockName);
-    dailyInterval(socket, stockName, timeRange);
-    timerIDs.realTime = setInterval(() => realTimeInterval(socket, stockName), 5000);
-    timerIDs.daily = setInterval(() => dailyInterval(socket, stockName), 86400000);
+
+    let dailyList = await dailyInterval(socket, stockName, timeRange);
+    let realTimeList = await realTimeInterval(socket, stockName);
+
+    function updateUI() {
+      const returnedTarget = Object.assign(dailyList, realTimeList);
+
+      Object.keys(returnedTarget).forEach(item => {
+        if (returnedTarget[item] === null) {
+          returnedTarget[item] = 'N/A'
+        }
+        else if (item === true) {
+          returnedTarget[item] = 'True'
+        }
+        else if (item === false) {
+          returnedTarget[item] = 'False'
+        }
+      })
+
+      socket.emit("FromAPI", returnedTarget);
+    }
+
+    timerIDs.realTime = setInterval(async () => {
+      realTimeList = await realTimeInterval(socket, stockName);
+      updateUI();
+    }, 5000);
+    timerIDs.daily = setInterval(async () => {
+      dailyList = await dailyInterval(socket, stockName);
+      updateUI();
+    }, 86400000);
+
+    updateUI();
   });
+
   socket.on('timeRange', (stockName, timeRange) => {
      dailyInterval(socket, stockName, timeRange);
   });
+
   socket.on("disconnect", () => {
     clearInterval(timerIDs.realTime, timerIDs.daily);
     console.log("Client disconnected");
@@ -39,6 +66,8 @@ server.listen(port, () => console.log(`Listening on port ${port}`));
 const HOST = 'https://sandbox.iexapis.com/stable/stock/'
 
 const dailyInterval = async (socket, stockName, timeRange) => {
+  
+  let monthData;
   const start = Date.now();
   console.log("Daily interval loading...", start);
   try {
@@ -76,8 +105,9 @@ const dailyInterval = async (socket, stockName, timeRange) => {
     const allSymbol = res7.data.map(data => (data.symbol))
 
     monthData = res5.data.map(data => ({ close: data.close, date: data.date }))
-    
-    dailyList = {
+  
+
+    return {
       companyName,
       symbol,
       currency,
@@ -129,30 +159,14 @@ const realTimeInterval = async (socket, stockName) => {
     const [res] = await Promise.all([quote])
     const { latestPrice, latestTime, change, changePercent } = res.data;
 
-    const realTimeList = {
+    console.log("Data is back", Date.now() - start);
+
+    return {
       latestPrice,
       latestTime,
       change,
       changePercent
     }
-
-    console.log("Data is back", Date.now() - start);
-    
-    const returnedTarget = Object.assign(dailyList, realTimeList);
-
-    Object.keys(returnedTarget).forEach(item => {
-      if (returnedTarget[item] === null) {
-        returnedTarget[item] = 'N/A'
-      }
-      else if (item === true) {
-        returnedTarget[item] = 'True'
-      }
-      else if (item === false) {
-        returnedTarget[item] = 'False'
-      }
-    })
-
-    socket.emit("FromAPI", returnedTarget);
   } catch (error) {
     //TODO: Handle error
     console.error(`Error: ${error}`);

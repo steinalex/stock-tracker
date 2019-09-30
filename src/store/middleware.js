@@ -36,7 +36,5 @@ export const stockMiddleware = store => next => action => {
     else if (action.type === UPDATE_CHART_RANGE) {
         socket.emit ('timeRange' , store.getState().selectedStock,action.payload)
     }
-
-
     return next(action)
 }
