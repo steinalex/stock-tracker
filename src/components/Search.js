@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+const state = useSelector((state) => state)
+const dispatch = useDispatch()
+const stock = state.selectedStock
+const updateStock = dispatch(updateStockAction(stock))
 
-const Search = ({updateStock}) => {
+const Search = () => {
 
     const [stock, setStock] = useState('');
    

@@ -6,7 +6,14 @@ import { bootstrap } from './actions'
 const initialState = {
     stockData: {},
     selectedStock: '',
-    selectedChartRange: '5y'
+    selectedChartRange: '5y',
+    selectedKeyStats:'',
+    selectedLatestNews:'',
+    selectedCompanyOverview:'',
+    selectedTopPeers:'',
+    selectedSearch:'',
+    selectedCompanySymbols:'',
+    selectedQuotes:'',
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -17,4 +24,4 @@ export const store = createStore(reducer, initialState,
     ))
 
 store.dispatch(bootstrap())
-
+ 

@@ -1,5 +1,5 @@
-import { UPDATE_SELECTED_STOCK, UPDATE_CHART_RANGE, BOOTSTRAP } from './constants'
-import { updateResponseAction } from './actions'
+import { UPDATE_SELECTED_STOCK, UPDATE_CHART_RANGE, BOOTSTRAP, UPDATE_KEY_STATS, UPDATE_LATEST_NEWS, UPDATE_COMPANY_OVERVIEW, UPDATE_TOP_PEERS, UPDATE_SEARCH, UPDATE_COMPANY_SYMBOLS, UPDATE_QUOTES  } from './constants'
+import { updateResponseAction, updateStockAction, updateChartAction, updateKeyStatsAction, updateLatestNewsAction,updateCompanyOverviewAction, updateTopPeersAction, updateSearchAction,updateCompanySymbolsAction } from './actions'
 
 const io = require('socket.io-client')
 
@@ -14,11 +14,30 @@ export const startupMiddleware = store => next => action => {
 
     if (action.type === BOOTSTRAP) {
 
-        socket.on('FromAPI', (payload1) => {
-            console.info('Data has been receieved', payload1)
-            store.dispatch(updateResponseAction(payload1))
+        socket.on('chartData', (payload) => {
+            store.dispatch(updateChartAction(payload))
         });
-
+        socket.on('keyStats', (payload) => {
+            store.dispatch(updateKeyStatsAction(payload))
+        });
+        socket.on('latestNews', (payload) => {
+            store.dispatch(updateLatestNewsAction(payload))
+        });
+        socket.on('companyOverview', (payload) => {
+            store.dispatch(updateCompanyOverviewAction(payload))
+        });
+        socket.on('topPeers', (payload) => {
+            store.dispatch(updateTopPeersAction(payload))
+        });
+        socket.on('search', (payload) => {
+            store.dispatch(updateSearchAction(payload))
+        });
+        socket.on('companySymbols', (payload) => {
+            store.dispatch(updateCompanySymbolsAction(payload))
+        });
+        socket.on('stockTicker', (payload) => {
+            store.dispatch(updateStockTickerAction(payload))
+        });
         console.info('Application has been bootstrapped')
     }
 
@@ -27,9 +46,6 @@ export const startupMiddleware = store => next => action => {
 
 
 export const stockMiddleware = store => next => action => {
-    console.log("payload is", action.payload)
-    console.log(store.getState())
-
     if (action.type === UPDATE_SELECTED_STOCK) {
         socket.emit('stockName', action.payload, store.getState().selectedChartRange)
     }

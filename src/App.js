@@ -17,14 +17,14 @@ const App = () => {
   const dispatch = useDispatch()
   return (
     <div className="grid-container">
-      <Headline stock={state.stockData} />
-      <Search updateStock={(stock) => dispatch(updateStockAction(stock))} />
-      <Quotes stock={state.stockData}/>
-      <Chart stock={state.stockData.monthData} updateChartRange={(stock) => dispatch(updateChartAction(stock))}/>
-      <LatestNews stock={state.stockData} />
-      <KeyStats stock={state.stockData} />
-      <Company stock={state.stockData} /> 
-      <Peers stock={state.stockData}/>
+      <Headline />
+      <Search />
+      <Quotes />
+      <Chart />
+      <LatestNews  />
+      <KeyStats />
+      <Company /> 
+      <Peers/>
     </div>
   );
 }
