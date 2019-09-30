@@ -1,5 +1,4 @@
 import React from 'react';
-import Peers from './peers';
 
 export const Company = ({stock}) =>
     <div className="company-overview">
