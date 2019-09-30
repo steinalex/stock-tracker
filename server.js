@@ -15,6 +15,7 @@ io.on("connection", socket => {
   const timerIDs = {}
   console.log("New client connected");
   socket.on("stockName", async (stockName, timeRange) => {
+    console.log("Time range", timeRange)
     if (stockName === "") { return false }
     console.log("Stock entered: ", stockName)
 
@@ -70,7 +71,7 @@ server.listen(port, () => console.log(`Listening on port ${port}`));
 const HOST = 'https://sandbox.iexapis.com/stable'
 const TOKEN = 'Tsk_d2f1890612194476b41d39992a3ad835'
 
-const stockTickerInterval = async (socket, stockName, timeRange) => {
+const stockTickerInterval = async (socket, stockName) => {
   try {
     const quote = await axios.get(
       `${HOST}/stock/${stockName}/quote?token=${TOKEN}`
@@ -92,7 +93,7 @@ const stockTickerInterval = async (socket, stockName, timeRange) => {
   }
 };
 
-const keyStatsInterval = async (socket, stockName, timeRange) => {
+const keyStatsInterval = async (socket, stockName) => {
   try {
     const quote = await axios.get(
       `${HOST}/stock/${stockName}/quote?token=${TOKEN}`
@@ -213,13 +214,14 @@ const companySymbolsInterval = async (socket) => {
   }
 };
 
-const chartDataInterval = async (socket, stockName) => {
+const chartDataInterval = async (socket, stockName, timeRange) => {
   try {
     const chart = await axios.get(
+      // `${HOST}/stock/${stockName}/chart/5y?token=${TOKEN}`
       `${HOST}/stock/${stockName}/chart/${timeRange}?token=${TOKEN}`
     );
     
-    const chartData = chart.data.map(data => ({close: data.close, open: data.open}))
+    const chartData = chart.data.map(data => ({close: data.close, date: data.date}))
 
     console.log(chartData)
     socket.emit("chartData", chartData);
@@ -241,14 +243,16 @@ const sectorInformationInterval = async (socket, stockName) => {
       `${HOST}/stock/${stockName}/company?token=${TOKEN}`
     );
 
-    const { primaryExchange } = quote.data;
+    const { primaryExchange, companyName, symbol } = quote.data;
     const { currency } = dividends.data;
     const { sector } = company.data;
 
     const sectorInformation = {
       primaryExchange,
       currency,
-      sector
+      sector,
+      companyName,
+      symbol
     }
     
     socket.emit("sectorInformation", sectorInformation);

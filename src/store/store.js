@@ -4,7 +4,6 @@ import {reducer} from './reducer'
 import { bootstrap } from './actions'
 
 const initialState = {
-    stockData: {},
     selectedStock: '',
     selectedChartRange: '5y',
     selectedKeyStats:'',
@@ -15,7 +14,7 @@ const initialState = {
     selectedCompanySymbols:'',
     selectedQuotes:'',
     selectedStockTicker:'',
-    selectedChartData:''
+    selectedChartData:[]
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

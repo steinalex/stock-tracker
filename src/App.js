@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { updateStockAction,updateResponseAction, updateChartAction } from './store/actions';
+import { updateStockAction, updateChartAction } from './store/actions';
 import Search from './components/Search';
 import {Headline} from "./components/Headline";
 import Chart from "./components/Chart";
@@ -9,6 +9,7 @@ import KeyStats from "./components/KeyStats"
 import {Company} from "./components/Company"
 import Peers from "./components/peers";
 import { Quotes } from "./components/Quotes";
+import { StockTicker } from "./components/StockTicker";
 
 // updateChartRange={(stock) => dispatch(updateChartAction(stock))}
 
@@ -21,12 +22,13 @@ const App = () => {
     <div className="grid-container">
       <Headline stock={state.selectedSearch} />
       <Search updateStock={(stock) => dispatch(updateStockAction(stock))} />
-      <Quotes stock={state.selectedQuotes}/>
+      {/* <Quotes stock={state.selectedQuotes}/> */}
       <Chart stock={state.selectedChartData} updateChartRange={(stock) => dispatch(updateChartAction(stock))}/>
       <LatestNews stock={state.selectedLatestNews} />
       <KeyStats stock={state.selectedKeyStats} />
       <Company stock={state.selectedCompanyOverview} /> 
       <Peers stock={state.selectedTopPeers}/>
+      <StockTicker stock={state.selectedStockTicker} />
     </div>
   );
 }

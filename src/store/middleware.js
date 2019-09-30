@@ -1,5 +1,5 @@
-import { UPDATE_SELECTED_STOCK, UPDATE_CHART_RANGE, BOOTSTRAP, UPDATE_KEY_STATS, UPDATE_LATEST_NEWS, UPDATE_COMPANY_OVERVIEW, UPDATE_TOP_PEERS, UPDATE_SEARCH, UPDATE_COMPANY_SYMBOLS, UPDATE_QUOTES  } from './constants'
-import { updateResponseAction, updateStockAction, updateChartDataAction, updateKeyStatsAction, updateLatestNewsAction,updateCompanyOverviewAction, updateTopPeersAction, updateSearchAction,updateCompanySymbolsAction, updateStockTickerAction,  } from './actions'
+import { UPDATE_SELECTED_STOCK, UPDATE_CHART_RANGE, BOOTSTRAP } from './constants'
+import { updateChartDataAction, updateKeyStatsAction, updateLatestNewsAction, updateCompanyOverviewAction, updateTopPeersAction, updateSearchAction, updateCompanySymbolsAction, updateStockTickerAction, } from './actions'
 
 const io = require('socket.io-client')
 
@@ -51,7 +51,7 @@ export const stockMiddleware = store => next => action => {
         socket.emit('stockName', action.payload, store.getState().selectedChartRange)
     }
     else if (action.type === UPDATE_CHART_RANGE) {
-        socket.emit ('timeRange' , store.getState().selectedStock,action.payload)
+        socket.emit('timeRange', store.getState().selectedStock, action.payload)
     }
     return next(action)
 }
