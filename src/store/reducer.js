@@ -1,13 +1,8 @@
 
-import { ON_STOCK_DATA_RECIEVED, UPDATE_SELECTED_STOCK, UPDATE_CHART_RANGE,  UPDATE_KEY_STATS, UPDATE_LATEST_NEWS, UPDATE_COMPANY_OVERVIEW, UPDATE_TOP_PEERS, UPDATE_SEARCH, UPDATE_COMPANY_SYMBOLS, UPDATE_QUOTES } from './constants'
+import { ON_STOCK_DATA_RECIEVED, UPDATE_SELECTED_STOCK, UPDATE_CHART_RANGE, UPDATE_KEY_STATS, UPDATE_LATEST_NEWS, UPDATE_COMPANY_OVERVIEW, UPDATE_TOP_PEERS, UPDATE_SEARCH, UPDATE_COMPANY_SYMBOLS, UPDATE_QUOTES, UPDATE_STOCK_TICKER, UPDATE_CHART_DATA } from './constants'
 
 export const reducer = (state, { type, payload }) => {
     switch (type) {
-        case ON_STOCK_DATA_RECIEVED:
-            return {
-                ...state,
-                stockData: payload
-            }
         case UPDATE_SELECTED_STOCK:
             return {
                 ...state,
@@ -52,6 +47,16 @@ export const reducer = (state, { type, payload }) => {
             return {
                 ...state,
                 selectedQuotes: payload
+            }
+        case UPDATE_STOCK_TICKER:
+            return {
+                ...state,
+                selectedStockTicker: payload
+            }
+        case UPDATE_CHART_DATA:
+            return {
+                ...state,
+                selectedChartData: payload
             }
         default:
             return state;

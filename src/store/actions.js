@@ -1,4 +1,4 @@
-import { ON_STOCK_DATA_RECIEVED, UPDATE_SELECTED_STOCK, UPDATE_CHART_RANGE, BOOTSTRAP, UPDATE_KEY_STATS, UPDATE_LATEST_NEWS,UPDATE_COMPANY_OVERVIEW, UPDATE_TOP_PEERS, UPDATE_SEARCH, UPDATE_COMPANY_SYMBOLS, UPDATE_QUOTES } from './constants'
+import { ON_STOCK_DATA_RECIEVED, UPDATE_SELECTED_STOCK, UPDATE_CHART_RANGE, BOOTSTRAP, UPDATE_KEY_STATS, UPDATE_LATEST_NEWS,UPDATE_COMPANY_OVERVIEW, UPDATE_TOP_PEERS, UPDATE_SEARCH, UPDATE_COMPANY_SYMBOLS, UPDATE_QUOTES , UPDATE_STOCK_TICKER, UPDATE_CHART_DATA } from './constants'
 
 export const bootstrap = () => ({ type: BOOTSTRAP })
 
@@ -49,5 +49,15 @@ export const updateCompanySymbolsAction = (action) => ({
 
 export const updateQuotesAction = (action) => ({
     type: UPDATE_QUOTES,
+    payload: action
+})
+
+export const updateStockTickerAction = (action) => ({
+    type: UPDATE_STOCK_TICKER,
+    payload: action
+})
+
+export const updateChartDataAction = (action) => ({
+    type: UPDATE_CHART_DATA,
     payload: action
 })

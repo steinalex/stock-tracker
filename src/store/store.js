@@ -14,6 +14,8 @@ const initialState = {
     selectedSearch:'',
     selectedCompanySymbols:'',
     selectedQuotes:'',
+    selectedStockTicker:''
+    
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

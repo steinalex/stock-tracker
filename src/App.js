@@ -15,16 +15,18 @@ import { Quotes } from "./components/Quotes";
 const App = () => {
   const state = useSelector((state) => state)
   const dispatch = useDispatch()
+
+  console.log(state)
   return (
     <div className="grid-container">
-      <Headline />
-      <Search />
-      <Quotes />
-      <Chart />
-      <LatestNews  />
-      <KeyStats />
-      <Company /> 
-      <Peers/>
+      <Headline stock={state.selectedSearch} />
+      <Search updateStock={(stock) => dispatch(updateStockAction(stock))} />
+      <Quotes stock={state.selectedQuotes}/>
+      <Chart stock={state.selectedChartRange} updateChartRange={(stock) => dispatch(updateChartAction(stock))}/>
+      <LatestNews stock={state.selectedLatestNews} />
+      <KeyStats stock={state.selectedKeyStats} />
+      <Company stock={state.selectedCompanyOverview} /> 
+      <Peers stock={state.selectedTopPeers}/>
     </div>
   );
 }

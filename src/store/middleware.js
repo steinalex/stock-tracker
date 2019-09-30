@@ -1,5 +1,5 @@
 import { UPDATE_SELECTED_STOCK, UPDATE_CHART_RANGE, BOOTSTRAP, UPDATE_KEY_STATS, UPDATE_LATEST_NEWS, UPDATE_COMPANY_OVERVIEW, UPDATE_TOP_PEERS, UPDATE_SEARCH, UPDATE_COMPANY_SYMBOLS, UPDATE_QUOTES  } from './constants'
-import { updateResponseAction, updateStockAction, updateChartAction, updateKeyStatsAction, updateLatestNewsAction,updateCompanyOverviewAction, updateTopPeersAction, updateSearchAction,updateCompanySymbolsAction } from './actions'
+import { updateResponseAction, updateStockAction, updateChartAction, updateKeyStatsAction, updateLatestNewsAction,updateCompanyOverviewAction, updateTopPeersAction, updateSearchAction,updateCompanySymbolsAction, updateStockTickerAction } from './actions'
 
 const io = require('socket.io-client')
 
@@ -19,6 +19,7 @@ export const startupMiddleware = store => next => action => {
         });
         socket.on('keyStats', (payload) => {
             store.dispatch(updateKeyStatsAction(payload))
+            console.log("key stats recieved", payload)
         });
         socket.on('latestNews', (payload) => {
             store.dispatch(updateLatestNewsAction(payload))
@@ -29,7 +30,7 @@ export const startupMiddleware = store => next => action => {
         socket.on('topPeers', (payload) => {
             store.dispatch(updateTopPeersAction(payload))
         });
-        socket.on('search', (payload) => {
+        socket.on('sectorInformation', (payload) => {
             store.dispatch(updateSearchAction(payload))
         });
         socket.on('companySymbols', (payload) => {

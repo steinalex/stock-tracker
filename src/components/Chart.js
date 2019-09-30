@@ -1,12 +1,7 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
-const state = useSelector((state) => state)
-const dispatch = useDispatch()
-const stock = state.SelectedChartRange
-const updateChartRange= dispatch(updateChartAction(stock))
-const Chart = () => {
+const Chart = ({stock, updateChartRange}) => {
     const updateTimeRange = event =>{
         updateChartRange(event.target.value)        
     }
