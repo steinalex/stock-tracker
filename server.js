@@ -12,22 +12,16 @@ const io = socketIo(server);
 let dailyList = {};
 let monthData;
 
-const timerIDs = {}
 io.on("connection", socket => {
-  let interval;
+  const timerIDs = {}
   console.log("New client connected");
-  if (interval) {
-    clearInterval(interval);
-  }
   socket.on("stockName", (stockName, timeRange) => {
-    if (interval) {
-      clearInterval(interval);
-    }
-    else if (stockName === "") { return }
-    console.log(stockName)
+    clearInterval(timerIDs.daily);
+    clearInterval(timerIDs.realTime);
+    if (stockName === "") { return }
+    console.log("Stock entered: ", stockName)
     realTimeInterval(socket, stockName);
     dailyInterval(socket, stockName, timeRange);
-    console.log(timeRange)
     timerIDs.realTime = setInterval(() => realTimeInterval(socket, stockName), 5000);
     timerIDs.daily = setInterval(() => dailyInterval(socket, stockName), 86400000);
   });
@@ -35,6 +29,7 @@ io.on("connection", socket => {
      dailyInterval(socket, stockName, timeRange);
   });
   socket.on("disconnect", () => {
+    clearInterval(timerIDs.realTime, timerIDs.daily);
     console.log("Client disconnected");
   });
 });
@@ -44,7 +39,8 @@ server.listen(port, () => console.log(`Listening on port ${port}`));
 const HOST = 'https://sandbox.iexapis.com/stable/stock/'
 
 const dailyInterval = async (socket, stockName, timeRange) => {
-  console.log()
+  const start = Date.now();
+  console.log("Daily interval loading...", start);
   try {
     const quote = axios.get(
       `${HOST}${stockName}/quote?token=Tsk_d2f1890612194476b41d39992a3ad835`
@@ -72,6 +68,7 @@ const dailyInterval = async (socket, stockName, timeRange) => {
     )
 
     const [res, res1, res2, res3, res4, res5, res6, res7] = await Promise.all([quote, company, dividends, news, earnings, chart, peers, companySymbols])
+    console.log("Data is back", Date.now() - start);
     const { companyName, symbol, primaryExchange, open, high, low, previousClose, previousVolume, avgTotalVolume, marketCap, peRatio, week52High, week52Low, ytdChange, isUSMarketOpen } = res.data
     const { sector, website, description } = res1.data
     const { currency } = res2.data[0]
@@ -121,6 +118,9 @@ const dailyInterval = async (socket, stockName, timeRange) => {
 };
 
 const realTimeInterval = async (socket, stockName) => {
+  console.log("Real time interval loading...");
+  console.log("...");
+  const start = Date.now();
   try {
     const quote = axios.get(
       `https://sandbox.iexapis.com/stable/stock/${stockName}/quote?token=Tsk_d2f1890612194476b41d39992a3ad835`
@@ -135,6 +135,8 @@ const realTimeInterval = async (socket, stockName) => {
       change,
       changePercent
     }
+
+    console.log("Data is back", Date.now() - start);
     
     const returnedTarget = Object.assign(dailyList, realTimeList);
 
