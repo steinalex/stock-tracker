@@ -14,7 +14,7 @@ const KeyStats = ({ stock }) => {
                             <td>Previous Close:</td><td>{stock.previousClose}</td>
                         </tr>
                         <tr>
-                            <td>Day Range:</td><td>{dayRange ? dayRange : 'N/A'}</td>
+                            <td>Day Range:</td><td>{stock.low} - {stock.high}</td>
                         </tr>
                         <tr>
                             <td>Volume:</td><td>{stock.previousVolume}</td>
