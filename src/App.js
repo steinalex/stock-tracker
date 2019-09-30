@@ -8,6 +8,7 @@ import LatestNews from "./components/LatestNews"
 import KeyStats from "./components/KeyStats"
 import {Company} from "./components/Company"
 import Peers from "./components/peers";
+import { Quotes } from "./components/Quotes";
 
 // updateChartRange={(stock) => dispatch(updateChartAction(stock))}
 
@@ -16,9 +17,9 @@ const App = () => {
   const dispatch = useDispatch()
   return (
     <div className="grid-container">
-      <p>{state.selectedStock}</p>
-      <Search updateStock={(stock) => dispatch(updateStockAction(stock))} />
       <Headline stock={state.stockData} />
+      <Search updateStock={(stock) => dispatch(updateStockAction(stock))} />
+      <Quotes stock={state.stockData}/>
       <Chart stock={state.stockData.monthData} updateChartRange={(stock) => dispatch(updateChartAction(stock))}/>
       <LatestNews stock={state.stockData} />
       <KeyStats stock={state.stockData} />

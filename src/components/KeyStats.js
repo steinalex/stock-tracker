@@ -1,9 +1,7 @@
 import React from 'react';
 
 const KeyStats = ({ stock }) => {
-
-    const dayRange = stock.low - stock.high;
-
+    
     return (
         <div className="key-stats">
             <h1 className="title">Key Stats</h1>
@@ -14,7 +12,7 @@ const KeyStats = ({ stock }) => {
                             <td>Previous Close:</td><td>{stock.previousClose}</td>
                         </tr>
                         <tr>
-                            <td>Day Range:</td><td>{dayRange ? dayRange : 'N/A'}</td>
+                            <td>Day Range:</td><td>{stock.low} - {stock.high}</td>
                         </tr>
                         <tr>
                             <td>Volume:</td><td>{stock.previousVolume}</td>
@@ -26,7 +24,7 @@ const KeyStats = ({ stock }) => {
                             <td>P/E Ratio:</td><td>{stock.peRatio}</td>
                         </tr>
                         <tr>
-                            <td>Open:</td><td>{stock.open ? stock.open : 'N/A'}</td>
+                            <td>Open:</td><td>{stock.open}</td>
                         </tr>
                         <tr>
                             <td>52 Week Range:</td><td>{stock.week52High}-{stock.week52Low}</td>

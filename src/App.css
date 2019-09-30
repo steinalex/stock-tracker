@@ -16,6 +16,9 @@ body {
   grid-area: search-bar;
 }
 
+.quotes{
+  grid-area: quotes;
+}
 .chart {
   grid-area: chart;
 }
@@ -41,7 +44,7 @@ body {
   grid-gap: 20px;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-areas: "header header header" 
-                        "search-bar  search-bar  search-bar" 
+                        "search-bar  search-bar  quotes" 
                         "chart chart latest-news" 
                         "key-stats  key-stats  company-overview"
                         "   .           .   peers";
@@ -56,6 +59,9 @@ h1.title {
   padding: 0 0 3px;
 }
 
+.header__logo{
+  width:150px;
+}
 .search-bar__input {
   width: 100%;
   background: none;
@@ -85,6 +91,19 @@ h1.title {
 
 .key-stats__table td:nth-child(even) {
   text-align: right;
+}
+
+.header__stock-price {
+  display: inline-block;
+  padding-right: 10px;
+}
+
+.header__stock-price span.green {
+  color: green;
+}
+
+.header__stock-price span.red {
+  color: red;
 }
 
 

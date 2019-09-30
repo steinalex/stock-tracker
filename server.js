@@ -32,12 +32,7 @@ io.on("connection", socket => {
     timerIDs.daily = setInterval(() => dailyInterval(socket, stockName), 86400000);
   });
   socket.on('timeRange', (stockName, timeRange) => {
-    if (interval) {
-      clearInterval(interval);
-    }
-    else if (timeRange === "") { return }
-    console.log(timeRange)
-    dailyInterval(socket, stockName, timeRange);
+     dailyInterval(socket, stockName, timeRange);
   });
   socket.on("disconnect", () => {
     console.log("Client disconnected");
@@ -82,8 +77,6 @@ const dailyInterval = async (socket, stockName, timeRange) => {
     const { currency } = res2.data[0]
 
     const allSymbol = res7.data.map(data => (data.symbol))
-
-    console.log(allSymbol)
 
     monthData = res5.data.map(data => ({ close: data.close, date: data.date }))
     
@@ -140,10 +133,23 @@ const realTimeInterval = async (socket, stockName) => {
       latestPrice,
       latestTime,
       change,
-      changePercent,
+      changePercent
     }
     
     const returnedTarget = Object.assign(dailyList, realTimeList);
+
+    Object.keys(returnedTarget).forEach(item => {
+      if (returnedTarget[item] === null) {
+        returnedTarget[item] = 'N/A'
+      }
+      else if (item === true) {
+        returnedTarget[item] = 'True'
+      }
+      else if (item === false) {
+        returnedTarget[item] = 'False'
+      }
+    })
+
     socket.emit("FromAPI", returnedTarget);
   } catch (error) {
     //TODO: Handle error
