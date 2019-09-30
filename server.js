@@ -9,10 +9,10 @@ app.use(index);
 const server = http.createServer(app);
 const io = socketIo(server);
 
-io.on("connection", async socket => {
+io.on("connection", socket => {
   const timerIDs = {}
   console.log("New client connected");
-  socket.on("stockName", (stockName, timeRange) => {
+  socket.on("stockName", async(stockName, timeRange) => {
     clearInterval(timerIDs.daily);
     clearInterval(timerIDs.realTime);
     if (stockName === "") { return }

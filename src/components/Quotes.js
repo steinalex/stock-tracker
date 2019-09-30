@@ -3,7 +3,7 @@ import React from 'react';
 
 export const Quotes = ({ stock }) => {
 
-    const formatColour =(value) => value>0 ? 'green' : 'red'
+    const formatColour = (value) => value>0 ? 'green' : 'red'
  
     const changePercent = parseFloat(Math.round((stock.changePercent*100) * 100) / 100).toFixed(2);
 
