@@ -22,7 +22,7 @@ const App = () => {
       <Headline stock={state.selectedSearch} />
       <Search updateStock={(stock) => dispatch(updateStockAction(stock))} />
       <Quotes stock={state.selectedQuotes}/>
-      <Chart stock={state.selectedChartRange} updateChartRange={(stock) => dispatch(updateChartAction(stock))}/>
+      <Chart stock={state.selectedChartData} updateChartRange={(stock) => dispatch(updateChartAction(stock))}/>
       <LatestNews stock={state.selectedLatestNews} />
       <KeyStats stock={state.selectedKeyStats} />
       <Company stock={state.selectedCompanyOverview} /> 

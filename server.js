@@ -221,6 +221,7 @@ const chartDataInterval = async (socket, stockName) => {
     
     const chartData = chart.data.map(data => ({close: data.close, open: data.open}))
 
+    console.log(chartData)
     socket.emit("chartData", chartData);
   } catch (error) {
     //TODO: Handle error
