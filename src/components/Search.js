@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 
-const Search = ({updateStock}) => {
+const Search = ({symbol, updateStock}) => {
 
     const [stock, setStock] = useState('');
-   
+    const [data, setDataArray] = useState(['A', 'AAPL', 'B', 'BG', 'DA'])
+    
     const onChange = event => {
         setStock(event.target.value)
+        const filteredData = symbol.filter(search => search.toLowerCase().indexOf(event.target.value.toLowerCase()) !== -1);
+        console.log(filteredData)
     }
     const onSubmit = ({key, target}) => {
         if (key === 'Enter') {

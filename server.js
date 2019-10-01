@@ -55,6 +55,10 @@ io.on("connection", socket => {
     }, oneDay);
   });
 
+  socket.on('companySymbols', (stockName) => {
+    companySymbolsInterval(socket, stockName);
+  });
+
   socket.on('timeRange', (stockName, timeRange) => {
     chartDataInterval(socket, stockName, timeRange);
   });
@@ -205,7 +209,9 @@ const companySymbolsInterval = async (socket) => {
       `${HOST}/ref-data/symbols?token=${TOKEN}`
     )
     
-    const allSymbols = companySymbols.data.map(data => (data.symbol))
+    const allSymbols = companySymbols.data.map(data => ({symbol: data.symbol, name: data.name}))
+    console.log(allSymbols)
+
 
     socket.emit("companySymbols", allSymbols);
   } catch (error) {

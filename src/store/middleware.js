@@ -14,6 +14,8 @@ export const startupMiddleware = store => next => action => {
 
     if (action.type === BOOTSTRAP) {
 
+        socket.emit('companySymbols', action.payload)
+
         socket.on('chartData', (payload) => {
             store.dispatch(updateChartDataAction(payload))
         });

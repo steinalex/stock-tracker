@@ -11,7 +11,7 @@ const initialState = {
     selectedCompanyOverview:'',
     selectedTopPeers:[],
     selectedSearch:'',
-    selectedCompanySymbols:'',
+    selectedCompanySymbols:[],
     selectedQuotes:'',
     selectedStockTicker:'',
     selectedChartData:[]
