@@ -107,13 +107,22 @@ const getCompanySymbols = async () => {
   }
 };
 
-const searchQuery = (socket, inputQuery, allSymbols) => {
-  // const mapTest = allSymbols.map(data => ({data}))
-  // const filteredData = allSymbols.symbol.filter(search => search.toLowerCase().indexOf(inputQuery.toLowerCase()) !== -1);
+const searchQuery = async (socket, inputQuery, allSymbols) => {
+  try {
+  // const mapTest = allSymbols.map(data => data.symbol)
+  const a = await allSymbols
+  const b = a.map(data => data.name + ' (' + data.symbol + ')')
+  // const c = a.map(data =>data.name)
+  // console.log(a)
+  const filteredData = b.filter(search => search.toLowerCase().indexOf(inputQuery.toLowerCase()) !== -1);
+  const topTen = filteredData.slice(0, 10)
+  // console.log()
   // console.log(inputQuery)
-  console.log(inputQuery)
-  // socket.emit("companySymbols", allSymbols);
+  socket.emit("companySymbols", topTen);
+} catch (error) {
+  console.error(`Error: ${error}`);
 }
+};
 
 const keyStatsInterval = async (socket, stockName) => {
   try {
@@ -212,9 +221,7 @@ const topPeersInterval = async (socket, stockName) => {
     );
 
     const peersList= peers.data.map(data => (data))
-    
-    console.log(peersList)
-
+   
     socket.emit("topPeers", peersList);
   } catch (error) {
     //TODO: Handle error
