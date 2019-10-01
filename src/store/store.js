@@ -9,7 +9,7 @@ const initialState = {
     selectedKeyStats:'',
     selectedLatestNews:'',
     selectedCompanyOverview:'',
-    selectedTopPeers:'',
+    selectedTopPeers:[],
     selectedSearch:'',
     selectedCompanySymbols:'',
     selectedQuotes:'',

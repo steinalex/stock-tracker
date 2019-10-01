@@ -1,15 +1,11 @@
 import React from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { updateStockAction, updateChartAction } from './store/actions';
-import Search from './components/Search';
+import { updateChartAction } from './store/actions';
 import {Headline} from "./components/Headline";
 import Chart from "./components/Chart";
 import LatestNews from "./components/LatestNews"
 import KeyStats from "./components/KeyStats"
 import {Company} from "./components/Company"
-import Peers from "./components/Peers";
-import { Quotes } from "./components/Quotes";
-import { StockTicker } from "./components/StockTicker";
 
 // updateChartRange={(stock) => dispatch(updateChartAction(stock))}
 

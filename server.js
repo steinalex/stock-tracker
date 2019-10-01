@@ -188,7 +188,7 @@ const topPeersInterval = async (socket, stockName) => {
       `${HOST}/stock/${stockName}/peers?token=${TOKEN}`
     );
 
-    const peersList= peers.data.map(data => data)
+    const peersList= peers.data.map(data => (data))
     
     console.log(peersList)
 
