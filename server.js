@@ -13,6 +13,7 @@ const oneDay = 24 * 60 * 60 * 1000;
 
 io.on("connection", socket => {
   const timerIDs = {}
+  const allSymbols = getCompanySymbols(socket);
   console.log("New client connected");
   socket.on("stockName", async (stockName, timeRange) => {
     if (stockName === "") { return false }
@@ -25,7 +26,6 @@ io.on("connection", socket => {
     latestNewsInterval(socket, stockName);
     companyOverviewInterval(socket, stockName);
     topPeersInterval(socket, stockName);
-    companySymbolsInterval(socket);
     chartDataInterval(socket, stockName, timeRange);
     sectorInformationInterval(socket, stockName);
 
@@ -44,9 +44,6 @@ io.on("connection", socket => {
     timerIDs.topPeers = setInterval(() => { 
       topPeersInterval(socket, stockName);
     }, oneDay);
-    timerIDs.companySymbols = setInterval(() => { 
-      companySymbolsInterval(socket);
-    }, oneDay);
     timerIDs.chartData = setInterval(() => { 
       chartDataInterval(socket, stockName, timeRange);
     }, oneDay);
@@ -56,7 +53,7 @@ io.on("connection", socket => {
   });
 
   socket.on('searchQuery', (inputQuery) => {
-    searchQuery(socket, inputQuery);
+    searchQuery(socket, inputQuery, allSymbols);
   });
 
   socket.on('timeRange', (stockName, timeRange) => {
@@ -96,8 +93,26 @@ const stockTickerInterval = async (socket, stockName) => {
   }
 };
 
-const searchQuery = (socket, inputQuery) => {
+const getCompanySymbols = async () => {
+  try {
+    const companySymbols = await axios.get(
+      `${HOST}/ref-data/symbols?token=${TOKEN}`
+    )
+    
+    return companySymbols.data.map(data => ({symbol: data.symbol, name: data.name}))
+
+  } catch (error) {
+    //TODO: Handle error
+    console.error(`Error: ${error}`);
+  }
+};
+
+const searchQuery = (socket, inputQuery, allSymbols) => {
+  // const mapTest = allSymbols.map(data => ({data}))
+  // const filteredData = allSymbols.symbol.filter(search => search.toLowerCase().indexOf(inputQuery.toLowerCase()) !== -1);
+  // console.log(inputQuery)
   console.log(inputQuery)
+  // socket.emit("companySymbols", allSymbols);
 }
 
 const keyStatsInterval = async (socket, stockName) => {
@@ -201,23 +216,6 @@ const topPeersInterval = async (socket, stockName) => {
     console.log(peersList)
 
     socket.emit("topPeers", peersList);
-  } catch (error) {
-    //TODO: Handle error
-    console.error(`Error: ${error}`);
-  }
-};
-
-const companySymbolsInterval = async (socket) => {
-  try {
-    const companySymbols = await axios.get(
-      `${HOST}/ref-data/symbols?token=${TOKEN}`
-    )
-    
-    const allSymbols = companySymbols.data.map(data => ({symbol: data.symbol, name: data.name}))
-    console.log(allSymbols)
-
-
-    socket.emit("companySymbols", allSymbols);
   } catch (error) {
     //TODO: Handle error
     console.error(`Error: ${error}`);
