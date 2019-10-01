@@ -15,7 +15,7 @@ const Search = ({updateStock}) => {
 
     return (
         <div className="search-bar">
-            <input type="text" className="search-bar__input" value={stock} onChange={onChange} onKeyPress={onSubmit}/>
+            <input type="text" placeholder="Search..." className="search-bar__input" value={stock} onChange={onChange} onKeyPress={onSubmit}/>
         </div>
     )
 }

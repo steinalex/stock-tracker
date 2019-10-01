@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-export const Quotes = ({ stock }) => {
+export const StockTicker = ({ stock }) => {
 
     const formatColour = (value) => value > 0 ? 'green' : 'red'
  

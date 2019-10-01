@@ -1,12 +1,13 @@
 import React from 'react';
 
-const Peers = ({stock}) => {
+const Peers = ({ stock }) => {
+
     return (
         <div className="peers">
             <h1 className="title">Top Peers</h1>
-            <p>{stock.peers}</p>
+            <ul>{stock.map(peers => <li>{peers}</li>)}</ul>
         </div>
     )
 }
 
-export default Peers    
+export default Peers
