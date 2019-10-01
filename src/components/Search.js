@@ -8,6 +8,10 @@ const Search = ({updateStock}) => {
     const state = useSelector((state) => state)
 
     const filteredSymbols = state.selectedCompanySymbols
+    console.log(filteredSymbols)
+    // const name = filteredSymbols.map(data => data.name)
+    // const symbol = filteredSymbols.map(data => data.symbol)
+    // const nameSymbol = filteredSymbols.map(data => (data.name + ' ('+ data.symbol + ')'))
 
     const [stock, setStock] = useState('');
     
@@ -25,11 +29,10 @@ const Search = ({updateStock}) => {
     return (
         <>
         <ul class="suggestions">
-            {filteredSymbols.map((symbol) => {
-              
+            {filteredSymbols.map(data => {
               return (
-                <li  key={symbol}>
-                  {symbol}
+                <li value={data.symbol} key={data.symbol}>
+                  {` ${data.name} (${data.symbol})`}
                 </li>
               );
             })}

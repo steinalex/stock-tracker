@@ -111,10 +111,10 @@ const searchQuery = async (socket, inputQuery, allSymbols) => {
   try {
   // const mapTest = allSymbols.map(data => data.symbol)
   const a = await allSymbols
-  const b = a.map(data => data.name + ' (' + data.symbol + ')')
-  // const c = a.map(data =>data.name)
-  // console.log(a)
-  const filteredData = b.filter(search => search.toLowerCase().indexOf(inputQuery.toLowerCase()) !== -1);
+  const b = a.map(data => ({symbol: data.symbol, name: data.name}))
+  const filteredData = b.filter(search => search.symbol.toLowerCase().indexOf(inputQuery.toLowerCase()) !== -1 || search.name.toLowerCase().indexOf(inputQuery.toLowerCase()) !== -1);
+ 
+
   const topTen = filteredData.slice(0, 10)
   // console.log()
   // console.log(inputQuery)
