@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { updateSearchQueryAction } from '../store/actions';
 
-const Search = ({symbol, updateStock}) => {
+const Search = ({searchQuery, symbol, updateStock}) => {
+
+    const dispatch = useDispatch()
 
     const [stock, setStock] = useState('');
-    const [data, setDataArray] = useState(['A', 'AAPL', 'B', 'BG', 'DA'])
     
     const onChange = event => {
         setStock(event.target.value)
-        const filteredData = symbol.filter(search => search.toLowerCase().indexOf(event.target.value.toLowerCase()) !== -1);
-        console.log(filteredData)
+        dispatch(updateSearchQueryAction(event.target.value))
     }
+
     const onSubmit = ({key, target}) => {
         if (key === 'Enter') {
             updateStock(target.value)

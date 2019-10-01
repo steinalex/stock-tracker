@@ -13,7 +13,6 @@ const App = () => {
   const state = useSelector((state) => state)
   const dispatch = useDispatch()
 
-  console.log(state)
   return (
     <div className="grid-container">
       <Headline stock={state.selectedSearch} />

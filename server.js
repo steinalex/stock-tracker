@@ -55,8 +55,8 @@ io.on("connection", socket => {
     }, oneDay);
   });
 
-  socket.on('companySymbols', (stockName) => {
-    companySymbolsInterval(socket, stockName);
+  socket.on('searchQuery', (inputQuery) => {
+    searchQuery(socket, inputQuery);
   });
 
   socket.on('timeRange', (stockName, timeRange) => {
@@ -95,6 +95,10 @@ const stockTickerInterval = async (socket, stockName) => {
     console.error(`Error: ${error}`);
   }
 };
+
+const searchQuery = (socket, inputQuery) => {
+  console.log(inputQuery)
+}
 
 const keyStatsInterval = async (socket, stockName) => {
   try {
