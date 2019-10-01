@@ -26,20 +26,25 @@ const Search = ({updateStock}) => {
         }
     }
 
+    const optionClick = data => {
+      console.log('DATA', data.symbol)
+      setStock(data.symbol)
+    }
+
+    const options = filteredSymbols.map(data => {
+      return (
+        <li onClick={() => optionClick(data)} value={data.symbol} key={data.symbol}>
+          {` ${data.name} (${data.symbol})`}
+        </li>
+      );
+    });
+
     return (
         <>
-        <ul class="suggestions">
-            {filteredSymbols.map(data => {
-              return (
-                <li value={data.symbol} key={data.symbol}>
-                  {` ${data.name} (${data.symbol})`}
-                </li>
-              );
-            })}
-          </ul>
         <div className="search-bar">
             <input type="text" placeholder="Search..." className="search-bar__input" value={stock} onChange={onChange} onKeyPress={onSubmit}/>
         </div>
+        <ul name="search" className="search-bar__options">{options}</ul>
         </>
     )
 }

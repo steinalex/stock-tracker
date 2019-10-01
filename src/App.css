@@ -16,13 +16,14 @@ body {
 
 .search-bar {
   grid-area: search-bar;
+  position: relative;
 }
 
 .quotes{
   grid-area: quotes;
   position: absolute;
   right: 0;
-  bottom: -22px;
+  bottom: -25px;
 }
 
 .chart {
@@ -73,6 +74,24 @@ h1.title {
   border-bottom: 2px solid #fff;
   font-size: 26px;
   color: #fff;
+}
+
+.search-bar__options {
+  position: absolute;
+  background: #000;
+  margin: 0;
+  padding: 15px 20px;
+  list-style-type: none;
+  z-index: 10;
+}
+
+.search-bar__options li {
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+.search-bar__options li:hover{
+  color: rgb(96, 96, 255);
 }
 
 .key-stats__wrapper {
