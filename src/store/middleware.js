@@ -39,7 +39,6 @@ export const startupMiddleware = store => next => action => {
         socket.on('stockTicker', (payload) => {
             store.dispatch(updateStockTickerAction(payload))
         });
-        console.info('Application has been bootstrapped')
     }
 
     return next(action)

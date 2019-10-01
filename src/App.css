@@ -6,10 +6,12 @@
 body {
   background-color: #011738;
   font-family: Lato-Regular;
+  margin: 20px;
 }
 
 .header {
   grid-area: header;
+  position: relative;
 }
 
 .search-bar {
@@ -18,7 +20,11 @@ body {
 
 .quotes{
   grid-area: quotes;
+  position: absolute;
+  right: 0;
+  bottom: -22px;
 }
+
 .chart {
   grid-area: chart;
 }
@@ -93,7 +99,8 @@ h1.title {
 
 .header__stock-price {
   display: inline-block;
-  padding-right: 10px;
+  padding-left: 20px;
+  font-size: 28px;
 }
 
 .header__stock-price span.green {
@@ -101,7 +108,7 @@ h1.title {
 }
 
 .header__stock-price span.red {
-  color: red;
+  color: #e84000;
 }
 
 .latest-news tr:first-child {
