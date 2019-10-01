@@ -7,7 +7,7 @@ import Chart from "./components/Chart";
 import LatestNews from "./components/LatestNews"
 import KeyStats from "./components/KeyStats"
 import {Company} from "./components/Company"
-import Peers from "./components/peers";
+import Peers from "./components/Peers";
 import { Quotes } from "./components/Quotes";
 import { StockTicker } from "./components/StockTicker";
 
@@ -21,14 +21,14 @@ const App = () => {
   return (
     <div className="grid-container">
       <Headline stock={state.selectedSearch} />
-      <Search updateStock={(stock) => dispatch(updateStockAction(stock))} />
+      {/* <Search updateStock={(stock) => dispatch(updateStockAction(stock))} /> */}
       {/* <Quotes stock={state.selectedQuotes}/> */}
       <Chart stock={state.selectedChartData} updateChartRange={(stock) => dispatch(updateChartAction(stock))}/>
       <LatestNews stock={state.selectedLatestNews} />
       <KeyStats stock={state.selectedKeyStats} />
       <Company stock={state.selectedCompanyOverview} /> 
-      <Peers stock={state.selectedTopPeers}/>
-      <StockTicker stock={state.selectedStockTicker} />
+      {/* <Peers stock={state.selectedTopPeers}/> */}
+      {/* <StockTicker stock={state.selectedStockTicker} /> */}
     </div>
   );
 }

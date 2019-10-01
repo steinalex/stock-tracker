@@ -44,10 +44,8 @@ body {
   grid-gap: 20px;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-areas: "header header header" 
-                        "search-bar  search-bar  quotes" 
                         "chart chart latest-news" 
-                        "key-stats  key-stats  company-overview"
-                        "   .           .   peers";
+                        "key-stats  key-stats  company-overview";
   color: #fff;
 }
 

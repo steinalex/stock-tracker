@@ -15,7 +15,6 @@ io.on("connection", socket => {
   const timerIDs = {}
   console.log("New client connected");
   socket.on("stockName", async (stockName, timeRange) => {
-    console.log("Time range", timeRange)
     if (stockName === "") { return false }
     console.log("Stock entered: ", stockName)
 
@@ -104,7 +103,7 @@ const keyStatsInterval = async (socket, stockName) => {
 
     const { companyName, symbol, currency, primaryExchange, open, high, low, previousClose, previousVolume, avgTotalVolume, marketCap, peRatio, week52High, week52Low, ytdChange, isUSMarketOpen } = quote.data
 
-    const { EPS } = earnings.data;
+    const {eps } = earnings.data;
 
     const keyStats = {
       companyName,
@@ -123,11 +122,10 @@ const keyStatsInterval = async (socket, stockName) => {
       week52Low,
       ytdChange, 
       isUSMarketOpen,
-      EPS
+      eps,
     }
 
     socket.emit("keyStats", keyStats);
-    console.log("Key stats sent" , keyStats)
   } catch (error) {
     //TODO: Handle error
     console.error(`Error: ${error}`);
@@ -167,11 +165,13 @@ const companyOverviewInterval = async (socket, stockName) => {
       `${HOST}/stock/${stockName}/company?token=${TOKEN}`
     );
 
-    const { website, description } = company.data;
+    const { website, description, symbol, companyName } = company.data;
 
     const companyOverview = {
       website,
-      description
+      description,
+      symbol,
+      companyName
     }
 
     socket.emit("companyOverview", companyOverview);
@@ -188,11 +188,11 @@ const topPeersInterval = async (socket, stockName) => {
       `${HOST}/stock/${stockName}/peers?token=${TOKEN}`
     );
 
-    const peersList = {
-      peers: peers.data.join(',')
-    }
+    const peersList= peers.data.map(data => data)
+    
+    console.log(peersList)
 
-    socket.emit("peers", peersList);
+    socket.emit("topPeers", peersList);
   } catch (error) {
     //TODO: Handle error
     console.error(`Error: ${error}`);
@@ -222,8 +222,6 @@ const chartDataInterval = async (socket, stockName, timeRange) => {
     );
     
     const chartData = chart.data.map(data => ({close: data.close, date: data.date}))
-
-    console.log(chartData)
     socket.emit("chartData", chartData);
   } catch (error) {
     //TODO: Handle error
