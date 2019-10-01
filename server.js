@@ -29,28 +29,28 @@ io.on("connection", socket => {
     chartDataInterval(socket, stockName, timeRange);
     sectorInformationInterval(socket, stockName);
 
-    timerIDs.stockTicker = setInterval(() => { //Done
+    timerIDs.stockTicker = setInterval(() => { 
       stockTickerInterval(socket, stockName);
     }, 5000);
-    timerIDs.keyStats = setInterval(() => { //Done
+    timerIDs.keyStats = setInterval(() => { 
       keyStatsInterval(socket, stockName);
     }, oneDay);
-    timerIDs.latestNews = setInterval(() => {//Done
+    timerIDs.latestNews = setInterval(() => {
       latestNewsInterval(socket, stockName);
     }, oneDay);
-    timerIDs.companyOverview = setInterval(() => { //Done
+    timerIDs.companyOverview = setInterval(() => { 
       companyOverviewInterval(socket, stockName);
     }, oneDay);
-    timerIDs.topPeers = setInterval(() => { //Done
+    timerIDs.topPeers = setInterval(() => { 
       topPeersInterval(socket, stockName);
     }, oneDay);
-    timerIDs.companySymbols = setInterval(() => { //Done
+    timerIDs.companySymbols = setInterval(() => { 
       companySymbolsInterval(socket);
     }, oneDay);
-    timerIDs.chartData = setInterval(() => { //Done
+    timerIDs.chartData = setInterval(() => { 
       chartDataInterval(socket, stockName, timeRange);
     }, oneDay);
-    timerIDs.sectorInformation = setInterval(() => { //Done
+    timerIDs.sectorInformation = setInterval(() => { 
       sectorInformationInterval(socket, stockName);
     }, oneDay);
   });

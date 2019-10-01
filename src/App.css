@@ -4,7 +4,7 @@
 }
 
 body {
-  background-color: #011E48;
+  background-color: #011738;
   font-family: Lato-Regular;
 }
 
@@ -104,10 +104,21 @@ h1.title {
   color: red;
 }
 
+.latest-news tr:first-child {
+  color: rgb(243, 239, 130);
+}
+
+.latest-news tr:nth-child(even) {
+  color: rgb(138, 149, 179);
+}
+
 
 /* Media Queries */
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 1000px) {
   .grid-container {
-    grid-template-areas: "header header header" "search-bar  search-bar  search-bar" "chart chart chart" "latest-news latest-news latest-news" "key-stats  key-stats key-stats" "company-overview company-overview company-overview";
+    grid-template-areas: "header header header" "chart chart chart" "latest-news latest-news latest-news" "key-stats  key-stats key-stats" "company-overview company-overview company-overview";
+  }
+  .key-stats__wrapper {
+    column-count: 1;
   }
 }
