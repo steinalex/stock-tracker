@@ -10,7 +10,7 @@ export const StockTicker = ({ stock }) => {
     return (
     <div className="quotes">
         <p className="header__stock-price">$ {stock.latestPrice}</p>
-        <p className="header__stock-price"><span className={formatColour(stock.change)}>{stock.change > 0 ? stock.change : -stock.change}</span></p>
+        <p className="header__stock-price"><span className={formatColour(stock)}>{stock.change > 0 ? stock.change : -stock.change}</span></p>
        <p className="header__stock-price"><span className={formatColour(changePercent)}>{changePercent}%</span></p>
 </div>
 )}
