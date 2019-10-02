@@ -8,6 +8,7 @@ const Search = ({ updateStock }) => {
   const state = useSelector((state) => state)
   const filteredSymbols = state.selectedCompanySymbols
   const [stock, setStock] = useState('');
+  // const [clickState, setClickState] = useState(false)
 
   const onChange = event => {
     setStock(event.target.value)
@@ -23,6 +24,7 @@ const Search = ({ updateStock }) => {
   const optionClick = data => {
     setStock(`${data.name} (${data.symbol})`)
     updateStock(data.symbol)
+    // setClickState(true)
     console.log("Data has been clicked")
   }
 

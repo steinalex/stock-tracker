@@ -139,7 +139,7 @@ const keyStatsInterval = async (socket, stockName) => {
 
     const { companyName, symbol, currency, primaryExchange, open, high, low, previousClose, previousVolume, avgTotalVolume, marketCap, peRatio, week52High, week52Low, ytdChange, isUSMarketOpen } = quote.data
 
-    const {eps } = earnings.data;
+    const eps  = earnings.data;
 
     const keyStats = {
       companyName,
@@ -261,7 +261,7 @@ const sectorInformationInterval = async (socket, stockName) => {
     );
 
     const { primaryExchange, companyName, symbol } = quote.data;
-    const { currency } = dividends.data;
+    const { currency } = dividends.data[0];
     const { sector } = company.data;
 
     const sectorInformation = {

@@ -33,7 +33,7 @@ const KeyStats = ({ stock }) => {
                             <td>Total Avg Volume:</td><td>{stock.avgTotalVolume}</td>
                         </tr>
                         <tr>
-                            <td>Earning per share:</td><td>{stock.EPS}</td>
+                            <td>Earning per share:</td><td>{stock.eps}</td>
                         </tr>
                         <tr>
                             <td> Dividend &amp; Yeild:</td><td>{stock.ytdChange}</td>
