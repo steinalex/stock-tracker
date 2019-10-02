@@ -19,7 +19,7 @@ body {
   position: relative;
 }
 
-.quotes{
+.quotes {
   grid-area: quotes;
   position: absolute;
   right: 0;
@@ -50,9 +50,7 @@ body {
   display: grid;
   grid-gap: 20px;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-areas: "header header header" 
-                        "chart chart latest-news" 
-                        "key-stats  key-stats  company-overview";
+  grid-template-areas: "header header header" "chart chart latest-news" "key-stats  key-stats  company-overview";
   color: #fff;
 }
 
@@ -64,9 +62,10 @@ h1.title {
   padding: 0 0 3px;
 }
 
-.header__logo{
-  width:150px;
+.header__logo {
+  width: 150px;
 }
+
 .search-bar__input {
   width: 100%;
   background: none;
@@ -90,7 +89,7 @@ h1.title {
   cursor: pointer;
 }
 
-.search-bar__options li:hover{
+.search-bar__options li:hover {
   color: rgb(96, 96, 255);
 }
 
@@ -138,8 +137,34 @@ h1.title {
   color: rgb(138, 149, 179);
 }
 
+.chart-button__wrapper {
+  position: relative;
+  z-index: 1;
+  float: right;
+  margin-right: 22px;
+}
+
+.chart-button__wrapper button {
+  background: none;
+  border: none;
+  color: rgb(167, 165, 255);
+}
+
+.chart-button__wrapper button.active {
+  color: #fff;
+}
+
+.chart-button__wrapper button.inactive {
+  color: rgb(167, 165, 255);
+}
+
+.chart-button__wrapper button:hover {
+  color: #fff;
+  cursor: pointer;
+}
 
 /* Media Queries */
+
 @media only screen and (max-width: 1000px) {
   .grid-container {
     grid-template-areas: "header header header" "chart chart chart" "latest-news latest-news latest-news" "key-stats  key-stats key-stats" "company-overview company-overview company-overview";
