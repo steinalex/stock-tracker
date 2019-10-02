@@ -81,11 +81,11 @@ const stockTickerInterval = async (socket, stockName) => {
       `${HOST}/stock/${stockName}/quote?token=${TOKEN}`
     );
 
-    const { latestPrice, latestTime, change, changePercent} = quote.data
+    const { latestPrice, latestUpdate, change, changePercent} = quote.data
 
     const stockTicker = {
       latestPrice,
-      latestTime,
+      latestUpdate,
       change,
       changePercent
     }
