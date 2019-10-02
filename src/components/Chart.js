@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 const Chart = ({ stock, updateChartRange }) => {
-
-    const [colour, setColour] = useState(0);
     const [active, setActive] = useState('5y')
 
     const onClickHandler = event => {

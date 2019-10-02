@@ -8,7 +8,6 @@ const Search = ({ updateStock }) => {
   const filteredSymbols = useSelector((state) => state.selectedCompanySymbols)
   const [isOpen, toggleIsOpen] = useState(false);
   const [stock, setStock] = useState('');
-  // const [clickState, setClickState] = useState(false)
 
   const onChange = ({ target: { value } }) => {
     setStock(value)
