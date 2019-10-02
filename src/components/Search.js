@@ -26,20 +26,6 @@ const Search = ({ updateStock }) => {
     console.log("Data has been clicked")
   }
 
-  // const updateSeachBar = () => {
-  //   console.log("Click state", clickState)
-  //   console.log("Length", stock.length)
-  //   if (!stock.length) {
-  //     return { display: 'none' }
-  //   }
-  //   else if (stock.length > 0) {
-  //     return { display: 'block' }
-  //   }
-  //   else if (stock.length > 0 && clickState === true) {
-  //     return { display: 'none' }
-  //   }
-  // }
-
   const options = filteredSymbols.map(data => {
     return (
       <li onClick={() => optionClick(data)} value={data.symbol} key={data.symbol}>
