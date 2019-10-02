@@ -188,6 +188,8 @@ const latestNewsInterval = async (socket, stockName) => {
       news5Source: news.data[4].source
     }
 
+    socket.emit('latestNews', news.data.slice(0, 4));
+
     socket.emit("latestNews", latestNews);
   } catch (error) {
     //TODO: Handle error
