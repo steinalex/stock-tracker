@@ -8,7 +8,6 @@ const Search = ({ updateStock }) => {
   const filteredSymbols = useSelector((state) => state.selectedCompanySymbols)
   const [isOpen, toggleIsOpen] = useState(false);
   const [stock, setStock] = useState('');
-  // const [clickState, setClickState] = useState(false)
 
   const onChange = ({ target: { value } }) => {
     setStock(value)
@@ -38,9 +37,9 @@ const Search = ({ updateStock }) => {
     );
   });
 
-  // const handleBlur = () => toggleIsOpen(false);
+  const handleBlur = () => toggleIsOpen(false);
   
-  // const handleFocus = () => toggleIsOpen(stock.length !== 0);
+  const handleFocus = () => toggleIsOpen(stock.length !== 0);
 
   React.useEffect(() => {
     toggleIsOpen(filteredSymbols.length !== 0);
@@ -49,7 +48,7 @@ const Search = ({ updateStock }) => {
   return (
     <>
       <div className="search-bar">
-        <input type="text" placeholder="Search..." className="search-bar__input" value={stock} onChange={onChange} onKeyPress={onSubmit} />
+        <input type="text" placeholder="Search..." className="search-bar__input" value={stock} onChange={onChange} onKeyPress={onSubmit} onFocus={handleFocus} onBlur={handleBlur} />
       </div>
       <ul name="search" className="search-bar__options" style={{display: isOpen ? 'block' : 'none'}}>{options}</ul>
     </>

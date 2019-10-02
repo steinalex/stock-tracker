@@ -12,6 +12,5 @@ export const StockTicker = ({ stock }) => {
         <p className="header__stock-price">$ {stock.latestPrice}</p>
         <p className="header__stock-price"><span className={formatColour(stock)}>{stock.change > 0 ? stock.change : -stock.change}</span></p>
        <p className="header__stock-price"><span className={formatColour(changePercent)}>{changePercent > 0 ? changePercent : -changePercent}%</span></p>
-       <p>Real-Time Price as of {stock.latestTime}</p>
 </div>
 )}

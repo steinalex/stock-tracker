@@ -3,6 +3,11 @@
   src: url(./assets/font/Lato-Regular.ttf);
 }
 
+@font-face {
+  font-family: Lato-Thin;
+  src: url(./assets/font/Lato-Thin.ttf);
+}
+
 body {
   background-color: #011738;
   font-family: Lato-Regular;
@@ -17,6 +22,7 @@ body {
 .search-bar {
   grid-area: search-bar;
   position: relative;
+  border-bottom: 1px solid #fff;
 }
 
 .quotes {
@@ -70,7 +76,6 @@ h1.title {
   width: 100%;
   background: none;
   border: none;
-  border-bottom: 2px solid #fff;
   font-size: 26px;
   color: #fff;
 }
