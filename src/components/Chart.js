@@ -4,14 +4,14 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 const Chart = ({ stock, updateChartRange }) => {
 
     const [colour, setColour] = useState(0);
-    const [active, setActive] =useState('5y')
+    const [active, setActive] = useState('5y')
 
     const onClickHandler = event => {
         console.log("BUtton pressed")
         updateChartRange(event.target.value)
         setActive(event.target.value);
     }
-    
+
     return (
         <div className="chart">
             <div className="chart-button__wrapper">
@@ -25,11 +25,17 @@ const Chart = ({ stock, updateChartRange }) => {
             <ResponsiveContainer height='100%' width='100%'>
                 <AreaChart data={stock}
                     margin={{ top: 10, right: 0, left: 0, bottom: 0 }}>
+                    <defs>
+                        <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
+                            <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
+                        </linearGradient>
+                    </defs>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="date" />
                     <YAxis orientation='right' />
                     <Tooltip />
-                    <Area type='monotone' dataKey='close' stroke='#8884d8' fill='#8884d8' />
+                    <Area type='monotone' dataKey='close' fillOpacity={1} fill='url(#chartGradient)' />
                 </AreaChart>
             </ResponsiveContainer>
         </div>

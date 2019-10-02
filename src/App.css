@@ -163,6 +163,16 @@ h1.title {
   cursor: pointer;
 }
 
+.peers-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.peers-list li {
+  float: left;
+  margin-right: 15px;
+}
+
 /* Media Queries */
 
 @media only screen and (max-width: 1000px) {

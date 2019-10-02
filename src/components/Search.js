@@ -5,14 +5,16 @@ import { updateSearchQueryAction } from '../store/actions';
 const Search = ({ updateStock }) => {
 
   const dispatch = useDispatch()
-  const state = useSelector((state) => state)
-  const filteredSymbols = state.selectedCompanySymbols
+  const filteredSymbols = useSelector((state) => state.selectedCompanySymbols)
+  const [isOpen, toggleIsOpen] = useState(false);
   const [stock, setStock] = useState('');
   // const [clickState, setClickState] = useState(false)
 
-  const onChange = event => {
-    setStock(event.target.value)
-    dispatch(updateSearchQueryAction(event.target.value))
+  const onChange = ({ target: { value } }) => {
+    setStock(value)
+    dispatch(updateSearchQueryAction(value))
+    
+    toggleIsOpen(value.length > 0);
   }
 
   const onSubmit = ({ key, target }) => {
@@ -24,23 +26,9 @@ const Search = ({ updateStock }) => {
   const optionClick = data => {
     setStock(`${data.name} (${data.symbol})`)
     updateStock(data.symbol)
-    // setClickState(true)
+    toggleIsOpen(false);
     console.log("Data has been clicked")
   }
-
-  // const updateSeachBar = () => {
-  //   console.log("Click state", clickState)
-  //   console.log("Length", stock.length)
-  //   if (!stock.length) {
-  //     return { display: 'none' }
-  //   }
-  //   else if (stock.length > 0) {
-  //     return { display: 'block' }
-  //   }
-  //   else if (stock.length > 0 && clickState === true) {
-  //     return { display: 'none' }
-  //   }
-  // }
 
   const options = filteredSymbols.map(data => {
     return (
@@ -50,12 +38,20 @@ const Search = ({ updateStock }) => {
     );
   });
 
+  // const handleBlur = () => toggleIsOpen(false);
+  
+  // const handleFocus = () => toggleIsOpen(stock.length !== 0);
+
+  React.useEffect(() => {
+    toggleIsOpen(filteredSymbols.length !== 0);
+  }, [filteredSymbols.length]);
+
   return (
     <>
       <div className="search-bar">
         <input type="text" placeholder="Search..." className="search-bar__input" value={stock} onChange={onChange} onKeyPress={onSubmit} />
       </div>
-      <ul name="search" className="search-bar__options" style={stock.length > 0 ? {display : 'block'} : {display : 'none'}}>{options}</ul>
+      <ul name="search" className="search-bar__options" style={{display: isOpen ? 'block' : 'none'}}>{options}</ul>
     </>
   )
 }
