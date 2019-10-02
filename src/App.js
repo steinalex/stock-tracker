@@ -7,8 +7,6 @@ import LatestNews from "./components/LatestNews"
 import KeyStats from "./components/KeyStats"
 import {Company} from "./components/Company"
 
-// updateChartRange={(stock) => dispatch(updateChartAction(stock))}
-
 const App = () => {
   const state = useSelector((state) => state)
   const dispatch = useDispatch()

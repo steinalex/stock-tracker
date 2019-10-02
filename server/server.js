@@ -3,7 +3,7 @@ const http = require("http");
 const socketIo = require("socket.io");
 const axios = require("axios");
 const port = process.env.PORT || 4000;
-const index = require("./routes/index");
+const index = require("./routes");
 const app = express();
 app.use(index);
 const server = http.createServer(app);
@@ -21,13 +21,7 @@ io.on("connection", socket => {
 
     Object.values(timerIDs).forEach(clearInterval);
 
-    stockTickerInterval(socket, stockName);
-    keyStatsInterval(socket, stockName);
-    latestNewsInterval(socket, stockName);
-    companyOverviewInterval(socket, stockName);
-    topPeersInterval(socket, stockName);
-    chartDataInterval(socket, stockName, timeRange);
-    sectorInformationInterval(socket, stockName);
+    startIntervals(socket, stockName, timeRange);
 
     timerIDs.stockTicker = setInterval(() => { 
       stockTickerInterval(socket, stockName);
@@ -70,6 +64,16 @@ server.listen(port, () => console.log(`Listening on port ${port}`));
 
 const HOST = 'https://sandbox.iexapis.com/stable'
 const TOKEN = 'Tsk_d2f1890612194476b41d39992a3ad835'
+
+const startIntervals = (socket, stockName, timeRange) => {
+  stockTickerInterval(socket, stockName);
+  keyStatsInterval(socket, stockName);
+  latestNewsInterval(socket, stockName);
+  companyOverviewInterval(socket, stockName);
+  topPeersInterval(socket, stockName);
+  chartDataInterval(socket, stockName, timeRange);
+  sectorInformationInterval(socket, stockName);
+}
 
 const stockTickerInterval = async (socket, stockName) => {
   try {
