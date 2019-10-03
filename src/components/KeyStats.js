@@ -1,7 +1,8 @@
 import React from 'react';
 
 const KeyStats = ({ stock }) => {
-    
+    const stockOpen = stock.open === null ? 'null' : stock.open
+
     return (
         <div className="key-stats">
             <h1 className="title">Key Stats</h1>
@@ -24,7 +25,7 @@ const KeyStats = ({ stock }) => {
                             <td>P/E Ratio:</td><td>{stock.peRatio}</td>
                         </tr>
                         <tr>
-                            <td>Open:</td><td>{stock.open}</td>
+                            <td>Open:</td><td>{stockOpen}</td>
                         </tr>
                         <tr>
                             <td>52 Week Range:</td><td>{stock.week52High}-{stock.week52Low}</td>
@@ -33,7 +34,7 @@ const KeyStats = ({ stock }) => {
                             <td>Total Avg Volume:</td><td>{stock.avgTotalVolume}</td>
                         </tr>
                         <tr>
-                            <td>Earning per share:</td><td>{stock.EPS}</td>
+                            <td>Earning per share:</td><td>{stock.eps}</td>
                         </tr>
                         <tr>
                             <td> Dividend &amp; Yeild:</td><td>{stock.ytdChange}</td>

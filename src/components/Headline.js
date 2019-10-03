@@ -18,9 +18,7 @@ export const Headline = ({ stock }) => {
         <p>{stock.companyName} ({stock.symbol}) </p>
         <p>{stock.primaryExchange} {stock.sector} {stock.currency}</p>
         <StockTicker stock={state.selectedStockTicker} />
-        <Search updateStock={(stock) => dispatch(updateStockAction(stock))} />
-
-
+        <Search searchQuery={state.enteredSearchQuery} symbol={state.selectedCompanySymbols} updateStock={(stock) => dispatch(updateStockAction(stock))} />
 </div>
 
     )

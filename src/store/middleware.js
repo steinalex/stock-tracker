@@ -1,5 +1,5 @@
-import { UPDATE_SELECTED_STOCK, UPDATE_CHART_RANGE, BOOTSTRAP } from './constants'
-import { updateChartDataAction, updateKeyStatsAction, updateLatestNewsAction, updateCompanyOverviewAction, updateTopPeersAction, updateSearchAction, updateCompanySymbolsAction, updateStockTickerAction, } from './actions'
+import { UPDATE_SELECTED_STOCK, UPDATE_CHART_RANGE, UPDATE_SEARCH_QUERY, BOOTSTRAP } from './constants'
+import { updateChartDataAction, updateKeyStatsAction, updateLatestNewsAction, updateCompanyOverviewAction, updateTopPeersAction, updateSearchAction, updateCompanySymbolsAction, updateStockTickerAction } from './actions'
 
 const io = require('socket.io-client')
 
@@ -39,7 +39,6 @@ export const startupMiddleware = store => next => action => {
         socket.on('stockTicker', (payload) => {
             store.dispatch(updateStockTickerAction(payload))
         });
-        console.info('Application has been bootstrapped')
     }
 
     return next(action)
@@ -52,6 +51,9 @@ export const stockMiddleware = store => next => action => {
     }
     else if (action.type === UPDATE_CHART_RANGE) {
         socket.emit('timeRange', store.getState().selectedStock, action.payload)
+    }
+    else if (action.type === UPDATE_SEARCH_QUERY) {
+        socket.emit('searchQuery', action.payload)
     }
     return next(action)
 }

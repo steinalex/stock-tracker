@@ -1,5 +1,5 @@
 
-import {  UPDATE_SELECTED_STOCK, UPDATE_CHART_RANGE, UPDATE_KEY_STATS, UPDATE_LATEST_NEWS, UPDATE_COMPANY_OVERVIEW, UPDATE_TOP_PEERS, UPDATE_SEARCH, UPDATE_COMPANY_SYMBOLS, UPDATE_QUOTES, UPDATE_STOCK_TICKER, UPDATE_CHART_DATA } from './constants'
+import { UPDATE_SELECTED_STOCK, UPDATE_CHART_RANGE, UPDATE_KEY_STATS, UPDATE_LATEST_NEWS, UPDATE_COMPANY_OVERVIEW, UPDATE_TOP_PEERS, UPDATE_SEARCH, UPDATE_COMPANY_SYMBOLS, UPDATE_QUOTES, UPDATE_STOCK_TICKER, UPDATE_CHART_DATA, UPDATE_SEARCH_QUERY } from './constants'
 
 export const reducer = (state, { type, payload }) => {
     switch (type) {
@@ -57,6 +57,11 @@ export const reducer = (state, { type, payload }) => {
             return {
                 ...state,
                 selectedChartData: payload
+            }
+        case UPDATE_SEARCH_QUERY:
+            return {
+                ...state,
+                enteredSearchQuery: payload
             }
         default:
             return state;

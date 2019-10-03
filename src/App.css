@@ -3,22 +3,35 @@
   src: url(./assets/font/Lato-Regular.ttf);
 }
 
+@font-face {
+  font-family: Lato-Thin;
+  src: url(./assets/font/Lato-Thin.ttf);
+}
+
 body {
   background-color: #011738;
   font-family: Lato-Regular;
+  margin: 20px;
 }
 
 .header {
   grid-area: header;
+  position: relative;
 }
 
 .search-bar {
   grid-area: search-bar;
+  position: relative;
+  border-bottom: 1px solid #fff;
 }
 
-.quotes{
+.quotes {
   grid-area: quotes;
+  position: absolute;
+  right: 0;
+  bottom: -25px;
 }
+
 .chart {
   grid-area: chart;
 }
@@ -43,9 +56,7 @@ body {
   display: grid;
   grid-gap: 20px;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-areas: "header header header" 
-                        "chart chart latest-news" 
-                        "key-stats  key-stats  company-overview";
+  grid-template-areas: "header header header" "chart chart latest-news" "key-stats  key-stats  company-overview";
   color: #fff;
 }
 
@@ -57,16 +68,34 @@ h1.title {
   padding: 0 0 3px;
 }
 
-.header__logo{
-  width:150px;
+.header__logo {
+  width: 150px;
 }
+
 .search-bar__input {
   width: 100%;
   background: none;
   border: none;
-  border-bottom: 2px solid #fff;
   font-size: 26px;
   color: #fff;
+}
+
+.search-bar__options {
+  position: absolute;
+  background: #000;
+  margin: 0;
+  padding: 15px 20px;
+  list-style-type: none;
+  z-index: 10;
+}
+
+.search-bar__options li {
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+.search-bar__options li:hover {
+  color: rgb(96, 96, 255);
 }
 
 .key-stats__wrapper {
@@ -93,7 +122,8 @@ h1.title {
 
 .header__stock-price {
   display: inline-block;
-  padding-right: 10px;
+  padding-left: 20px;
+  font-size: 28px;
 }
 
 .header__stock-price span.green {
@@ -101,7 +131,7 @@ h1.title {
 }
 
 .header__stock-price span.red {
-  color: red;
+  color: #e84000;
 }
 
 .latest-news tr:first-child {
@@ -112,8 +142,44 @@ h1.title {
   color: rgb(138, 149, 179);
 }
 
+.chart-button__wrapper {
+  position: relative;
+  z-index: 1;
+  float: right;
+  margin-right: 22px;
+}
+
+.chart-button__wrapper button {
+  background: none;
+  border: none;
+  color: rgb(167, 165, 255);
+}
+
+.chart-button__wrapper button.active {
+  color: #fff;
+}
+
+.chart-button__wrapper button.inactive {
+  color: rgb(167, 165, 255);
+}
+
+.chart-button__wrapper button:hover {
+  color: #fff;
+  cursor: pointer;
+}
+
+.peers-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.peers-list li {
+  float: left;
+  margin-right: 15px;
+}
 
 /* Media Queries */
+
 @media only screen and (max-width: 1000px) {
   .grid-container {
     grid-template-areas: "header header header" "chart chart chart" "latest-news latest-news latest-news" "key-stats  key-stats key-stats" "company-overview company-overview company-overview";
