@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, ReferenceDot, LabelList } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 
 const Chart = ({ stock, latestPrice, updateChartRange }) => {
 
@@ -35,7 +35,7 @@ const Chart = ({ stock, latestPrice, updateChartRange }) => {
                     <XAxis dataKey="date" />
                     <YAxis orientation='right' />
                     <Tooltip />
-                    <ReferenceLine y={latestPrice.latestPrice} label="Max" stroke="red" strokeDasharray="3 3" />
+                    <ReferenceLine y={latestPrice.latestPrice} label={{ value: `${latestPrice.latestPrice}`, position: 'right', fill: 'orange' }}  stroke="orange" strokeDasharray="3 3" />
                     <Area type='monotone' dataKey='close' stroke='#8884d8' fillOpacity={1} fill='url(#chartGradient)' />
                 </AreaChart>
             </ResponsiveContainer>
