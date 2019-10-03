@@ -40,7 +40,7 @@ const KeyStats = ({ stock }) => {
                             <td>Earning per share:</td><td>{stock.eps}</td>
                         </tr>
                         <tr>
-                            <td> Dividend &amp; Yeild:</td><td>{dividend} %</td>
+                            <td> Dividend &amp; Yield:</td><td>{dividend} %</td>
                         </tr>
                     </tbody>
                 </table>

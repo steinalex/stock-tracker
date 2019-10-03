@@ -14,14 +14,19 @@ export const Headline = ({ stock }) => {
     // const changePercent = parseFloat(Math.round((stock.changePercent*100) * 100) / 100).toFixed(2);
 
     return (
-    <div className="header">
-        <img className='header__logo' src={logo} alt="Adaptive Logo" />
-        <p>{stock.companyName} ({stock.symbol}) </p>
-        <p>{stock.primaryExchange} {stock.sector} {stock.currency}</p>
-        <StockTicker stock={state.selectedStockTicker} />
-        <Search searchQuery={state.enteredSearchQuery} symbol={state.selectedCompanySymbols} updateStock={(stock) => dispatch(updateStockAction(stock))} />
-        <MarketStatus stock={state.selectedStockTicker} keyStats={state.selectedKeyStats} />
-</div>
+        <div className="header">
+            <img className='header__logo' src={logo} alt="Adaptive Logo" />
+            <ul className="headline-list">
+                <li className="current">Quotes</li> 
+                <li>Markets</li>
+                <li>Watchlists</li>
+            </ul>
+            <p>{stock.companyName} ({stock.symbol}) </p>
+            <StockTicker stock={state.selectedStockTicker} />
+            <Search searchQuery={state.enteredSearchQuery} symbol={state.selectedCompanySymbols} updateStock={(stock) => dispatch(updateStockAction(stock))} />
+            <MarketStatus stock={state.selectedStockTicker} keyStats={state.selectedKeyStats} />
+            <p className="stockInfo-list"> <li>{stock.primaryExchange}</li> <li>{stock.sector}</li> <li> {stock.currency} </li></p>
+        </div>
 
     )
 }

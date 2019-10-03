@@ -7,7 +7,7 @@ export const MarketStatus = ({stock, keyStats}) => {
     const marketStatus= keyStats.open === null ? 'Market Close' : 'Market Open'
   
     return (
-    <div className="quotes">
+    <div className="market">
        <p>Real-Time Price as of {USTime} EST  {marketStatus}</p>
 </div>
 )}

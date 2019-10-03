@@ -29,7 +29,14 @@ body {
   grid-area: quotes;
   position: absolute;
   right: 0;
-  bottom: -25px;
+  bottom: 12px;
+}
+
+.market {
+  grid-area: markets;
+  position: absolute;
+  right: 0;
+  bottom: -8px;
 }
 
 .chart {
@@ -124,6 +131,7 @@ h1.title {
   display: inline-block;
   padding-left: 20px;
   font-size: 28px;
+  border: top -100px;
 }
 
 .header__stock-price span.green {
@@ -172,11 +180,43 @@ h1.title {
   list-style-type: none;
   padding: 0;
 }
-
 .peers-list li {
   float: left;
   margin-right: 15px;
 }
+.headline-list{
+  list-style-type: none;
+  padding: 0;
+  grid-area: headline-list;
+  position: absolute;
+  right: 0;
+  bottom: 140px;
+  font-size: larger;
+}
+.headline-list li {
+  float: left;
+  margin-right: 15px;
+  text-transform: uppercase;
+  padding: 5px 15px;
+}
+
+.headline-list li.current {
+  background-color: rgb(55, 121, 228)
+}
+
+
+.stockInfo-list{
+  list-style-type: none;
+  
+}
+.stockInfo-list li{
+  float: left;
+  margin-right: 15px;
+  padding: 3px 7px;
+  background-color: rgb(55, 121, 228);
+
+}
+
 
 /* Media Queries */
 
