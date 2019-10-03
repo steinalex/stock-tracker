@@ -12,13 +12,13 @@ const Search = ({ updateStock }) => {
   const onChange = ({ target: { value } }) => {
     setStock(value)
     dispatch(updateSearchQueryAction(value))
-    
     toggleIsOpen(value.length > 0);
   }
 
   const onSubmit = ({ key, target }) => {
     if (key === 'Enter') {
       updateStock(target.value)
+      toggleIsOpen(false)
     }
   }
 
@@ -50,6 +50,14 @@ const Search = ({ updateStock }) => {
       <div className="search-bar">
         <input type="text" placeholder="Search..." className="search-bar__input" value={stock} onChange={onChange} onKeyPress={onSubmit} onFocus={handleFocus} onBlur={handleBlur} />
       </div>
+      {/* {filteredSymbols.map(data => {
+    return (
+      <li onClick={() => optionClick(data)} value={data.symbol} key={data.symbol}>
+        {`${data.name} (${data.symbol})`}
+      </li>
+    );
+  })} */}
+ 
       <ul name="search" className="search-bar__options" style={{display: isOpen ? 'block' : 'none'}}>{options}</ul>
     </>
   )

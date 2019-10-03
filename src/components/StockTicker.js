@@ -4,10 +4,6 @@ import React from 'react';
 export const StockTicker = ({ stock }) => {
     const UKTime = new Date(stock.latestUpdate)
     const USTime = new Date(UKTime).toLocaleString("en-US", {timeZone: "America/New_York"})
-    console.log(USTime)
-
- 
-
     const formatColour = (value) => value > 0 ? 'green' : 'red'
  
     const changePercent = parseFloat(Math.round((stock.changePercent*100) * 100) / 100).toFixed(2);
