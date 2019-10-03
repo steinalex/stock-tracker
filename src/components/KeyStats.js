@@ -1,9 +1,12 @@
 import React from 'react';
 
+const NUMBER_FORMATTER = new Intl.NumberFormat();
+
+const formatNumber = (num) => { return NUMBER_FORMATTER.format(num)}
+
 const KeyStats = ({ stock }) => {
     const stockOpen = stock.open === null ? 'N/A' : stock.open
     const dayRange = stock.low === null ? 'N/A' : stock.low - stock.high
-    const formatNumber = (num) => { return new Intl.NumberFormat().format(num)}
     const dividend = (stock.ytdChange * 100).toPrecision(3)
 
     return (

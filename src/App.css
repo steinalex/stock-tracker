@@ -22,21 +22,15 @@ body {
 .search-bar {
   grid-area: search-bar;
   position: relative;
-  border-bottom: 1px solid #fff;
+  border-bottom: 2px solid #6447af;
+  margin-top: 30px;
+  padding-bottom: 8px;
 }
 
 .quotes {
-  grid-area: quotes;
   position: absolute;
   right: 0;
-  bottom: 12px;
-}
-
-.market {
-  grid-area: markets;
-  position: absolute;
-  right: 0;
-  bottom: -8px;
+  bottom: -29px;
 }
 
 .chart {
@@ -79,12 +73,17 @@ h1.title {
   width: 150px;
 }
 
+.search-bar__wrapper {
+  position: relative;
+}
+
 .search-bar__input {
   width: 100%;
   background: none;
   border: none;
-  font-size: 26px;
+  font-size: 35px;
   color: #fff;
+  font-family: Lato-Regular;
 }
 
 .search-bar__options {
@@ -130,8 +129,7 @@ h1.title {
 .header__stock-price {
   display: inline-block;
   padding-left: 20px;
-  font-size: 28px;
-  border: top -100px;
+  font-size: 35px;
 }
 
 .header__stock-price span.green {
@@ -186,12 +184,8 @@ h1.title {
 }
 .headline-list{
   list-style-type: none;
-  padding: 0;
-  grid-area: headline-list;
-  position: absolute;
-  right: 0;
-  bottom: 140px;
-  font-size: larger;
+  float: right;
+  font-size: 18px;
 }
 .headline-list li {
   float: left;
@@ -207,14 +201,30 @@ h1.title {
 
 .stockInfo-list{
   list-style-type: none;
-  
+  padding: 0;
 }
+
 .stockInfo-list li{
   float: left;
   margin-right: 15px;
-  padding: 3px 7px;
+  padding: 3px 15px;
   background-color: rgb(55, 121, 228);
+}
 
+.market {
+  float: right;
+}
+
+/* content: '\263C'; //Sun */
+/* content: '\02191'; //Arrow up */
+/* content: '\02193'; //Arrow down */
+
+.dollar-sign::before {
+  content: "$";
+  position: absolute;
+  left: -15px;
+  top: 5px;
+  font-size: 20px;
 }
 
 
