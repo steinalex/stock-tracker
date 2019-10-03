@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateSearchQueryAction } from '../store/actions';
 const Search = ({ updateStock }) => {
@@ -48,7 +48,7 @@ const Search = ({ updateStock }) => {
     );
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     toggleIsOpen(filteredSymbols.length !== 0);
   }, [filteredSymbols.length]);
 

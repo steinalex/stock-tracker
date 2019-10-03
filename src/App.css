@@ -4,8 +4,8 @@
 }
 
 @font-face {
-  font-family: Lato-Thin;
-  src: url(./assets/font/Lato-Thin.ttf);
+  font-family: Lato-Light;
+  src: url(./assets/font/Lato-Light.ttf);
 }
 
 body {
@@ -24,7 +24,7 @@ body {
   position: relative;
   border-bottom: 2px solid #6447af;
   margin-top: 30px;
-  padding-bottom: 8px;
+  padding: 0 0 8px 23px;
 }
 
 .quotes {
@@ -78,12 +78,22 @@ h1.title {
 }
 
 .search-bar__input {
-  width: 100%;
+  width: 700px;
   background: none;
   border: none;
   font-size: 35px;
   color: #fff;
-  font-family: Lato-Regular;
+  font-family: Lato-Light;
+}
+
+.search-bar::before {
+  content: '⚲';
+  position: absolute;
+  top: 0px;
+  font-size: 38px;
+  left: 0px;
+  transform: rotate(-45deg);
+  color: rgb(167, 165, 255);
 }
 
 .search-bar__options {
@@ -129,7 +139,8 @@ h1.title {
 .header__stock-price {
   display: inline-block;
   padding-left: 20px;
-  font-size: 35px;
+  font-size: 40px;
+  font-family: Lato-Light;
 }
 
 .header__stock-price span.arrowUp {
@@ -236,11 +247,6 @@ h1.title {
   float: right;
 }
 
-/* content: '\263C'; //Sun */
-/* content: '\02191'; //Arrow up */
-/* content: '\02193'; //Arrow down */
-/* content: '\263E' moon */
-
 .dollar-sign::before {
   position: relative;
   content: "$";
@@ -249,19 +255,29 @@ h1.title {
   font-size: 20px;
 }
 
+.market span.moon {
+  padding-left: 10px;
+}
+
 .market span.moon::before {
   position: relative;
   content: '\263E';
-  left: 2px;
-  top: -1px;
-  font-size: 20px;
+  left: -1px;
+  top: 0px;
+  font-size: 15px;
 }
+
+.market span.sun {
+  padding-left: 10px;
+}
+
 .market span.sun::before {
   position: relative;
   content: '\263C';
-  left: 2px;
-  top: -1px;
-  font-size: 20px;
+  left: -1px;
+  top: 0px;
+  font-size: 15px;
+  color: rgb(224, 251, 0);
 }
 
 
