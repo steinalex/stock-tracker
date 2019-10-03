@@ -263,12 +263,12 @@ const sectorInformationInterval = async (socket, stockName) => {
     );
 
     const { primaryExchange, companyName, symbol } = quote.data;
-    const { currency } = dividends.data[0];
+    // const { currency } = dividends.data[0];
     const { sector } = company.data;
 
     const sectorInformation = {
       primaryExchange,
-      currency,
+      currency:dividends.data[0],
       sector,
       companyName,
       symbol

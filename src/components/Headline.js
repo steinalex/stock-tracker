@@ -9,9 +9,8 @@ import { MarketStatus } from './MarketStatus';
 export const Headline = ({ stock }) => {
     const state = useSelector((state) => state)
     const dispatch = useDispatch()
+    const currency = stock=== null || undefined ? 'N/A' : stock.currency
 
-    // const colour = stock.change > 0 ? 'green' : 'red'
-    // const changePercent = parseFloat(Math.round((stock.changePercent*100) * 100) / 100).toFixed(2);
 
     return (
         <div className="header">
@@ -27,7 +26,7 @@ export const Headline = ({ stock }) => {
             </div>
             <MarketStatus stock={state.selectedStockTicker} keyStats={state.selectedKeyStats} />
             <ul className="stockInfo-list">
-                <li>{stock.primaryExchange}</li> <li>{stock.sector}</li> <li> {stock.currency} </li></ul>
+                <li>{stock.primaryExchange}</li> <li>{stock.sector}</li> <li> {currency} </li></ul>
         </div>
 
     )
