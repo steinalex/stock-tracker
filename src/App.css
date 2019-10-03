@@ -132,7 +132,28 @@ h1.title {
   font-size: 35px;
 }
 
-.header__stock-price span.green {
+.header__stock-price span.arrowUp {
+  position: relative;
+}
+
+.header__stock-price span.arrowUp::before{
+  content: '\02191';
+  position: absolute;
+  top: 0px;
+  font-size: 18px;
+  left: -10px;
+}
+.header__stock-price span.arrowDown {
+  position: relative;
+}
+.header__stock-price span.arrowDown::before{
+  content: '\02193';
+  position: absolute;
+  top: 0px;
+  font-size: 18px;
+  left: -10px;
+}
+.header__stock-price span.green{
   color: green;
 }
 
@@ -218,12 +239,28 @@ h1.title {
 /* content: '\263C'; //Sun */
 /* content: '\02191'; //Arrow up */
 /* content: '\02193'; //Arrow down */
+/* content: '\263E' moon */
 
 .dollar-sign::before {
+  position: relative;
   content: "$";
-  position: absolute;
-  left: -15px;
-  top: 5px;
+  left: -5px;
+  top: -14px;
+  font-size: 20px;
+}
+
+.market span.moon::before {
+  position: relative;
+  content: '\263E';
+  left: 2px;
+  top: -1px;
+  font-size: 20px;
+}
+.market span.sun::before {
+  position: relative;
+  content: '\263C';
+  left: 2px;
+  top: -1px;
   font-size: 20px;
 }
 

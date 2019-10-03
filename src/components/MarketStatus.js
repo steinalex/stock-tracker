@@ -1,6 +1,6 @@
 import React from 'react';
 
-
+const marketSign = (value) => value === null ? 'moon' : 'sun'
 export const MarketStatus = ({stock, keyStats}) => {
     const UKTime = new Date(stock.latestUpdate)
     const USTime = new Date(UKTime).toLocaleString("en-US", {timeZone: "America/New_York"})
@@ -8,6 +8,6 @@ export const MarketStatus = ({stock, keyStats}) => {
   
     return (
     <div className="market">
-       <p>Real-Time Price as of {USTime} EST  {marketStatus}</p>
+       <p>Real-Time Price as of {USTime} EST <span className={marketSign(keyStats.open)}> {marketStatus}</span></p>
 </div>
 )}
