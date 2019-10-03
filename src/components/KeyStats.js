@@ -1,7 +1,10 @@
 import React from 'react';
 
 const KeyStats = ({ stock }) => {
-    const stockOpen = stock.open === null ? 'null' : stock.open
+    const stockOpen = stock.open === null ? 'N/A' : stock.open
+    const dayRange = stock.low === null ? 'N/A' : stock.low - stock.high
+    const formatNumber = (num) => { return new Intl.NumberFormat().format(num)}
+    const dividend = (stock.ytdChange * 100).toPrecision(3)
 
     return (
         <div className="key-stats">
@@ -13,13 +16,13 @@ const KeyStats = ({ stock }) => {
                             <td>Previous Close:</td><td>{stock.previousClose}</td>
                         </tr>
                         <tr>
-                            <td>Day Range:</td><td>{stock.low} - {stock.high}</td>
+                            <td>Day Range:</td><td>{dayRange}</td>
                         </tr>
                         <tr>
-                            <td>Volume:</td><td>{stock.previousVolume}</td>
+                            <td>Volume:</td><td>{formatNumber(stock.previousVolume)}</td>
                         </tr>
                         <tr>
-                            <td>Market Cap:</td><td>{stock.marketCap}</td>
+                            <td>Market Cap:</td><td>{formatNumber(stock.marketCap)}</td>
                         </tr>
                         <tr>
                             <td>P/E Ratio:</td><td>{stock.peRatio}</td>
@@ -28,16 +31,16 @@ const KeyStats = ({ stock }) => {
                             <td>Open:</td><td>{stockOpen}</td>
                         </tr>
                         <tr>
-                            <td>52 Week Range:</td><td>{stock.week52High}-{stock.week52Low}</td>
+                            <td>52 Week Range:</td><td>{stock.week52High} - {stock.week52Low}</td>
                         </tr>
                         <tr>
-                            <td>Total Avg Volume:</td><td>{stock.avgTotalVolume}</td>
+                            <td>Total Avg Volume:</td><td>{formatNumber(stock.avgTotalVolume)}</td>
                         </tr>
                         <tr>
                             <td>Earning per share:</td><td>{stock.eps}</td>
                         </tr>
                         <tr>
-                            <td> Dividend &amp; Yeild:</td><td>{stock.ytdChange}</td>
+                            <td> Dividend &amp; Yeild:</td><td>{dividend} %</td>
                         </tr>
                     </tbody>
                 </table>
