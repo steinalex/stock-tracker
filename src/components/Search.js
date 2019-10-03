@@ -7,6 +7,7 @@ const Search = ({ updateStock }) => {
   const [isOpen, toggleIsOpen] = useState(false);
   const [stock, setStock] = useState('');
   const dropSelect = useRef(null);
+  const inputSelect = useRef(null);
 
   const onChange = ({ target: { value } }) => {
     setStock(value)
@@ -26,10 +27,17 @@ const Search = ({ updateStock }) => {
     setStock(`${data.name} (${data.symbol})`)
     updateStock(data.symbol)
     toggleIsOpen(false);
+    inputSelect.current.blur();
   }
 
-  const focusSearch = () => {
-    dropSelect.current.focus();
+  const handleBlur = () => {
+    requestAnimationFrame(() => {
+      if (!inputSelect.current.contains(document.activeElement) && !dropSelect.current.contains(document.activeElement) ) {
+        toggleIsOpen(false);
+      } else {
+        inputSelect.current.focus();
+      }
+    })
   }
 
   const options = filteredSymbols.map(data => {
@@ -47,9 +55,9 @@ const Search = ({ updateStock }) => {
   return (
     <>
       <div className="search-bar">
-        <input type="text" placeholder="Search..." className="search-bar__input" value={stock} onChange={onChange} onKeyPress={onSubmit} onClick={focusSearch} />
+        <input ref={inputSelect} type="text" placeholder="Search..." className="search-bar__input" value={stock} onChange={onChange} onKeyPress={onSubmit} onBlur={handleBlur} />
       </div>
-      <ul name="search" ref={dropSelect} className="search-bar__options" style={{display: isOpen ? 'block' : 'none'}}>{options}</ul>
+      <ul ref={dropSelect} className="search-bar__options" style={{display: isOpen ? 'block' : 'none'}} tabIndex={0}>{options}</ul>
     </>
   )
 }
