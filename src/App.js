@@ -14,7 +14,7 @@ const App = () => {
   return (
     <div className="grid-container">
       <Headline stock={state.selectedSearch} />
-      <Chart stock={state.selectedChartData} updateChartRange={(stock) => dispatch(updateChartAction(stock))}/>
+      <Chart stock={state.selectedChartData} latestPrice={state.selectedStockTicker} updateChartRange={(stock) => dispatch(updateChartAction(stock))}/>
       <LatestNews stock={state.selectedLatestNews} />
       <KeyStats stock={state.selectedKeyStats} />
       <Company stock={state.selectedCompanyOverview} />

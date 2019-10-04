@@ -23,25 +23,25 @@ io.on("connection", socket => {
 
     startIntervals(socket, stockName, timeRange);
 
-    timerIDs.stockTicker = setInterval(() => { 
+    timerIDs.stockTicker = setInterval(() => {
       stockTickerInterval(socket, stockName);
     }, 5000);
-    timerIDs.keyStats = setInterval(() => { 
+    timerIDs.keyStats = setInterval(() => {
       keyStatsInterval(socket, stockName);
     }, oneDay);
     timerIDs.latestNews = setInterval(() => {
       latestNewsInterval(socket, stockName);
     }, oneDay);
-    timerIDs.companyOverview = setInterval(() => { 
+    timerIDs.companyOverview = setInterval(() => {
       companyOverviewInterval(socket, stockName);
     }, oneDay);
-    timerIDs.topPeers = setInterval(() => { 
+    timerIDs.topPeers = setInterval(() => {
       topPeersInterval(socket, stockName);
     }, oneDay);
-    timerIDs.chartData = setInterval(() => { 
+    timerIDs.chartData = setInterval(() => {
       chartDataInterval(socket, stockName, timeRange);
     }, oneDay);
-    timerIDs.sectorInformation = setInterval(() => { 
+    timerIDs.sectorInformation = setInterval(() => {
       sectorInformationInterval(socket, stockName);
     }, oneDay);
   });
@@ -81,7 +81,7 @@ const stockTickerInterval = async (socket, stockName) => {
       `${HOST}/stock/${stockName}/quote?token=${TOKEN}`
     );
 
-    const { latestPrice, latestUpdate, change, changePercent} = quote.data
+    const { latestPrice, latestUpdate, change, changePercent } = quote.data
 
     const stockTicker = {
       latestPrice,
@@ -102,8 +102,8 @@ const getCompanySymbols = async () => {
     const companySymbols = await axios.get(
       `${HOST}/ref-data/symbols?token=${TOKEN}`
     )
-    
-    return companySymbols.data.map(data => ({symbol: data.symbol, name: data.name}))
+
+    return companySymbols.data.map(data => ({ symbol: data.symbol, name: data.name }))
 
   } catch (error) {
     //TODO: Handle error
@@ -113,19 +113,16 @@ const getCompanySymbols = async () => {
 
 const searchQuery = async (socket, inputQuery, allSymbols) => {
   try {
-  // const mapTest = allSymbols.map(data => data.symbol)
-  const a = await allSymbols
-  const b = a.map(data => ({symbol: data.symbol, name: data.name}))
-  const filteredData = b.filter(search => search.symbol.toLowerCase().indexOf(inputQuery.toLowerCase()) !== -1 || search.name.toLowerCase().indexOf(inputQuery.toLowerCase()) !== -1);
- 
+    const a = await allSymbols
+    const b = a.map(data => ({ symbol: data.symbol, name: data.name }))
+    const filteredData = b.filter(search => search.symbol.toLowerCase().indexOf(inputQuery.toLowerCase()) !== -1 || search.name.toLowerCase().indexOf(inputQuery.toLowerCase()) !== -1);
 
-  const topTen = filteredData.slice(0, 10)
-  // console.log()
-  // console.log(inputQuery)
-  socket.emit("companySymbols", topTen);
-} catch (error) {
-  console.error(`Error: ${error}`);
-}
+
+    const topTen = filteredData.slice(0, 10)
+    socket.emit("companySymbols", topTen);
+  } catch (error) {
+    console.error(`Error: ${error}`);
+  }
 };
 
 const keyStatsInterval = async (socket, stockName) => {
@@ -139,7 +136,7 @@ const keyStatsInterval = async (socket, stockName) => {
 
     const { companyName, symbol, currency, primaryExchange, open, high, low, previousClose, previousVolume, avgTotalVolume, marketCap, peRatio, week52High, week52Low, ytdChange, isUSMarketOpen } = quote.data
 
-    const eps  = earnings.data;
+    const earningsPerShare = typeof earnings.data === 'number' ? earnings.data : undefined
 
     const keyStats = {
       companyName,
@@ -156,9 +153,9 @@ const keyStatsInterval = async (socket, stockName) => {
       peRatio,
       week52High,
       week52Low,
-      ytdChange, 
+      ytdChange,
       isUSMarketOpen,
-      eps,
+      eps: earningsPerShare
     }
 
     socket.emit("keyStats", keyStats);
@@ -226,8 +223,8 @@ const topPeersInterval = async (socket, stockName) => {
       `${HOST}/stock/${stockName}/peers?token=${TOKEN}`
     );
 
-    const peersList= peers.data.map(data => (data))
-   
+    const peersList = peers.data.map(data => (data))
+
     socket.emit("topPeers", peersList);
   } catch (error) {
     //TODO: Handle error
@@ -238,11 +235,17 @@ const topPeersInterval = async (socket, stockName) => {
 const chartDataInterval = async (socket, stockName, timeRange) => {
   try {
     const chart = await axios.get(
-      // `${HOST}/stock/${stockName}/chart/5y?token=${TOKEN}`
       `${HOST}/stock/${stockName}/chart/${timeRange}?token=${TOKEN}`
     );
-    
-    const chartData = chart.data.map(data => ({close: data.close, date: data.date}))
+    console.log(timeRange)
+    const time= () => {
+      if (timeRange === '1d') return chart.data.map(data => ({ close: data.close, date: data.minute }))
+      else return chart.data.map(data => ({ close: data.close, date: data.date }))
+
+    }
+    const chartData= time(timeRange)
+
+    // const chartData = chart.data.map(data => ({ close: data.close, date: data.date }))
     socket.emit("chartData", chartData);
   } catch (error) {
     //TODO: Handle error
@@ -273,7 +276,7 @@ const sectorInformationInterval = async (socket, stockName) => {
       companyName,
       symbol
     }
-    
+
     socket.emit("sectorInformation", sectorInformation);
   } catch (error) {
     //TODO: Handle error

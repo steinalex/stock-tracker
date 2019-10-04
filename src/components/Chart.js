@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 
-const Chart = ({ stock, updateChartRange }) => {
+const Chart = ({ stock, latestPrice, updateChartRange }) => {
 
     const [active, setActive] = useState('5y')
+    // const price = latestPrice.map(data => data.latestPrice)
+    // console.log(price)
 
     const onClickHandler = event => {
         updateChartRange(event.target.value)
@@ -33,6 +35,7 @@ const Chart = ({ stock, updateChartRange }) => {
                     <XAxis dataKey="date" />
                     <YAxis orientation='right' />
                     <Tooltip />
+                    <ReferenceLine y={latestPrice.latestPrice} label={{ value: `${latestPrice.latestPrice}`, position: 'right', fill: 'orange' }}  stroke="orange" strokeDasharray="3 3" />
                     <Area type='monotone' dataKey='close' stroke='#8884d8' fillOpacity={1} fill='url(#chartGradient)' />
                 </AreaChart>
             </ResponsiveContainer>
