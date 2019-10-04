@@ -113,15 +113,12 @@ const getCompanySymbols = async () => {
 
 const searchQuery = async (socket, inputQuery, allSymbols) => {
   try {
-    // const mapTest = allSymbols.map(data => data.symbol)
     const a = await allSymbols
     const b = a.map(data => ({ symbol: data.symbol, name: data.name }))
     const filteredData = b.filter(search => search.symbol.toLowerCase().indexOf(inputQuery.toLowerCase()) !== -1 || search.name.toLowerCase().indexOf(inputQuery.toLowerCase()) !== -1);
 
 
     const topTen = filteredData.slice(0, 10)
-    // console.log()
-    // console.log(inputQuery)
     socket.emit("companySymbols", topTen);
   } catch (error) {
     console.error(`Error: ${error}`);
@@ -247,7 +244,6 @@ const chartDataInterval = async (socket, stockName, timeRange) => {
 
     }
     const chartData= time(timeRange)
-    console.log(chartData)
 
     // const chartData = chart.data.map(data => ({ close: data.close, date: data.date }))
     socket.emit("chartData", chartData);
