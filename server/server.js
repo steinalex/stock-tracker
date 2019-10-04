@@ -238,11 +238,18 @@ const topPeersInterval = async (socket, stockName) => {
 const chartDataInterval = async (socket, stockName, timeRange) => {
   try {
     const chart = await axios.get(
-      // `${HOST}/stock/${stockName}/chart/5y?token=${TOKEN}`
       `${HOST}/stock/${stockName}/chart/${timeRange}?token=${TOKEN}`
     );
+    console.log(timeRange)
+    const time= () => {
+      if (timeRange === '1d') return chart.data.map(data => ({ close: data.close, date: data.minute }))
+      else return chart.data.map(data => ({ close: data.close, date: data.date }))
 
-    const chartData = chart.data.map(data => ({ close: data.close, date: data.date }))
+    }
+    const chartData= time(timeRange)
+    console.log(chartData)
+
+    // const chartData = chart.data.map(data => ({ close: data.close, date: data.date }))
     socket.emit("chartData", chartData);
   } catch (error) {
     //TODO: Handle error
