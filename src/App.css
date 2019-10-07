@@ -253,6 +253,15 @@ h1.title {
   background-color: rgb(55, 121, 228);
 }
 
+.news{
+  text-decoration: none;
+  color: white
+}
+
+.news:hover{
+  color:yellow
+}
+
 .market {
   float: right;
 }

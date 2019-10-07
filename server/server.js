@@ -172,32 +172,14 @@ const latestNewsInterval = async (socket, stockName) => {
       `${HOST}/stock/${stockName}/news?token=${TOKEN}`
     );
 
-    const latestNews = {
-      news1: news.data[0].headline,
-      news1Source: news.data[0].source,
-      news1Date:news.data[0].datetime,
-      news1url:news.data[0].url,
-      news2: news.data[1].headline,
-      news2Date:news.data[1].datetime,
-      news2Source: news.data[1].source,
-      news2url:news.data[1].url,
-      news3: news.data[2].headline,
-      news3Date:news.data[2].datetime,
-      news3url:news.data[2].url,
-      news3Source: news.data[2].source,
-      news4Date:news.data[3].datetime,
-      news4url:news.data[3].url,
-      news4: news.data[3].headline,
-      news4Source: news.data[3].source,
-      news5Date:news.data[4].datetime,
-      news5url:news.data[4].url,
-      news5: news.data[4].headline,
-      news5Source: news.data[4].source
-    }
+    const top5news = news.data.slice(0, 5).map(data => ({
+      headline: data.headline,
+      source: data.source,
+      date: data.datetime,
+      url: data.url
+    }))
 
-    // socket.emit('latestNews', news.data.slice(0, 5));
-
-    socket.emit("latestNews", latestNews);
+    socket.emit('latestNews', top5news);
   } catch (error) {
     //TODO: Handle error
     console.error(`Error: ${error}`);
@@ -248,12 +230,12 @@ const chartDataInterval = async (socket, stockName, timeRange) => {
       `${HOST}/stock/${stockName}/chart/${timeRange}?token=${TOKEN}`
     );
     console.log(timeRange)
-    const time= () => {
+    const time = () => {
       if (timeRange === '1d') return chart.data.map(data => ({ close: data.close, date: data.minute }))
       else return chart.data.map(data => ({ close: data.close, date: data.date }))
 
     }
-    const chartData= time(timeRange)
+    const chartData = time(timeRange)
 
     // const chartData = chart.data.map(data => ({ close: data.close, date: data.date }))
     socket.emit("chartData", chartData);

@@ -7,7 +7,7 @@ const initialState = {
     selectedStock: '',
     selectedChartRange: '5y',
     selectedKeyStats:{},
-    selectedLatestNews:'',
+    selectedLatestNews:[],
     selectedCompanyOverview:'',
     selectedTopPeers:[],
     selectedSearch:'',

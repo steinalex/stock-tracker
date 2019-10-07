@@ -8,6 +8,7 @@ const KeyStats = ({ stock }) => {
     const stockOpen = stock.open == null ? 'N/A' : stock.open
     const dayRange = stock.low == null ? 'N/A' : `${stock.low} - ${stock.high}`
     const dividend = (stock.ytdChange * 100).toPrecision(3)
+    console.log(stock)
 
     const generateKeyStatsTable = () => {
         return Object.keys(stock).map((obj, index) => {
