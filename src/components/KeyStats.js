@@ -1,21 +1,45 @@
 import React from 'react';
 
-const NUMBER_FORMATTER = new Intl.NumberFormat();
+// const NUMBER_FORMATTER = new Intl.NumberFormat();
 
-const formatNumber = (num) => { return NUMBER_FORMATTER.format(num) }
+// const formatNumber = (num) => { return NUMBER_FORMATTER.format(num) }
+
+
+// const NUMBER_FORMATTER = value => value.toFixed(2);
+
+const LABELS = {
+    previousClose: 'Previous Close',
+    companyName: 'Company Name',
+    peRatio: 'P/E Ratio',
+    open: 'Open',
+    symbol: 'Symbol',
+    currency: 'Currency',
+    primaryExchange: 'Primary Exchange',
+    high: 'High',
+    low: 'Low',
+    previousVolume: 'Previous Volume',
+    avgTotalVolume: 'Average Total Volume',
+    marketCap: 'Market Cap',
+    eps: 'Earnings Per Share'
+}
+
+const FORMATTERS = {
+    avg: value => value.toFixed(2),
+    // eps: eps,
+}
 
 const KeyStats = ({ stock }) => {
     const stockOpen = stock.open == null ? 'N/A' : stock.open
     const dayRange = stock.low == null ? 'N/A' : `${stock.low} - ${stock.high}`
     const dividend = (stock.ytdChange * 100).toPrecision(3)
-    console.log(stock)
 
     const generateKeyStatsTable = () => {
-        return Object.keys(stock).map((obj, index) => {
+        return Object.keys(stock).map((key) => {
+            const value = stock[key];
             return (
-                <tr key={index}>
-                    <td>{obj}</td>
-                    <td>{stock[obj]}</td>
+                <tr key={key}>
+                    <td>{LABELS[key]}</td>
+                    {/* <td>{FORMATTERS[key](value)}</td> */}
                 </tr>
             )
         })
