@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine} from 'recharts';
 
 const Chart = ({ stock, latestPrice, updateChartRange }) => {
 
@@ -22,8 +22,8 @@ const Chart = ({ stock, latestPrice, updateChartRange }) => {
                 <button className={active === '5y' ? 'active' : 'inactive'} onClick={onClickHandler} value='5y'>5Y</button>
                 <button className={active === 'max' ? 'active' : 'inactive'} onClick={onClickHandler} value='max'>MAX</button>
             </div>
-            <ResponsiveContainer height='100%' width='100%'>
-                <AreaChart data={stock}
+            <ResponsiveContainer height='100%' width='100%'> 
+                <AreaChart data={stock} 
                     margin={{ top: 10, right: 0, left: 0, bottom: 0 }}>
                     <defs>
                         <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
@@ -36,7 +36,7 @@ const Chart = ({ stock, latestPrice, updateChartRange }) => {
                     <YAxis orientation='right' />
                     <Tooltip />
                     <ReferenceLine y={latestPrice.latestPrice} label={{ value: `${latestPrice.latestPrice}`, position: 'right', fill: 'orange' }}  stroke="orange" strokeDasharray="3 3" />
-                    <Area type='monotone' dataKey='close' stroke='#8884d8' fillOpacity={1} fill='url(#chartGradient)' />
+                    <Area type='monotone' dataKey='close' stroke='#8884d8' fillOpacity={1} fill='url(#chartGradient)' connectNulls= {true} />
                 </AreaChart>
             </ResponsiveContainer>
         </div>

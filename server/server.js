@@ -175,17 +175,22 @@ const latestNewsInterval = async (socket, stockName) => {
     const latestNews = {
       news1: news.data[0].headline,
       news1Source: news.data[0].source,
+      news1Date:news.data[0].datetime,
       news2: news.data[1].headline,
       news2Source: news.data[1].source,
+      news2Date:news.data[1].datetime,
       news3: news.data[2].headline,
+      news3Date:news.data[2].datetime,
       news3Source: news.data[2].source,
+      news4Date:news.data[3].datetime,
       news4: news.data[3].headline,
       news4Source: news.data[3].source,
+      news5Date:news.data[4].datetime,
       news5: news.data[4].headline,
       news5Source: news.data[4].source
     }
 
-    socket.emit('latestNews', news.data.slice(0, 4));
+    // socket.emit('latestNews', news.data.slice(0, 5));
 
     socket.emit("latestNews", latestNews);
   } catch (error) {
