@@ -40,13 +40,13 @@ const Search = ({ updateStock }) => {
     })
   }
 
-  const options = filteredSymbols.map(data => {
+  const options = filteredSymbols.length > 0 ? filteredSymbols.map(data => {
     return (
       <li onClick={() => optionClick(data)} value={data.symbol} key={data.symbol}>
         {`${data.name} (${data.symbol})`}
       </li>
     );
-  });
+  }) : 'No symbols found';
 
   useEffect(() => {
     toggleIsOpen(filteredSymbols.length !== 0);
