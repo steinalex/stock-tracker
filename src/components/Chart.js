@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine} from 'recharts';
+import moment from 'moment';
 
 const Chart = ({ stock, latestPrice, updateChartRange }) => {
 
     const [active, setActive] = useState('5y')
-    // const price = latestPrice.map(data => data.latestPrice)
-    // console.log(price)
+    const chartData = stock.map(data => ({close:data.close, date:moment(data.close).format('lll') }))
 
     const onClickHandler = event => {
         updateChartRange(event.target.value)
@@ -32,7 +32,7 @@ const Chart = ({ stock, latestPrice, updateChartRange }) => {
                         </linearGradient>
                     </defs>
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="date" />
+                    <XAxis dataKey="date" valueFormatString="MMM"/>
                     <YAxis orientation='right' />
                     <Tooltip />
                     <ReferenceLine y={latestPrice.latestPrice} label={{ value: `${latestPrice.latestPrice}`, position: 'right', fill: 'orange' }}  stroke="orange" strokeDasharray="3 3" />
