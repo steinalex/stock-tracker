@@ -6,8 +6,8 @@ import { bootstrap } from './actions'
 const initialState = {
     selectedStock: '',
     selectedChartRange: '5y',
-    selectedKeyStats:'',
-    selectedLatestNews:'',
+    selectedKeyStats:{},
+    selectedLatestNews:[],
     selectedCompanyOverview:'',
     selectedTopPeers:[],
     selectedSearch:'',
@@ -15,7 +15,7 @@ const initialState = {
     selectedQuotes:'',
     selectedStockTicker:'',
     selectedChartData:[],
-    enteredSearchQuery:''
+    enteredSearchQuery:'',
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

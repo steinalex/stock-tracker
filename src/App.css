@@ -20,18 +20,13 @@ body {
   position: relative;
 }
 
-.search-bar {
+.search-bar__wrapper {
   grid-area: search-bar;
   position: relative;
-  border-bottom: 2px solid #6447af;
+  border-bottom: 2px solid #505ac0;
   margin-top: 30px;
-  padding: 0 0 8px 28px;
-}
-
-.quotes {
-  position: absolute;
-  right: 0;
-  bottom: -29px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .chart {
@@ -79,12 +74,21 @@ h1.title {
   width: 150px;
 }
 
-.search-bar__wrapper {
+.search-bar {
   position: relative;
+  grid-column: 1 / 3;
+  grid-row: 1;
+  padding-left: 28px;
+}
+
+.quotes {
+  grid-column: 3;
+  grid-row: 1;
+  text-align: right;
 }
 
 .search-bar__input {
-  width: 700px;
+  width: 100%;
   background: none;
   border: none;
   font-size: 35px;
@@ -106,6 +110,7 @@ h1.title {
   position: absolute;
   background: #000;
   margin: 0;
+  top: 50px;
   padding: 15px 20px;
   list-style-type: none;
   z-index: 10;
@@ -145,32 +150,36 @@ h1.title {
 .header__stock-price {
   display: inline-block;
   padding-left: 20px;
-  font-size: 40px;
+  font-size: 35px;
   font-family: Lato-Light;
+  margin: 0;
 }
 
 .header__stock-price span.arrowUp {
   position: relative;
 }
 
-.header__stock-price span.arrowUp::before{
+.header__stock-price span.arrowUp::before {
   content: '\02191';
   position: absolute;
   top: 0px;
   font-size: 18px;
   left: -10px;
 }
+
 .header__stock-price span.arrowDown {
   position: relative;
 }
-.header__stock-price span.arrowDown::before{
+
+.header__stock-price span.arrowDown::before {
   content: '\02193';
   position: absolute;
   top: 0px;
   font-size: 18px;
   left: -10px;
 }
-.header__stock-price span.green{
+
+.header__stock-price span.green {
   color: green;
 }
 
@@ -216,15 +225,18 @@ h1.title {
   list-style-type: none;
   padding: 0;
 }
+
 .peers-list li {
   float: left;
   margin-right: 25px;
 }
-.headline-list{
+
+.headline-list {
   list-style-type: none;
   float: right;
   font-size: 18px;
 }
+
 .headline-list li {
   float: left;
   margin-right: 15px;
@@ -240,17 +252,34 @@ h1.title {
   background-color: rgb(55, 121, 228)
 }
 
-
-.stockInfo-list{
+.stockInfo-list {
   list-style-type: none;
   padding: 0;
 }
 
-.stockInfo-list li{
+.stockInfo-list li {
   float: left;
   margin-right: 15px;
   padding: 3px 15px;
-  background-color: rgb(55, 121, 228);
+  background-color: rgb(102, 123, 181);
+}
+
+.companyWebsite {
+  text-decoration: none;
+  color: white;
+}
+
+.companyWebsite:hover {
+  color: yellow
+}
+
+.news {
+  text-decoration: none;
+  color: white
+}
+
+.news:hover {
+  color: yellow
 }
 
 .market {
@@ -295,14 +324,31 @@ h1.title {
   color: rgb(224, 251, 0);
 }
 
-
 /* Media Queries */
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1200px) {
   .grid-container {
     grid-template-areas: "header header header" "chart chart chart" "latest-news latest-news latest-news" "key-stats  key-stats key-stats" "company-overview company-overview company-overview";
+    margin: 0;
   }
   .key-stats__wrapper {
     column-count: 1;
+  }
+  .headline-list {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  .quotes {
+    grid-column: 1 / 4;
+    grid-row: 1;
+  }
+  .header__stock-price {
+    font-size: 30px;
+  }
+  .search-bar {
+    grid-column: 1 / 4;
+    grid-row: 2;
   }
 }

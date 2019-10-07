@@ -1,13 +1,16 @@
 import React from 'react';
+import moment from 'moment';
 
 const marketSign = (value) => value === null ? 'moon' : 'sun'
+const formatDate = (date) => new Date(date);
 export const MarketStatus = ({stock, keyStats}) => {
-    const UKTime = new Date(stock.latestUpdate)
-    const USTime = new Date(UKTime).toLocaleString("en-US", {timeZone: "America/New_York"})
+    const UKTime = formatDate(stock.latestUpdate);
+    const USTime = formatDate(UKTime).toLocaleString("en-US", {timeZone: "America/New_York"})
+    const correctFormat = moment(USTime).format('lll')
     const marketStatus= keyStats.open === null ? 'Market Closed' : 'Market Open'
-  
+
     return (
     <div className="market">
-       <p><span className="market-text">Real-Time Price as of {USTime} EST</span> <span className={marketSign(keyStats.open)}> {marketStatus}</span></p>
+       <p><span className="market-text">Real-Time Price as of {correctFormat} EST</span> <span className={marketSign(keyStats.open)}> {marketStatus}</span></p>
 </div>
 )}

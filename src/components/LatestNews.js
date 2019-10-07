@@ -1,22 +1,21 @@
 import React from 'react';
+import moment from 'moment';
 
-const LatestNews = ({stock}) => {
+
+const timeFormat = (date) => moment(date).fromNow()
+const LatestNews = ({ stock }) => {
 
     return (
         <div className="latest-news">
             <h1 className="title">Latest News</h1>
             <table>
                 <tbody>
-                    <tr><td>{stock.news1}</td></tr>
-                    <tr><td>{stock.news1Source}</td></tr>
-                    <tr><td>{stock.news2}</td></tr>
-                    <tr><td>{stock.news2Source}</td></tr>
-                    <tr><td>{stock.news3}</td></tr>
-                    <tr><td>{stock.news3Source}</td></tr>
-                    <tr><td>{stock.news4}</td></tr>
-                    <tr><td>{stock.news4Source}</td></tr>
-                    <tr><td>{stock.news5}</td></tr>
-                    <tr><td>{stock.news5Source}</td></tr>
+                    {stock.map(data =>
+                        <>
+                            <tr><td><a target="_blank" rel="noopener noreferrer" className='news' href={`${data.url}`}>{data.headline}</a></td></tr>
+                            <tr><td>{timeFormat(data.date)} - {data.source} </td></tr>
+                        </>
+                    )}
                 </tbody>
             </table>
         </div>

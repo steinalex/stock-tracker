@@ -172,22 +172,14 @@ const latestNewsInterval = async (socket, stockName) => {
       `${HOST}/stock/${stockName}/news?token=${TOKEN}`
     );
 
-    const latestNews = {
-      news1: news.data[0].headline,
-      news1Source: news.data[0].source,
-      news2: news.data[1].headline,
-      news2Source: news.data[1].source,
-      news3: news.data[2].headline,
-      news3Source: news.data[2].source,
-      news4: news.data[3].headline,
-      news4Source: news.data[3].source,
-      news5: news.data[4].headline,
-      news5Source: news.data[4].source
-    }
+    const top5news = news.data.slice(0, 5).map(data => ({
+      headline: data.headline,
+      source: data.source,
+      date: data.datetime,
+      url: data.url
+    }))
 
-    socket.emit('latestNews', news.data.slice(0, 4));
-
-    socket.emit("latestNews", latestNews);
+    socket.emit('latestNews', top5news);
   } catch (error) {
     //TODO: Handle error
     console.error(`Error: ${error}`);
@@ -238,14 +230,12 @@ const chartDataInterval = async (socket, stockName, timeRange) => {
       `${HOST}/stock/${stockName}/chart/${timeRange}?token=${TOKEN}`
     );
     console.log(timeRange)
-    const time= () => {
+    const time = () => {
       if (timeRange === '1d') return chart.data.map(data => ({ close: data.close, date: data.minute }))
       else return chart.data.map(data => ({ close: data.close, date: data.date }))
 
     }
-    const chartData= time(timeRange)
-
-    // const chartData = chart.data.map(data => ({ close: data.close, date: data.date }))
+    const chartData = time(timeRange)
     socket.emit("chartData", chartData);
   } catch (error) {
     //TODO: Handle error
