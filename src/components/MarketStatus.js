@@ -1,9 +1,10 @@
 import React from 'react';
 
 const marketSign = (value) => value === null ? 'moon' : 'sun'
+const formatDate = (date) => new Date(date);
 export const MarketStatus = ({stock, keyStats}) => {
-    const UKTime = new Date(stock.latestUpdate)
-    const USTime = new Date(UKTime).toLocaleString("en-US", {timeZone: "America/New_York"})
+    const UKTime = formatDate(stock.latestUpdate);
+    const USTime = formatDate(UKTime).toLocaleString("en-US", {timeZone: "America/New_York"})
     const marketStatus= keyStats.open === null ? 'Market Closed' : 'Market Open'
   
     return (

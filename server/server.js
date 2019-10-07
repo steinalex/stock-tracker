@@ -236,8 +236,6 @@ const chartDataInterval = async (socket, stockName, timeRange) => {
 
     }
     const chartData = time(timeRange)
-
-    // const chartData = chart.data.map(data => ({ close: data.close, date: data.date }))
     socket.emit("chartData", chartData);
   } catch (error) {
     //TODO: Handle error

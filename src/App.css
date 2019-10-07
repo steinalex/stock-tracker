@@ -23,7 +23,7 @@ body {
 .search-bar {
   grid-area: search-bar;
   position: relative;
-  border-bottom: 2px solid #6447af;
+  border-bottom: 2px solid  #505ac0;
   margin-top: 30px;
   padding: 0 0 8px 28px;
 }
@@ -250,9 +250,15 @@ h1.title {
   float: left;
   margin-right: 15px;
   padding: 3px 15px;
-  background-color: rgb(55, 121, 228);
+  background-color:  rgb(102, 123, 181);
 }
-
+.companyWebsite{
+  text-decoration: none;
+  color: white;
+}
+.companyWebsite:hover{
+  color:yellow
+}
 .news{
   text-decoration: none;
   color: white
