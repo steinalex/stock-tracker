@@ -15,7 +15,7 @@ const initialState = {
     selectedQuotes:'',
     selectedStockTicker:'',
     selectedChartData:[],
-    enteredSearchQuery:''
+    enteredSearchQuery:'',
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
