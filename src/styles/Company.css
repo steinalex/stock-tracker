@@ -5,6 +5,7 @@
 .company-overview__website {
     text-decoration: none;
     color: white;
+    font-family: Lato-Italic;
 }
 
 .company-overview__website:hover {
@@ -12,10 +13,16 @@
 }
 
 .company-overview__title {
-    font-size: 20px;
+    font-size: 23px;
+    margin-bottom: 8px;
 }
 
 .company-overview__text {
-    max-height: 150px;
+    max-height: 120px;
     overflow: auto;
+    margin: 12px 0;
+}
+
+.company-overview__text p {
+    margin: 0;
 }

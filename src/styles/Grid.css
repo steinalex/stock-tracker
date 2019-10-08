@@ -35,7 +35,6 @@
     grid-template-areas: "header header header" "chart chart latest-news" "key-stats  key-stats  company-overview";
     color: #fff;
     margin: 18px;
-    grid-template-rows: minmax(100px, 150px);
 }
 
 .search-bar {

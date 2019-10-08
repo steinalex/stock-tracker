@@ -1,18 +1,23 @@
 /* Latest news */
 
-.latest-news tr:first-child {
-    color: rgb(200, 212, 163);
-}
-
-.latest-news tr:nth-child(even) {
-    color: rgb(138, 149, 179);
-}
-
 a.latest-news__link {
     text-decoration: none;
     color: white
 }
 
+.latest-news__wrapper {
+    margin: 20px 0;
+}
+
 .latest-news__link:hover {
-    color: yellow
+    color: #dcdc84;
+}
+
+.latest-news__source {
+    color: rgb(138, 149, 179);
+    font-family: Lato-Light;
+}
+
+.latest-news__text {
+    margin-bottom: 5px;
 }
