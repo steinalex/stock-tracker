@@ -7,7 +7,7 @@
     grid-area: search-bar;
     position: relative;
     border-bottom: 2px solid #505ac0;
-    margin-top: 5px;
+    margin-top: 30px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
 }
@@ -34,7 +34,7 @@
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas: "header header header" "chart chart latest-news" "key-stats  key-stats  company-overview";
     color: #fff;
-    margin: 18px;
+    margin: 40px 45px;
 }
 
 .search-bar {
@@ -53,7 +53,7 @@
 @media only screen and (max-width: 1200px) {
     .grid-container {
         grid-template-areas: "header header header" "chart chart chart" "latest-news latest-news latest-news" "key-stats  key-stats key-stats" "company-overview company-overview company-overview";
-        margin: 0;
+        margin: 5px 20px;
     }
 }
 

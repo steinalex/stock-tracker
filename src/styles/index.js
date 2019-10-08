@@ -9,3 +9,4 @@ import './Company.css';
 import './MarketStatus.css';
 import './LatestNews.css';
 import './StockTicker.css';
+import './Footer.css';

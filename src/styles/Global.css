@@ -8,16 +8,11 @@
     src: url(../assets/font/Lato-Light.ttf);
 }
 
-@font-face {
-    font-family: Lato-Italic;
-    src: url(../assets/font/Lato-Italic.ttf);
-}
-
 body {
     background-color: #011738;
     background-image: linear-gradient(to bottom right, #021c42, #031c41);
     font-family: Lato-Regular;
-    margin: 20px;
+    margin: 0;
 }
 
 h1.title {

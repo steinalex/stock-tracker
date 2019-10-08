@@ -1,0 +1,41 @@
+
+.footer{
+    background-color: #002c76;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.footer__US-Market {
+    color: white;
+    list-style-type: none;
+    margin-right: 10px;
+}
+.footer__US-Market li{
+    list-style-type: none;
+    float: left;
+    margin-right: 10px;
+}
+
+.footer__favourite {
+    color: white;
+    list-style-type: none;
+    margin-right: 10px;
+}
+.footer__favourite li{
+    list-style-type: none;
+    float: left;
+    margin-right: 10px;
+}
+
+.footer---dollar-sign::before {
+    position: relative;
+    content: "$";
+}
+
+.footer---percentage-sign::after{
+    position: relative;
+    content: "%";
+}
+
+.footer__price--green {
+    color: green;
+}
