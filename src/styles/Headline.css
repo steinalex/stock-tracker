@@ -1,0 +1,33 @@
+/* Header */
+
+.header__logo {
+    width: 150px;
+}
+
+.stockInfo__list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.stockInfo__list li {
+    float: left;
+    margin-right: 15px;
+    padding: 3px 15px;
+    background-color: rgb(102, 123, 181);
+}
+
+
+
+/* Media Queries */
+
+@media only screen and (max-width: 1200px) {
+    .headline-list {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 850px) {
+    .header__stock-price {
+        font-size: 30px;
+    }
+}

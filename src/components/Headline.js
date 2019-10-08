@@ -15,18 +15,18 @@ export const Headline = ({ stock }) => {
     return (
         <div className="header">
             <img className='header__logo' src={logo} alt="Adaptive Logo" />
-            <ul className="headline-list">
-                <li className="current">Quotes</li>
-                <li>Markets</li>
-                <li>Watchlists</li>
-            </ul>
             <div className="search-bar__wrapper">
                 <Search searchQuery={state.enteredSearchQuery} symbol={state.selectedCompanySymbols} updateStock={(stock) => dispatch(updateStockAction(stock))} />
-                <StockTicker stock={state.selectedStockTicker} />
+                {stock && <StockTicker stock={state.selectedStockTicker} />}
             </div>
-            <MarketStatus stock={state.selectedStockTicker} keyStats={state.selectedKeyStats} />
-            <ul className="stockInfo-list">
-                <li>{stock.primaryExchange}</li> <li>{stock.sector}</li> <li> {currency} </li></ul>
+            {stock && (
+                <>
+                    <MarketStatus stock={state.selectedStockTicker} keyStats={state.selectedKeyStats} />
+                    <ul className="stockInfo__list">
+                        <li>{stock.primaryExchange}</li> <li>{stock.sector}</li> <li> {currency} </li>
+                    </ul>
+                </>
+            )}
         </div>
 
     )

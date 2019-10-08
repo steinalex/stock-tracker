@@ -1,0 +1,69 @@
+.header {
+    grid-area: header;
+    position: relative;
+}
+
+.search-bar__wrapper {
+    grid-area: search-bar;
+    position: relative;
+    border-bottom: 2px solid #6084bf;
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.latest-news {
+    grid-area: latest-news;
+}
+
+.key-stats {
+    grid-area: key-stats;
+}
+
+.company-overview {
+    grid-area: company-overview;
+}
+
+.peers {
+    grid-area: peers;
+}
+
+.grid-container {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: "header header header" "chart chart latest-news" "key-stats  key-stats  company-overview";
+    color: #fff;
+    margin: 40px 45px;
+}
+
+.search-bar {
+    position: relative;
+    grid-column: 1 / 3;
+    grid-row: 1;
+    padding-left: 28px;
+}
+
+.quotes {
+    grid-column: 3;
+    grid-row: 1;
+    text-align: right;
+}
+
+@media only screen and (max-width: 1200px) {
+    .grid-container {
+        grid-template-areas: "header header header" "chart chart chart" "latest-news latest-news latest-news" "key-stats  key-stats key-stats" "company-overview company-overview company-overview";
+        margin: 5px 20px;
+    }
+}
+
+@media only screen and (max-width: 850px) {
+    .quotes {
+        grid-column: 1 / 4;
+        grid-row: 1;
+    }
+    .search-bar {
+        grid-column: 1 / 4;
+        grid-row: 2;
+    }
+}

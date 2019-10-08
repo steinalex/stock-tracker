@@ -1,0 +1,47 @@
+.quotes__stock-price {
+    display: inline-block;
+    padding-left: 20px;
+    font-size: 35px;
+    font-family: Lato-Light;
+    margin: 0;
+}
+
+.quotes__stock-price span.arrowUp {
+    position: relative;
+}
+
+.quotes__stock-price span.arrowUp::before {
+    content: '\02191';
+    position: absolute;
+    top: 0px;
+    font-size: 18px;
+    left: -10px;
+}
+
+.quotes__stock-price span.arrowDown {
+    position: relative;
+}
+
+.quotes__stock-price span.arrowDown::before {
+    content: '\02193';
+    position: absolute;
+    top: 0px;
+    font-size: 18px;
+    left: -10px;
+}
+
+.quotes__stock-price span.green {
+    color: green;
+}
+
+.quotes__stock-price span.red {
+    color: #e84000;
+}
+
+.quotes_dollar-sign::before {
+    position: relative;
+    content: "$";
+    left: -5px;
+    top: -14px;
+    font-size: 20px;
+}

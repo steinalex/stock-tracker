@@ -8,16 +8,14 @@ const LatestNews = ({ stock }) => {
     return (
         <div className="latest-news">
             <h1 className="title">Latest News</h1>
-            <table>
-                <tbody>
-                    {stock.map(data =>
-                        <>
-                            <tr><td><a target="_blank" rel="noopener noreferrer" className='news' href={`${data.url}`}>{data.headline}</a></td></tr>
-                            <tr><td>{timeFormat(data.date)} - {data.source} </td></tr>
-                        </>
-                    )}
-                </tbody>
-            </table>
+            <div className="latest-news__grid">
+                {stock.map(data =>
+                    <div className="latest-news__wrapper">
+                        <div className="latest-news__text"><a target="_blank" rel="noopener noreferrer" className='latest-news__link' href={`${data.url}`}>{data.headline}</a></div>
+                        <div className="latest-news__source">{timeFormat(data.date)} - {data.source}</div>
+                    </div>
+                )}
+            </div>
         </div>
     )
 }

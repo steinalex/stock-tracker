@@ -1,0 +1,33 @@
+.market {
+    float: right;
+}
+
+.market__text {
+    color: #ffffff96;
+    font-family: Lato-Light;
+}
+
+.market span.market---moon {
+    padding-left: 10px;
+}
+
+.market span.market---moon::before {
+    position: relative;
+    content: '\263E';
+    left: -1px;
+    top: 0px;
+    font-size: 15px;
+}
+
+.market span.market---sun {
+    padding-left: 10px;
+}
+
+.market span.market---sun::before {
+    position: relative;
+    content: '\263C';
+    left: -1px;
+    top: 0px;
+    font-size: 15px;
+    color: rgb(224, 251, 0);
+}

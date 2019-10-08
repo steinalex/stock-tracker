@@ -1,0 +1,9 @@
+.peers__list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.peers__list---item {
+    float: left;
+    margin-right: 25px;
+}

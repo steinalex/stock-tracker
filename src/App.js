@@ -6,12 +6,14 @@ import Chart from "./components/Chart";
 import LatestNews from "./components/LatestNews"
 import KeyStats from "./components/KeyStats"
 import {Company} from "./components/Company"
+import { Footer } from "./components/Footer";
 
 const App = () => {
   const state = useSelector((state) => state)
   const dispatch = useDispatch()
 
   return (
+    <>
     <div className="grid-container">
       <Headline stock={state.selectedSearch} />
       <Chart stock={state.selectedChartData} latestPrice={state.selectedStockTicker} updateChartRange={(stock) => dispatch(updateChartAction(stock))}/>
@@ -19,6 +21,10 @@ const App = () => {
       <KeyStats stock={state.selectedKeyStats} />
       <Company stock={state.selectedCompanyOverview} />
     </div>
+    <div>
+      <Footer />
+    </div>
+    </>
   );
 }
 
