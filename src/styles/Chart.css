@@ -9,21 +9,21 @@
     margin-right: 22px;
 }
 
-.chart-button {
+.chart__button {
     background: none;
     border: none;
     color: rgb(167, 165, 255);
 }
 
-.chart-button:hover {
+.chart__button:hover {
     color: #fff;
     cursor: pointer;
 }
 
-.chart-button--active {
+.chart__button--active {
     color: #fff;
 }
 
-.chart-button--inactive {
+.chart__button--inactive {
     color: #a7a5ff;
 }

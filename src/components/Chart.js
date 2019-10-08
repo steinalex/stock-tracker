@@ -15,12 +15,12 @@ const Chart = ({ stock, latestPrice, updateChartRange }) => {
     return (
         <div className="chart">
             <div className="chart__wrapper">
-                <button className={`chart-button chart-button${active === '1d' ? '--active' : '--inactive'}`} onClick={onClickHandler} value='1d'>1D</button>
-                <button className={`chart-button chart-button${active === '5d' ? '--active' : '--inactive'}`} onClick={onClickHandler} value='5d'>5D</button>
-                <button className={`chart-button chart-button${active === '1m' ? '--active' : '--inactive'}`} onClick={onClickHandler} value='1m'>1M</button>
-                <button className={`chart-button chart-button${active === '1y' ? '--active' : '--inactive'}`} onClick={onClickHandler} value='1y'>1Y</button>
-                <button className={`chart-button chart-button${active === '5y' ? '--active' : '--inactive'}`} onClick={onClickHandler} value='5y'>5Y</button>
-                <button className={`chart-button chart-button${active === 'max' ? '--active' : '--inactive'}`} onClick={onClickHandler} value='max'>MAX</button>
+                <button className={`chart__button chart__button${active === '1d' ? '--active' : '--inactive'}`} onClick={onClickHandler} value='1d'>1D</button>
+                <button className={`chart__button chart__button${active === '5d' ? '--active' : '--inactive'}`} onClick={onClickHandler} value='5d'>5D</button>
+                <button className={`chart__button chart__button${active === '1m' ? '--active' : '--inactive'}`} onClick={onClickHandler} value='1m'>1M</button>
+                <button className={`chart__button chart__button${active === '1y' ? '--active' : '--inactive'}`} onClick={onClickHandler} value='1y'>1Y</button>
+                <button className={`chart__button chart__button${active === '5y' ? '--active' : '--inactive'}`} onClick={onClickHandler} value='5y'>5Y</button>
+                <button className={`chart__button chart__button${active === 'max' ? '--active' : '--inactive'}`} onClick={onClickHandler} value='max'>MAX</button>
             </div>
             <ResponsiveContainer height='100%' width='100%'> 
                 <AreaChart data={stock} 

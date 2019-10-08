@@ -15,7 +15,7 @@ export const Headline = ({ stock }) => {
     return (
         <div className="header">
             <img className='header__logo' src={logo} alt="Adaptive Logo" />
-            <ul className="headder_list">
+            <ul className="header__list">
                 <li className="current">Quotes</li>
                 <li>Markets</li>
                 <li>Watchlists</li>
@@ -25,7 +25,7 @@ export const Headline = ({ stock }) => {
                 <StockTicker stock={state.selectedStockTicker} />
             </div>
             <MarketStatus stock={state.selectedStockTicker} keyStats={state.selectedKeyStats} />
-            <ul className="stockInfo_list">
+            <ul className="stockInfo__list">
                 <li>{stock.primaryExchange}</li> <li>{stock.sector}</li> <li> {currency} </li></ul>
         </div>
 

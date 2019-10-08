@@ -4,33 +4,33 @@
     width: 150px;
 }
 
-.headder_list {
+.header__list {
     list-style-type: none;
     float: right;
     font-size: 18px;
 }
-.headder_list li {
+.header__list li {
     float: left;
     margin-right: 15px;
     text-transform: uppercase;
     padding: 5px 15px;
 }
 
-.headder_list li:last-child {
+.header__list li:last-child {
     padding-right: 0;
 }
 
-.headder_list li.current {
+.header__list li.current {
     background-color: rgb(55, 121, 228)
 }
 
 
-.stockInfo_list {
+.stockInfo__list {
     list-style-type: none;
     padding: 0;
 }
 
-.stockInfo_list li {
+.stockInfo__list li {
     float: left;
     margin-right: 15px;
     padding: 3px 15px;

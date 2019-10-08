@@ -8,11 +8,11 @@
     color: rgb(138, 149, 179);
 }
 
-a.Latest-news_link {
+a.latest-news__link {
     text-decoration: none;
     color: white
 }
 
-.Latest-news_link:hover {
+.latest-news__link:hover {
     color: yellow
 }

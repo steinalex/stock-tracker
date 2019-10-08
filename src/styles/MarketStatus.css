@@ -7,11 +7,11 @@
     font-family: Lato-Light;
 }
 
-.market span.moon {
+.market span.market---moon {
     padding-left: 10px;
 }
 
-.market span.moon::before {
+.market span.market---moon::before {
     position: relative;
     content: '\263E';
     left: -1px;
@@ -19,11 +19,11 @@
     font-size: 15px;
 }
 
-.market span.sun {
+.market span.market---sun {
     padding-left: 10px;
 }
 
-.market span.sun::before {
+.market span.market---sun::before {
     position: relative;
     content: '\263C';
     left: -1px;

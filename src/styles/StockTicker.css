@@ -1,4 +1,4 @@
-.Quotes__stock-price {
+.quotes__stock-price {
     display: inline-block;
     padding-left: 20px;
     font-size: 35px;
@@ -6,11 +6,11 @@
     margin: 0;
 }
 
-.Quotes__stock-price span.arrowUp {
+.quotes__stock-price span.arrowUp {
     position: relative;
 }
 
-.Quotes__stock-price span.arrowUp::before {
+.quotes__stock-price span.arrowUp::before {
     content: '\02191';
     position: absolute;
     top: 0px;
@@ -18,11 +18,11 @@
     left: -10px;
 }
 
-.Quotes__stock-price span.arrowDown {
+.quotes__stock-price span.arrowDown {
     position: relative;
 }
 
-.Quotes__stock-price span.arrowDown::before {
+.quotes__stock-price span.arrowDown::before {
     content: '\02193';
     position: absolute;
     top: 0px;
@@ -30,15 +30,15 @@
     left: -10px;
 }
 
-.Quotes__stock-price span.green {
+.quotes__stock-price span.green {
     color: green;
 }
 
-.Quotes__stock-price span.red {
+.quotes__stock-price span.red {
     color: #e84000;
 }
 
-.Quotes_dollar-sign::before {
+.quotes_dollar-sign::before {
     position: relative;
     content: "$";
     left: -5px;
