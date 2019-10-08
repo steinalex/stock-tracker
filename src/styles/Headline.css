@@ -4,38 +4,39 @@
     width: 150px;
 }
 
-.headline-list {
+.headder_list {
     list-style-type: none;
     float: right;
     font-size: 18px;
 }
-
-.stockInfo-list {
-    list-style-type: none;
-    padding: 0;
-}
-
-.stockInfo-list li {
-    float: left;
-    margin-right: 15px;
-    padding: 3px 15px;
-    background-color: rgb(102, 123, 181);
-}
-
-.headline-list li {
+.headder_list li {
     float: left;
     margin-right: 15px;
     text-transform: uppercase;
     padding: 5px 15px;
 }
 
-.headline-list li:last-child {
+.headder_list li:last-child {
     padding-right: 0;
 }
 
-.headline-list li.current {
+.headder_list li.current {
     background-color: rgb(55, 121, 228)
 }
+
+
+.stockInfo_list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.stockInfo_list li {
+    float: left;
+    margin-right: 15px;
+    padding: 3px 15px;
+    background-color: rgb(102, 123, 181);
+}
+
 
 
 /* Media Queries */

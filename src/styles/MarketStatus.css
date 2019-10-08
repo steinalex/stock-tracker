@@ -2,17 +2,9 @@
     float: right;
 }
 
-.market-text {
+.market_text {
     color: #ffffff96;
     font-family: Lato-Light;
-}
-
-.dollar-sign::before {
-    position: relative;
-    content: "$";
-    left: -5px;
-    top: -14px;
-    font-size: 20px;
 }
 
 .market span.moon {

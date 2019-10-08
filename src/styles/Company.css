@@ -2,11 +2,11 @@
     font-size: 24px;
 }
 
-.companyWebsite {
+.company-overview_Website {
     text-decoration: none;
     color: white;
 }
 
-.companyWebsite:hover {
+.company-overview_Website:hover {
     color: yellow
 }

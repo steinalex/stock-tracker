@@ -11,6 +11,6 @@ export const MarketStatus = ({stock, keyStats}) => {
 
     return (
     <div className="market">
-       <p><span className="market-text">Real-Time Price as of {correctFormat} EST</span> <span className={marketSign(keyStats.open)}> {marketStatus}</span></p>
+       <p><span className="market_text">Real-Time Price as of {correctFormat} EST</span> <span className={marketSign(keyStats.open)}> {marketStatus}</span></p>
 </div>
 )}

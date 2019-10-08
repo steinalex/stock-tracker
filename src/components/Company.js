@@ -12,7 +12,7 @@ export const Company = ({ stock }) => {
             <table>
                 <tbody>
                     <tr><td>{stock.companyName} ({stock.symbol})</td></tr>
-                    <tr><td><a target='_blank' rel="noopener noreferrer" className='companyWebsite' href={`${stock.website}`}>{stock.website}</a> </td></tr>
+                    <tr><td><a target='_blank' rel="noopener noreferrer" className='company-overview_Website' href={`${stock.website}`}>{stock.website}</a> </td></tr>
                     <tr><td>{stock.description}</td></tr>
                 </tbody>
             </table>
