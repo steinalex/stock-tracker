@@ -9,15 +9,11 @@ export const Company = ({ stock }) => {
     return (
         <div className="company-overview">
             <h1 className="title">Company Overview</h1>
-            <table>
-                <tbody>
-                    <tr><td>{stock.companyName} ({stock.symbol})</td></tr>
-                    <tr><td><a target='_blank' rel="noopener noreferrer" className='company-overview__website' href={`${stock.website}`}>{stock.website}</a> </td></tr>
-                    <tr><td>{stock.description}</td></tr>
-                </tbody>
-            </table>
+            <div>{stock.companyName} ({stock.symbol})</div>
+            <div><a target='_blank' rel="noopener noreferrer" className='company-overview__website' href={`${stock.website}`}>{stock.website}</a> </div>
+            <p>{stock.description}</p>
             <Peers stock={state.selectedTopPeers} />
-        </div>
+        </div >
 
     )
 }
