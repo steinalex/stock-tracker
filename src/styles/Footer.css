@@ -2,32 +2,25 @@
 .footer{
     background-color: #002c76;
     display: grid;
+    grid-row: 2;
     grid-template-columns: 1fr 1fr;
+    padding: 20px;
 }
-.footer__US-Market {
+
+.footer__text {
+    color: #fff;
+    margin: 10px 0;
+}
+
+.footer__list {
     color: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     list-style-type: none;
     margin-right: 10px;
 }
-.footer__US-Market li{
-    list-style-type: none;
-    float: left;
-    margin-right: 15px;
-}
-.footer__US-Market span{
-    margin-left:8px;
-}
-.footer__favourite {
-    color: white;
-    list-style-type: none;
-    margin-right: 10px;
-}
-.footer__favourite li{
-    list-style-type: none;
-    float: left;
-    margin-right: 15px;
-}
-.footer__favourite span{
+
+.footer__list span{
     margin-left:8px;
 }
 

@@ -6,32 +6,26 @@ import Chart from "./components/Chart";
 import LatestNews from "./components/LatestNews"
 import KeyStats from "./components/KeyStats"
 import {Company} from "./components/Company"
+import { Footer } from "./components/Footer";
 
 const App = () => {
-  const selectedSearch = useSelector((state) => state.selectedSearch)
-
-  return (
-    <div className="grid-container">
-      <Headline stock={selectedSearch} />
-      {selectedSearch ? <Body /> : <LoadingState />}
-    </div>
-  );
-}
-
-const LoadingState = () => 'I AM LOADING';
-
-const Body = () => {
   const state = useSelector((state) => state)
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   return (
     <>
+    <div className="grid-container">
+      <Headline stock={state.selectedSearch} />
       <Chart stock={state.selectedChartData} latestPrice={state.selectedStockTicker} updateChartRange={(stock) => dispatch(updateChartAction(stock))}/>
       <LatestNews stock={state.selectedLatestNews} />
       <KeyStats stock={state.selectedKeyStats} />
       <Company stock={state.selectedCompanyOverview} />
+    </div>
+    <div>
+      <Footer />
+    </div>
     </>
-  )
+  );
 }
 
 export default App;
