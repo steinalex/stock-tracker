@@ -15,11 +15,6 @@ export const Headline = ({ stock }) => {
     return (
         <div className="header">
             <img className='header__logo' src={logo} alt="Adaptive Logo" />
-            <ul className="header__list">
-                <li className="current">Quotes</li>
-                <li>Markets</li>
-                <li>Watchlists</li>
-            </ul>
             <div className="search-bar__wrapper">
                 <Search searchQuery={state.enteredSearchQuery} symbol={state.selectedCompanySymbols} updateStock={(stock) => dispatch(updateStockAction(stock))} />
                 <StockTicker stock={state.selectedStockTicker} />

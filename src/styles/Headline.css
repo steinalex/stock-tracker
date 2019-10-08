@@ -4,27 +4,6 @@
     width: 150px;
 }
 
-.header__list {
-    list-style-type: none;
-    float: right;
-    font-size: 18px;
-}
-.header__list li {
-    float: left;
-    margin-right: 15px;
-    text-transform: uppercase;
-    padding: 5px 15px;
-}
-
-.header__list li:last-child {
-    padding-right: 0;
-}
-
-.header__list li.current {
-    background-color: rgb(55, 121, 228)
-}
-
-
 .stockInfo__list {
     list-style-type: none;
     padding: 0;

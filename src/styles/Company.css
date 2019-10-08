@@ -10,3 +10,12 @@
 .company-overview__website:hover {
     color: yellow
 }
+
+.company-overview__title {
+    font-size: 20px;
+}
+
+.company-overview__text {
+    max-height: 150px;
+    overflow: auto;
+}
