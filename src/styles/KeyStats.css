@@ -1,0 +1,28 @@
+/* Key stats */
+.key-stats__wrapper {
+    column-count: 2;
+}
+
+.key-stats__table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.key-stats__table td {
+    padding: 15px 0;
+    border-bottom: 1px solid rgb(52, 67, 109);
+}
+
+.key-stats__table td:nth-child(odd) {
+    color: rgb(138, 149, 179);
+}
+
+.key-stats__table td:nth-child(even) {
+    text-align: right;
+}
+
+@media only screen and (max-width: 1200px) {
+    .key-stats__wrapper {
+        column-count: 1;
+    }
+}

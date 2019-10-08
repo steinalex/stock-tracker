@@ -1,0 +1,18 @@
+/* Latest news */
+
+.latest-news tr:first-child {
+    color: rgb(200, 212, 163);
+}
+
+.latest-news tr:nth-child(even) {
+    color: rgb(138, 149, 179);
+}
+
+a.news {
+    text-decoration: none;
+    color: white
+}
+
+.news:hover {
+    color: yellow
+}

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine} from 'recharts';
-import moment from 'moment';
+// import moment from 'moment';
 
 const Chart = ({ stock, latestPrice, updateChartRange }) => {
 
     const [active, setActive] = useState('5y')
-    const chartData = stock.map(data => ({close:data.close, date:moment(data.close).format('lll') }))
+    // const chartData = stock.map(data => ({close:data.close, date:moment(data.close).format('lll') }))
 
     const onClickHandler = event => {
         updateChartRange(event.target.value)

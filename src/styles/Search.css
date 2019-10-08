@@ -1,0 +1,38 @@
+/* Search bar */
+.search-bar__input {
+    width: 100%;
+    background: none;
+    border: none;
+    font-size: 35px;
+    color: #fff;
+    font-family: Lato-Light;
+}
+
+.search-bar::before {
+    content: '⚲';
+    position: absolute;
+    top: 0px;
+    font-size: 38px;
+    left: 0px;
+    transform: rotate(-45deg);
+    color: rgb(167, 165, 255);
+}
+
+.search-bar__options {
+    position: absolute;
+    background: #000;
+    margin: 0;
+    top: 50px;
+    padding: 15px 20px;
+    list-style-type: none;
+    z-index: 10;
+}
+
+.search-bar__options li {
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+.search-bar__options li:hover {
+    color: rgb(96, 96, 255);
+}

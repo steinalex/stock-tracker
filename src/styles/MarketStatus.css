@@ -1,0 +1,41 @@
+.market {
+    float: right;
+}
+
+.market-text {
+    color: #ffffff96;
+    font-family: Lato-Light;
+}
+
+.dollar-sign::before {
+    position: relative;
+    content: "$";
+    left: -5px;
+    top: -14px;
+    font-size: 20px;
+}
+
+.market span.moon {
+    padding-left: 10px;
+}
+
+.market span.moon::before {
+    position: relative;
+    content: '\263E';
+    left: -1px;
+    top: 0px;
+    font-size: 15px;
+}
+
+.market span.sun {
+    padding-left: 10px;
+}
+
+.market span.sun::before {
+    position: relative;
+    content: '\263C';
+    left: -1px;
+    top: 0px;
+    font-size: 15px;
+    color: rgb(224, 251, 0);
+}
