@@ -12,9 +12,11 @@
 .footer__US-Market li{
     list-style-type: none;
     float: left;
-    margin-right: 10px;
+    margin-right: 15px;
 }
-
+.footer__US-Market span{
+    margin-left:8px;
+}
 .footer__favourite {
     color: white;
     list-style-type: none;
@@ -23,19 +25,42 @@
 .footer__favourite li{
     list-style-type: none;
     float: left;
-    margin-right: 10px;
+    margin-right: 15px;
+}
+.footer__favourite span{
+    margin-left:8px;
 }
 
 .footer---dollar-sign::before {
     position: relative;
     content: "$";
+    top: -5px;
 }
 
 .footer---percentage-sign::after{
     position: relative;
     content: "%";
+    top: -5px;
 }
 
 .footer__price--green {
     color: green;
+}
+
+.footer__price--red {
+    color:red;
+}
+
+.footer--arrowUp::before{
+    content: '\02191';
+    color: green;
+    top: -5px;
+    position: relative;
+}
+
+.footer--arrowDown::before{
+    content: '\02193';
+    color:red;
+    top: -5px;
+    position: relative;
 }
