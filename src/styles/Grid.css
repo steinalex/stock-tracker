@@ -12,10 +12,6 @@
     grid-template-columns: repeat(3, 1fr);
 }
 
-.chart {
-    grid-area: chart;
-}
-
 .latest-news {
     grid-area: latest-news;
 }

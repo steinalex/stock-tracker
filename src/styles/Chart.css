@@ -1,25 +1,29 @@
-.chart-button__wrapper {
+.chart {
+    grid-area: chart;
+}
+
+.chart__wrapper {
     position: relative;
     z-index: 1;
     float: right;
     margin-right: 22px;
 }
 
-.chart-button__wrapper button {
+.chart-button {
     background: none;
     border: none;
     color: rgb(167, 165, 255);
 }
 
-.chart-button__wrapper button.active {
-    color: #fff;
-}
-
-.chart-button__wrapper button.inactive {
-    color: rgb(167, 165, 255);
-}
-
-.chart-button__wrapper button:hover {
+.chart-button:hover {
     color: #fff;
     cursor: pointer;
+}
+
+.chart-button--active {
+    color: #fff;
+}
+
+.chart-button--inactive {
+    color: #a7a5ff;
 }
