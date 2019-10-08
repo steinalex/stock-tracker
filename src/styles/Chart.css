@@ -1,5 +1,6 @@
 .chart {
     grid-area: chart;
+    /* height: 600px; */
 }
 
 .chart__wrapper {
