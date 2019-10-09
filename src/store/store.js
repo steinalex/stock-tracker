@@ -6,10 +6,10 @@ import { bootstrap } from './actions'
 const initialState = {
     selectedStock: '',
     selectedChartRange: '5y',
-    selectedKeyStats:{},
-    selectedLatestNews:[],
+    selectedKeyStats:'',
+    selectedLatestNews:null,
     selectedCompanyOverview:'',
-    selectedTopPeers:[],
+    selectedTopPeers:null,
     selectedSearch:'',
     selectedCompanySymbols:[],
     selectedQuotes:'',

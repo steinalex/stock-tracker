@@ -1,10 +1,11 @@
 
 .footer{
     background-color: rgb(15, 67, 119);
+    background-image: linear-gradient(to top, #0e1f44,#152a5f);
     display: grid;
     grid-row: 2;
     grid-template-columns: 1fr 1fr;
-    padding: 5px;
+    padding: 5px 15px;
 }
 
 .footer__items {
