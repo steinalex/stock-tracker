@@ -21,6 +21,7 @@ const Chart = ({ stock, latestPrice, updateChartRange }) => {
         updateChartRange(event.target.value)
         setActive(event.target.value);
     }
+
     return (
         <div className="chart">
             {stock.length === 0

@@ -136,7 +136,7 @@ const keyStatsInterval = async (socket, stockName) => {
 
     const { companyName, symbol, currency, primaryExchange, open, high, low, previousClose, previousVolume, avgTotalVolume, marketCap, peRatio, week52High, week52Low, ytdChange, isUSMarketOpen } = quote.data
 
-    const earningsPerShare = typeof earnings.data === 'number' ? earnings.data : undefined
+    const earningsPerShare = typeof earnings.data === 'number' ? earnings.data : null
 
     const keyStats = {
       companyName,
@@ -155,7 +155,7 @@ const keyStatsInterval = async (socket, stockName) => {
       week52Low,
       ytdChange,
       isUSMarketOpen,
-      eps: earningsPerShare
+      eps: earningsPerShare,
     }
 
     socket.emit("keyStats", keyStats);
@@ -178,7 +178,7 @@ const latestNewsInterval = async (socket, stockName) => {
       date: data.datetime,
       url: data.url
     }))
-
+    
     socket.emit('latestNews', top5news);
   } catch (error) {
     //TODO: Handle error

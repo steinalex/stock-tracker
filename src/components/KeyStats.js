@@ -2,7 +2,7 @@ import React from 'react';
 
 const NUMBER_FORMATTER = new Intl.NumberFormat();
 
-const formatNumber = (num) => { return NUMBER_FORMATTER.format(num) }
+const formatNumber = (num) => num == null ? 'N/A' : NUMBER_FORMATTER.format(num)
 
 
 // const NUMBER_FORMATTER = value => value.toFixed(2);
@@ -31,9 +31,11 @@ const formatNumber = (num) => { return NUMBER_FORMATTER.format(num) }
 // }
 
 const KeyStats = ({ stock }) => {
+    const checkNull = (value) => value === null ? 'N/A' : value;
     const stockOpen = stock.open == null ? 'N/A' : stock.open
     const dayRange = stock.low == null ? 'N/A' : `${stock.low} - ${stock.high}`
-    const dividend = (stock.ytdChange * 100).toPrecision(3)
+    const range52 = stock.week52High == null ? 'N/A' : `${stock.week52Low} - ${stock.week52High}`
+    const dividend = stock.ytdchange == null ? 'N/A' : `${(stock.ytdChange * 100).toPrecision(3)} %`
     // const generateKeyStatsTable = () => {
     //     return Object.keys(stock)
     //     .filter(key => ALLOWED.includes(key))
@@ -57,7 +59,7 @@ const KeyStats = ({ stock }) => {
                     <table className="key-stats__table">
                         <tbody>
                             <tr>
-                                <td>Previous Close:</td><td>{stock.previousClose}</td>
+                                <td>Previous Close:</td><td>{checkNull(stock.previousClose)}</td>
                             </tr>
                             <tr>
                                 <td>Day Range:</td><td>{dayRange}</td>
@@ -69,22 +71,22 @@ const KeyStats = ({ stock }) => {
                                 <td>Market Cap:</td><td>{formatNumber(stock.marketCap)}</td>
                             </tr>
                             <tr>
-                                <td>P/E Ratio:</td><td>{stock.peRatio}</td>
+                                <td>P/E Ratio:</td><td>{checkNull(stock.peRatio)}</td>
                             </tr>
                             <tr>
                                 <td>Open:</td><td>{stockOpen}</td>
                             </tr>
                             <tr>
-                                <td>52 Week Range:</td><td>{stock.week52High} - {stock.week52Low}</td>
+                                <td>52 Week Range:</td><td>{range52}</td>
                             </tr>
                             <tr>
                                 <td>Total Avg Volume:</td><td>{formatNumber(stock.avgTotalVolume)}</td>
                             </tr>
                             <tr>
-                                <td>Earning per share:</td><td>{stock.eps}</td>
+                                <td>Earning per share:</td><td>{checkNull(stock.eps)}</td>
                             </tr>
                             <tr>
-                                <td> Dividend &amp; Yield:</td><td>{dividend} %</td>
+                                <td> Dividend &amp; Yield:</td><td>{dividend} </td>
                             </tr>
                         </tbody>
                     </table>
