@@ -34,6 +34,7 @@ const KeyStats = ({ stock }) => {
     const stockOpen = stock.open == null ? 'N/A' : stock.open
     const dayRange = stock.low == null ? 'N/A' : `${stock.low} - ${stock.high}`
     const dividend = (stock.ytdChange * 100).toPrecision(3)
+    console.log()
 
     // const generateKeyStatsTable = () => {
     //     return Object.keys(stock)
@@ -48,8 +49,7 @@ const KeyStats = ({ stock }) => {
     //         )
     //     })
     // }
-
-    return (
+    return stock === null ? <div>'loading'</div> :
         <div className="key-stats">
             <h1 className="title">Key Stats</h1>
             <div className="key-stats__wrapper">
@@ -89,7 +89,6 @@ const KeyStats = ({ stock }) => {
                 </table>
             </div>
         </div>
-    )
 }
 
 export default KeyStats
