@@ -2,6 +2,8 @@
 
 .header__logo {
     width: 150px;
+    margin: -5px;
+    margin-left: 0px;
 }
 
 .stockInfo__list {
@@ -15,8 +17,6 @@
     padding: 3px 15px;
     background-color: #0a689e;
 }
-
-
 
 /* Media Queries */
 
