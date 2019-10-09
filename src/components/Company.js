@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 
 export const Company = ({ stock }) => {
     const state = useSelector((state) => state)
-    console.log(stock)
     return (
         <div className="company-overview">
             <h1 className="title">Company Overview</h1>

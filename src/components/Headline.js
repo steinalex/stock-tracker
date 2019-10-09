@@ -10,6 +10,12 @@ export const Headline = ({ stock }) => {
     const state = useSelector((state) => state)
     const dispatch = useDispatch()
     const currency = stock=== null || undefined ? 'N/A' : stock.currency
+    
+    console.log(stock)
+
+    // Object.keys(stock).filter(key => key !== 'companyName' && key !== 'symbol').map(key => (
+    //     <li>{stock[key]}</li>
+    // ))
 
 
     return (
@@ -22,9 +28,10 @@ export const Headline = ({ stock }) => {
             {stock && (
                 <>
                     <MarketStatus stock={state.selectedStockTicker} keyStats={state.selectedKeyStats} />
-                    <ul className="stockInfo__list">
+                    <div className="stockInfo__list">
+                        {/* {stock.map(data => data.currency)} */}
                         <li>{stock.primaryExchange}</li> <li>{stock.sector}</li> <li> {currency} </li>
-                    </ul>
+                    </div>
                 </>
             )}
         </div>
