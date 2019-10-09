@@ -4,7 +4,7 @@ import moment from 'moment';
 
 const timeFormat = (date) => moment(date).fromNow()
 const LatestNews = ({ stock }) => {
-    return stock.length === 0 ? <div>'loading'</div> :
+    return stock.length === 0 ? <div>'loading Latest News Session'</div> :
 
         <div className="latest-news">
             <h1 className="title">Latest News</h1>
