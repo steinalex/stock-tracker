@@ -21,7 +21,7 @@ const Chart = ({ stock, latestPrice, updateChartRange }) => {
         updateChartRange(event.target.value)
         setActive(event.target.value);
     }
-    return stock.length === 0 ? <div>'loading chart session'</div> : <div className="chart">
+    return stock.length === 0 ? <div className="loading-spinner"></div> : <div className="chart">
         <div className="chart__wrapper">
             {tenors.map(({ value, label }) => {
 

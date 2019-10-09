@@ -47,7 +47,7 @@ const KeyStats = ({ stock }) => {
     //         )
     //     })
     // }
-    return stock.length === 0 ? <div>'loading Key Stats session'</div> :
+    return stock.length === 0 ? <div className="loading-spinner"></div> :
         <div className="key-stats">
             <h1 className="title">Key Stats</h1>
             <div className="key-stats__wrapper">

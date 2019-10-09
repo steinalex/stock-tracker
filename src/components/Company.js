@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 export const Company = ({ stock }) => {
     const state = useSelector((state) => state)
-    return stock.length === 0 ? <div>'loading Company overview session'</div> :
+    return stock.length === 0 ? <div className="loading-spinner"></div> :
         <div className="company-overview">
             <h1 className="title">Company Overview</h1>
             <div className="company-overview__title">{stock.companyName} ({stock.symbol})</div>
