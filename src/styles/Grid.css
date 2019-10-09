@@ -7,7 +7,6 @@
     grid-area: search-bar;
     position: relative;
     border-bottom: 2px solid #6084bf;
-    margin-top: 30px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
 }
@@ -34,7 +33,7 @@
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas: "header header header" "chart chart latest-news" "key-stats  key-stats  company-overview";
     color: #fff;
-    margin: 40px 45px;
+    margin: 10px 45px 40px;
 }
 
 .search-bar {

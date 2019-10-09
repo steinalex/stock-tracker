@@ -8,16 +8,21 @@
     src: url(../assets/font/Lato-Light.ttf);
 }
 
+@font-face {
+    font-family: Lato-Italic;
+    src: url(../assets/font/Lato-Italic.ttf);
+}
+
 body {
     background-color: #011738;
-    background-image: linear-gradient(to bottom right, #021c42, #031c41);
+    background-image: linear-gradient(to bottom right, #102353, #08142E);
     font-family: Lato-Regular;
     margin: 0;
 }
 
 h1.title {
-    border-bottom: 2px solid rgb(85, 125, 228);
-    color: rgb(85, 125, 228);
+    border-bottom: 2px solid #95A4D1;
+    color: #95A4D1;
     text-transform: uppercase;
     font-size: 18px;
     padding: 0 0 3px;
