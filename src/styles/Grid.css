@@ -33,7 +33,7 @@
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas: "header header header" "chart chart latest-news" "key-stats  key-stats  company-overview";
     color: #fff;
-    margin: 10px 45px 40px;
+    padding: 10px 45px 40px;
 }
 
 .search-bar {
@@ -52,7 +52,7 @@
 @media only screen and (max-width: 1200px) {
     .grid-container {
         grid-template-areas: "header header header" "chart chart chart" "latest-news latest-news latest-news" "key-stats  key-stats key-stats" "company-overview company-overview company-overview";
-        margin: 5px 20px;
+        padding: 5px 20px;
     }
 }
 
