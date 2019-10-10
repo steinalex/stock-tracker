@@ -15,7 +15,7 @@
     float: left;
     margin-right: 15px;
     padding: 3px 15px;
-    background-color: #0a689e;
+    background-color: var(--searchBar-tags);
 }
 
 /* Media Queries */

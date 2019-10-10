@@ -43,16 +43,16 @@
 }
 
 .footer__price--green {
-    color: green;
+    color:var(--green-color);
 }
 
 .footer__price--red {
-    color:red;
+    color:var(--red-color);
 }
 
 .footer--arrowUp::before{
     content: '\02191';
-    color: green;
+    color: var(--green-color);
     top: -5px;
     font-size: 10px;
     position: relative;
@@ -60,7 +60,7 @@
 
 .footer--arrowDown::before{
     content: '\02193';
-    color:red;
+    color:var(--red-color);
     top: -5px;
     font-size: 10px;
     position: relative;

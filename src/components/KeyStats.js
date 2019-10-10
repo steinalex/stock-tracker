@@ -2,7 +2,7 @@ import React from 'react';
 
 const NUMBER_FORMATTER = new Intl.NumberFormat();
 
-const DEFAULT_FORMATTER = (data, key) => data[key] != undefined ? data[key] : 'N/A';
+const DEFAULT_FORMATTER = (data, key) => data[key] !== undefined ? data[key] : 'N/A';
 const schema = [
     {
         key: 'previousClose',

@@ -6,7 +6,7 @@
 .search-bar__wrapper {
     grid-area: search-bar;
     position: relative;
-    border-bottom: 2px solid #6084bf;
+    border-bottom: 2px solid var(--searchBar-tags);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
 }

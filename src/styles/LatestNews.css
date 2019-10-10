@@ -17,7 +17,7 @@ a.latest-news__link {
 }
 
 .latest-news__source {
-    color: rgb(138, 149, 179);
+    color: var(--table-child-news-source);
     font-family: Lato-Light;
 }
 

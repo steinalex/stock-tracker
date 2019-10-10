@@ -1,3 +1,6 @@
 :root {
-    --main-bg-color: brown;
+    --green-color: green;
+    --red-color:red;
+    --searchBar-tags:rgb(60, 106, 170);
+    --table-child-news-source:rgb(138, 149, 179);
 }

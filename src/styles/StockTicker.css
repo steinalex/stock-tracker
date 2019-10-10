@@ -31,11 +31,11 @@
 }
 
 .quotes__stock-price span.green {
-    color: green;
+    color:var(--green-color);
 }
 
 .quotes__stock-price span.red {
-    color: #e84000;
+    color: var(--red-color);
 }
 
 .quotes_dollar-sign::before {
