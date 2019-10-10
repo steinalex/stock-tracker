@@ -8,7 +8,7 @@
 
 .stockInfo__list {
     list-style-type: none;
-    padding: 0;
+    padding-top: 15px;
 }
 
 .stockInfo__list li {

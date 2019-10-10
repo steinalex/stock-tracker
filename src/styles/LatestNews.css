@@ -13,7 +13,7 @@ a.latest-news__link {
 } */
 
 .latest-news__link:hover {
-    color: #dcdc84;
+    color: var(--yellow-color);
 }
 
 .latest-news__source {
