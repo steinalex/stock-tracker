@@ -1,3 +1,11 @@
+// Data feed imports
+const { sectorInformation } = require("./components/sectorInformation");
+const { topPeers } = require("./components/topPeers");
+const { companyOverview } = require("./components/companyOverview");
+const { latestNewsInterval } = require("./components/latestNewsInterval");
+const { keyStats } = require("./components/keyStats");
+const { stockTicker } = require("./components/stockTicker");
+
 const express = require("express");
 const http = require("http");
 const socketIo = require("socket.io");
@@ -24,25 +32,25 @@ io.on("connection", socket => {
     startIntervals(socket, stockName, timeRange);
 
     timerIDs.stockTicker = setInterval(() => {
-      stockTickerInterval(socket, stockName);
+      stockTicker(socket, stockName, HOST, TOKEN);
     }, 5000);
     timerIDs.keyStats = setInterval(() => {
-      keyStatsInterval(socket, stockName);
+      keyStats(socket, stockName, HOST, TOKEN);
     }, oneDay);
     timerIDs.latestNews = setInterval(() => {
-      latestNewsInterval(socket, stockName);
+      latestNewsInterval(socket, stockName, HOST, TOKEN);
     }, oneDay);
     timerIDs.companyOverview = setInterval(() => {
-      companyOverviewInterval(socket, stockName);
+      companyOverview(socket, stockName, HOST, TOKEN);
     }, oneDay);
     timerIDs.topPeers = setInterval(() => {
-      topPeersInterval(socket, stockName);
+      topPeers(socket, stockName, HOST, TOKEN);
     }, oneDay);
     timerIDs.chartData = setInterval(() => {
       chartDataInterval(socket, stockName, timeRange);
     }, oneDay);
     timerIDs.sectorInformation = setInterval(() => {
-      sectorInformationInterval(socket, stockName);
+      sectorInformation(socket, stockName, HOST, TOKEN);
     }, oneDay);
   });
 
@@ -62,40 +70,18 @@ io.on("connection", socket => {
 
 server.listen(port, () => console.log(`Listening on port ${port}`));
 
-const HOST = 'https://sandbox.iexapis.com/stable'
-const TOKEN = 'Tsk_d2f1890612194476b41d39992a3ad835'
+const HOST = 'https://sandbox.iexapis.com/stable';
+const TOKEN = 'Tsk_d2f1890612194476b41d39992a3ad835';
 
 const startIntervals = (socket, stockName, timeRange) => {
-  stockTickerInterval(socket, stockName);
-  keyStatsInterval(socket, stockName);
-  latestNewsInterval(socket, stockName);
-  companyOverviewInterval(socket, stockName);
-  topPeersInterval(socket, stockName);
+  stockTicker(socket, stockName, HOST, TOKEN);
+  keyStats(socket, stockName, HOST, TOKEN);
+  latestNewsInterval(socket, stockName, HOST, TOKEN);
+  companyOverview(socket, stockName, HOST, TOKEN);
+  topPeers(socket, stockName, HOST, TOKEN);
   chartDataInterval(socket, stockName, timeRange);
-  sectorInformationInterval(socket, stockName);
+  sectorInformation(socket, stockName, HOST, TOKEN);
 }
-
-const stockTickerInterval = async (socket, stockName) => {
-  try {
-    const quote = await axios.get(
-      `${HOST}/stock/${stockName}/quote?token=${TOKEN}`
-    );
-
-    const { latestPrice, latestUpdate, change, changePercent } = quote.data
-
-    const stockTicker = {
-      latestPrice,
-      latestUpdate,
-      change,
-      changePercent
-    }
-
-    socket.emit("stockTicker", stockTicker);
-  } catch (error) {
-    //TODO: Handle error
-    console.error(`Error: ${error}`);
-  }
-};
 
 const getCompanySymbols = async () => {
   try {
@@ -106,7 +92,6 @@ const getCompanySymbols = async () => {
     return companySymbols.data.map(data => ({ symbol: data.symbol, name: data.name }))
 
   } catch (error) {
-    //TODO: Handle error
     console.error(`Error: ${error}`);
   }
 };
@@ -125,105 +110,6 @@ const searchQuery = async (socket, inputQuery, allSymbols) => {
   }
 };
 
-const keyStatsInterval = async (socket, stockName) => {
-  try {
-    const quote = await axios.get(
-      `${HOST}/stock/${stockName}/quote?token=${TOKEN}`
-    );
-    const earnings = await axios.get(
-      `${HOST}/stock/${stockName}/earnings/1/actualEPS?token=${TOKEN}`
-    );
-
-    const { companyName, symbol, currency, primaryExchange, open, high, low, previousClose, previousVolume, avgTotalVolume, marketCap, peRatio, week52High, week52Low, ytdChange, isUSMarketOpen } = quote.data
-
-    const earningsPerShare = typeof earnings.data === 'number' ? earnings.data : null
-
-    const keyStats = {
-      companyName,
-      symbol,
-      currency,
-      primaryExchange,
-      open,
-      high,
-      low,
-      previousClose,
-      previousVolume,
-      avgTotalVolume,
-      marketCap,
-      peRatio,
-      week52High,
-      week52Low,
-      ytdChange,
-      isUSMarketOpen,
-      eps: earningsPerShare,
-    }
-
-    socket.emit("keyStats", keyStats);
-  } catch (error) {
-    //TODO: Handle error
-    console.error(`Error: ${error}`);
-  }
-};
-
-const latestNewsInterval = async (socket, stockName) => {
-
-  try {
-    const news = await axios.get(
-      `${HOST}/stock/${stockName}/news?token=${TOKEN}`
-    );
-
-    const top5news = news.data.slice(0, 5).map(data => ({
-      headline: data.headline,
-      source: data.source,
-      date: data.datetime,
-      url: data.url
-    }))
-    
-    socket.emit('latestNews', top5news);
-  } catch (error) {
-    //TODO: Handle error
-    console.error(`Error: ${error}`);
-  }
-};
-
-const companyOverviewInterval = async (socket, stockName) => {
-  try {
-    const company = await axios.get(
-      `${HOST}/stock/${stockName}/company?token=${TOKEN}`
-    );
-
-    const { website, description, symbol, companyName } = company.data;
-
-    const companyOverview = {
-      website,
-      description,
-      symbol,
-      companyName
-    }
-
-    socket.emit("companyOverview", companyOverview);
-  } catch (error) {
-    //TODO: Handle error
-    console.error(`Error: ${error}`);
-  }
-};
-
-
-const topPeersInterval = async (socket, stockName) => {
-  try {
-    const peers = await axios.get(
-      `${HOST}/stock/${stockName}/peers?token=${TOKEN}`
-    );
-
-    const peersList = peers.data.map(data => (data))
-
-    socket.emit("topPeers", peersList);
-  } catch (error) {
-    //TODO: Handle error
-    console.error(`Error: ${error}`);
-  }
-};
-
 const chartDataInterval = async (socket, stockName, timeRange) => {
   try {
     const chart = await axios.get(
@@ -238,38 +124,6 @@ const chartDataInterval = async (socket, stockName, timeRange) => {
     const chartData = time(timeRange)
     socket.emit("chartData", chartData);
   } catch (error) {
-    //TODO: Handle error
-    console.error(`Error: ${error}`);
-  }
-};
-
-const sectorInformationInterval = async (socket, stockName) => {
-  try {
-    const quote = await axios.get(
-      `${HOST}/stock/${stockName}/quote?token=${TOKEN}`
-    );
-    const dividends = await axios.get(
-      `${HOST}/stock/${stockName}/dividends/1y?token=${TOKEN}`
-    );
-    const company = await axios.get(
-      `${HOST}/stock/${stockName}/company?token=${TOKEN}`
-    );
-
-    const { primaryExchange, companyName, symbol } = quote.data;
-    const { currency } = dividends.data[0];
-    const { sector } = company.data;
-
-    const sectorInformation = {
-      primaryExchange,
-      currency,
-      sector,
-      companyName,
-      symbol
-    }
-
-    socket.emit("sectorInformation", sectorInformation);
-  } catch (error) {
-    //TODO: Handle error
     console.error(`Error: ${error}`);
   }
 };
