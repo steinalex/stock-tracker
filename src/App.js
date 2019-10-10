@@ -26,11 +26,9 @@ const App = () => {
           : ''}
       </div>
       {state.selectedStock
-        ? <>
-          <div>
+        ? <div>
             <Footer />
           </div>
-        </>
         : ''}
     </>
   );

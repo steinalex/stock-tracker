@@ -23,7 +23,6 @@ const Search = ({ updateStock }) => {
   }
 
   const optionClick = data => {
-    console.log("Data has been clicked")
     setStock(`${data.name} (${data.symbol})`)
     updateStock(data.symbol)
     toggleIsOpen(false);

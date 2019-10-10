@@ -8,7 +8,7 @@ const initialState = {
     selectedLatestNews:null,
     selectedCompanyOverview:'',
     selectedTopPeers:null,
-    selectedSearch:null,
+    selectedSearch:'',
     selectedCompanySymbols:[],
     selectedQuotes:'',
     selectedStockTicker:'',

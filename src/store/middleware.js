@@ -1,5 +1,5 @@
 import { UPDATE_SELECTED_STOCK, UPDATE_CHART_RANGE, UPDATE_SEARCH_QUERY, BOOTSTRAP } from './constants'
-import { updateChartDataAction, updateKeyStatsAction, updateLatestNewsAction, updateCompanyOverviewAction, updateTopPeersAction, updateSearchAction, updateCompanySymbolsAction, updateStockTickerAction } from './actions'
+import { updateChartDataAction, updateKeyStatsAction, updateLatestNewsAction, updateCompanyOverviewAction, updateTopPeersAction, updateSearchAction, updateCompanySymbolsAction, updateStockTickerAction, resetAction } from './actions'
 
 const io = require('socket.io-client')
 
@@ -19,7 +19,6 @@ export const startupMiddleware = store => next => action => {
         });
         socket.on('keyStats', (payload) => {
             store.dispatch(updateKeyStatsAction(payload))
-            console.log("key stats recieved", payload)
         });
         socket.on('latestNews', (payload) => {
             store.dispatch(updateLatestNewsAction(payload))
@@ -53,6 +52,7 @@ export const stockMiddleware = store => next => action => {
         socket.emit('timeRange', store.getState().selectedStock, action.payload)
     }
     else if (action.type === UPDATE_SEARCH_QUERY) {
+        store.dispatch(resetAction())
         socket.emit('searchQuery', action.payload)
     }
     return next(action)
