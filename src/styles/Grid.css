@@ -29,7 +29,8 @@
 
 .grid-container {
     display: grid;
-    grid-gap: 20px;
+    grid-column-gap: 55px;
+    grid-row-gap: 20px;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas: "header header header" "chart chart latest-news" "key-stats  key-stats  company-overview";
     color: #fff;
