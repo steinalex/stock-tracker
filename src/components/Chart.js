@@ -13,7 +13,6 @@ const tenors = [
 ]
 
 const Chart = ({ stock, latestPrice, updateChartRange }) => {
-
     const [active, setActive] = useState('5y')
     // const chartData = stock.map(data => ({close:data.close, date:moment(data.close).format('lll') }))
 
@@ -24,9 +23,9 @@ const Chart = ({ stock, latestPrice, updateChartRange }) => {
 
     return (
         <div className="chart">
-            {stock.length === 0
-                ? <div className="loading-spinner"></div>
-                : <>
+        {(stock === null) ? <div className="loading-spinner"></div> :
+            (stock.length === 0) ? <div>  Chart Data N/A </div> :
+            <>
                     <div className="chart__wrapper">
                         {tenors.map(({ value, label }) => {
 
