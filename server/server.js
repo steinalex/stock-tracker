@@ -1,3 +1,5 @@
+const { chartData } = require("./chartData");
+
 // Data feed imports
 const { sectorInformation } = require("./components/sectorInformation");
 const { topPeers } = require("./components/topPeers");
@@ -47,7 +49,7 @@ io.on("connection", socket => {
       topPeers(socket, stockName, HOST, TOKEN);
     }, oneDay);
     timerIDs.chartData = setInterval(() => {
-      chartDataInterval(socket, stockName, timeRange);
+      chartData(socket, stockName, timeRange, HOST, TOKEN);
     }, oneDay);
     timerIDs.sectorInformation = setInterval(() => {
       sectorInformation(socket, stockName, HOST, TOKEN);
@@ -59,7 +61,7 @@ io.on("connection", socket => {
   });
 
   socket.on('timeRange', (stockName, timeRange) => {
-    chartDataInterval(socket, stockName, timeRange);
+    chartData(socket, stockName, timeRange, HOST, TOKEN);
   });
 
   socket.on("disconnect", () => {
@@ -71,7 +73,9 @@ io.on("connection", socket => {
 server.listen(port, () => console.log(`Listening on port ${port}`));
 
 const HOST = 'https://sandbox.iexapis.com/stable';
+exports.HOST = HOST;
 const TOKEN = 'Tsk_d2f1890612194476b41d39992a3ad835';
+exports.TOKEN = TOKEN;
 
 const startIntervals = (socket, stockName, timeRange) => {
   stockTicker(socket, stockName, HOST, TOKEN);
@@ -79,7 +83,7 @@ const startIntervals = (socket, stockName, timeRange) => {
   latestNewsInterval(socket, stockName, HOST, TOKEN);
   companyOverview(socket, stockName, HOST, TOKEN);
   topPeers(socket, stockName, HOST, TOKEN);
-  chartDataInterval(socket, stockName, timeRange);
+  chartData(socket, stockName, timeRange, HOST, TOKEN);
   sectorInformation(socket, stockName, HOST, TOKEN);
 }
 
@@ -110,20 +114,4 @@ const searchQuery = async (socket, inputQuery, allSymbols) => {
   }
 };
 
-const chartDataInterval = async (socket, stockName, timeRange) => {
-  try {
-    const chart = await axios.get(
-      `${HOST}/stock/${stockName}/chart/${timeRange}?token=${TOKEN}`
-    );
-    console.log(timeRange)
-    const time = () => {
-      if (timeRange === '1d') return chart.data.map(data => ({ close: data.close, date: data.minute }))
-      else return chart.data.map(data => ({ close: data.close, date: data.date }))
 
-    }
-    const chartData = time(timeRange)
-    socket.emit("chartData", chartData);
-  } catch (error) {
-    console.error(`Error: ${error}`);
-  }
-};
