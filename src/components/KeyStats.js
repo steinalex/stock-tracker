@@ -11,7 +11,7 @@ const schema = [
     {
         key: 'low',
         label: 'Day Range',
-        formatter: (data, key) => `${data[key]}-${data[key]}`
+        formatter: data => data.low && data.high ? `${data.low}-${data.high}` : 'N/A'
     },
     {
         key: 'previousVolume',
@@ -34,7 +34,7 @@ const schema = [
     {
         key: 'week52Low',
         label: '52 Week Range',
-        formatter: (data, key) => `${data[key]}-${data[key]}`
+        formatter: data => `${data.week52Low}-${data.week52High}`
     },
     {
         key: 'avgTotalVolume',
