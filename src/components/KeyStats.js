@@ -66,15 +66,13 @@ const KeyStats = ({ stock }) => {
             <h1 className="title">Key Stats</h1>
             {stock.length === 0
                 ? <div className="loading-spinner"></div>
-                : <>
-                    <div className="key-stats__wrapper">
+                : <div className="key-stats__wrapper">
                         <table className="key-stats__table">
                             <tbody>
                                 {tableData}
                             </tbody>
                         </table>
-                    </div>
-                </>}
+                    </div>}
         </div>)
 }
 

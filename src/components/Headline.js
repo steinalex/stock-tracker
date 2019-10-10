@@ -9,9 +9,9 @@ import { MarketStatus } from './MarketStatus';
 export const Headline = ({ stock }) => {
     const state = useSelector((state) => state)
     const dispatch = useDispatch()
-    const labels = Object.keys(stock).filter(key => key !== 'companyName' && key !== 'symbol').map(key => (
+    const labels = stock && Object.keys(stock).filter(key => key !== 'companyName' && key !== 'symbol').map(key => (
         <li>{stock[key]}</li>
-    ))
+    )) 
 
     return (
         <div className="header">

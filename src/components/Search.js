@@ -18,7 +18,6 @@ const Search = ({ updateStock }) => {
   const onSubmit = ({ key, target }) => {
     if (key === 'Enter') {
       toggleIsOpen(false);
-      dispatch(resetAction())
       updateStock(target.value)
     }
   }

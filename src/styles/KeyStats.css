@@ -14,7 +14,7 @@
 }
 
 .key-stats__table td:nth-child(odd) {
-    color: rgb(138, 149, 179);
+    color: var(--table-child-news-source);
 }
 
 .key-stats__table td:nth-child(even) {

@@ -9,7 +9,7 @@
 }
 
 .company-overview__website:hover {
-    color: yellow
+    color: var(--yellow-color);
 }
 
 .company-overview__title {

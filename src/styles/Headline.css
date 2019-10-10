@@ -8,14 +8,14 @@
 
 .stockInfo__list {
     list-style-type: none;
-    padding: 0;
+    padding-top: 15px;
 }
 
 .stockInfo__list li {
     float: left;
     margin-right: 15px;
     padding: 3px 15px;
-    background-color: #0a689e;
+    background-color: var(--searchBar-tags);
 }
 
 /* Media Queries */

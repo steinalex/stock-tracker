@@ -6,13 +6,13 @@ const initialState = {
     selectedChartRange: '5y',
     selectedKeyStats:'',
     selectedLatestNews:null,
-    selectedCompanyOverview:'',
+    selectedCompanyOverview:null,
     selectedTopPeers:null,
     selectedSearch:'',
     selectedCompanySymbols:[],
     selectedQuotes:'',
     selectedStockTicker:'',
-    selectedChartData:[],
+    selectedChartData:null,
     enteredSearchQuery:'',
 }
 
