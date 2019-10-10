@@ -1,5 +1,5 @@
 import { UPDATE_SELECTED_STOCK, UPDATE_CHART_RANGE, UPDATE_SEARCH_QUERY, BOOTSTRAP } from './constants'
-import { updateChartDataAction, updateKeyStatsAction, updateLatestNewsAction, updateCompanyOverviewAction, updateTopPeersAction, updateSearchAction, updateCompanySymbolsAction, updateStockTickerAction} from './actions'
+import { updateChartDataAction, updateKeyStatsAction, updateLatestNewsAction,updateSearchQueryAction, updateCompanyOverviewAction, updateTopPeersAction, updateSearchAction, updateCompanySymbolsAction, updateStockTickerAction, resetAction} from './actions'
 
 const io = require('socket.io-client')
 
@@ -46,6 +46,7 @@ export const startupMiddleware = store => next => action => {
 
 export const stockMiddleware = store => next => action => {
     if (action.type === UPDATE_SELECTED_STOCK) {
+        store.dispatch(resetAction())
         socket.emit('stockName', action.payload, store.getState().selectedChartRange)
     }
     else if (action.type === UPDATE_CHART_RANGE) {

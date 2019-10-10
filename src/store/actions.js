@@ -67,7 +67,4 @@ export const updateSearchQueryAction = (action) => ({
     payload: action
 })
 
-export const resetAction = (action) => ({
-    type: RESET,
-    payload:action
-})
+export const resetAction = () => ({type: RESET})
