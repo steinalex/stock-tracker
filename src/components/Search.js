@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateSearchQueryAction } from '../store/actions';
+import { updateSearchQueryAction, resetAction } from '../store/actions';
 const Search = ({ updateStock }) => {
   const dispatch = useDispatch()
   const filteredSymbols = useSelector((state) => state.selectedCompanySymbols)
@@ -18,12 +18,12 @@ const Search = ({ updateStock }) => {
   const onSubmit = ({ key, target }) => {
     if (key === 'Enter') {
       toggleIsOpen(false);
+      dispatch(resetAction())
       updateStock(target.value)
     }
   }
 
   const optionClick = data => {
-    console.log("Data has been clicked")
     setStock(`${data.name} (${data.symbol})`)
     updateStock(data.symbol)
     toggleIsOpen(false);

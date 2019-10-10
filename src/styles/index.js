@@ -1,5 +1,6 @@
-import './Grid.css';
+import './Variables.css';
 import './Global.css';
+import './Grid.css';
 import './Search.css';
 import './KeyStats.css';
 import './Headline.css';
