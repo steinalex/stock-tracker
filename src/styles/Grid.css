@@ -1,69 +1,71 @@
 .header {
-    grid-area: header;
-    position: relative;
+  grid-area: header;
+  position: relative;
 }
 
 .search-bar__wrapper {
-    grid-area: search-bar;
-    position: relative;
-    border-bottom: 2px solid var(--searchBar-tags);
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+  grid-area: search-bar;
+  position: relative;
+  border-bottom: 2px solid var(--searchBar-tags);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .latest-news {
-    grid-area: latest-news;
+  grid-area: latest-news;
 }
 
 .key-stats {
-    grid-area: key-stats;
+  grid-area: key-stats;
 }
 
 .company-overview {
-    grid-area: company-overview;
+  grid-area: company-overview;
 }
 
 .peers {
-    grid-area: peers;
+  grid-area: peers;
 }
 
 .grid-container {
-    display: grid;
-    grid-column-gap: 55px;
-    grid-row-gap: 20px;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-areas: "header header header" "chart chart latest-news" "key-stats  key-stats  company-overview";
-    color: #fff;
-    padding: 10px 45px 40px;
+  display: grid;
+  grid-column-gap: 55px;
+  grid-row-gap: 20px;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: "header header header" "chart chart latest-news" "key-stats  key-stats  company-overview";
+  color: #fff;
+  padding: 10px 45px 40px;
+  margin: 0px auto 85px;
+  max-width: 1500px;
 }
 
 .search-bar {
-    position: relative;
-    grid-column: 1 / 3;
-    grid-row: 1;
-    padding-left: 28px;
+  position: relative;
+  grid-column: 1 / 3;
+  grid-row: 1;
+  padding-left: 28px;
 }
 
 .quotes {
-    grid-column: 3;
-    grid-row: 1;
-    text-align: right;
+  grid-column: 3;
+  grid-row: 1;
+  text-align: right;
 }
 
 @media only screen and (max-width: 1200px) {
-    .grid-container {
-        grid-template-areas: "header header header" "chart chart chart" "latest-news latest-news latest-news" "key-stats  key-stats key-stats" "company-overview company-overview company-overview";
-        padding: 5px 20px;
-    }
+  .grid-container {
+    grid-template-areas: "header header header" "chart chart chart" "latest-news latest-news latest-news" "key-stats  key-stats key-stats" "company-overview company-overview company-overview";
+    padding: 5px 20px;
+  }
 }
 
 @media only screen and (max-width: 850px) {
-    .quotes {
-        grid-column: 1 / 4;
-        grid-row: 1;
-    }
-    .search-bar {
-        grid-column: 1 / 4;
-        grid-row: 2;
-    }
+  .quotes {
+    grid-column: 1 / 4;
+    grid-row: 1;
+  }
+  .search-bar {
+    grid-column: 1 / 4;
+    grid-row: 2;
+  }
 }
