@@ -10,6 +10,8 @@ import {
   ReferenceLine
 } from "recharts";
 // import moment from 'moment';
+import { useSelector, useDispatch } from "react-redux";
+import { updateChartAction } from "../store/actions";
 
 const tenors = [
   { value: "1d", label: "1D" },
@@ -20,10 +22,14 @@ const tenors = [
   { value: "max", label: "MAX" }
 ];
 
-const Chart = ({ stock, latestPrice, updateChartRange }) => {
+const Chart = () => {
   const [active, setActive] = useState("5y");
   // const chartData = stock.map(data => ({close:data.close, date:moment(data.close).format('lll') }))
-
+  const state = useSelector(state => state);
+  const dispatch = useDispatch();
+  const chartData = state.selectedChartData;
+  const stockTickerLatestPrice = state.selectedStockTicker;
+  const updateChartRange = stock => dispatch(updateChartAction(stock));
   const onClickHandler = event => {
     updateChartRange(event.target.value);
     setActive(event.target.value);
@@ -31,9 +37,9 @@ const Chart = ({ stock, latestPrice, updateChartRange }) => {
 
   return (
     <div className="chart">
-      {stock === null ? (
+      {chartData === null ? (
         <div className="loading-spinner"></div>
-      ) : stock.length === 0 ? (
+      ) : chartData.length === 0 ? (
         <div> Chart Data N/A </div>
       ) : (
         <>
@@ -52,9 +58,9 @@ const Chart = ({ stock, latestPrice, updateChartRange }) => {
               );
             })}
           </div>
-          <ResponsiveContainer height="100%" width="100%">
+          <ResponsiveContainer height="100%" width="100%" minHeight="250px">
             <AreaChart
-              data={stock}
+              data={chartData}
               margin={{ top: 10, right: 0, left: 0, bottom: 0 }}
             >
               <defs>
@@ -68,9 +74,9 @@ const Chart = ({ stock, latestPrice, updateChartRange }) => {
               <YAxis orientation="right" />
               <Tooltip />
               <ReferenceLine
-                y={latestPrice.latestPrice}
+                y={stockTickerLatestPrice.latestPrice}
                 label={{
-                  value: `${latestPrice.latestPrice}`,
+                  value: `${stockTickerLatestPrice.latestPrice}`,
                   position: "right",
                   fill: "orange"
                 }}

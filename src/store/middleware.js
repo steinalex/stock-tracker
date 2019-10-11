@@ -8,7 +8,6 @@ import {
   updateChartDataAction,
   updateKeyStatsAction,
   updateLatestNewsAction,
-  updateSearchQueryAction,
   updateCompanyOverviewAction,
   updateTopPeersAction,
   updateSearchAction,

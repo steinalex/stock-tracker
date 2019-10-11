@@ -2,32 +2,33 @@ import React from "react";
 import Peers from "./Peers";
 import { useSelector } from "react-redux";
 
-export const Company = ({ stock }) => {
+export const Company = () => {
   const state = useSelector(state => state);
+  const companyOverview = state.selectedCompanyOverview;
   return (
     <div className="company-overview">
       <h1 className="title">Company Overview</h1>
-      {stock === null ? (
+      {companyOverview === null ? (
         <div className="loading-spinner"></div>
-      ) : Object.keys(stock).length === 0 ? (
+      ) : Object.keys(companyOverview).length === 0 ? (
         <div> N/A </div>
       ) : (
         <>
           <div className="company-overview__title">
-            {stock.companyName} ({stock.symbol})
+            {companyOverview.companyName} ({companyOverview.symbol})
           </div>
           <div>
             <a
               target="_blank"
               rel="noopener noreferrer"
               className="company-overview__website"
-              href={`${stock.website}`}
+              href={`${companyOverview.website}`}
             >
-              {stock.website}
+              {companyOverview.website}
             </a>{" "}
           </div>
           <div className="company-overview__text">
-            <p>{stock.description}</p>
+            <p>{companyOverview.description}</p>
           </div>
         </>
       )}

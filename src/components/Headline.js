@@ -5,15 +5,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateStockAction } from "../store/actions";
 import { StockTicker } from "./StockTicker";
 import { MarketStatus } from "./MarketStatus";
-
-export const Headline = ({ stock }) => {
+export const Headline = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
+  const selectedSearch = state.selectedSearch;
   const labels =
-    stock &&
-    Object.keys(stock)
-      .filter(key => key !== "companyName" && key !== "symbol")
-      .map(key => <li>{stock[key]}</li>);
+    selectedSearch &&
+    Object.keys(selectedSearch)
+      .filter(
+        key => key !== "companyName" && key !== "symbol" && selectedSearch[key]
+      )
+      .map(key => <li>{selectedSearch[key]}</li>);
 
   return (
     <div className="header">
@@ -24,9 +26,9 @@ export const Headline = ({ stock }) => {
           symbol={state.selectedCompanySymbols}
           updateStock={stock => dispatch(updateStockAction(stock))}
         />
-        {stock && <StockTicker stock={state.selectedStockTicker} />}
+        {selectedSearch && <StockTicker stock={state.selectedStockTicker} />}
       </div>
-      {stock && (
+      {selectedSearch && (
         <>
           <MarketStatus
             stock={state.selectedStockTicker}
