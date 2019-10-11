@@ -5,11 +5,8 @@
   "dependencies": {
     "axios": "^0.19.0",
     "express": "^4.17.1",
-    "husky": "^3.0.8",
     "moment": "^2.24.0",
     "plotly.js": "^1.49.5",
-    "prettier": "^1.18.2",
-    "pretty-quick": "^1.11.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-redux": "^7.1.1",
@@ -45,6 +42,14 @@
   },
   "devDependencies": {
     "nodemon": "^1.19.2",
-    "react-image-webp": "^0.3.1"
+    "prettier": "^1.18.2",
+    "react-image-webp": "^0.3.1",
+    "husky": "^3.0.8",
+    "pretty-quick": "^1.11.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
   }
 }
