@@ -5,6 +5,7 @@
   grid-row: 2;
   grid-template-columns: 1fr 1fr;
   padding: 5px 15px;
+  flex: 0 0 auto;
 }
 
 .footer__items {
@@ -84,15 +85,6 @@
 
 @media only screen and (max-width: 1200px) {
   .footer {
-    /* grid-template-areas: "footer__items" "footer__items" ; */
-  }
-  .footer__items:first-child {
-    grid-column: 1;
-    grid-row: 1;
-  }
-
-  .footer__items:nth-child(2) {
-    grid-column: 1;
-    grid-row: 2;
+    display: none;
   }
 }
