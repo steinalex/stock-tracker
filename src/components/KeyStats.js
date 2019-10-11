@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 const NUMBER_FORMATTER = new Intl.NumberFormat();
 
@@ -54,12 +55,14 @@ const schema = [
   }
 ];
 
-const KeyStats = ({ stock }) => {
+const KeyStats = () => {
+  const state = useSelector(state => state);
+  const keyStats = state.selectedKeyStats;
   const tableData = schema.map(
     ({ key, label, formatter = DEFAULT_FORMATTER }) => (
       <tr>
         <td>{label}</td>
-        <td>{formatter(stock, key)}</td>
+        <td>{formatter(keyStats, key)}</td>
       </tr>
     )
   );
@@ -67,7 +70,7 @@ const KeyStats = ({ stock }) => {
   return (
     <div className="key-stats">
       <h1 className="title">Key Stats</h1>
-      {stock.length === 0 ? (
+      {keyStats.length === 0 ? (
         <div className="loading-spinner"></div>
       ) : (
         <div className="key-stats__wrapper">
