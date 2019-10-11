@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateSearchQueryAction, resetAction } from "../store/actions";
+import { updateSearchQueryAction } from "../store/actions";
 const Search = ({ updateStock }) => {
   const dispatch = useDispatch();
   const filteredSymbols = useSelector(state => state.selectedCompanySymbols);
