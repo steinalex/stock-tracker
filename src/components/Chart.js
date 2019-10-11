@@ -52,7 +52,12 @@ const Chart = ({ stock, latestPrice, updateChartRange }) => {
               );
             })}
           </div>
-          <ResponsiveContainer height="100%" width="100%">
+          <ResponsiveContainer
+            height="100%"
+            width="100%"
+            minHeight="350px"
+            maxHeight="400px"
+          >
             <AreaChart
               data={stock}
               margin={{ top: 10, right: 0, left: 0, bottom: 0 }}

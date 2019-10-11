@@ -1,74 +1,91 @@
-
-.footer{
-    background-color: rgb(15, 67, 119);
-    background-image: linear-gradient(to top, #0e1f44,#152a5f);
-    display: grid;
-    grid-row: 2;
-    grid-template-columns: 1fr 1fr;
-    padding: 5px 15px;
+.footer {
+  background-color: rgb(15, 67, 119);
+  background-image: linear-gradient(to top, #0e1f44, #152a5f);
+  display: grid;
+  grid-row: 2;
+  grid-template-columns: 1fr 1fr;
+  padding: 0 25px;
+  flex: 0 0 auto;
 }
 
 .footer__items {
-    margin: 10px 10px 10px 0;
+  padding: 10px;
+}
+
+.footer__items:first-child {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.footer__items:nth-child(2) {
+  grid-column: 2;
+  grid-row: 1;
+  border-left: 1px solid #274a986b;
 }
 
 .footer__text {
-    color: #fff;
-    margin-bottom: 10px;
+  color: #fff;
+  margin-bottom: 10px;
 }
 
 .footer__list {
-    color: white;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    list-style-type: none;
+  color: white;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  list-style-type: none;
 }
 
-.footer__list span{
-    margin-left:8px;
+.footer__list span {
+  margin-left: 8px;
 }
 
 .footer---dollar-sign::before {
-    position: relative;
-    content: "$";
-    top: -5px;
-    font-size: 10px;
+  position: relative;
+  content: "$";
+  top: -5px;
+  font-size: 10px;
 }
 
-.footer---percentage-sign::after{
-    position: relative;
-    content: "%";
-    font-size: 10px;
-    top: -5px;
+.footer---percentage-sign::after {
+  position: relative;
+  content: "%";
+  font-size: 10px;
+  top: -5px;
 }
 
 .footer__price--green {
-    color:var(--green-color);
+  color: var(--green-color);
 }
 
 .footer__price--red {
-    color:var(--red-color);
+  color: var(--red-color);
 }
 
-.footer--arrowUp::before{
-    content: '\02191';
-    color: var(--green-color);
-    top: -5px;
-    font-size: 10px;
-    position: relative;
+.footer--arrowUp::before {
+  content: "\02191";
+  color: var(--green-color);
+  top: -5px;
+  font-size: 10px;
+  position: relative;
 }
 
-.footer--arrowDown::before{
-    content: '\02193';
-    color:var(--red-color);
-    top: -5px;
-    font-size: 10px;
-    position: relative;
+.footer--arrowDown::before {
+  content: "\02193";
+  color: var(--red-color);
+  top: -5px;
+  font-size: 10px;
+  position: relative;
 }
 
-@media only screen and (max-width: 800px) {
-    .footer{
-        width: 50%;
-        display: flex;
-    }
+/* @media only screen and (max-width: 800px) {
+  .footer {
+    width: 50%;
+    display: flex;
+  }
+} */
+
+@media only screen and (max-width: 1200px) {
+  .footer {
+    display: none;
+  }
 }

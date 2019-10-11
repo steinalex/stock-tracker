@@ -31,11 +31,7 @@ const App = () => {
           ""
         )}
       </div>
-      {state.selectedStock && (
-        <div>
-          <Footer />
-        </div>
-      )}
+      {state.selectedStock && <Footer />}
     </>
   );
 };
