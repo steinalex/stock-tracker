@@ -27,19 +27,30 @@
   grid-area: peers;
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
 .grid-container {
   display: grid;
   grid-column-gap: 55px;
   grid-row-gap: 20px;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-areas: "header header header" "chart chart latest-news" "key-stats  key-stats  company-overview";
+  grid-template-areas:
+    "header header header"
+    "chart chart latest-news"
+    "key-stats key-stats company-overview";
   color: #fff;
   padding: 10px 45px 40px;
-  margin: 0px auto 85px;
+  margin: 0px auto 0px;
   max-width: 1500px;
+  overflow: auto;
 }
 
 .search-bar {
+  margin-bottom: 6px;
   position: relative;
   grid-column: 1 / 3;
   grid-row: 1;
