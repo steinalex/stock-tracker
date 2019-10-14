@@ -33,7 +33,7 @@ export const Company = () => {
         loaded={companyOverview !== null}
         render={renderCompanyComponent}
       />
-      <Peers Peers={useSelector(state => state.selectedTopPeers)} />
+      <Peers peers={useSelector(state => state.selectedTopPeers)} />
     </div>
   );
 };

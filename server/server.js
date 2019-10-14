@@ -106,9 +106,12 @@ const getCompanySymbols = async () => {
 
 const searchQuery = async (socket, inputQuery, allSymbols) => {
   try {
-    const a = await allSymbols;
-    const b = a.map(data => ({ symbol: data.symbol, name: data.name }));
-    const filteredData = b.filter(
+    const symbols = await allSymbols;
+    const symbolWithNames = symbols.map(data => ({
+      symbol: data.symbol,
+      name: data.name
+    }));
+    const filteredData = symbolWithNames.filter(
       search =>
         search.symbol.toLowerCase().indexOf(inputQuery.toLowerCase()) !== -1 ||
         search.name.toLowerCase().indexOf(inputQuery.toLowerCase()) !== -1
