@@ -1,26 +1,26 @@
 /* Latest news */
 .latest-news__grid {
-    display: grid;
+  display: grid;
 }
 
 a.latest-news__link {
-    text-decoration: none;
-    color: white
+  text-decoration: none;
+  color: white;
 }
 
-/* .latest-news__wrapper {
-    margin: 20px 0;
-} */
+.latest-news__wrapper {
+  margin: 5px 0;
+}
 
 .latest-news__link:hover {
-    color: var(--yellow-color);
+  color: var(--yellow-color);
 }
 
 .latest-news__source {
-    color: var(--table-child-news-source);
-    font-family: Lato-Light;
+  color: var(--table-child-news-source);
+  font-family: Lato-Light;
 }
 
 .latest-news__text {
-    margin-bottom: 5px;
+  margin-bottom: 5px;
 }
