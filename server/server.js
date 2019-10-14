@@ -22,12 +22,14 @@ const io = socketIo(server);
 const oneDay = 24 * 60 * 60 * 1000;
 
 io.on("connection", socket => {
-  const timerIDs = {}
+  const timerIDs = {};
   const allSymbols = getCompanySymbols(socket);
-  console.log("New client connected");
+  console.info("New client connected");
   socket.on("stockName", async (stockName, timeRange) => {
-    if (stockName === "") { return false }
-    console.log("Stock entered: ", stockName)
+    if (stockName === "") {
+      return false;
+    }
+    console.info("Stock entered: ", stockName);
 
     Object.values(timerIDs).forEach(clearInterval);
 
@@ -56,11 +58,11 @@ io.on("connection", socket => {
     }, oneDay);
   });
 
-  socket.on('searchQuery', (inputQuery) => {
+  socket.on("searchQuery", inputQuery => {
     searchQuery(socket, inputQuery, allSymbols);
   });
 
-  socket.on('timeRange', (stockName, timeRange) => {
+  socket.on("timeRange", (stockName, timeRange) => {
     chartData(socket, stockName, timeRange, HOST, TOKEN);
   });
 
@@ -72,9 +74,9 @@ io.on("connection", socket => {
 
 server.listen(port, () => console.log(`Listening on port ${port}`));
 
-const HOST = 'https://sandbox.iexapis.com/stable';
+const HOST = "https://sandbox.iexapis.com/stable";
 exports.HOST = HOST;
-const TOKEN = 'Tsk_d2f1890612194476b41d39992a3ad835';
+const TOKEN = "Tsk_d2f1890612194476b41d39992a3ad835";
 exports.TOKEN = TOKEN;
 
 const startIntervals = (socket, stockName, timeRange) => {
@@ -85,16 +87,18 @@ const startIntervals = (socket, stockName, timeRange) => {
   topPeers(socket, stockName, HOST, TOKEN);
   chartData(socket, stockName, timeRange, HOST, TOKEN);
   sectorInformation(socket, stockName, HOST, TOKEN);
-}
+};
 
 const getCompanySymbols = async () => {
   try {
     const companySymbols = await axios.get(
       `${HOST}/ref-data/symbols?token=${TOKEN}`
-    )
+    );
 
-    return companySymbols.data.map(data => ({ symbol: data.symbol, name: data.name }))
-
+    return companySymbols.data.map(data => ({
+      symbol: data.symbol,
+      name: data.name
+    }));
   } catch (error) {
     console.error(`Error: ${error}`);
   }
@@ -102,16 +106,17 @@ const getCompanySymbols = async () => {
 
 const searchQuery = async (socket, inputQuery, allSymbols) => {
   try {
-    const a = await allSymbols
-    const b = a.map(data => ({ symbol: data.symbol, name: data.name }))
-    const filteredData = b.filter(search => search.symbol.toLowerCase().indexOf(inputQuery.toLowerCase()) !== -1 || search.name.toLowerCase().indexOf(inputQuery.toLowerCase()) !== -1);
+    const a = await allSymbols;
+    const b = a.map(data => ({ symbol: data.symbol, name: data.name }));
+    const filteredData = b.filter(
+      search =>
+        search.symbol.toLowerCase().indexOf(inputQuery.toLowerCase()) !== -1 ||
+        search.name.toLowerCase().indexOf(inputQuery.toLowerCase()) !== -1
+    );
 
-
-    const topTen = filteredData.slice(0, 10)
+    const topTen = filteredData.slice(0, 10);
     socket.emit("companySymbols", topTen);
   } catch (error) {
     console.error(`Error: ${error}`);
   }
 };
-
-
