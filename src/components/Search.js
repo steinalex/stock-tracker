@@ -3,27 +3,35 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateSearchQueryAction } from "../store/actions";
 const Search = ({ updateStock }) => {
   const dispatch = useDispatch();
+  const companyOverview = useSelector(state => state.selectedCompanyOverview);
   const filteredSymbols = useSelector(state => state.selectedCompanySymbols);
   const [isOpen, toggleIsOpen] = useState(false);
   const [stock, setStock] = useState("");
+  const [symbol, setSymbol] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
   const dropSelect = useRef(null);
   const inputSelect = useRef(null);
 
   const onChange = ({ target: { value } }) => {
-    setStock(value);
+    setSearchQuery(value);
     dispatch(updateSearchQueryAction(value));
     toggleIsOpen(value.length > 0);
   };
 
-  const onSubmit = ({ key, target }) => {
+  const onSubmit = ({ key, target: { value: symbol } }) => {
     if (key === "Enter") {
-      toggleIsOpen(false);
-      updateStock(target.value);
+      const selectedDatum = filteredSymbols.find(
+        datum => datum.symbol === symbol
+      );
+      if (selectedDatum) {
+        selectOption({ symbol, name: selectedDatum.name });
+      }
     }
   };
 
-  const optionClick = data => {
-    setStock(`${data.name} (${data.symbol})`);
+  const selectOption = data => {
+    setStock(data.name);
+    setSymbol(data.symbol);
     updateStock(data.symbol);
     toggleIsOpen(false);
     inputSelect.current.blur();
@@ -47,7 +55,7 @@ const Search = ({ updateStock }) => {
       ? filteredSymbols.map(data => {
           return (
             <li
-              onClick={() => optionClick(data)}
+              onClick={() => selectOption(data)}
               value={data.symbol}
               key={data.symbol}
             >
@@ -65,15 +73,22 @@ const Search = ({ updateStock }) => {
     <>
       <div className="search-bar">
         <input
+          id="seach-input"
           ref={inputSelect}
           type="text"
           placeholder="Search..."
           className="search-bar__input"
-          value={stock}
+          value={searchQuery}
           onChange={onChange}
           onKeyPress={onSubmit}
           onBlur={handleBlur}
         />
+        {searchQuery && (
+          <label for="seach-input">
+            <span class="company-name">{stock}</span>
+            <span class="company-symbol">{symbol && ` (${symbol})`}</span>
+          </label>
+        )}
       </div>
       <ul
         ref={dropSelect}
