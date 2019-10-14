@@ -5,7 +5,8 @@ import { Loading } from "./Loading";
 const NUMBER_FORMATTER = new Intl.NumberFormat();
 
 const DEFAULT_FORMATTER = (data, key) =>
-  data[key] !== undefined && data[key] !== null ? data[key] : "N/A";
+  data[key] != null ? data[key] : "N/A";
+
 const schema = [
   {
     key: "previousClose",

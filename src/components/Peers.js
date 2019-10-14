@@ -1,22 +1,23 @@
 import React from "react";
 import { Loading } from "./Loading";
 
-const Peers = ({ Peers }) => {
+const Peers = ({ peers }) => {
   const renderPeersComponent = () => (
     <ul className="peers__list">
-      {Peers.length !== 0
-        ? Peers.map(peers => (
-            <li key={peers} className="peers__list---item">
-              {peers}
+      {peers.length !== 0
+        ? peers.map(items => (
+            <li key={items} className="peers__list---item">
+              {items}
             </li>
           ))
         : "Peers N/A"}
     </ul>
   );
+
   return (
     <div className="peers">
       <h1 className="title">Top Peers</h1>
-      <Loading loaded={Peers !== null} render={renderPeersComponent} />
+      <Loading loaded={peers !== null} render={renderPeersComponent} />
     </div>
   );
 };
