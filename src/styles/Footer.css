@@ -4,7 +4,6 @@
   display: grid;
   grid-row: 2;
   grid-template-columns: 1fr 1fr;
-  padding: 0 25px;
   flex: 0 0 auto;
 }
 
@@ -24,11 +23,14 @@
 }
 
 .footer__text {
+  font-size: 14px;
+  text-transform: uppercase;
   color: #fff;
   margin-bottom: 10px;
 }
 
 .footer__list {
+  font-size: 14px;
   color: white;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -62,19 +64,23 @@
 }
 
 .footer--arrowUp::before {
-  content: "\02191";
+  content: "\1f861";
   color: var(--green-color);
-  top: -5px;
+  top: -4px;
   font-size: 10px;
+  display: inline-block;
   position: relative;
+  width: 7px;
 }
 
 .footer--arrowDown::before {
-  content: "\02193";
+  content: "\1f863";
   color: var(--red-color);
-  top: -5px;
+  top: -4px;
   font-size: 10px;
+  display: inline-block;
   position: relative;
+  width: 7px;
 }
 
 @media only screen and (max-width: 800px) {

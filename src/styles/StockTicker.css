@@ -1,54 +1,88 @@
 .quotes__stock-price {
-    display: inline-block;
-    padding-left: 20px;
-    font-size: 35px;
-    font-family: Lato-Light;
-    margin: 0;
+  display: inline-block;
+  padding-left: 10px;
+  margin-left: 10px;
+  font-size: 35px;
+  font-family: Lato-Light;
+  margin: 0;
 }
 
 .quotes__stock-price span.arrow-positive {
-    position: relative;
+  position: relative;
+}
+
+.quotes__stock-price span.arrow-positive::before,
+.quotes__stock-price span.arrow-negative::before {
+  position: relative;
+  top: -13px;
+  font-size: 16px;
+  left: -1px;
+  display: inline-block;
+  width: 17px;
 }
 
 .quotes__stock-price span.arrow-positive::before {
-    content: '\02191';
-    position: absolute;
-    top: 0px;
-    font-size: 18px;
-    left: -10px;
-}
-
-.quotes__stock-price span.arrow-negative {
-    position: relative;
+  content: "\1f861";
 }
 
 .quotes__stock-price span.arrow-negative::before {
-    content: '\02193';
-    position: absolute;
-    top: 0px;
-    font-size: 18px;
-    left: -10px;
+  content: "\1f863";
 }
 
 .quotes__stock-price span.change-positive {
-    color:var(--green-color);
+  color: var(--green-color);
 }
 
 .quotes__stock-price span.change-negative {
-    color: var(--red-color);
+  color: var(--red-color);
+}
+
+.quotes_dollar-sign {
+  position: relative;
+}
+
+.quotes__percentage-sign {
+  position: relative;
 }
 
 .quotes_dollar-sign::before {
-    position: relative;
-    content: "$";
-    left: -5px;
-    top: -14px;
-    font-size: 20px;
+  position: relative;
+  content: "$";
+  top: -11px;
+  display: inline-block;
+  font-size: 18px;
+  left: -4px;
+  width: 20px;
 }
-.quotes__percentage-sign::after{
-    position: relative;
-    content: "%";
-    left: 5px;
-    top: -14px;
-    font-size: 20px;
+
+.quotes__percentage-sign::after {
+  position: relative;
+  content: "%";
+  top: -12px;
+  font-size: 18px;
+  right: 0px;
+  display: inline-block;
+  width: 15px;
+}
+
+.change-negative.quotes__percentage-sign::before,
+.change-positive.quotes__percentage-sign::before {
+  position: relative;
+  content: "";
+  top: 6px;
+  width: 1px;
+  left: -6px;
+  height: 35px;
+  margin: 0 4px;
+  background-color: var(--red-color);
+  display: inline-block;
+  opacity: 0.6;
+}
+
+.change-negative.quotes__percentage-sign::before {
+  background-color: var(--red-color);
+}
+
+.change-positive.quotes__percentage-sign::before {
+  background-color: var(--green-color);
 }

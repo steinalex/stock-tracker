@@ -1,29 +1,33 @@
 .chart {
-    grid-area: chart;
+  grid-area: chart;
 }
 
 .chart__wrapper {
-    position: relative;
-    z-index: 1;
-    float: right;
-    margin-right: 22px;
+  position: relative;
+  z-index: 1;
+  float: right;
+  margin-right: 22px;
 }
 
 .chart__button {
-    background: none;
-    border: none;
-    color: rgb(167, 165, 255);
+  background: none;
+  border: none;
+  color: rgb(167, 165, 255);
+  opacity: 0.6;
+  font-family: Lato-Regular;
 }
 
 .chart__button:hover {
-    color: #fff;
-    cursor: pointer;
+  color: #fff;
+  opacity: 1;
+  cursor: pointer;
 }
 
 .chart__button--active {
-    color: #fff;
+  color: #fff;
+  opacity: 1;
 }
 
 .chart__button--inactive {
-    color: #3f5bd7;
+  color: #3f5bd7;
 }
