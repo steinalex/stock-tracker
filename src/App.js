@@ -8,24 +8,22 @@ import { Company } from "./components/Company";
 import { Footer } from "./components/Footer";
 
 const App = () => {
-  const state = useSelector(state => state);
+  const selectedStock = useSelector(state => state.selectedStock);
 
   return (
     <>
       <div className="grid-container">
         <Headline />
-        {state.selectedStock ? (
+        {selectedStock && (
           <>
             <Chart />
             <LatestNews />
             <KeyStats />
             <Company />
           </>
-        ) : (
-          ""
         )}
       </div>
-      {state.selectedStock && <Footer />}
+      {selectedStock && <Footer />}
     </>
   );
 };

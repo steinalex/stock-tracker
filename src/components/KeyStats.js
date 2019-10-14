@@ -56,8 +56,8 @@ const schema = [
 ];
 
 const KeyStats = () => {
-  const state = useSelector(state => state);
-  const keyStats = state.selectedKeyStats;
+  const selectedKeyStats = useSelector(state => state.selectedKeyStats);
+  const keyStats = selectedKeyStats;
   const tableData = schema.map(
     ({ key, label, formatter = DEFAULT_FORMATTER }) => (
       <tr>
