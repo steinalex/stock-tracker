@@ -1,39 +1,39 @@
 /* Search bar */
 .search-bar__input {
-    width: 100%;
-    background: none;
-    border: none;
-    font-size: 35px;
-    color: #fff;
-    font-family: Lato-Light;
+  width: 100%;
+  background: none;
+  border: none;
+  font-size: 35px;
+  color: #fff;
+  font-family: Lato-Light;
 }
 
 .search-bar::before {
-    content: '⚲';
-    position: absolute;
-    top: 0px;
-    font-size: 38px;
-    left: 0px;
-    transform: rotate(-45deg);
-    color: rgb(52, 124, 225);
+  content: "⚲";
+  position: absolute;
+  top: 0px;
+  font-size: 38px;
+  left: 0px;
+  transform: rotate(-45deg);
+  color: var(--highlight1);
 }
 
 .search-bar__options {
-    position: absolute;
-    background-color: #0c1c43;
-    box-shadow: 0px 4px 11px 2px #000000;
-    margin: 0;
-    top: 50px;
-    padding: 15px 20px;
-    list-style-type: none;
-    z-index: 10;
+  position: absolute;
+  background-color: #0c1c43;
+  box-shadow: 0px 4px 11px 2px #000000;
+  margin: 0;
+  top: 50px;
+  padding: 15px 20px;
+  list-style-type: none;
+  z-index: 10;
 }
 
 .search-bar__options li {
-    margin: 10px 0;
-    cursor: pointer;
+  margin: 10px 0;
+  cursor: pointer;
 }
 
 .search-bar__options li:hover {
-    color: rgb(153, 171, 250);
+  color: rgb(153, 171, 250);
 }
