@@ -12,6 +12,7 @@ import {
 // import moment from 'moment';
 import { useSelector, useDispatch } from "react-redux";
 import { updateChartAction } from "../store/actions";
+import { Loading } from "./Loading";
 
 const tenors = [
   { value: "1d", label: "1D" },
@@ -25,30 +26,26 @@ const tenors = [
 const Chart = () => {
   const [active, setActive] = useState("5y");
   // const chartData = stock.map(data => ({close:data.close, date:moment(data.close).format('lll') }))
-  const state = useSelector(state => state);
   const dispatch = useDispatch();
-  const chartData = state.selectedChartData;
-  const stockTickerLatestPrice = state.selectedStockTicker;
+  const { selectedChartData, selectedStockTicker } = useSelector(
+    state => state
+  );
   const updateChartRange = stock => dispatch(updateChartAction(stock));
   const onClickHandler = event => {
     updateChartRange(event.target.value);
     setActive(event.target.value);
   };
 
-  return (
-    <div className="chart">
-      {chartData === null ? (
-        <div className="loading-spinner"></div>
-      ) : chartData.length === 0 ? (
-        <div> Chart Data N/A </div>
-      ) : (
-        <>
-          <div className="chart__wrapper">
-            {tenors.map(({ value, label }) => {
+  const renderChartComponent = () => (
+    <>
+      <div className="chart__wrapper">
+        {selectedChartData.length !== 0
+          ? tenors.map(({ value, label }) => {
               const activeClass = active === value ? "--active" : "";
 
               return (
                 <button
+                  key={label}
                   className={`chart__button chart__button${activeClass}`}
                   onClick={onClickHandler}
                   value={value}
@@ -56,50 +53,58 @@ const Chart = () => {
                   {label}
                 </button>
               );
-            })}
-          </div>
-          <ResponsiveContainer
-            height="100%"
-            width="100%"
-            minHeight="350px"
-            maxHeight="400px"
-          >
-            <AreaChart
-              data={chartData}
-              margin={{ top: 10, right: 0, left: 0, bottom: 0 }}
-            >
-              <defs>
-                <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
-                  <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
-                </linearGradient>
-              </defs>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="date" valueFormatString="MMM" />
-              <YAxis orientation="right" />
-              <Tooltip />
-              <ReferenceLine
-                y={stockTickerLatestPrice.latestPrice}
-                label={{
-                  value: `${stockTickerLatestPrice.latestPrice}`,
-                  position: "right",
-                  fill: "orange"
-                }}
-                stroke="orange"
-                strokeDasharray="3 3"
-              />
-              <Area
-                type="monotone"
-                dataKey="close"
-                stroke="#8884d8"
-                fillOpacity={1}
-                fill="url(#chartGradient)"
-                connectNulls={true}
-              />
-            </AreaChart>
-          </ResponsiveContainer>
-        </>
-      )}
+            })
+          : "Chart data N/A"}
+      </div>
+      <ResponsiveContainer
+        height="100%"
+        width="100%"
+        minHeight="350px"
+        maxHeight="400px"
+      >
+        <AreaChart
+          data={selectedChartData}
+          margin={{ top: 10, right: 0, left: 0, bottom: 0 }}
+        >
+          <defs>
+            <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
+              <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
+            </linearGradient>
+          </defs>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="date" valueFormatString="MMM" />
+          <YAxis orientation="right" />
+          <Tooltip />
+          <ReferenceLine
+            y={selectedStockTicker.latestPrice}
+            label={{
+              value: `${selectedStockTicker.latestPrice}`,
+              position: "right",
+              fill: "orange"
+            }}
+            stroke="orange"
+            strokeDasharray="3 3"
+          />
+          <Area
+            type="monotone"
+            dataKey="close"
+            stroke="#8884d8"
+            fillOpacity={1}
+            fill="url(#chartGradient)"
+            connectNulls={true}
+          />
+        </AreaChart>
+      </ResponsiveContainer>
+    </>
+  );
+
+  return (
+    <div className="chart">
+      <Loading
+        loaded={selectedChartData !== null}
+        render={renderChartComponent}
+      />
     </div>
   );
 };

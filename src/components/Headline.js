@@ -23,7 +23,7 @@ export const Headline = () => {
       .filter(
         key => key !== "companyName" && key !== "symbol" && selectedSearch[key]
       )
-      .map(key => <li>{selectedSearch[key]}</li>);
+      .map(key => <li key={key}>{selectedSearch[key]}</li>);
 
   return (
     <div className="header">

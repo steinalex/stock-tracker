@@ -1,23 +1,18 @@
 import React from "react";
 import moment from "moment";
 import { useSelector } from "react-redux";
+import { Loading } from "./Loading";
 
 const timeFormat = date => moment(date).fromNow();
 
 const LatestNews = () => {
-  const state = useSelector(state => state);
-  const latestNews = state.selectedLatestNews;
-  return (
-    <div className="latest-news">
-      <h1 className="title">Latest News</h1>
-      {latestNews === null ? (
-        <div className="loading-spinner"></div>
-      ) : latestNews.length === 0 ? (
-        <div> N/A </div>
-      ) : (
-        <div className="latest-news__grid">
-          {latestNews.map(data => (
-            <div className="latest-news__wrapper">
+  const latestNews = useSelector(state => state.selectedLatestNews);
+
+  const renderLatestNewsComponent = () => (
+    <div className="latest-news__grid">
+      {latestNews.length !== 0
+        ? latestNews.map(data => (
+            <div key={data.headline} className="latest-news__wrapper">
               <div className="latest-news__text">
                 <a
                   target="_blank"
@@ -32,9 +27,17 @@ const LatestNews = () => {
                 {timeFormat(data.date)} - {data.source}
               </div>
             </div>
-          ))}
-        </div>
-      )}
+          ))
+        : "News N/A"}
+    </div>
+  );
+  return (
+    <div className="latest-news">
+      <h1 className="title">Latest News</h1>
+      <Loading
+        loaded={latestNews !== null}
+        render={renderLatestNewsComponent}
+      />
     </div>
   );
 };
