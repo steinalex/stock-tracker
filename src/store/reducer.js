@@ -13,29 +13,30 @@ import {
   UPDATE_SEARCH_QUERY,
   RESET
 } from "./constants";
+import { combineReducers } from "redux";
 
 const initialState = {
   selectedStock: "",
+  selectedSearch: "",
+  selectedQuotes: "",
+  enteredSearchQuery: "",
+  selectedCompanySymbols: []
+};
+
+const componentInitialState = {
   selectedChartRange: "5y",
   selectedKeyStats: "",
   selectedLatestNews: null,
   selectedCompanyOverview: null,
   selectedTopPeers: null,
-  selectedSearch: "",
-  selectedCompanySymbols: [],
-  selectedQuotes: "",
-  selectedStockTicker: "",
   selectedChartData: null,
-  enteredSearchQuery: ""
+  selectedStockTicker: ""
 };
 
-export const reducer = (state = initialState, { type, payload }) => {
+const componentReducer = (state = componentInitialState, { type, payload }) => {
+  // console.log(state)
+  // console.log(type, payload)
   switch (type) {
-    case UPDATE_SELECTED_STOCK:
-      return {
-        ...state,
-        selectedStock: payload
-      };
     case UPDATE_CHART_RANGE:
       return {
         ...state,
@@ -61,6 +62,29 @@ export const reducer = (state = initialState, { type, payload }) => {
         ...state,
         selectedTopPeers: payload
       };
+    case UPDATE_CHART_DATA:
+      return {
+        ...state,
+        selectedChartData: payload
+      };
+    case UPDATE_STOCK_TICKER:
+      return {
+        ...state,
+        selectedStockTicker: payload
+      };
+    default:
+      return state;
+  }
+};
+
+const reducer = (state = initialState, { type, payload }) => {
+  switch (type) {
+    case UPDATE_SELECTED_STOCK:
+      return {
+        ...state,
+        selectedStock: payload
+      };
+
     case UPDATE_SEARCH:
       return {
         ...state,
@@ -76,16 +100,7 @@ export const reducer = (state = initialState, { type, payload }) => {
         ...state,
         selectedQuotes: payload
       };
-    case UPDATE_STOCK_TICKER:
-      return {
-        ...state,
-        selectedStockTicker: payload
-      };
-    case UPDATE_CHART_DATA:
-      return {
-        ...state,
-        selectedChartData: payload
-      };
+
     case UPDATE_SEARCH_QUERY:
       return {
         ...state,
@@ -99,3 +114,8 @@ export const reducer = (state = initialState, { type, payload }) => {
       return state;
   }
 };
+
+export const combinedReducer = combineReducers({
+  stockData: reducer,
+  referenceData: componentReducer
+});

@@ -1,5 +1,3 @@
-const { chartData } = require("./chartData");
-
 // Data feed imports
 const { sectorInformation } = require("./components/sectorInformation");
 const { topPeers } = require("./components/topPeers");
@@ -7,6 +5,7 @@ const { companyOverview } = require("./components/companyOverview");
 const { latestNewsInterval } = require("./components/latestNewsInterval");
 const { keyStats } = require("./components/keyStats");
 const { stockTicker } = require("./components/stockTicker");
+const { chartData } = require("./components/chartData");
 
 const express = require("express");
 const http = require("http");

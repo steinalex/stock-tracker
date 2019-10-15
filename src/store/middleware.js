@@ -61,10 +61,14 @@ export const stockMiddleware = store => next => action => {
     socket.emit(
       "stockName",
       action.payload,
-      store.getState().selectedChartRange
+      store.getState().referenceData.selectedChartRange
     );
   } else if (action.type === UPDATE_CHART_RANGE) {
-    socket.emit("timeRange", store.getState().selectedStock, action.payload);
+    socket.emit(
+      "timeRange",
+      store.getState().stockData.selectedStock,
+      action.payload
+    );
   } else if (action.type === UPDATE_SEARCH_QUERY) {
     socket.emit("searchQuery", action.payload);
   }

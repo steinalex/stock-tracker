@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateSearchQueryAction } from "../store/actions";
 const Search = ({ updateStock }) => {
   const dispatch = useDispatch();
-  const filteredSymbols = useSelector(state => state.selectedCompanySymbols);
+  const filteredSymbols = useSelector(state => {
+    // console.log(state)
+    return state.stockData.selectedCompanySymbols;
+  });
   const [isOpen, toggleIsOpen] = useState(false);
   const [stock, setStock] = useState("");
   const [symbol, setSymbol] = useState("");
@@ -82,11 +85,12 @@ const Search = ({ updateStock }) => {
           onChange={onChange}
           onKeyPress={onSubmit}
           onBlur={handleBlur}
+          autoComplete="off"
         />
         {searchQuery && (
-          <label for="seach-input">
-            <span class="company-name">{stock}</span>
-            <span class="company-symbol">{symbol && ` (${symbol})`}</span>
+          <label htmlFor="seach-input">
+            <span className="company-name">{stock}</span>
+            <span className="company-symbol">{symbol && ` (${symbol})`}</span>
           </label>
         )}
       </div>

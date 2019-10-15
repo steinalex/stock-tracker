@@ -7,13 +7,14 @@ import { StockTicker } from "./StockTicker";
 import { MarketStatus } from "./MarketStatus";
 
 export const Headline = () => {
+  const { selectedStockTicker, selectedKeyStats } = useSelector(
+    state => state.referenceData
+  );
   const {
     selectedSearch,
     enteredSearchQuery,
-    selectedCompanySymbols,
-    selectedStockTicker,
-    selectedKeyStats
-  } = useSelector(state => state);
+    selectedCompanySymbols
+  } = useSelector(state => state.stockData);
 
   const dispatch = useDispatch();
 

@@ -7,7 +7,9 @@ import { ErrorMessage } from "./ErrorMessage";
 const timeFormat = date => moment(date).fromNow();
 
 const LatestNews = () => {
-  const latestNews = useSelector(state => state.selectedLatestNews);
+  const latestNews = useSelector(
+    state => state.referenceData.selectedLatestNews
+  );
 
   const renderLatestNewsComponent = () => (
     <div className="latest-news__grid">

@@ -8,7 +8,7 @@ import { Company } from "./components/Company";
 import { Footer } from "./components/Footer";
 
 const App = () => {
-  const selectedStock = useSelector(state => state.selectedStock);
+  const selectedStock = useSelector(state => state.stockData.selectedStock);
 
   return (
     <>
