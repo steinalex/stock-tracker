@@ -33,8 +33,7 @@ const componentInitialState = {
 };
 
 const componentReducer = (state = componentInitialState, { type, payload }) => {
-  // console.log(state)
-  // console.log(type, payload)
+  // console.log(state, type, payload)
   switch (type) {
     case UPDATE_CHART_RANGE:
       return {
