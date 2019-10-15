@@ -9,7 +9,6 @@ import {
   UPDATE_TOP_PEERS,
   UPDATE_SEARCH,
   UPDATE_COMPANY_SYMBOLS,
-  UPDATE_QUOTES,
   UPDATE_STOCK_TICKER,
   UPDATE_CHART_DATA,
   UPDATE_SEARCH_QUERY,
@@ -60,11 +59,6 @@ export const updateSearchAction = action => ({
 
 export const updateCompanySymbolsAction = action => ({
   type: UPDATE_COMPANY_SYMBOLS,
-  payload: action
-});
-
-export const updateQuotesAction = action => ({
-  type: UPDATE_QUOTES,
   payload: action
 });
 

@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import { combinedReducer } from "./store/reducer";
-import { UPDATE_SELECTED_STOCK } from "./store/constants";
+import { UPDATE_SELECTED_STOCK, UPDATE_CHART_RANGE } from "./store/constants";
 
 // import { store } from "./store/store";
 // import { Provider } from "react-redux";
@@ -50,31 +50,42 @@ describe("Stock reducer", () => {
   describe("on entering data", () => {
     beforeEach(() => {
       previousState = {
-        selectedStock: "",
-        selectedChartRange: "5y",
-        selectedKeyStats: "",
-        selectedLatestNews: null,
-        selectedCompanyOverview: null,
+        selectedStock: "", //Stock returned
+        selectedChartRange: "5y", //Chart range
+        selectedSearch: "", //Stock entered
+        enteredSearchQuery: "", //Stock entered
+        selectedCompanySymbols: [], //All symbols from server
+        selectedKeyStats: "", //Key stats table
+        selectedLatestNews: null, //News
+        selectedCompanyOverview: null, //Company information
         selectedTopPeers: null,
-        selectedSearch: "",
-        selectedCompanySymbols: [],
-        selectedQuotes: "",
-        selectedStockTicker: "",
         selectedChartData: null,
-        enteredSearchQuery: ""
+        selectedStockTicker: ""
       };
     });
 
-    // describe('and stock "AAPL" name is entered', () => {
-    //   beforeEach(() => {
-    //     newState = reducer(previousState, {
-    //       type: UPDATE_SELECTED_STOCK,
-    //       payload: "AAPL"
-    //     });
-    //   });
-    //   it('it sets selectedStock to "AAPL"', () => {
-    //     expect(newState.selectedStock).toBe("AAPL");
-    //   });
-    // });
+    describe('and stock "AAPL" name is entered', () => {
+      beforeEach(() => {
+        newState = combinedReducer(previousState, {
+          type: UPDATE_SELECTED_STOCK,
+          payload: "AAPL"
+        });
+      });
+      it('it sets selectedStock to "AAPL"', () => {
+        expect(newState.stockData.selectedStock).toBe("AAPL");
+      });
+    });
+
+    describe('and chart range "1y" is entered', () => {
+      beforeEach(() => {
+        newState = combinedReducer(previousState, {
+          type: UPDATE_CHART_RANGE,
+          payload: "1y"
+        });
+      });
+      it('it sets selectedChartRange to "1y"', () => {
+        expect(newState.referenceData.selectedChartRange).toBe("1y");
+      });
+    });
   });
 });
