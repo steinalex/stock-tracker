@@ -2,7 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import { combinedReducer } from "./store/reducer";
-import { UPDATE_SELECTED_STOCK, UPDATE_CHART_RANGE } from "./store/constants";
+import {
+  UPDATE_SELECTED_STOCK,
+  UPDATE_SEARCH,
+  UPDATE_QUOTES,
+  UPDATE_SEARCH_QUERY,
+  UPDATE_COMPANY_SYMBOLS,
+  UPDATE_CHART_RANGE
+} from "./store/constants";
 
 // import { store } from "./store/store";
 // import { Provider } from "react-redux";
@@ -37,24 +44,89 @@ describe("Stock reducer", () => {
       });
     });
 
-    // describe("and UPDATE_CHART_RANGE is called", () => {
-    //   beforeEach(() => {
-    //     newState = combinedReducer(previousState, UPDATE_CHART_RANGE);
-    //   });
-    //   it("it sets selectedChartRange to 5y", () => {
-    //     expect(newState.referenceData.selectedChartRange).toBe("5y");
-    //   });
-    // });
+    describe("and UPDATE_SELECTED_STOCK is called", () => {
+      beforeEach(() => {
+        newState = combinedReducer(previousState, {
+          type: UPDATE_SELECTED_STOCK,
+          payload: "AAPL"
+        });
+      });
+      it("it sets selectedStock to an empty string", () => {
+        expect(newState.stockData.selectedStock).toBe("AAPL");
+      });
+    });
+
+    describe("and UPDATE_SEARCH is called", () => {
+      beforeEach(() => {
+        newState = combinedReducer(previousState, UPDATE_SEARCH);
+      });
+      it("it sets selectedSearch to an empty string", () => {
+        expect(newState.stockData.selectedSearch).toBe("");
+      });
+    });
+
+    describe("and UPDATE_SEARCH is called", () => {
+      beforeEach(() => {
+        newState = combinedReducer(previousState, {
+          type: UPDATE_SEARCH,
+          payload: "AA"
+        });
+      });
+      it("it sets selectedSearch to an empty string", () => {
+        expect(newState.stockData.selectedSearch).toBe("AA");
+      });
+    });
+
+    describe("and UPDATE_SEARCH_QUERY is called", () => {
+      beforeEach(() => {
+        newState = combinedReducer(previousState, UPDATE_SEARCH_QUERY);
+      });
+      it("it sets enteredSearchQuery to an empty string", () => {
+        expect(newState.stockData.enteredSearchQuery).toBe("");
+      });
+    });
+
+    describe("and UPDATE_SEARCH_QUERY is called", () => {
+      beforeEach(() => {
+        newState = combinedReducer(previousState, {
+          type: UPDATE_SEARCH_QUERY,
+          payload: "ECOR"
+        });
+      });
+      it("it sets enteredSearchQuery to an empty string", () => {
+        expect(newState.stockData.enteredSearchQuery).toBe("ECOR");
+      });
+    });
+
+    describe("and UPDATE_COMPANY_SYMBOLS is called", () => {
+      beforeEach(() => {
+        newState = combinedReducer(previousState, UPDATE_COMPANY_SYMBOLS);
+      });
+      it("it sets selectedCompanySymbolto an empty string", () => {
+        expect(newState.stockData.selectedCompanySymbols).toEqual([]);
+      });
+    });
+
+    describe("and UPDATE_COMPANY_SYMBOLS is called", () => {
+      beforeEach(() => {
+        newState = combinedReducer(previousState, {
+          type: UPDATE_COMPANY_SYMBOLS,
+          payload: ["AAPL", "AA"]
+        });
+      });
+      it("it sets selectedCompanySymbolto an empty string", () => {
+        expect(newState.stockData.selectedCompanySymbols).toEqual([
+          "AAPL",
+          "AA"
+        ]);
+      });
+    });
   });
 
   describe("on entering data", () => {
     beforeEach(() => {
       previousState = {
-        selectedStock: "", //Stock returned
         selectedChartRange: "5y", //Chart range
-        selectedSearch: "", //Stock entered
-        enteredSearchQuery: "", //Stock entered
-        selectedCompanySymbols: [], //All symbols from server
         selectedKeyStats: "", //Key stats table
         selectedLatestNews: null, //News
         selectedCompanyOverview: null, //Company information
@@ -62,18 +134,6 @@ describe("Stock reducer", () => {
         selectedChartData: null,
         selectedStockTicker: ""
       };
-    });
-
-    describe('and stock "AAPL" name is entered', () => {
-      beforeEach(() => {
-        newState = combinedReducer(previousState, {
-          type: UPDATE_SELECTED_STOCK,
-          payload: "AAPL"
-        });
-      });
-      it('it sets selectedStock to "AAPL"', () => {
-        expect(newState.stockData.selectedStock).toBe("AAPL");
-      });
     });
 
     describe('and chart range "1y" is entered', () => {
