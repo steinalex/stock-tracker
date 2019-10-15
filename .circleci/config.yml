@@ -1,0 +1,19 @@
+version: 2
+jobs:
+  build:
+    parallelism: 2
+    docker:
+      - image: circleci/node:10.16.3
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      - run: npm ci
+
+      - run:
+          name: Run Jest
+          command: |
+            # TESTFILES=$(circleci tests glob "test/**/*.test.js" | circleci tests split --split-by=timings)
+            # npm test $TESTFILES
+            npm run test

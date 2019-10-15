@@ -7,7 +7,6 @@ import {
   UPDATE_TOP_PEERS,
   UPDATE_SEARCH,
   UPDATE_COMPANY_SYMBOLS,
-  UPDATE_QUOTES,
   UPDATE_STOCK_TICKER,
   UPDATE_CHART_DATA,
   UPDATE_SEARCH_QUERY,
@@ -95,12 +94,6 @@ const reducer = (state = initialState, { type, payload }) => {
         ...state,
         selectedCompanySymbols: payload
       };
-    case UPDATE_QUOTES:
-      return {
-        ...state,
-        selectedQuotes: payload
-      };
-
     case UPDATE_SEARCH_QUERY:
       return {
         ...state,
