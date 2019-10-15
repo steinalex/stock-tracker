@@ -1,16 +1,19 @@
 import React from "react";
 import { Loading } from "./Loading";
+import { ErrorMessage } from "./ErrorMessage";
 
 const Peers = ({ peers }) => {
   const renderPeersComponent = () => (
     <ul className="peers__list">
-      {peers.length !== 0
-        ? peers.map(items => (
-            <li key={items} className="peers__list---item">
-              {items}
-            </li>
-          ))
-        : "Peers N/A"}
+      {peers.length !== 0 ? (
+        peers.map(items => (
+          <li key={items} className="peers__list---item">
+            {items}
+          </li>
+        ))
+      ) : (
+        <ErrorMessage message="Peers N/A" />
+      )}
     </ul>
   );
 

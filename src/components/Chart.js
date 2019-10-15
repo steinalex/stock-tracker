@@ -13,6 +13,7 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import { updateChartAction } from "../store/actions";
 import { Loading } from "./Loading";
+import { ErrorMessage } from "./ErrorMessage";
 
 const tenors = [
   { value: "1d", label: "1D" },
@@ -39,22 +40,24 @@ const Chart = () => {
   const renderChartComponent = () => (
     <>
       <div className="chart__wrapper">
-        {selectedChartData.length !== 0
-          ? tenors.map(({ value, label }) => {
-              const activeClass = active === value ? "--active" : "";
+        {selectedChartData.length !== 0 ? (
+          tenors.map(({ value, label }) => {
+            const activeClass = active === value ? "--active" : "";
 
-              return (
-                <button
-                  key={label}
-                  className={`chart__button chart__button${activeClass}`}
-                  onClick={onClickHandler}
-                  value={value}
-                >
-                  {label}
-                </button>
-              );
-            })
-          : "Chart data N/A"}
+            return (
+              <button
+                key={label}
+                className={`chart__button chart__button${activeClass}`}
+                onClick={onClickHandler}
+                value={value}
+              >
+                {label}
+              </button>
+            );
+          })
+        ) : (
+          <ErrorMessage message="Chart data N/A" />
+        )}
       </div>
       <ResponsiveContainer
         height="100%"
@@ -79,7 +82,7 @@ const Chart = () => {
           <ReferenceLine
             y={selectedStockTicker.latestPrice}
             label={{
-              value: `${selectedStockTicker.latestPrice}`,
+              value: String(selectedStockTicker.latestPrice),
               position: "right",
               fill: "orange"
             }}
