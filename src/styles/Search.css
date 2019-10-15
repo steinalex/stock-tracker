@@ -1,10 +1,15 @@
 /* Search bar */
+.search-bar {
+  position: relative;
+  display: inline-block;
+}
+
 .search-bar__input {
   width: 100%;
   background: none;
   border: none;
   font-size: 35px;
-  color: #fff;
+  color: #fff0;
   font-family: Lato-Light;
 }
 
@@ -36,4 +41,26 @@
 
 .search-bar__options li:hover {
   color: rgb(153, 171, 250);
+}
+
+.search-bar > label {
+  position: absolute;
+  left: 28px;
+  top: 1px;
+  opacity: 1;
+  font-size: 35px;
+  font-family: Lato-Light;
+}
+
+.search-bar > input[type="text"]:focus + label {
+  display: none;
+}
+
+.search-bar > input[type="text"]:focus {
+  color: #fff;
+}
+
+.company-symbol {
+  color: #beccdc;
+  opacity: 0.5;
 }
