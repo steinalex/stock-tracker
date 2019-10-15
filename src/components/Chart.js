@@ -83,9 +83,9 @@ const Chart = () => {
                 label={{
                   value: `${stockTickerLatestPrice.latestPrice}`,
                   position: "right",
-                  fill: "orange"
+                  fill: "#e95656"
                 }}
-                stroke="orange"
+                stroke="#e95656"
                 strokeDasharray="3 3"
               />
               <Area

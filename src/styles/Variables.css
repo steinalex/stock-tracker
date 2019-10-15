@@ -1,7 +1,8 @@
 :root {
-  --green-color: #2f9a2f;
-  --red-color: #ff4545;
-  --searchBar-tags: rgb(60, 106, 170);
-  --table-child-news-source: rgb(138, 149, 179);
-  --yellow-color: rgb(233, 209, 75);
+  --green-color: #91e4a5;
+  --red-color: #e95656;
+  --searchBar-tags: #415f8a;
+  --highlight1: #7fb3ff;
+  --table-child-news-source: #beccdc;
+  --yellow-color: #e0be86;
 }
