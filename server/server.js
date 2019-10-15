@@ -68,7 +68,7 @@ io.on("connection", socket => {
 
   socket.on("disconnect", () => {
     Object.values(timerIDs).forEach(clearInterval);
-    console.log("Client disconnected");
+    console.info("Client disconnected");
   });
 });
 
