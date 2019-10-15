@@ -29,15 +29,23 @@ describe("Stock reducer", () => {
   let previousState;
   let newState;
 
-  describe.only("on reducer call", () => {
-    beforeEach(() => {
+  describe("on reducer call", () => {
+    beforeAll(() => {
       previousState = {
         stockData: {
           selectedStock: "",
           selectedSearch: "",
-          selectedQuotes: "",
           enteredSearchQuery: "",
           selectedCompanySymbols: []
+        },
+        referenceData: {
+          selectedChartRange: "5y",
+          selectedKeyStats: "",
+          selectedLatestNews: null,
+          selectedCompanyOverview: null,
+          selectedTopPeers: null,
+          selectedChartData: null,
+          selectedStockTicker: ""
         }
       };
     });
@@ -51,36 +59,12 @@ describe("Stock reducer", () => {
       });
     });
 
-    describe("and UPDATE_SELECTED_STOCK is called", () => {
-      beforeEach(() => {
-        newState = combinedReducer(previousState, {
-          type: UPDATE_SELECTED_STOCK,
-          payload: "AAPL"
-        });
-      });
-      it('it sets selectedStock to be "AAPL"', () => {
-        expect(newState.stockData.selectedStock).toBe("AAPL");
-      });
-    });
-
     describe("and UPDATE_SEARCH is called", () => {
       beforeEach(() => {
         newState = combinedReducer(previousState, UPDATE_SEARCH);
       });
       it("it sets selectedSearch to an empty string", () => {
         expect(newState.stockData.selectedSearch).toBe("");
-      });
-    });
-
-    describe("and UPDATE_SEARCH is called", () => {
-      beforeEach(() => {
-        newState = combinedReducer(previousState, {
-          type: UPDATE_SEARCH,
-          payload: "AA"
-        });
-      });
-      it('it sets selectedSearch to be "AA"', () => {
-        expect(newState.stockData.selectedSearch).toBe("AA");
       });
     });
 
@@ -93,18 +77,6 @@ describe("Stock reducer", () => {
       });
     });
 
-    describe("and UPDATE_SEARCH_QUERY is called", () => {
-      beforeEach(() => {
-        newState = combinedReducer(previousState, {
-          type: UPDATE_SEARCH_QUERY,
-          payload: "ECOR"
-        });
-      });
-      it('it sets enteredSearchQuery to "ECOR"', () => {
-        expect(newState.stockData.enteredSearchQuery).toBe("ECOR");
-      });
-    });
-
     describe("and UPDATE_COMPANY_SYMBOLS is called", () => {
       beforeEach(() => {
         newState = combinedReducer(previousState, UPDATE_COMPANY_SYMBOLS);
@@ -114,66 +86,138 @@ describe("Stock reducer", () => {
       });
     });
 
-    describe("and UPDATE_COMPANY_SYMBOLS is called", () => {
+    describe("and UPDATE_KEY_STATS is called", () => {
       beforeEach(() => {
-        newState = combinedReducer(previousState, {
-          type: UPDATE_COMPANY_SYMBOLS,
-          payload: ["AAPL", "AA"]
-        });
+        newState = combinedReducer(previousState, UPDATE_KEY_STATS);
       });
-      it("it sets selectedCompanySymbols an array of two elements", () => {
-        expect(newState.stockData.selectedCompanySymbols).toEqual([
-          "AAPL",
-          "AA"
-        ]);
+      it("it sets selectedKeyStats to an empty string", () => {
+        expect(newState.referenceData.selectedKeyStats).toBe("");
+      });
+    });
+
+    describe("and UPDATE_LATEST_NEWS is called", () => {
+      beforeEach(() => {
+        newState = combinedReducer(previousState, UPDATE_LATEST_NEWS);
+      });
+      it("it sets selectedLatestNews to be null", () => {
+        expect(newState.referenceData.selectedLatestNews).toBe(null);
+      });
+    });
+
+    describe("and UPDATE_COMPANY_OVERVIEW is called", () => {
+      beforeEach(() => {
+        newState = combinedReducer(previousState, UPDATE_COMPANY_OVERVIEW);
+      });
+      it("it sets selectedCompanyOverview to null", () => {
+        expect(newState.referenceData.selectedCompanyOverview).toEqual(null);
+      });
+    });
+
+    describe("and UPDATE_TOP_PEERS is called", () => {
+      beforeEach(() => {
+        newState = combinedReducer(previousState, UPDATE_TOP_PEERS);
+      });
+      it("it sets selectedTopPeers to null", () => {
+        expect(newState.referenceData.selectedTopPeers).toEqual(null);
+      });
+    });
+
+    describe("and UPDATE_STOCK_TICKER is called", () => {
+      beforeEach(() => {
+        newState = combinedReducer(previousState, UPDATE_STOCK_TICKER);
+      });
+      it("it sets selectedStockTicker to an empty string", () => {
+        expect(newState.referenceData.selectedStockTicker).toEqual("");
+      });
+    });
+
+    describe("and UPDATE_CHART_DATA is called", () => {
+      beforeEach(() => {
+        newState = combinedReducer(previousState, UPDATE_CHART_DATA);
+      });
+      it("it sets selectedChartData to null", () => {
+        expect(newState.referenceData.selectedChartData).toEqual(null);
+      });
+    });
+
+    describe("and UPDATE_CHART_Range is called", () => {
+      beforeEach(() => {
+        newState = combinedReducer(previousState, UPDATE_CHART_RANGE);
+      });
+      it("it sets selectedChartRanfe to 5y", () => {
+        expect(newState.referenceData.selectedChartRange).toEqual("5y");
       });
     });
   });
 
   describe("and UPDATE_CHART_RANGE is called", () => {
-    let newState;
-
     beforeAll(() => {
-      const initialState = { referenceData: { selectedChartRange: "2y" } };
-      const action = { type: UPDATE_CHART_RANGE, payload: "5y" };
+      const initialState = { referenceData: { selectedChartRange: "5y" } };
+      const action = { type: UPDATE_CHART_RANGE, payload: "2y" };
       newState = combinedReducer(initialState, action);
     });
 
-    it('it sets selectedChartRange to "5y"', () => {
-      expect(newState.referenceData.selectedChartRange).toBe("5y");
+    it('it sets selectedChartRange to "2y"', () => {
+      expect(newState.referenceData.selectedChartRange).toBe("2y");
     });
   });
 
-  describe("and UPDATE_CHART_RANGE is called", () => {
-    let newState;
-
+  describe("and UPDATE_SELECTED_STOCK is called", () => {
     beforeEach(() => {
-      newState = combinedReducer(
-        {},
-        {
-          type: UPDATE_CHART_RANGE,
-          payload: "1y"
-        }
-      );
+      const initialState = { stockData: { selectedStock: "" } };
+      newState = combinedReducer(initialState, {
+        type: UPDATE_SELECTED_STOCK,
+        payload: "AAPL"
+      });
     });
+    it('it sets selectedStock to be "AAPL"', () => {
+      expect(newState.stockData.selectedStock).toBe("AAPL");
+    });
+  });
 
-    it('it sets selectedChartRange to be "1y"', () => {
-      expect(newState.referenceData.selectedChartRange).toBe("1y");
+  describe("and UPDATE_SEARCH is called", () => {
+    beforeEach(() => {
+      const initialState = { stockData: { selectedSearch: "" } };
+      newState = combinedReducer(initialState, {
+        type: UPDATE_SEARCH,
+        payload: "AA"
+      });
+    });
+    it('it sets selectedSearch to be "AA"', () => {
+      expect(newState.stockData.selectedSearch).toBe("AA");
+    });
+  });
+
+  describe("and UPDATE_SEARCH_QUERY is called", () => {
+    beforeEach(() => {
+      const initialState = { stockData: { enteredSearchQuery: "" } };
+      newState = combinedReducer(initialState, {
+        type: UPDATE_SEARCH_QUERY,
+        payload: "ECOR"
+      });
+    });
+    it('it sets enteredSearchQuery to "ECOR"', () => {
+      expect(newState.stockData.enteredSearchQuery).toBe("ECOR");
+    });
+  });
+
+  describe("and UPDATE_COMPANY_SYMBOLS is called", () => {
+    beforeEach(() => {
+      const initialState = { stockData: { selectedCompanySymbols: [] } };
+      newState = combinedReducer(initialState, {
+        type: UPDATE_COMPANY_SYMBOLS,
+        payload: ["AAPL", "AA"]
+      });
+    });
+    it("it sets selectedCompanySymbols an array of two elements(AAPL, AA)", () => {
+      expect(newState.stockData.selectedCompanySymbols).toEqual(["AAPL", "AA"]);
     });
   });
 
   describe("and UPDATE_KEY_STATS is called", () => {
     beforeEach(() => {
-      newState = combinedReducer(previousState, UPDATE_KEY_STATS);
-    });
-    it("it sets selectedKeyStats to an empty string", () => {
-      expect(newState.referenceData.selectedKeyStats).toBe("");
-    });
-  });
-
-  describe("and UPDATE_KEY_STATS is called", () => {
-    beforeEach(() => {
-      newState = combinedReducer(previousState, {
+      const initialState = { referenceData: { selectedKeyStats: "" } };
+      newState = combinedReducer(initialState, {
         type: UPDATE_KEY_STATS,
         payload: "STATS"
       });
@@ -185,16 +229,8 @@ describe("Stock reducer", () => {
 
   describe("and UPDATE_LATEST_NEWS is called", () => {
     beforeEach(() => {
-      newState = combinedReducer(previousState, UPDATE_LATEST_NEWS);
-    });
-    it("it sets selectedLatestNews to be null", () => {
-      expect(newState.referenceData.selectedLatestNews).toBe(null);
-    });
-  });
-
-  describe("and UPDATE_LATEST_NEWS is called", () => {
-    beforeEach(() => {
-      newState = combinedReducer(previousState, {
+      const initialState = { referenceData: { selectedLatestNews: "" } };
+      newState = combinedReducer(initialState, {
         type: UPDATE_LATEST_NEWS,
         payload: "NEWS"
       });
@@ -206,16 +242,8 @@ describe("Stock reducer", () => {
 
   describe("and UPDATE_COMPANY_OVERVIEW is called", () => {
     beforeEach(() => {
-      newState = combinedReducer(previousState, UPDATE_COMPANY_OVERVIEW);
-    });
-    it("it sets selectedCompanyOverview to null", () => {
-      expect(newState.referenceData.selectedCompanyOverview).toEqual(null);
-    });
-  });
-
-  describe("and UPDATE_COMPANY_OVERVIEW is called", () => {
-    beforeEach(() => {
-      newState = combinedReducer(previousState, {
+      const initialState = { referenceData: { selectedCompanyOverview: "" } };
+      newState = combinedReducer(initialState, {
         type: UPDATE_COMPANY_OVERVIEW,
         payload: "Apple Inc."
       });
@@ -229,16 +257,8 @@ describe("Stock reducer", () => {
 
   describe("and UPDATE_TOP_PEERS is called", () => {
     beforeEach(() => {
-      newState = combinedReducer(previousState, UPDATE_TOP_PEERS);
-    });
-    it("it sets selectedTopPeers to null", () => {
-      expect(newState.referenceData.selectedTopPeers).toEqual(null);
-    });
-  });
-
-  describe("and UPDATE_TOP_PEERS is called", () => {
-    beforeEach(() => {
-      newState = combinedReducer(previousState, {
+      const initialState = { referenceData: { selectedTopPeers: "" } };
+      newState = combinedReducer(initialState, {
         type: UPDATE_TOP_PEERS,
         payload: "Peers"
       });
@@ -250,16 +270,8 @@ describe("Stock reducer", () => {
 
   describe("and UPDATE_CHART_DATA is called", () => {
     beforeEach(() => {
-      newState = combinedReducer(previousState, UPDATE_CHART_DATA);
-    });
-    it("it sets selectedChartData to null", () => {
-      expect(newState.referenceData.selectedChartData).toEqual(null);
-    });
-  });
-
-  describe("and UPDATE_CHART_DATA is called", () => {
-    beforeEach(() => {
-      newState = combinedReducer(previousState, {
+      const initialState = { referenceData: { selectedChartData: "" } };
+      newState = combinedReducer(initialState, {
         type: UPDATE_CHART_DATA,
         payload: "Chart Data"
       });
@@ -271,21 +283,13 @@ describe("Stock reducer", () => {
 
   describe("and UPDATE_STOCK_TICKER is called", () => {
     beforeEach(() => {
-      newState = combinedReducer(previousState, UPDATE_STOCK_TICKER);
-    });
-    it("it sets selectedStockTicker to an empty string", () => {
-      expect(newState.referenceData.selectedStockTicker).toEqual("");
-    });
-  });
-
-  describe("and UPDATE_STOCK_TICKER is called", () => {
-    beforeEach(() => {
-      newState = combinedReducer(previousState, {
+      const initialState = { referenceData: { selectedStockTicker: "" } };
+      newState = combinedReducer(initialState, {
         type: UPDATE_STOCK_TICKER,
         payload: "Stock"
       });
     });
-    it('it sets selectedStockTicker to "Chart Data"', () => {
+    it('it sets selectedStockTicker to "Stock"', () => {
       expect(newState.referenceData.selectedStockTicker).toEqual("Stock");
     });
   });
