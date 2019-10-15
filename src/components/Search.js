@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateSearchQueryAction } from "../store/actions";
 const Search = ({ updateStock }) => {
   const dispatch = useDispatch();
-  const companyOverview = useSelector(state => state.selectedCompanyOverview);
   const filteredSymbols = useSelector(state => state.selectedCompanySymbols);
   const [isOpen, toggleIsOpen] = useState(false);
   const [stock, setStock] = useState("");
@@ -19,9 +18,10 @@ const Search = ({ updateStock }) => {
   };
 
   const onSubmit = ({ key, target: { value: symbol } }) => {
+    const symbolUpper = symbol.toUpperCase();
     if (key === "Enter") {
       const selectedDatum = filteredSymbols.find(
-        datum => datum.symbol === symbol
+        datum => datum.symbol === symbolUpper
       );
       if (selectedDatum) {
         selectOption({ symbol, name: selectedDatum.name });
@@ -31,7 +31,7 @@ const Search = ({ updateStock }) => {
 
   const selectOption = data => {
     setStock(data.name);
-    setSymbol(data.symbol);
+    setSymbol(data.symbol.toUpperCase());
     updateStock(data.symbol);
     toggleIsOpen(false);
     inputSelect.current.blur();
