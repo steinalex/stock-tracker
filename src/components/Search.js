@@ -88,9 +88,9 @@ const Search = ({ updateStock }) => {
           autoComplete="off"
         />
         {searchQuery && (
-          <label for="seach-input">
-            <span class="company-name">{stock}</span>
-            <span class="company-symbol">{symbol && ` (${symbol})`}</span>
+          <label htmlFor="seach-input">
+            <span className="company-name">{stock}</span>
+            <span className="company-symbol">{symbol && ` (${symbol})`}</span>
           </label>
         )}
       </div>
