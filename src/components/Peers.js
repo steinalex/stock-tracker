@@ -1,22 +1,26 @@
 import React from "react";
+import { Loading } from "./Loading";
+import { ErrorMessage } from "./ErrorMessage";
 
-const Peers = ({ stock }) => {
+const Peers = ({ peers }) => {
+  const renderPeersComponent = () => (
+    <ul className="peers__list">
+      {peers.length !== 0 ? (
+        peers.map(items => (
+          <li key={items} className="peers__list---item">
+            {items}
+          </li>
+        ))
+      ) : (
+        <ErrorMessage message="Peers N/A" />
+      )}
+    </ul>
+  );
+
   return (
     <div className="peers">
       <h1 className="title">Top Peers</h1>
-      {stock === null ? (
-        <div className="loading-spinner"></div>
-      ) : stock.length === 0 ? (
-        <div> N/A </div>
-      ) : (
-        <ul className="peers__list">
-          {stock.map(peers => (
-            <li key={peers} className="peers__list---item">
-              {peers}
-            </li>
-          ))}
-        </ul>
-      )}
+      <Loading loaded={peers !== null} render={renderPeersComponent} />
     </div>
   );
 };

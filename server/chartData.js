@@ -4,7 +4,6 @@ const chartData = async (socket, stockName, timeRange, HOST, TOKEN) => {
     const chart = await axios.get(
       `${HOST}/stock/${stockName}/chart/${timeRange}?token=${TOKEN}`
     );
-    // console.log(timeRange);
     const time = () => {
       if (timeRange === "1d")
         return chart.data.map(data => ({

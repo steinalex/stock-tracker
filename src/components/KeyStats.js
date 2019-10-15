@@ -1,10 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { Loading } from "./Loading";
 
 const NUMBER_FORMATTER = new Intl.NumberFormat();
 
 const DEFAULT_FORMATTER = (data, key) =>
-  data[key] != undefined ? data[key] : "N/A";
+  data[key] != null ? data[key] : "N/A";
+
 const schema = [
   {
     key: "previousClose",
@@ -56,29 +58,34 @@ const schema = [
 ];
 
 const KeyStats = () => {
-  const state = useSelector(state => state);
-  const keyStats = state.selectedKeyStats;
-  const tableData = schema.map(
-    ({ key, label, formatter = DEFAULT_FORMATTER }) => (
-      <tr>
-        <td>{label}</td>
-        <td>{formatter(keyStats, key)}</td>
-      </tr>
-    )
-  );
+  const keyStats = useSelector(state => state.selectedKeyStats);
+
+  const renderKeystatsComponent = React.useCallback(() => {
+    const tableData = schema.map(
+      ({ key, label, formatter = DEFAULT_FORMATTER }) => (
+        <tr key={key}>
+          <td>{label}</td>
+          <td>{formatter(keyStats, key)}</td>
+        </tr>
+      )
+    );
+
+    return (
+      <div className="key-stats__wrapper">
+        <table className="key-stats__table">
+          <tbody>{tableData}</tbody>
+        </table>
+      </div>
+    );
+  }, [keyStats]);
 
   return (
     <div className="key-stats">
       <h1 className="title">Key Stats</h1>
-      {keyStats.length === 0 ? (
-        <div className="loading-spinner"></div>
-      ) : (
-        <div className="key-stats__wrapper">
-          <table className="key-stats__table">
-            <tbody>{tableData}</tbody>
-          </table>
-        </div>
-      )}
+      <Loading
+        loaded={keyStats.length !== 0}
+        render={renderKeystatsComponent}
+      />
     </div>
   );
 };
