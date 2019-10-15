@@ -4,26 +4,28 @@ import { useSelector } from "react-redux";
 import { Loading } from "./Loading";
 
 export const Company = () => {
-  const companyOverview = useSelector(state => state.selectedCompanyOverview);
+  const { selectedCompanyOverview, selectedTopPeers } = useSelector(
+    state => state.referenceData
+  );
 
   const renderCompanyComponent = () => (
     <>
       <div className="company-overview__title">
-        {companyOverview.companyName || "N/A"} (
-        {companyOverview.symbol || "N/A"})
+        {selectedCompanyOverview.companyName || "N/A"} (
+        {selectedCompanyOverview.symbol || "N/A"})
       </div>
       <div>
         <a
           target="_blank"
           rel="noopener noreferrer"
           className="company-overview__website"
-          href={`${companyOverview.website}`}
+          href={`${selectedCompanyOverview.website}`}
         >
-          {companyOverview.website || "N/A"}
+          {selectedCompanyOverview.website || "N/A"}
         </a>
       </div>
       <div className="company-overview__text">
-        <p>{companyOverview.description || "N/A"}</p>
+        <p>{selectedCompanyOverview.description || "N/A"}</p>
       </div>
     </>
   );
@@ -32,10 +34,10 @@ export const Company = () => {
     <div className="company-overview">
       <h1 className="title">Company Overview</h1>
       <Loading
-        loaded={companyOverview !== null}
+        loaded={selectedCompanyOverview !== null}
         render={renderCompanyComponent}
       />
-      <Peers peers={useSelector(state => state.selectedTopPeers)} />
+      <Peers peers={selectedTopPeers} />
     </div>
   );
 };

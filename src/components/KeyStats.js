@@ -58,7 +58,7 @@ const schema = [
 ];
 
 const KeyStats = () => {
-  const keyStats = useSelector(state => state.selectedKeyStats);
+  const keyStats = useSelector(state => state.referenceData.selectedKeyStats);
 
   const renderKeystatsComponent = React.useCallback(() => {
     const tableData = schema.map(

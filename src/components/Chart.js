@@ -29,7 +29,7 @@ const Chart = () => {
   // const chartData = stock.map(data => ({close:data.close, date:moment(data.close).format('lll') }))
   const dispatch = useDispatch();
   const { selectedChartData, selectedStockTicker } = useSelector(
-    state => state
+    state => state.referenceData
   );
   const updateChartRange = stock => dispatch(updateChartAction(stock));
   const onClickHandler = event => {
