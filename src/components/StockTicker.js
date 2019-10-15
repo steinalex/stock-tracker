@@ -6,6 +6,7 @@ export const StockTicker = ({ stock }) => {
   const changePercent = parseFloat(
     Math.round(stock.changePercent * 100 * 100) / 100
   ).toFixed(2);
+
   return (
     <div className="quotes">
       <p className="quotes__stock-price">

@@ -9,7 +9,8 @@ export const Company = () => {
   const renderCompanyComponent = () => (
     <>
       <div className="company-overview__title">
-        {companyOverview.companyName} ({companyOverview.symbol})
+        {companyOverview.companyName || "N/A"} (
+        {companyOverview.symbol || "N/A"})
       </div>
       <div>
         <a
@@ -18,14 +19,15 @@ export const Company = () => {
           className="company-overview__website"
           href={`${companyOverview.website}`}
         >
-          {companyOverview.website}
-        </a>{" "}
+          {companyOverview.website || "N/A"}
+        </a>
       </div>
       <div className="company-overview__text">
-        <p>{companyOverview.description}</p>
+        <p>{companyOverview.description || "N/A"}</p>
       </div>
     </>
   );
+
   return (
     <div className="company-overview">
       <h1 className="title">Company Overview</h1>
