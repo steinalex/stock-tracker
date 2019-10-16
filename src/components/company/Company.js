@@ -1,7 +1,8 @@
 import React from "react";
-import Peers from "./Peers";
+import { Peers } from "../peers";
 import { useSelector } from "react-redux";
-import { Loading } from "./Loading";
+import { Loading } from "../loading";
+import "./Company.css";
 
 export const Company = () => {
   const { selectedCompanyOverview, selectedTopPeers } = useSelector(
