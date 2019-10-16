@@ -18,7 +18,9 @@ import {
 
 const io = require("socket.io-client");
 
-const HOST = "http://localhost";
+console.log(window.location);
+
+const HOST = window.location.hostname;
 const PORT = 4000;
 const SERVER = `${HOST}:${PORT}`;
 
