@@ -1,6 +1,3 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App";
 import { combinedReducer } from "./store/reducer";
 import {
   UPDATE_SELECTED_STOCK,
@@ -15,15 +12,6 @@ import {
   UPDATE_CHART_DATA,
   UPDATE_STOCK_TICKER
 } from "./store/constants";
-
-// import { store } from "./store/store";
-// import { Provider } from "react-redux";
-
-// it("renders without crashing", () => {
-//   const div = document.createElement("div");
-//   ReactDOM.render(<Provider store={store}><App /></Provider>, div);
-//   ReactDOM.unmountComponentAtNode(div);
-// });
 
 describe("Stock reducer", () => {
   let previousState;
@@ -60,6 +48,9 @@ describe("Stock reducer", () => {
     });
 
     describe("and UPDATE_SEARCH is called", () => {
+      let previousState;
+      let newState;
+
       beforeAll(() => {
         newState = combinedReducer(previousState, UPDATE_SEARCH);
       });
@@ -164,10 +155,8 @@ describe("Stock reducer", () => {
     describe("and UPDATE_SELECTED_STOCK is called", () => {
       beforeAll(() => {
         const initialState = { stockData: { selectedStock: "" } };
-        newState = combinedReducer(initialState, {
-          type: UPDATE_SELECTED_STOCK,
-          payload: "AAPL"
-        });
+        const action = { type: UPDATE_SELECTED_STOCK, payload: "AAPL" };
+        newState = combinedReducer(initialState, action);
       });
       it('it checks if stock can be updated to "AAPL"', () => {
         expect(newState.stockData.selectedStock).toBe("AAPL");
@@ -177,10 +166,8 @@ describe("Stock reducer", () => {
     describe("and UPDATE_SEARCH is called", () => {
       beforeAll(() => {
         const initialState = { stockData: { selectedSearch: "" } };
-        newState = combinedReducer(initialState, {
-          type: UPDATE_SEARCH,
-          payload: "AA"
-        });
+        const action = { type: UPDATE_SEARCH, payload: "AA" };
+        newState = combinedReducer(initialState, action);
       });
       it('it checks if entered search can be set to "AA"', () => {
         expect(newState.stockData.selectedSearch).toBe("AA");
@@ -190,10 +177,8 @@ describe("Stock reducer", () => {
     describe("and UPDATE_SEARCH_QUERY is called", () => {
       beforeAll(() => {
         const initialState = { stockData: { enteredSearchQuery: "" } };
-        newState = combinedReducer(initialState, {
-          type: UPDATE_SEARCH_QUERY,
-          payload: "ECOR"
-        });
+        const action = { type: UPDATE_SEARCH_QUERY, payload: "ECOR" };
+        newState = combinedReducer(initialState, action);
       });
       it('it checks if the search query can be updated to "ECOR"', () => {
         expect(newState.stockData.enteredSearchQuery).toBe("ECOR");
@@ -203,10 +188,11 @@ describe("Stock reducer", () => {
     describe("and UPDATE_COMPANY_SYMBOLS is called", () => {
       beforeAll(() => {
         const initialState = { stockData: { selectedCompanySymbols: [] } };
-        newState = combinedReducer(initialState, {
+        const action = {
           type: UPDATE_COMPANY_SYMBOLS,
           payload: ["AAPL", "AA"]
-        });
+        };
+        newState = combinedReducer(initialState, action);
       });
       it('it checks if the company symbol array is filled with two elements "(AAPL, AA)"', () => {
         expect(newState.stockData.selectedCompanySymbols).toEqual([
@@ -219,10 +205,8 @@ describe("Stock reducer", () => {
     describe("and UPDATE_KEY_STATS is called", () => {
       beforeAll(() => {
         const initialState = { referenceData: { selectedKeyStats: "" } };
-        newState = combinedReducer(initialState, {
-          type: UPDATE_KEY_STATS,
-          payload: "STATS"
-        });
+        const action = { type: UPDATE_KEY_STATS, payload: "STATS" };
+        newState = combinedReducer(initialState, action);
       });
       it('it checks if the key statistics data is updated to "STATS"', () => {
         expect(newState.referenceData.selectedKeyStats).toBe("STATS");
@@ -232,10 +216,8 @@ describe("Stock reducer", () => {
     describe("and UPDATE_LATEST_NEWS is called", () => {
       beforeAll(() => {
         const initialState = { referenceData: { selectedLatestNews: "" } };
-        newState = combinedReducer(initialState, {
-          type: UPDATE_LATEST_NEWS,
-          payload: "NEWS"
-        });
+        const action = { type: UPDATE_LATEST_NEWS, payload: "NEWS" };
+        newState = combinedReducer(initialState, action);
       });
       it('it checks if latest news data can be updated to "NEWS"', () => {
         expect(newState.referenceData.selectedLatestNews).toBe("NEWS");
@@ -245,10 +227,8 @@ describe("Stock reducer", () => {
     describe("and UPDATE_COMPANY_OVERVIEW is called", () => {
       beforeAll(() => {
         const initialState = { referenceData: { selectedCompanyOverview: "" } };
-        newState = combinedReducer(initialState, {
-          type: UPDATE_COMPANY_OVERVIEW,
-          payload: "Apple Inc."
-        });
+        const action = { type: UPDATE_COMPANY_OVERVIEW, payload: "Apple Inc." };
+        newState = combinedReducer(initialState, action);
       });
       it('it checks if company overview can be updated to "Apple Inc."', () => {
         expect(newState.referenceData.selectedCompanyOverview).toEqual(
@@ -260,10 +240,8 @@ describe("Stock reducer", () => {
     describe("and UPDATE_TOP_PEERS is called", () => {
       beforeAll(() => {
         const initialState = { referenceData: { selectedTopPeers: "" } };
-        newState = combinedReducer(initialState, {
-          type: UPDATE_TOP_PEERS,
-          payload: "Peers"
-        });
+        const action = { type: UPDATE_TOP_PEERS, payload: "Peers" };
+        newState = combinedReducer(initialState, action);
       });
       it('it checks if top peers data can be updated to "Peers"', () => {
         expect(newState.referenceData.selectedTopPeers).toEqual("Peers");
@@ -273,10 +251,8 @@ describe("Stock reducer", () => {
     describe("and UPDATE_CHART_DATA is called", () => {
       beforeAll(() => {
         const initialState = { referenceData: { selectedChartData: "" } };
-        newState = combinedReducer(initialState, {
-          type: UPDATE_CHART_DATA,
-          payload: "Chart Data"
-        });
+        const action = { type: UPDATE_CHART_DATA, payload: "Chart Data" };
+        newState = combinedReducer(initialState, action);
       });
       it('it check if the chart data can be update to "Chart Data"', () => {
         expect(newState.referenceData.selectedChartData).toEqual("Chart Data");
@@ -286,10 +262,8 @@ describe("Stock reducer", () => {
     describe("and UPDATE_STOCK_TICKER is called", () => {
       beforeAll(() => {
         const initialState = { referenceData: { selectedStockTicker: "" } };
-        newState = combinedReducer(initialState, {
-          type: UPDATE_STOCK_TICKER,
-          payload: "Stock"
-        });
+        const action = { type: UPDATE_STOCK_TICKER, payload: "Stock" };
+        newState = combinedReducer(initialState, action);
       });
       it('it checks if stock data can be update to "Stock"', () => {
         expect(newState.referenceData.selectedStockTicker).toEqual("Stock");
