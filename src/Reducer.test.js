@@ -76,7 +76,7 @@ describe('When the "Stock Reducer" is called', () => {
     });
   });
 
-  describe("and UPDATE_SEARCH is called", () => {
+  describe("with an UPDATE_SEARCH action", () => {
     let newState;
 
     beforeAll(() => {
@@ -94,7 +94,7 @@ describe('When the "Stock Reducer" is called', () => {
     });
   });
 
-  describe("and UPDATE_SEARCH_QUERY is called", () => {
+  describe("with an UPDATE_SEARCH_QUERY action", () => {
     let newState;
 
     beforeAll(() => {
@@ -112,7 +112,7 @@ describe('When the "Stock Reducer" is called', () => {
     });
   });
 
-  describe("and UPDATE_COMPANY_SYMBOLS is called", () => {
+  describe("with an UPDATE_COMPANY_SYMBOLS action", () => {
     let newState;
 
     beforeAll(() => {
@@ -133,7 +133,7 @@ describe('When the "Stock Reducer" is called', () => {
     });
   });
 
-  describe("and UPDATE_KEY_STATS is called", () => {
+  describe("with an UPDATE_KEY_STATS action", () => {
     let newState;
 
     beforeAll(() => {
@@ -151,7 +151,7 @@ describe('When the "Stock Reducer" is called', () => {
     });
   });
 
-  describe("and UPDATE_LATEST_NEWS is called", () => {
+  describe("with an UPDATE_LATEST_NEWS action", () => {
     let newState;
 
     beforeAll(() => {
@@ -169,7 +169,7 @@ describe('When the "Stock Reducer" is called', () => {
     });
   });
 
-  describe("and UPDATE_COMPANY_OVERVIEW is called", () => {
+  describe("with an UPDATE_COMPANY_OVERVIEW action", () => {
     let newState;
 
     beforeAll(() => {
@@ -189,7 +189,7 @@ describe('When the "Stock Reducer" is called', () => {
     });
   });
 
-  describe("and UPDATE_TOP_PEERS is called", () => {
+  describe("with an UPDATE_TOP_PEERS action", () => {
     let newState;
 
     beforeAll(() => {
@@ -207,7 +207,7 @@ describe('When the "Stock Reducer" is called', () => {
     });
   });
 
-  describe("and UPDATE_CHART_DATA is called", () => {
+  describe("with an UPDATE_CHART_DATA action", () => {
     let newState;
 
     beforeAll(() => {
@@ -225,7 +225,7 @@ describe('When the "Stock Reducer" is called', () => {
     });
   });
 
-  describe("and UPDATE_STOCK_TICKER is called", () => {
+  describe("with an UPDATE_STOCK_TICKER action", () => {
     let newState;
 
     beforeAll(() => {
