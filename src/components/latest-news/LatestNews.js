@@ -2,7 +2,7 @@ import React from "react";
 import moment from "moment";
 import { useSelector } from "react-redux";
 import { Loading } from "../loading";
-import { ErrorMessage } from "../errormessage";
+import { ErrorMessage } from "../error-message";
 import "./LatestNews.css";
 
 const timeFormat = date => moment(date).fromNow();

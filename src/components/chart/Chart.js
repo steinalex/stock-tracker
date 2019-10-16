@@ -13,7 +13,7 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import { updateChartAction } from "../../store/actions";
 import { Loading } from "../loading";
-import { ErrorMessage } from "../errormessage";
+import { ErrorMessage } from "../error-message";
 import "./Chart.css";
 
 const tenors = [

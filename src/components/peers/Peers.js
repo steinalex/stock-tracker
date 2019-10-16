@@ -1,6 +1,6 @@
 import React from "react";
 import { Loading } from "../loading";
-import { ErrorMessage } from "../errormessage";
+import { ErrorMessage } from "../error-message";
 import "./Peers.css";
 
 export const Peers = ({ peers }) => {
