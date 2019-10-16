@@ -11,9 +11,10 @@ import {
 } from "recharts";
 // import moment from 'moment';
 import { useSelector, useDispatch } from "react-redux";
-import { updateChartAction } from "../store/actions";
-import { Loading } from "./Loading";
-import { ErrorMessage } from "./ErrorMessage";
+import { updateChartAction } from "../../store/actions";
+import { Loading } from "../Loading";
+import { ErrorMessage } from "../ErrorMessage";
+import "./Chart.css";
 
 const tenors = [
   { value: "1d", label: "1D" },
@@ -111,4 +112,5 @@ const Chart = () => {
     </div>
   );
 };
+
 export default Chart;
