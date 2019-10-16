@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Headline } from "./components/Headline";
-import Chart from "./components/Chart";
+import Chart from "./components/chart";
 import LatestNews from "./components/LatestNews";
 import KeyStats from "./components/KeyStats";
 import { Company } from "./components/Company";

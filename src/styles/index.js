@@ -4,7 +4,6 @@ import "./Grid.css";
 import "./Search.css";
 import "./KeyStats.css";
 import "./Headline.css";
-import "./Chart.css";
 import "./Peers.css";
 import "./Company.css";
 import "./MarketStatus.css";

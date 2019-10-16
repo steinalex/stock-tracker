@@ -11,9 +11,10 @@ import {
 } from "recharts";
 // import moment from 'moment';
 import { useSelector, useDispatch } from "react-redux";
-import { updateChartAction } from "../store/actions";
-import { Loading } from "./Loading";
-import { ErrorMessage } from "./ErrorMessage";
+import { updateChartAction } from "../../store/actions";
+import { Loading } from "../Loading";
+import { ErrorMessage } from "../ErrorMessage";
+import "./Chart.css";
 
 const tenors = [
   { value: "1d", label: "1D" },
@@ -75,7 +76,7 @@ const Chart = () => {
               <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
             </linearGradient>
           </defs>
-          <CartesianGrid strokeDasharray="3 3" />
+          <CartesianGrid opacity="0.2" />
           <XAxis dataKey="date" valueFormatString="MMM" />
           <YAxis orientation="right" />
           <Tooltip />
@@ -92,7 +93,7 @@ const Chart = () => {
           <Area
             type="monotone"
             dataKey="close"
-            stroke="#8884d8"
+            stroke="#7fb3ff"
             fillOpacity={1}
             fill="url(#chartGradient)"
             connectNulls={true}
@@ -111,4 +112,5 @@ const Chart = () => {
     </div>
   );
 };
+
 export default Chart;
