@@ -6,6 +6,7 @@ import { LatestNews } from "./components/latestnews";
 import { KeyStats } from "./components/keystats";
 import { Company } from "./components/company";
 import { Footer } from "./components/footer";
+import "./App.css";
 
 const App = () => {
   const selectedStock = useSelector(state => state.stockData.selectedStock);
