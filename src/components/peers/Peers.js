@@ -1,8 +1,9 @@
 import React from "react";
-import { Loading } from "./Loading";
-import { ErrorMessage } from "./ErrorMessage";
+import { Loading } from "../loading";
+import { ErrorMessage } from "../error-message";
+import "./Peers.css";
 
-const Peers = ({ peers }) => {
+export const Peers = ({ peers }) => {
   const renderPeersComponent = () => (
     <ul className="peers__list">
       {peers.length !== 0 ? (
@@ -24,5 +25,3 @@ const Peers = ({ peers }) => {
     </div>
   );
 };
-
-export default Peers;

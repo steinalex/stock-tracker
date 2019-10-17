@@ -12,8 +12,8 @@ import {
 // import moment from 'moment';
 import { useSelector, useDispatch } from "react-redux";
 import { updateChartAction } from "../../store/actions";
-import { Loading } from "../Loading";
-import { ErrorMessage } from "../ErrorMessage";
+import { Loading } from "../loading";
+import { ErrorMessage } from "../error-message";
 import "./Chart.css";
 
 const tenors = [
@@ -25,7 +25,7 @@ const tenors = [
   { value: "max", label: "MAX" }
 ];
 
-const Chart = () => {
+export const Chart = () => {
   const [active, setActive] = useState("5y");
   // const chartData = stock.map(data => ({close:data.close, date:moment(data.close).format('lll') }))
   const dispatch = useDispatch();
@@ -112,5 +112,3 @@ const Chart = () => {
     </div>
   );
 };
-
-export default Chart;

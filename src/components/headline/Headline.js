@@ -1,10 +1,11 @@
 import React from "react";
-import logo from "../assets/images/adaptive-logo.png";
-import Search from "./Search";
+import logo from "./adaptive-logo.png";
+import { Search } from "../search";
 import { useDispatch, useSelector } from "react-redux";
-import { updateStockAction } from "../store/actions";
-import { StockTicker } from "./StockTicker";
-import { MarketStatus } from "./MarketStatus";
+import { updateStockAction } from "../../store/actions";
+import { StockTicker } from "../stock-ticker/StockTicker";
+import { MarketStatus } from "../market-status/MarketStatus";
+import "./Headline.css";
 
 export const Headline = () => {
   const { selectedStockTicker, selectedKeyStats } = useSelector(

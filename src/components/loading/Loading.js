@@ -1,4 +1,5 @@
 import React from "react";
+import "./Loading.css";
 
 export const Loading = ({ loaded, render }) => {
   if (!loaded) {

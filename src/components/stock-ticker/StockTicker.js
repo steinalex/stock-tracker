@@ -1,4 +1,5 @@
 import React from "react";
+import "./StockTicker.css";
 
 const getSign = value => (value > 0 ? "positive" : "negative");
 

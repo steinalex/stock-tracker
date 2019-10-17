@@ -1,12 +1,13 @@
 import React from "react";
 import moment from "moment";
 import { useSelector } from "react-redux";
-import { Loading } from "./Loading";
-import { ErrorMessage } from "./ErrorMessage";
+import { Loading } from "../loading";
+import { ErrorMessage } from "../error-message";
+import "./LatestNews.css";
 
 const timeFormat = date => moment(date).fromNow();
 
-const LatestNews = () => {
+export const LatestNews = () => {
   const latestNews = useSelector(
     state => state.referenceData.selectedLatestNews
   );
@@ -47,5 +48,3 @@ const LatestNews = () => {
     </div>
   );
 };
-
-export default LatestNews;

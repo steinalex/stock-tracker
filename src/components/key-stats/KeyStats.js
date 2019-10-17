@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Loading } from "./Loading";
+import { Loading } from "../loading";
+import "./KeyStats.css";
 
 const NUMBER_FORMATTER = new Intl.NumberFormat();
 
@@ -57,7 +58,7 @@ const schema = [
   }
 ];
 
-const KeyStats = () => {
+export const KeyStats = () => {
   const keyStats = useSelector(state => state.referenceData.selectedKeyStats);
 
   const renderKeystatsComponent = React.useCallback(() => {
@@ -89,5 +90,3 @@ const KeyStats = () => {
     </div>
   );
 };
-
-export default KeyStats;

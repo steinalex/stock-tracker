@@ -1,5 +1,6 @@
 import React from "react";
 import moment from "moment";
+import "./MarketStatus.css";
 
 const marketSign = value => (value === null ? "market---moon" : "market---sun");
 const formatDate = date => new Date(date);

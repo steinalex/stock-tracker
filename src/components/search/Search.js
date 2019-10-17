@@ -1,7 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateSearchQueryAction } from "../store/actions";
-const Search = ({ updateStock }) => {
+import { updateSearchQueryAction } from "../../store/actions";
+import "./Search.css";
+
+export const Search = ({ updateStock }) => {
   const dispatch = useDispatch();
   const filteredSymbols = useSelector(state => {
     // console.log(state)
@@ -105,5 +107,3 @@ const Search = ({ updateStock }) => {
     </>
   );
 };
-
-export default Search;
