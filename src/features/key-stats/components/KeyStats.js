@@ -54,7 +54,7 @@ const schema = [
   {
     key: "ytdChange",
     label: "Dividend & Yield",
-    formatter: (data, key) => (data[key] * 100).toPrecision(3)
+    formatter: (data, key) => (data[key] * 100).toPrecision(3) + "%"
   }
 ];
 
