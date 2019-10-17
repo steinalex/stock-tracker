@@ -1,8 +1,8 @@
 import React from "react";
 import moment from "moment";
 import { useSelector } from "react-redux";
-import { Loading } from "../loading";
-import { ErrorMessage } from "../error-message";
+import { Loading } from "../../loading/components/Loading";
+import { ErrorMessage } from "../../error-message/components";
 import "./LatestNews.css";
 
 const timeFormat = date => moment(date).fromNow();

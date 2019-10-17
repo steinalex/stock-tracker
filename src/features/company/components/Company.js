@@ -1,7 +1,7 @@
 import React from "react";
-import { Peers } from "../peers";
+import { Peers } from "../../peers/components";
 import { useSelector } from "react-redux";
-import { Loading } from "../loading";
+import { Loading } from "../../loading/components/Loading";
 import "./Company.css";
 
 export const Company = () => {

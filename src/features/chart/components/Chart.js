@@ -11,9 +11,9 @@ import {
 } from "recharts";
 // import moment from 'moment';
 import { useSelector, useDispatch } from "react-redux";
-import { updateChartAction } from "../../store/actions";
-import { Loading } from "../loading";
-import { ErrorMessage } from "../error-message";
+import { updateChartAction } from "../../../store/actions";
+import { Loading } from "../../loading/components/Loading";
+import { ErrorMessage } from "../../error-message/components";
 import "./Chart.css";
 
 const tenors = [

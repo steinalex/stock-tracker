@@ -1,10 +1,10 @@
 import React from "react";
 import logo from "./adaptive-logo.png";
-import { Search } from "../search";
+import { Search } from "../../search/components";
 import { useDispatch, useSelector } from "react-redux";
-import { updateStockAction } from "../../store/actions";
-import { StockTicker } from "../stock-ticker/StockTicker";
-import { MarketStatus } from "../market-status/MarketStatus";
+import { updateStockAction } from "../../../store/actions";
+import { StockTicker } from "../../stock-ticker/components/StockTicker";
+import { MarketStatus } from "../../market-status/components/MarketStatus";
 import "./Headline.css";
 
 export const Headline = () => {
