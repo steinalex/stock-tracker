@@ -1,18 +1,17 @@
 import {
   UPDATE_SELECTED_STOCK,
-  UPDATE_CHART_RANGE,
-  UPDATE_KEY_STATS,
-  UPDATE_LATEST_NEWS,
-  UPDATE_COMPANY_OVERVIEW,
-  UPDATE_TOP_PEERS,
   UPDATE_SEARCH,
   UPDATE_COMPANY_SYMBOLS,
-  UPDATE_STOCK_TICKER,
-  UPDATE_CHART_DATA,
   UPDATE_SEARCH_QUERY,
   RESET
 } from "./constants";
 import { combineReducers } from "redux";
+import { peerReducer } from "../features/peers/redux/reducer";
+import { companyOverviewReducer } from "../features/company/redux/reducer";
+import { latestNewsReducer } from "../features/latest-news/redux/reducer";
+import { keyStatsReducer } from "../features/key-stats/redux/reducer";
+import { stockTickerReducer } from "../features/stock-ticker/redux/reducer";
+import { chartReducer } from "../features/chart/redux/reducer";
 
 const initialState = {
   selectedStock: "",
@@ -20,58 +19,6 @@ const initialState = {
   selectedQuotes: "",
   enteredSearchQuery: "",
   selectedCompanySymbols: []
-};
-
-const componentInitialState = {
-  selectedChartRange: "5y",
-  selectedKeyStats: "",
-  selectedLatestNews: null,
-  selectedCompanyOverview: null,
-  selectedTopPeers: null,
-  selectedChartData: null,
-  selectedStockTicker: ""
-};
-
-const componentReducer = (state = componentInitialState, { type, payload }) => {
-  switch (type) {
-    case UPDATE_CHART_RANGE:
-      return {
-        ...state,
-        selectedChartRange: payload
-      };
-    case UPDATE_KEY_STATS:
-      return {
-        ...state,
-        selectedKeyStats: payload
-      };
-    case UPDATE_LATEST_NEWS:
-      return {
-        ...state,
-        selectedLatestNews: payload
-      };
-    case UPDATE_COMPANY_OVERVIEW:
-      return {
-        ...state,
-        selectedCompanyOverview: payload
-      };
-    case UPDATE_TOP_PEERS:
-      return {
-        ...state,
-        selectedTopPeers: payload
-      };
-    case UPDATE_CHART_DATA:
-      return {
-        ...state,
-        selectedChartData: payload
-      };
-    case UPDATE_STOCK_TICKER:
-      return {
-        ...state,
-        selectedStockTicker: payload
-      };
-    default:
-      return state;
-  }
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -108,5 +55,10 @@ const reducer = (state = initialState, { type, payload }) => {
 
 export const combinedReducer = combineReducers({
   stockData: reducer,
-  referenceData: componentReducer
+  peerData: peerReducer,
+  companyOverviewData: companyOverviewReducer,
+  latestNewsData: latestNewsReducer,
+  keyStatsData: keyStatsReducer,
+  stockTickerData: stockTickerReducer,
+  chartData: chartReducer
 });

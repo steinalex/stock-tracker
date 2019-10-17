@@ -59,14 +59,14 @@ const schema = [
 ];
 
 export const KeyStats = () => {
-  const keyStats = useSelector(state => state.referenceData.selectedKeyStats);
+  const { selectedKeyStats } = useSelector(state => state.keyStatsData);
 
   const renderKeystatsComponent = React.useCallback(() => {
     const tableData = schema.map(
       ({ key, label, formatter = DEFAULT_FORMATTER }) => (
         <tr key={key}>
           <td>{label}</td>
-          <td>{formatter(keyStats, key)}</td>
+          <td>{formatter(selectedKeyStats, key)}</td>
         </tr>
       )
     );
@@ -78,13 +78,13 @@ export const KeyStats = () => {
         </table>
       </div>
     );
-  }, [keyStats]);
+  }, [selectedKeyStats]);
 
   return (
     <div className="key-stats">
       <h1 className="title">Key Stats</h1>
       <Loading
-        loaded={keyStats.length !== 0}
+        loaded={selectedKeyStats.length !== 0}
         render={renderKeystatsComponent}
       />
     </div>

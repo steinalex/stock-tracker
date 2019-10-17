@@ -8,9 +8,8 @@ import { MarketStatus } from "../../market-status/components/MarketStatus";
 import "./Headline.css";
 
 export const Headline = () => {
-  const { selectedStockTicker, selectedKeyStats } = useSelector(
-    state => state.referenceData
-  );
+  const { selectedStockTicker } = useSelector(state => state.stockTickerData);
+  const { selectedKeyStats } = useSelector(state => state.keyStatsData);
   const {
     selectedSearch,
     enteredSearchQuery,
