@@ -76,8 +76,12 @@ export const Chart = () => {
             </linearGradient>
           </defs>
           <CartesianGrid opacity="0.2" />
-          <XAxis dataKey="date" interval="preserveStart" />
-          <YAxis orientation="right" />
+          <XAxis
+            dataKey="date"
+            interval="preserveStart"
+            tick={{ fill: "#ffffff" }}
+          />
+          <YAxis orientation="right" tick={{ fill: "#ffffff" }} />
           <Tooltip />
           <ReferenceLine
             y={selectedStockTicker.latestPrice}

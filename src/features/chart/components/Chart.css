@@ -31,3 +31,11 @@
 .chart__button--inactive {
   color: #3f5bd7;
 }
+
+.recharts-text.recharts-cartesian-axis-tick-value {
+  font-family: Lato-Light;
+  font-size: 14px;
+}
+.recharts-text.recharts-label {
+  font-size: 14px;
+}
