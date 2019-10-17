@@ -76,7 +76,7 @@ export const Chart = () => {
             </linearGradient>
           </defs>
           <CartesianGrid opacity="0.2" />
-          <XAxis dataKey="date" valueFormatString="MMM" />
+          <XAxis dataKey="date" interval="preserveStart" />
           <YAxis orientation="right" />
           <Tooltip />
           <ReferenceLine
