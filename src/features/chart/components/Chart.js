@@ -61,13 +61,20 @@ export const Chart = () => {
       if (day === 1 || day === 14) {
         result.push({
           close: option.close,
-          date: formatDate(option.date)
+          date: formatDate(option.date),
+          axis: formatDate(option.date)
+        });
+      } else {
+        result.push({
+          close: option.close,
+          date: option.date,
+          axis: null
         });
       }
       return result;
     }, []);
 
-    console.log(reduceChartData);
+    // console.log(reduceChartData);
     return reduceChartData;
   };
 
