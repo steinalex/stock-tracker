@@ -21,6 +21,9 @@
 /* Media Queries */
 
 @media only screen and (max-width: 1200px) {
+  .market__text {
+    display: none;
+  }
   .headline-list {
     display: none;
   }
