@@ -9,7 +9,8 @@ import {
   ResponsiveContainer,
   ReferenceLine
 } from "recharts";
-// import moment from 'moment';
+import moment from "moment";
+
 import { useSelector, useDispatch } from "react-redux";
 import { updateChartAction } from "../../store/actions";
 import { Loading } from "../loading";
@@ -27,7 +28,6 @@ const tenors = [
 
 export const Chart = () => {
   const [active, setActive] = useState("5y");
-  // const chartData = stock.map(data => ({close:data.close, date:moment(data.close).format('lll') }))
   const dispatch = useDispatch();
   const { selectedChartData, selectedStockTicker } = useSelector(
     state => state.referenceData
@@ -36,6 +36,40 @@ export const Chart = () => {
   const onClickHandler = event => {
     updateChartRange(event.target.value);
     setActive(event.target.value);
+  };
+
+  const formatChartData = () => {
+    const getDay = data => {
+      const tempDate = new Date(data);
+      const day = tempDate.getDate();
+      return day;
+    };
+
+    const formatDate = data => {
+      const tempDate = new Date(data);
+      const day = tempDate.getDate();
+      if (day === 1) {
+        return Intl.DateTimeFormat("en-US", { month: "short" }).format(
+          tempDate
+        );
+      } else {
+        return day;
+      }
+    };
+
+    const reduceChartData = selectedChartData.reduce((result, option) => {
+      const day = getDay(option.date);
+      if (day === 1 || day === 14) {
+        result.push({
+          close: option.close,
+          date: formatDate(option.date)
+        });
+      }
+      return result;
+    }, []);
+
+    console.log(reduceChartData);
+    return reduceChartData;
   };
 
   const renderChartComponent = () => (
@@ -67,7 +101,7 @@ export const Chart = () => {
         maxHeight="400px"
       >
         <AreaChart
-          data={selectedChartData}
+          data={formatChartData()}
           margin={{ top: 10, right: 0, left: 0, bottom: 0 }}
         >
           <defs>
@@ -77,8 +111,8 @@ export const Chart = () => {
             </linearGradient>
           </defs>
           <CartesianGrid opacity="0.2" />
-          <XAxis dataKey="date" valueFormatString="MMM" />
-          <YAxis orientation="right" />
+          <XAxis dataKey="date" tick={{ fill: "#ffffff" }} />
+          <YAxis orientation="right" tick={{ fill: "#ffffff" }} />
           <Tooltip />
           <ReferenceLine
             y={selectedStockTicker.latestPrice}
