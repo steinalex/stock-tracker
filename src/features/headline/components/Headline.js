@@ -2,7 +2,7 @@ import React from "react";
 import logo from "./adaptive-logo.png";
 import { Search } from "../../search/components";
 import { useDispatch, useSelector } from "react-redux";
-import { updateStockAction } from "../../../store/actions";
+import { updateStockAction } from "../../../App-actions";
 import { StockTicker } from "../../stock-ticker/components/StockTicker";
 import { MarketStatus } from "../../market-status/components/MarketStatus";
 import "./Headline.css";
@@ -14,7 +14,7 @@ export const Headline = () => {
     selectedSearch,
     enteredSearchQuery,
     selectedCompanySymbols
-  } = useSelector(state => state.stockData);
+  } = useSelector(state => state.headlineData);
 
   const dispatch = useDispatch();
 

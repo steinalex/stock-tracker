@@ -6,15 +6,15 @@ import {
 } from "./constants";
 import {
   updateSearchAction,
-  updateCompanySymbolsAction,
-  resetAction
-} from "./actions";
+  updateCompanySymbolsAction
+} from "../features/headline/redux/actions";
 import { updateTopPeersAction } from "../features/peers/redux/actions";
 import { updateCompanyOverviewAction } from "../features/company/redux/actions";
 import { updateLatestNewsAction } from "../features/latest-news/redux/actions";
 import { updateKeyStatsAction } from "../features/key-stats/redux/actions";
 import { updateStockTickerAction } from "../features/stock-ticker/redux/actions";
 import { updateChartDataAction } from "../features/chart/redux/actions";
+import { resetAction } from "../App-actions";
 
 const io = require("socket.io-client");
 
