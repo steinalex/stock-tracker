@@ -109,17 +109,17 @@
   width: 7px;
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1550px) {
   .footer {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
-  }
-  .footer__items:first-child {
-    grid-column: 1;
-    grid-row: 1;
+    grid-template-columns: 2fr 1fr;
   }
   .footer__items:nth-child(2) {
-    grid-column: 1;
-    grid-row: 2;
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .footer {
+    display: none;
   }
 }
