@@ -7,13 +7,13 @@ import {
 import {
   updateSearchAction,
   updateCompanySymbolsAction
-} from "../features/headline/redux/actions";
-import { updateTopPeersAction } from "../features/peers/redux/actions";
-import { updateCompanyOverviewAction } from "../features/company/redux/actions";
-import { updateLatestNewsAction } from "../features/latest-news/redux/actions";
-import { updateKeyStatsAction } from "../features/key-stats/redux/actions";
-import { updateStockTickerAction } from "../features/stock-ticker/redux/actions";
-import { updateChartDataAction } from "../features/chart/redux/actions";
+} from "../features/headline";
+import { updateTopPeersAction } from "../features/peers";
+import { updateCompanyOverviewAction } from "../features/company";
+import { updateLatestNewsAction } from "../features/latest-news";
+import { updateKeyStatsAction } from "../features/key-stats";
+import { updateStockTickerAction } from "../features/stock-ticker";
+import { updateChartDataAction } from "../features/chart";
 import { resetAction } from "../App-actions";
 
 const io = require("socket.io-client");
