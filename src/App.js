@@ -5,7 +5,7 @@ import { Chart } from "./features/chart";
 import { LatestNews } from "./features/latest-news";
 import { KeyStats } from "./features/key-stats";
 import { Company } from "./features/company";
-import { Footer } from "./features/footer/components";
+import { Footer } from "./features/footer";
 import "./App.css";
 
 const App = () => {

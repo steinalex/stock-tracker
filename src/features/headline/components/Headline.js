@@ -3,7 +3,7 @@ import logo from "./adaptive-logo.png";
 import { Search } from "../../search";
 import { useDispatch, useSelector } from "react-redux";
 import { updateStockAction } from "../../../App-actions";
-import { StockTicker } from "../../stock-ticker/components/StockTicker";
+import { StockTicker } from "../../stock-ticker";
 import { MarketStatus } from "../../market-status";
 import "./Headline.css";
 
