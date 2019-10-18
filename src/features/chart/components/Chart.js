@@ -58,17 +58,17 @@ export const Chart = () => {
 
     const reduceChartData = selectedChartData.reduce((result, option) => {
       const day = getDay(option.date);
-      if (day === 1 || day === 14) {
-        result.push({
-          close: option.close,
-          date: formatDate(option.date),
-          axis: formatDate(option.date)
-        });
+      if (active === "5y" || active === "1y") {
+        if (day === 1 || day === 14) {
+          result.push({
+            close: option.close,
+            date: formatDate(option.date)
+          });
+        }
       } else {
         result.push({
           close: option.close,
-          date: option.date,
-          axis: null
+          date: formatDate(option.date)
         });
       }
       return result;
