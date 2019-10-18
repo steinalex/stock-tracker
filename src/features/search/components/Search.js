@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateSearchQueryAction } from "../../headline/redux/actions";
+import { updateSearchQueryAction } from "../../headline";
 import "./Search.css";
 
 export const Search = ({ updateStock }) => {

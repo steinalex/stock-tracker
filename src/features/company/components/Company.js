@@ -1,5 +1,5 @@
 import React from "react";
-import { Peers } from "../../peers/components";
+import { Peers } from "../../peers";
 import { useSelector } from "react-redux";
 import { Loading } from "../../loading";
 import "./Company.css";
