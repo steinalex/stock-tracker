@@ -65,13 +65,11 @@ export const Chart = () => {
           return isoDate;
       }
     };
-    const chartData = selectedChartData.reduce((result, option) => {
-      result.push({
-        close: option.close,
-        date: formatDate(option.date)
-      });
-      return result;
-    }, []);
+
+    const chartData = selectedChartData.map(data => ({
+      close: data.close,
+      date: formatDate(data.date)
+    }));
 
     return chartData;
   };
