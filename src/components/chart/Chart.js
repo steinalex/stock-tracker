@@ -59,17 +59,17 @@ export const Chart = () => {
 
     const reduceChartData = selectedChartData.reduce((result, option) => {
       const day = getDay(option.date);
-      if (day === 1 || day === 14) {
-        result.push({
-          close: option.close,
-          date: formatDate(option.date),
-          axis: formatDate(option.date)
-        });
+      if (active === "5y" || active === "1y") {
+        if (day === 1 || day === 14) {
+          result.push({
+            close: option.close,
+            date: formatDate(option.date)
+          });
+        }
       } else {
         result.push({
           close: option.close,
-          date: option.date,
-          axis: null
+          date: formatDate(option.date)
         });
       }
       return result;
@@ -118,11 +118,7 @@ export const Chart = () => {
             </linearGradient>
           </defs>
           <CartesianGrid opacity="0.2" />
-          <XAxis
-            tickCount={2}
-            ticks={[0, 1, 2, 3, 4, 5, 6, 8, 10, 12, 13, 14, 15, 16, 17, 18]}
-            tick={{ fill: "#ffffff" }}
-          />
+          <XAxis dataKey="date" tick={{ fill: "#ffffff" }} />
           <YAxis orientation="right" tick={{ fill: "#ffffff" }} />
           <Tooltip />
           <ReferenceLine
