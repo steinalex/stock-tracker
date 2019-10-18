@@ -9,7 +9,6 @@ import {
   ResponsiveContainer,
   ReferenceLine
 } from "recharts";
-import moment from "moment";
 
 import { useSelector, useDispatch } from "react-redux";
 import { updateChartAction } from "../redux/actions";
@@ -27,55 +26,54 @@ const tenors = [
 ];
 
 export const Chart = () => {
-  const [active, setActive] = useState("5y");
+  const [chartRange, setChartRange] = useState("5y");
   const dispatch = useDispatch();
   const { selectedChartData } = useSelector(state => state.chartData);
   const { selectedStockTicker } = useSelector(state => state.stockTickerData);
   const updateChartRange = stock => dispatch(updateChartAction(stock));
   const onClickHandler = event => {
     updateChartRange(event.target.value);
-    setActive(event.target.value);
+    setChartRange(event.target.value);
   };
 
   const formatChartData = () => {
-    const getDay = data => {
-      const tempDate = new Date(data);
-      const day = tempDate.getDate();
-      return day;
-    };
-
-    const formatDate = data => {
-      const tempDate = new Date(data);
-      const day = tempDate.getDate();
-      if (day === 1) {
-        return Intl.DateTimeFormat("en-US", { month: "short" }).format(
-          tempDate
-        );
-      } else {
-        return day;
+    const formatDate = isoDate => {
+      const date = new Date(isoDate);
+      switch (chartRange) {
+        case "max":
+          return Intl.DateTimeFormat("en-US", {
+            year: "2-digit",
+            month: "2-digit"
+          }).format(date);
+        case "5y":
+          return Intl.DateTimeFormat("en-US", {
+            year: "2-digit",
+            month: "2-digit"
+          }).format(date);
+        case "1y":
+          return Intl.DateTimeFormat("en-US", { month: "short" }).format(date);
+        case "1m":
+          return Intl.DateTimeFormat("en-US", {
+            year: "2-digit",
+            month: "2-digit"
+          }).format(date);
+        case "5d":
+          return Intl.DateTimeFormat("en-US", { weekday: "short" }).format(
+            date
+          );
+        default:
+          return isoDate;
       }
     };
-
-    const reduceChartData = selectedChartData.reduce((result, option) => {
-      const day = getDay(option.date);
-      if (active === "5y" || active === "1y") {
-        if (day === 1 || day === 14) {
-          result.push({
-            close: option.close,
-            date: formatDate(option.date)
-          });
-        }
-      } else {
-        result.push({
-          close: option.close,
-          date: formatDate(option.date)
-        });
-      }
+    const chartData = selectedChartData.reduce((result, option) => {
+      result.push({
+        close: option.close,
+        date: formatDate(option.date)
+      });
       return result;
     }, []);
 
-    // console.log(reduceChartData);
-    return reduceChartData;
+    return chartData;
   };
 
   const renderChartComponent = () => (
@@ -83,7 +81,7 @@ export const Chart = () => {
       <div className="chart__wrapper">
         {selectedChartData.length !== 0 ? (
           tenors.map(({ value, label }) => {
-            const activeClass = active === value ? "--active" : "";
+            const activeClass = chartRange === value ? "--active" : "";
 
             return (
               <button
