@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Loading } from "../loading";
+import { Loading } from "../../loading/components/Loading";
 import "./KeyStats.css";
 
 const NUMBER_FORMATTER = new Intl.NumberFormat();
@@ -54,19 +54,19 @@ const schema = [
   {
     key: "ytdChange",
     label: "Dividend & Yield",
-    formatter: (data, key) => (data[key] * 100).toPrecision(3)
+    formatter: (data, key) => (data[key] * 100).toPrecision(3) + "%"
   }
 ];
 
 export const KeyStats = () => {
-  const keyStats = useSelector(state => state.referenceData.selectedKeyStats);
+  const { selectedKeyStats } = useSelector(state => state.keyStatsData);
 
   const renderKeystatsComponent = React.useCallback(() => {
     const tableData = schema.map(
       ({ key, label, formatter = DEFAULT_FORMATTER }) => (
         <tr key={key}>
           <td>{label}</td>
-          <td>{formatter(keyStats, key)}</td>
+          <td>{formatter(selectedKeyStats, key)}</td>
         </tr>
       )
     );
@@ -78,13 +78,13 @@ export const KeyStats = () => {
         </table>
       </div>
     );
-  }, [keyStats]);
+  }, [selectedKeyStats]);
 
   return (
     <div className="key-stats">
       <h1 className="title">Key Stats</h1>
       <Loading
-        loaded={keyStats.length !== 0}
+        loaded={selectedKeyStats.length !== 0}
         render={renderKeystatsComponent}
       />
     </div>

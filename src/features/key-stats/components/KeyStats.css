@@ -1,6 +1,7 @@
 /* Key stats */
 .key-stats__wrapper {
   column-count: 2;
+  column-gap: 50px;
 }
 
 .key-stats__table {

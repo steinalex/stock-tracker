@@ -16,8 +16,8 @@ const sectorInformation = async (socket, stockName, HOST, TOKEN) => {
     const { sector } = company.data;
     const sectorInformation = {
       primaryExchange,
-      currency,
       sector,
+      currency,
       companyName,
       symbol
     };

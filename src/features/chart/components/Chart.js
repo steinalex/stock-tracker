@@ -11,9 +11,9 @@ import {
 } from "recharts";
 // import moment from 'moment';
 import { useSelector, useDispatch } from "react-redux";
-import { updateChartAction } from "../../store/actions";
-import { Loading } from "../loading";
-import { ErrorMessage } from "../error-message";
+import { updateChartAction } from "../redux/actions";
+import { Loading } from "../../loading/components/Loading";
+import { ErrorMessage } from "../../error-message/components";
 import "./Chart.css";
 
 const tenors = [
@@ -29,9 +29,8 @@ export const Chart = () => {
   const [active, setActive] = useState("5y");
   // const chartData = stock.map(data => ({close:data.close, date:moment(data.close).format('lll') }))
   const dispatch = useDispatch();
-  const { selectedChartData, selectedStockTicker } = useSelector(
-    state => state.referenceData
-  );
+  const { selectedChartData } = useSelector(state => state.chartData);
+  const { selectedStockTicker } = useSelector(state => state.stockTickerData);
   const updateChartRange = stock => dispatch(updateChartAction(stock));
   const onClickHandler = event => {
     updateChartRange(event.target.value);
@@ -77,8 +76,12 @@ export const Chart = () => {
             </linearGradient>
           </defs>
           <CartesianGrid opacity="0.2" />
-          <XAxis dataKey="date" valueFormatString="MMM" />
-          <YAxis orientation="right" />
+          <XAxis
+            dataKey="date"
+            interval="preserveStart"
+            tick={{ fill: "#ffffff" }}
+          />
+          <YAxis orientation="right" tick={{ fill: "#ffffff" }} />
           <Tooltip />
           <ReferenceLine
             y={selectedStockTicker.latestPrice}

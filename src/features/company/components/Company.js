@@ -1,13 +1,14 @@
 import React from "react";
-import { Peers } from "../peers";
+import { Peers } from "../../peers/components";
 import { useSelector } from "react-redux";
-import { Loading } from "../loading";
+import { Loading } from "../../loading/components/Loading";
 import "./Company.css";
 
 export const Company = () => {
-  const { selectedCompanyOverview, selectedTopPeers } = useSelector(
-    state => state.referenceData
+  const { selectedCompanyOverview } = useSelector(
+    state => state.companyOverviewData
   );
+  const { selectedTopPeers } = useSelector(state => state.peerData);
 
   const renderCompanyComponent = () => (
     <>

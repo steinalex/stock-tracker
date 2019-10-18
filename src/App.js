@@ -1,11 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Headline } from "./components/headline";
-import { Chart } from "./components/chart";
-import { LatestNews } from "./components/latest-news";
-import { KeyStats } from "./components/key-stats";
-import { Company } from "./components/company";
-import { Footer } from "./components/footer";
+import { Headline } from "./features/headline/components";
+import { Chart } from "./features/chart/components";
+import { LatestNews } from "./features/latest-news/components";
+import { KeyStats } from "./features/key-stats/components";
+import { Company } from "./features/company/components";
+import { Footer } from "./features/footer/components";
 import "./App.css";
 
 const App = () => {
