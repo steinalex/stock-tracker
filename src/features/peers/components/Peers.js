@@ -1,16 +1,27 @@
 import React from "react";
 import { Loading } from "../../loading";
 import { ErrorMessage } from "../../error-message";
+import { useDispatch } from "react-redux";
+import { updateStockAction } from "../../../App-actions";
 import "./Peers.css";
 
 export const Peers = ({ peers }) => {
+  const dispatch = useDispatch();
+  const onClickHandler = event => {
+    dispatch(updateStockAction(event.target.value));
+  };
   const renderPeersComponent = () => (
     <ul className="peers__list">
       {peers.length !== 0 ? (
         peers.map(items => (
-          <li key={items} className="peers__list---item">
+          <button
+            onClick={onClickHandler}
+            value={items}
+            key={items}
+            className="peers__list---item"
+          >
             {items}
-          </li>
+          </button>
         ))
       ) : (
         <ErrorMessage message="Peers N/A" />
