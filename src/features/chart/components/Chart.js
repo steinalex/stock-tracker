@@ -9,7 +9,7 @@ import {
   ResponsiveContainer,
   ReferenceLine
 } from "recharts";
-// import moment from 'moment';
+
 import { useSelector, useDispatch } from "react-redux";
 import { updateChartAction } from "../redux/actions";
 import { Loading } from "../../loading";
@@ -26,15 +26,57 @@ const tenors = [
 ];
 
 export const Chart = () => {
-  const [active, setActive] = useState("5y");
-  // const chartData = stock.map(data => ({close:data.close, date:moment(data.close).format('lll') }))
+  const [chartRange, setChartRange] = useState("5y");
   const dispatch = useDispatch();
   const { selectedChartData } = useSelector(state => state.chartData);
   const { selectedStockTicker } = useSelector(state => state.stockTickerData);
   const updateChartRange = stock => dispatch(updateChartAction(stock));
   const onClickHandler = event => {
     updateChartRange(event.target.value);
-    setActive(event.target.value);
+    setChartRange(event.target.value);
+  };
+
+  const formatChartData = () => {
+    const formatDate = isoDate => {
+      const date = new Date(isoDate);
+      switch (chartRange) {
+        case "max":
+          return Intl.DateTimeFormat("en-US", {
+            year: "2-digit",
+            month: "short"
+          }).format(date);
+        case "5y":
+          return Intl.DateTimeFormat("en-US", {
+            year: "2-digit",
+            month: "short"
+          }).format(date);
+        case "1y":
+          return Intl.DateTimeFormat("en-US", { month: "short" }).format(date);
+        case "1m":
+          return Intl.DateTimeFormat("en-US", {
+            year: "2-digit",
+            month: "short"
+          }).format(date);
+        case "5d":
+          return Intl.DateTimeFormat("en-US", { weekday: "short" }).format(
+            date
+          );
+        case "1d":
+          return Intl.DateTimeFormat("en-US", {
+            hour: "2-digit",
+            minute: "2-digit"
+          }).format(date);
+        default:
+          return isoDate;
+      }
+    };
+
+    const chartData = selectedChartData.map(data => ({
+      close: data.close,
+      date: formatDate(data.date)
+    }));
+
+    return chartData;
   };
 
   const renderChartComponent = () => (
@@ -42,7 +84,7 @@ export const Chart = () => {
       <div className="chart__wrapper">
         {selectedChartData.length !== 0 ? (
           tenors.map(({ value, label }) => {
-            const activeClass = active === value ? "--active" : "";
+            const activeClass = chartRange === value ? "--active" : "";
 
             return (
               <button
@@ -66,7 +108,7 @@ export const Chart = () => {
         maxHeight="400px"
       >
         <AreaChart
-          data={selectedChartData}
+          data={formatChartData()}
           margin={{ top: 10, right: 0, left: 0, bottom: 0 }}
         >
           <defs>
