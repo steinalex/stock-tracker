@@ -58,13 +58,21 @@ export const Search = ({ updateStock }) => {
     filteredSymbols.length > 0
       ? filteredSymbols.map(data => {
           return (
-            <li
+            <tr
               onClick={() => selectOption(data)}
               value={data.symbol}
               key={data.symbol}
             >
-              {`${data.name} (${data.symbol})`}
-            </li>
+              <td>
+                <span className="company-symbol__dropdown">{data.symbol}</span>
+              </td>
+              <td>
+                <span className="company-name__dropdown">{data.name}</span>
+                <span className="company-exchange__dropdown">
+                  {data.exchange}
+                </span>
+              </td>
+            </tr>
           );
         })
       : "No symbols found";
@@ -95,14 +103,14 @@ export const Search = ({ updateStock }) => {
           </label>
         )}
       </div>
-      <ul
+      <table
         ref={dropSelect}
         className="search-bar__options"
         style={{ display: isOpen ? "block" : "none" }}
         tabIndex={0}
       >
         {options}
-      </ul>
+      </table>
     </>
   );
 };
