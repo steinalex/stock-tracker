@@ -91,7 +91,7 @@ export const Search = ({ updateStock }) => {
     <>
       <div className="search-bar">
         <input
-          id="seach-input"
+          id="search-input"
           ref={inputSelect}
           type="text"
           placeholder="Search..."
@@ -103,7 +103,7 @@ export const Search = ({ updateStock }) => {
           autoComplete="off"
         />
         {searchQuery && (
-          <label htmlFor="seach-input">
+          <label htmlFor="search-input">
             <span className="company-name">{stock}</span>
             <span className="company-symbol">{symbol && ` (${symbol})`}</span>
           </label>

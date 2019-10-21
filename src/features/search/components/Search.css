@@ -8,7 +8,7 @@
   width: 100%;
   background: none;
   border: none;
-  font-size: 35px;
+  font-size: 40px;
   color: #fff0;
   font-family: Lato-Light;
 }
@@ -16,7 +16,7 @@
 .search-bar::before {
   content: "⚲";
   position: absolute;
-  top: 0px;
+  top: 2px;
   font-size: 38px;
   left: 0px;
   transform: rotate(-45deg);
@@ -54,7 +54,7 @@
   left: 28px;
   top: 1px;
   opacity: 1;
-  font-size: 35px;
+  font-size: 40px;
   font-family: Lato-Light;
 }
 
