@@ -55,27 +55,33 @@ export const Search = ({ updateStock }) => {
   };
 
   const options =
-    filteredSymbols.length > 0
-      ? filteredSymbols.map(data => {
-          return (
-            <tr
-              onClick={() => selectOption(data)}
-              value={data.symbol}
-              key={data.symbol}
-            >
-              <td>
-                <span className="company-symbol__dropdown">{data.symbol}</span>
-              </td>
-              <td>
-                <span className="company-name__dropdown">{data.name}</span>
-                <span className="company-exchange__dropdown">
-                  {data.exchange}
-                </span>
-              </td>
-            </tr>
-          );
-        })
-      : "No symbols found";
+    filteredSymbols.length > 0 ? (
+      filteredSymbols.map(data => {
+        return (
+          <tr
+            onClick={() => selectOption(data)}
+            value={data.symbol}
+            key={data.symbol}
+          >
+            <td>
+              <span className="company-symbol__dropdown">{data.symbol}</span>
+            </td>
+            <td>
+              <span className="company-name__dropdown">{data.name}</span>
+              <span className="company-exchange__dropdown">
+                {data.exchange}
+              </span>
+            </td>
+          </tr>
+        );
+      })
+    ) : (
+      <tr>
+        <td>
+          <span className="company-name__dropdown">No symbols found</span>
+        </td>
+      </tr>
+    );
 
   useEffect(() => {
     toggleIsOpen(filteredSymbols.length !== 0);
