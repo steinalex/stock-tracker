@@ -55,7 +55,7 @@ export const Chart = () => {
         case "1m":
           return Intl.DateTimeFormat("en-US", {
             year: "2-digit",
-            month: "2-digit"
+            month: "short"
           }).format(date);
         case "5d":
           return Intl.DateTimeFormat("en-US", { weekday: "short" }).format(
