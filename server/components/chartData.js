@@ -8,7 +8,7 @@ const chartData = async (socket, stockName, timeRange, HOST, TOKEN) => {
       if (timeRange === "1d")
         return chart.data.map(data => ({
           close: data.close,
-          date: data.minute
+          date: `${data.date} ${data.minute}`
         }));
       else
         return chart.data.map(data => ({ close: data.close, date: data.date }));

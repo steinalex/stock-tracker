@@ -43,12 +43,12 @@ export const Chart = () => {
         case "max":
           return Intl.DateTimeFormat("en-US", {
             year: "2-digit",
-            month: "2-digit"
+            month: "short"
           }).format(date);
         case "5y":
           return Intl.DateTimeFormat("en-US", {
             year: "2-digit",
-            month: "2-digit"
+            month: "short"
           }).format(date);
         case "1y":
           return Intl.DateTimeFormat("en-US", { month: "short" }).format(date);
@@ -61,6 +61,11 @@ export const Chart = () => {
           return Intl.DateTimeFormat("en-US", { weekday: "short" }).format(
             date
           );
+        case "1d":
+          return Intl.DateTimeFormat("en-US", {
+            hour: "2-digit",
+            minute: "2-digit"
+          }).format(date);
         default:
           return isoDate;
       }
