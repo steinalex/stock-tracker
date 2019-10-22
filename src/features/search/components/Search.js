@@ -101,7 +101,7 @@ export const Search = ({ updateStock }) => {
           autoComplete="off"
         />
         {searchQuery && (
-          <label htmlFor="seach-input">
+          <label htmlFor="search-input">
             <span className="company-name">{companyName}</span>
             <span className="company-symbol">
               {companySymbol && `(${companySymbol})`}
