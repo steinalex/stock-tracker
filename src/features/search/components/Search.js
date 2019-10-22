@@ -8,9 +8,9 @@ export const Search = ({ updateStock }) => {
   const filteredSymbols = useSelector(
     state => state.headlineData.selectedCompanySymbols
   );
+  const { name: companyName, symbol: companySymbol } =
+    useSelector(state => state.stockData.selectedStock) || {};
   const [isOpen, toggleIsOpen] = useState(false);
-  const [stock, setStock] = useState("");
-  const [symbol, setSymbol] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const dropSelect = useRef(null);
   const inputSelect = useRef(null);
@@ -34,9 +34,7 @@ export const Search = ({ updateStock }) => {
   };
 
   const selectOption = data => {
-    setStock(data.name);
-    setSymbol(data.symbol.toUpperCase());
-    updateStock(data.symbol);
+    updateStock(data);
     toggleIsOpen(false);
     inputSelect.current.blur();
   };
@@ -103,9 +101,11 @@ export const Search = ({ updateStock }) => {
           autoComplete="off"
         />
         {searchQuery && (
-          <label htmlFor="search-input">
-            <span className="company-name">{stock}</span>
-            <span className="company-symbol">{symbol && ` (${symbol})`}</span>
+          <label htmlFor="seach-input">
+            <span className="company-name">{companyName}</span>
+            <span className="company-symbol">
+              {companySymbol && `(${companySymbol})`}
+            </span>
           </label>
         )}
       </div>

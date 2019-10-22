@@ -1,4 +1,4 @@
-import { UPDATE_LATEST_NEWS } from "../../../store/constants";
+import { UPDATE_LATEST_NEWS, RESET } from "../../../store/constants";
 
 const initialState = { selectedLatestNews: null };
 export const latestNewsReducer = (state = initialState, { type, payload }) => {
@@ -8,6 +8,8 @@ export const latestNewsReducer = (state = initialState, { type, payload }) => {
         ...state,
         selectedLatestNews: payload
       };
+    case RESET:
+      return { ...initialState };
     default:
       return state;
   }

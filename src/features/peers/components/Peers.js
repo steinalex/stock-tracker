@@ -8,19 +8,23 @@ import "./Peers.css";
 export const Peers = ({ peers }) => {
   const dispatch = useDispatch();
   const onClickHandler = event => {
-    dispatch(updateStockAction(event.target.value));
+    const symbol = event.target.value;
+    const peerStock = peers.find(peer => peer.symbol === symbol);
+    if (peerStock && peerStock.name) {
+      dispatch(updateStockAction(peerStock));
+    }
   };
   const renderPeersComponent = () => (
     <ul className="peers__list">
       {peers.length !== 0 ? (
-        peers.map(items => (
+        peers.map(({ symbol }) => (
           <button
             onClick={onClickHandler}
-            value={items}
-            key={items}
+            value={symbol}
+            key={symbol}
             className="peers__list---item"
           >
-            {items}
+            {symbol}
           </button>
         ))
       ) : (

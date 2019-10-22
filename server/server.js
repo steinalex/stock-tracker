@@ -22,7 +22,7 @@ const oneDay = 24 * 60 * 60 * 1000;
 
 io.on("connection", socket => {
   const timerIDs = {};
-  const allSymbols = getCompanySymbols(socket);
+  const allSymbols = getCompanySymbols();
   console.info("New client connected");
   socket.on("stockName", async (stockName, timeRange) => {
     if (stockName === "") {
@@ -32,7 +32,7 @@ io.on("connection", socket => {
 
     Object.values(timerIDs).forEach(clearInterval);
 
-    startIntervals(socket, stockName, timeRange);
+    startIntervals(socket, stockName, timeRange, allSymbols);
 
     timerIDs.stockTicker = setInterval(() => {
       stockTicker(socket, stockName, HOST, TOKEN);
@@ -47,7 +47,7 @@ io.on("connection", socket => {
       companyOverview(socket, stockName, HOST, TOKEN);
     }, oneDay);
     timerIDs.topPeers = setInterval(() => {
-      topPeers(socket, stockName, HOST, TOKEN);
+      topPeers(socket, stockName, HOST, TOKEN, allSymbols);
     }, oneDay);
     timerIDs.chartData = setInterval(() => {
       chartData(socket, stockName, timeRange, HOST, TOKEN);
@@ -78,12 +78,12 @@ exports.HOST = HOST;
 const TOKEN = "Tsk_d2f1890612194476b41d39992a3ad835";
 exports.TOKEN = TOKEN;
 
-const startIntervals = (socket, stockName, timeRange) => {
+const startIntervals = (socket, stockName, timeRange, allSymbols) => {
   stockTicker(socket, stockName, HOST, TOKEN);
   keyStats(socket, stockName, HOST, TOKEN);
   latestNewsInterval(socket, stockName, HOST, TOKEN);
   companyOverview(socket, stockName, HOST, TOKEN);
-  topPeers(socket, stockName, HOST, TOKEN);
+  topPeers(socket, stockName, HOST, TOKEN, allSymbols);
   chartData(socket, stockName, timeRange, HOST, TOKEN);
   sectorInformation(socket, stockName, HOST, TOKEN);
 };

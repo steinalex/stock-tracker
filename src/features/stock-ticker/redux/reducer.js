@@ -1,4 +1,4 @@
-import { UPDATE_STOCK_TICKER } from "../../../store/constants";
+import { UPDATE_STOCK_TICKER, RESET } from "../../../store/constants";
 
 const initialState = { selectedStockTicker: "" };
 export const stockTickerReducer = (state = initialState, { type, payload }) => {
@@ -8,6 +8,8 @@ export const stockTickerReducer = (state = initialState, { type, payload }) => {
         ...state,
         selectedStockTicker: payload
       };
+    case RESET:
+      return { ...initialState };
     default:
       return state;
   }
