@@ -1,6 +1,7 @@
 import {
   UPDATE_CHART_DATA,
   UPDATE_CHART_RANGE,
+  RESET_CHART_DATA,
   RESET
 } from "../../../store/constants";
 
@@ -17,6 +18,8 @@ export const chartReducer = (state = initialState, { type, payload }) => {
         ...state,
         selectedChartData: payload
       };
+    case RESET_CHART_DATA:
+      return { ...state, selectedChartData: null };
     case RESET:
       return { ...initialState };
     default:
