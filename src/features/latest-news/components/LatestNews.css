@@ -9,7 +9,7 @@ a.latest-news__link {
 }
 
 .latest-news__wrapper {
-  margin: 5px 0;
+  margin: 6px 0;
 }
 
 .latest-news__link:hover {
@@ -22,5 +22,5 @@ a.latest-news__link {
 }
 
 .latest-news__text {
-  margin-bottom: 5px;
+  margin-bottom: 4px;
 }
