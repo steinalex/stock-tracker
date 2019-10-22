@@ -109,7 +109,7 @@ export const Chart = () => {
         maxHeight="420px"
       >
         <AreaChart
-          data={formatChartData()}
+          data={chartData}
           margin={{ top: 10, right: -22, left: 0, bottom: 28 }}
         >
           <defs>
