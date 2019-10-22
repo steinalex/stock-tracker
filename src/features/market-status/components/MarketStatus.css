@@ -4,10 +4,12 @@
 
 .market__text {
   color: #ffffff96;
+  font-size: 14px;
   font-family: Lato-Light;
 }
 
 .market span.market---moon {
+  font-size: 14px;
   padding-left: 10px;
 }
 
@@ -16,7 +18,7 @@
   content: "\263E";
   left: -1px;
   top: 0px;
-  font-size: 15px;
+  font-size: 14px;
   color: #ffbb5e;
 }
 
@@ -29,6 +31,6 @@
   content: "\263C";
   left: -1px;
   top: 0px;
-  font-size: 15px;
+  font-size: 14px;
   color: rgb(224, 251, 0);
 }
