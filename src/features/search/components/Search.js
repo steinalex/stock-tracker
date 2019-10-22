@@ -104,7 +104,7 @@ export const Search = ({ updateStock }) => {
           <label htmlFor="search-input">
             <span className="company-name">{companyName}</span>
             <span className="company-symbol">
-              {companySymbol && `(${companySymbol})`}
+              {companySymbol && ` (${companySymbol.toUpperCase()})`}
             </span>
           </label>
         )}
