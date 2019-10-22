@@ -8,12 +8,12 @@
 
 .stockInfo__list {
   list-style-type: none;
-  padding-top: 15px;
+  padding-top: 12px;
 }
 
 .stockInfo__list li {
   float: left;
-  margin-right: 15px;
+  margin: 2px 15px 2px 0;
   padding: 3px 15px;
   border-radius: 2px;
   background-color: var(--searchBar-tags);

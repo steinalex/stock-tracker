@@ -56,6 +56,10 @@
   opacity: 1;
   font-size: 40px;
   font-family: Lato-Light;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: calc(100% - 25px);
+  white-space: nowrap;
 }
 
 .search-bar > input[type="text"]:focus + label {
@@ -82,4 +86,10 @@
 .company-symbol {
   color: #beccdc;
   opacity: 0.5;
+}
+
+@media only screen and (max-width: 750px) {
+  .company-symbol {
+    display: none;
+  }
 }

@@ -104,12 +104,12 @@ export const Chart = () => {
       <ResponsiveContainer
         height="100%"
         width="100%"
-        minHeight="390px"
-        maxHeight="400px"
+        minHeight="420px"
+        maxHeight="420px"
       >
         <AreaChart
           data={formatChartData()}
-          margin={{ top: 10, right: 0, left: 0, bottom: 30 }}
+          margin={{ top: 10, right: -22, left: 0, bottom: 28 }}
         >
           <defs>
             <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">

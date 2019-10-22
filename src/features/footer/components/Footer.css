@@ -19,14 +19,15 @@
 .footer__items:nth-child(2) {
   grid-column: 2;
   grid-row: 1;
-  border-left: 1px solid #274a986b;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .footer__text {
-  font-size: 14px;
+  font-size: 12px;
   text-transform: uppercase;
   color: #fff;
   margin-bottom: 10px;
+  margin-left: 8px;
 }
 
 .footer__list {
@@ -44,7 +45,7 @@
 .footer---dollar-sign::before {
   position: relative;
   content: "$";
-  top: -5px;
+  top: -3px;
   font-size: 10px;
 }
 
@@ -52,15 +53,26 @@
   position: relative;
   content: "%";
   font-size: 10px;
-  top: -5px;
+  top: -3px;
+  right: -1px;
+}
+
+.footer__price--green.footer---percentage-sign {
+  position: relative;
+  margin-left: 5px;
+}
+
+.footer__price--red.footer---percentage-sign {
+  position: relative;
+  margin-left: 5px;
 }
 
 .footer__price--green.footer---percentage-sign::before {
-  position: relative;
+  position: absolute;
   content: "";
-  top: 6px;
+  top: 1px;
   width: 1px;
-  left: -6px;
+  left: -8px;
   height: 17px;
   margin: 0 4px;
   background-color: var(--green-color);
@@ -69,11 +81,11 @@
 }
 
 .footer__price--red.footer---percentage-sign::before {
-  position: relative;
+  position: absolute;
   content: "";
-  top: 6px;
+  top: 1px;
   width: 1px;
-  left: -6px;
+  left: -8px;
   height: 17px;
   margin: 0 4px;
   background-color: var(--red-color);
@@ -92,7 +104,7 @@
 .footer--arrowUp::before {
   content: "\1f861";
   color: var(--green-color);
-  top: -4px;
+  top: -3px;
   font-size: 10px;
   display: inline-block;
   position: relative;
@@ -102,14 +114,19 @@
 .footer--arrowDown::before {
   content: "\1f863";
   color: var(--red-color);
-  top: -4px;
+  top: -3px;
   font-size: 10px;
   display: inline-block;
   position: relative;
   width: 7px;
 }
 
-@media only screen and (max-width: 1550px) {
+.footer__list__exchange {
+  margin: 0;
+  font-family: Lato-Bold;
+}
+
+@media only screen and (max-width: 1450px) {
   .footer {
     grid-template-columns: 2fr 1fr;
   }

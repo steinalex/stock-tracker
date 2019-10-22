@@ -62,7 +62,7 @@
   font-size: 20px;
   right: 0px;
   display: inline-block;
-  width: 15px;
+  width: 18px;
 }
 
 .change-negative.quotes__percentage-sign::before,
@@ -84,4 +84,33 @@
 
 .change-positive.quotes__percentage-sign::before {
   background-color: var(--green-color);
+}
+
+@media only screen and (max-width: 590px) {
+  .quotes__stock-price {
+    font-size: 30px;
+  }
+  .quotes_dollar-sign::before {
+    font-size: 15px;
+    top: -10px;
+    left: -1px;
+  }
+  .quotes__stock-price .change-positive.arrow-positive::before {
+    font-size: 15px;
+    top: -11px;
+  }
+  .quotes__stock-price .change-negative.arrow-negative::before {
+    font-size: 15px;
+    top: -11px;
+  }
+  .quotes__stock-price .change-negative.quotes__percentage-sign::after {
+    font-size: 15px;
+    top: -11px;
+    width: 12px;
+  }
+  .quotes__stock-price .change-positive.quotes__percentage-sign::after {
+    font-size: 15px;
+    top: -11px;
+    width: 12px;
+  }
 }

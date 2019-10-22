@@ -6,7 +6,6 @@
   position: relative;
   z-index: 1;
   float: right;
-  margin-right: 22px;
 }
 
 .chart__button {
@@ -14,6 +13,7 @@
   border: none;
   color: var(--table-child-news-source);
   opacity: 0.6;
+  font-size: 12px;
   font-family: Lato-Regular;
 }
 
@@ -34,8 +34,8 @@
 
 .recharts-text.recharts-cartesian-axis-tick-value {
   font-family: Lato-Light;
-  font-size: 14px;
+  font-size: 10px;
 }
 .recharts-text.recharts-label {
-  font-size: 14px;
+  font-size: 10px;
 }

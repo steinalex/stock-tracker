@@ -9,7 +9,7 @@ a.latest-news__link {
 }
 
 .latest-news__wrapper {
-  margin: 6px 0;
+  margin: 9px 0;
 }
 
 .latest-news__link:hover {
@@ -17,6 +17,7 @@ a.latest-news__link {
 }
 
 .latest-news__source {
+  font-size: 14px;
   color: var(--table-child-news-source);
   font-family: Lato-Light;
 }

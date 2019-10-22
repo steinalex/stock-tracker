@@ -13,7 +13,8 @@ h1.title {
   border-bottom: 2px solid var(--highlight1);
   color: var(--highlight1);
   text-transform: uppercase;
-  font-size: 18px;
+  font-family: Lato-Bold;
+  font-size: 16px;
   padding: 0 0 3px;
 }
 

@@ -1,4 +1,7 @@
 /* Key stats */
+.key-stats > h1.title {
+  margin-bottom: 0;
+}
 .key-stats__wrapper {
   column-count: 2;
   column-gap: 50px;
@@ -10,6 +13,7 @@
 }
 
 .key-stats__table td {
+  font-size: 14px;
   padding: 15px 0;
   border-bottom: 1px solid rgb(52, 67, 109);
 }
@@ -22,7 +26,12 @@
   text-align: right;
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 750px) {
+  .key-stats__wrapper {
+    column-gap: 40px;
+  }
+}
+@media only screen and (max-width: 560px) {
   .key-stats__wrapper {
     column-count: 1;
   }
