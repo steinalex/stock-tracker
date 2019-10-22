@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   AreaChart,
   Area,
@@ -26,57 +26,50 @@ const tenors = [
 ];
 
 export const Chart = () => {
-  const [chartRange, setChartRange] = useState("5y");
   const dispatch = useDispatch();
-  const { selectedChartData } = useSelector(state => state.chartData);
+  const { selectedChartData, selectedChartRange } = useSelector(
+    state => state.chartData
+  );
   const { selectedStockTicker } = useSelector(state => state.stockTickerData);
   const updateChartRange = stock => dispatch(updateChartAction(stock));
   const onClickHandler = event => {
     updateChartRange(event.target.value);
-    setChartRange(event.target.value);
   };
 
-  const formatChartData = () => {
-    const formatDate = isoDate => {
-      const date = new Date(isoDate);
-      switch (chartRange) {
-        case "max":
-          return Intl.DateTimeFormat("en-US", {
-            year: "2-digit",
-            month: "short"
-          }).format(date);
-        case "5y":
-          return Intl.DateTimeFormat("en-US", {
-            year: "2-digit",
-            month: "short"
-          }).format(date);
-        case "1y":
-          return Intl.DateTimeFormat("en-US", { month: "short" }).format(date);
-        case "1m":
-          return Intl.DateTimeFormat("en-US", {
-            year: "2-digit",
-            month: "short"
-          }).format(date);
-        case "5d":
-          return Intl.DateTimeFormat("en-US", { weekday: "short" }).format(
-            date
-          );
-        case "1d":
-          return Intl.DateTimeFormat("en-US", {
-            hour: "2-digit",
-            minute: "2-digit"
-          }).format(date);
-        default:
-          return isoDate;
-      }
-    };
+  const chartData =
+    selectedChartData && selectedChartData.map(data => data.date);
+  console.log(chartData);
 
-    const chartData = selectedChartData.map(data => ({
-      close: data.close,
-      date: formatDate(data.date)
-    }));
-
-    return chartData;
+  const formatDate = isoDate => {
+    const date = new Date(isoDate);
+    switch (selectedChartRange) {
+      case "max":
+        return Intl.DateTimeFormat("en-US", {
+          year: "2-digit",
+          month: "short"
+        }).format(date);
+      case "5y":
+        return Intl.DateTimeFormat("en-US", {
+          year: "2-digit",
+          month: "short"
+        }).format(date);
+      case "1y":
+        return Intl.DateTimeFormat("en-US", { month: "short" }).format(date);
+      case "1m":
+        return Intl.DateTimeFormat("en-US", {
+          year: "2-digit",
+          month: "short"
+        }).format(date);
+      case "5d":
+        return Intl.DateTimeFormat("en-US", { weekday: "short" }).format(date);
+      case "1d":
+        return Intl.DateTimeFormat("en-US", {
+          hour: "2-digit",
+          minute: "2-digit"
+        }).format(date);
+      default:
+        return isoDate;
+    }
   };
 
   const renderChartComponent = () => (
@@ -84,7 +77,7 @@ export const Chart = () => {
       <div className="chart__wrapper">
         {selectedChartData.length !== 0 ? (
           tenors.map(({ value, label }) => {
-            const activeClass = chartRange === value ? "--active" : "";
+            const activeClass = selectedChartRange === value ? "--active" : "";
 
             return (
               <button
@@ -119,20 +112,27 @@ export const Chart = () => {
           </defs>
           <CartesianGrid opacity="0.2" />
           <XAxis
+            domain={["auto", "auto"]}
             dataKey="date"
+            tickFormatter={formatDate}
+            minTickGap="10"
             interval="preserveStart"
             tick={{ fill: "#ffffff" }}
           />
-          <YAxis orientation="right" tick={{ fill: "#ffffff" }} />
+          <YAxis
+            orientation="right"
+            tick={{ fill: "#ffffff" }}
+            domain={["auto", "auto"]}
+          />
           <Tooltip />
           <ReferenceLine
             y={selectedStockTicker.latestPrice}
             label={{
               value: String(selectedStockTicker.latestPrice),
               position: "right",
-              fill: "orange"
+              fill: "#e95656"
             }}
-            stroke="orange"
+            stroke="#e95656"
             strokeDasharray="3 3"
           />
           <Area
