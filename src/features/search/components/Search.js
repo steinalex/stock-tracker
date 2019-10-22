@@ -55,19 +55,33 @@ export const Search = ({ updateStock }) => {
   };
 
   const options =
-    filteredSymbols.length > 0
-      ? filteredSymbols.map(data => {
-          return (
-            <li
-              onClick={() => selectOption(data)}
-              value={data.symbol}
-              key={data.symbol}
-            >
-              {`${data.name} (${data.symbol})`}
-            </li>
-          );
-        })
-      : "No symbols found";
+    filteredSymbols.length > 0 ? (
+      filteredSymbols.map(data => {
+        return (
+          <tr
+            onClick={() => selectOption(data)}
+            value={data.symbol}
+            key={data.symbol}
+          >
+            <td>
+              <span className="company-symbol__dropdown">{data.symbol}</span>
+            </td>
+            <td>
+              <span className="company-name__dropdown">{data.name}</span>
+              <span className="company-exchange__dropdown">
+                {data.exchange}
+              </span>
+            </td>
+          </tr>
+        );
+      })
+    ) : (
+      <tr>
+        <td>
+          <span className="company-name__dropdown">No symbols found</span>
+        </td>
+      </tr>
+    );
 
   useEffect(() => {
     toggleIsOpen(filteredSymbols.length !== 0);
@@ -77,7 +91,7 @@ export const Search = ({ updateStock }) => {
     <>
       <div className="search-bar">
         <input
-          id="seach-input"
+          id="search-input"
           ref={inputSelect}
           type="text"
           placeholder="Search..."
@@ -89,20 +103,20 @@ export const Search = ({ updateStock }) => {
           autoComplete="off"
         />
         {searchQuery && (
-          <label htmlFor="seach-input">
+          <label htmlFor="search-input">
             <span className="company-name">{stock}</span>
             <span className="company-symbol">{symbol && ` (${symbol})`}</span>
           </label>
         )}
       </div>
-      <ul
+      <table
         ref={dropSelect}
         className="search-bar__options"
         style={{ display: isOpen ? "block" : "none" }}
         tabIndex={0}
       >
         {options}
-      </ul>
+      </table>
     </>
   );
 };

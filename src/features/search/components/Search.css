@@ -8,7 +8,7 @@
   width: 100%;
   background: none;
   border: none;
-  font-size: 35px;
+  font-size: 40px;
   color: #fff0;
   font-family: Lato-Light;
 }
@@ -16,7 +16,7 @@
 .search-bar::before {
   content: "⚲";
   position: absolute;
-  top: 0px;
+  top: 2px;
   font-size: 38px;
   left: 0px;
   transform: rotate(-45deg);
@@ -25,22 +25,28 @@
 
 .search-bar__options {
   position: absolute;
-  background-color: #0c1c43;
-  box-shadow: 0px 4px 11px 2px #000000;
+  width: 100%;
+  background-image: linear-gradient(
+    to bottom,
+    #001330 2%,
+    rgba(0, 8, 19, 0.8) 177%
+  );
+  box-shadow: 0 2px 4px 0 #00000080;
   margin: 0;
-  top: 50px;
-  padding: 15px 20px;
-  list-style-type: none;
+  top: 55px;
+  padding: 15px 0;
   z-index: 10;
+  border-collapse: collapse;
 }
 
-.search-bar__options li {
-  margin: 10px 0;
+.search-bar__options td {
+  font-size: 18px;
+  padding: 12px 0 12px 15px;
   cursor: pointer;
 }
 
-.search-bar__options li:hover {
-  color: rgb(153, 171, 250);
+.search-bar__options tr:hover {
+  color: var(--yellow-color);
 }
 
 .search-bar > label {
@@ -48,7 +54,7 @@
   left: 28px;
   top: 1px;
   opacity: 1;
-  font-size: 35px;
+  font-size: 40px;
   font-family: Lato-Light;
 }
 
@@ -58,6 +64,19 @@
 
 .search-bar > input[type="text"]:focus {
   color: #fff;
+}
+
+.company-symbol__dropdown {
+  opacity: 1;
+  color: var(--highlight1);
+}
+
+.company-exchange__dropdown {
+  color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(128, 181, 255, 0.13);
+  padding: 2px 12px;
+  border-radius: 2px;
+  margin: 0 8px;
 }
 
 .company-symbol {

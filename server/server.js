@@ -96,7 +96,8 @@ const getCompanySymbols = async () => {
 
     return companySymbols.data.map(data => ({
       symbol: data.symbol,
-      name: data.name
+      name: data.name,
+      exchange: data.exchange
     }));
   } catch (error) {
     console.error(`Error: ${error}`);
@@ -108,7 +109,8 @@ const searchQuery = async (socket, inputQuery, allSymbols) => {
     const symbols = await allSymbols;
     const symbolWithNames = symbols.map(data => ({
       symbol: data.symbol,
-      name: data.name
+      name: data.name,
+      exchange: data.exchange
     }));
     const filteredData = symbolWithNames.filter(
       search =>
