@@ -1,7 +1,7 @@
 import { UPDATE_SELECTED_STOCK, RESET } from "./store/constants";
 
 const initialState = {
-  selectedStock: ""
+  selectedStock: undefined
 };
 
 export const stockReducer = (state = initialState, { type, payload }) => {

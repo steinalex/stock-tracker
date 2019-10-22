@@ -5,6 +5,14 @@
 }
 
 .peers__list---item {
+  background: none;
+  border: none;
+  color: var(--table-child-news-source);
   float: left;
   margin-right: 25px;
+}
+
+.peers__list---item:hover {
+  cursor: pointer;
+  color: var(--yellow-color);
 }

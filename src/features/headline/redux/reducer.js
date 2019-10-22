@@ -1,7 +1,8 @@
 import {
   UPDATE_SEARCH,
   UPDATE_COMPANY_SYMBOLS,
-  UPDATE_SEARCH_QUERY
+  UPDATE_SEARCH_QUERY,
+  RESET
 } from "../../../store/constants";
 
 const initialState = {
@@ -26,6 +27,8 @@ export const headlineReducer = (state = initialState, { type, payload }) => {
         ...state,
         enteredSearchQuery: payload
       };
+    case RESET:
+      return { ...initialState };
     default:
       return state;
   }

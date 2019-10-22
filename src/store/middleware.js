@@ -62,13 +62,13 @@ export const stockMiddleware = store => next => action => {
     store.dispatch(resetAction());
     socket.emit(
       "stockName",
-      action.payload,
+      action.payload.symbol,
       store.getState().chartData.selectedChartRange
     );
   } else if (action.type === UPDATE_CHART_RANGE) {
     socket.emit(
       "timeRange",
-      store.getState().stockData.selectedStock,
+      store.getState().stockData.selectedStock.symbol,
       action.payload
     );
   } else if (action.type === UPDATE_SEARCH_QUERY) {
