@@ -9,7 +9,7 @@ export const MarketStatus = ({ stock, keyStats }) => {
   const USTime = formatDate(UKTime).toLocaleString("en-US", {
     timeZone: "America/New_York"
   });
-  const correctFormat = moment(USTime).format("lll");
+  const correctFormat = moment(new Date(USTime)).format("lll");
   const marketStatus = keyStats.open === null ? "Market Closed" : "Market Open";
 
   return (

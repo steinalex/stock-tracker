@@ -115,7 +115,7 @@ export const Search = ({ updateStock }) => {
         style={{ display: isOpen ? "block" : "none" }}
         tabIndex={0}
       >
-        {options}
+        <tbody>{options}</tbody>
       </table>
     </>
   );
