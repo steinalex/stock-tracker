@@ -43,7 +43,7 @@ export const Footer = () => {
         </div>
       </div>
       <div className="footer__items">
-        <div className="footer__text">Favourites</div>
+        <div className="footer__text">Favorites</div>
         <div className="footer__list">
           <div>
             <span className="footer__list__exchange">MSFT</span>

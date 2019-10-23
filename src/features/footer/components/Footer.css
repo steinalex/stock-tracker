@@ -45,16 +45,16 @@
 .footer---dollar-sign::before {
   position: relative;
   content: "$";
-  top: -3px;
-  font-size: 10px;
+  top: -5px;
+  font-size: 8px;
 }
 
 .footer---percentage-sign::after {
   position: relative;
   content: "%";
-  font-size: 10px;
-  top: -3px;
-  right: -1px;
+  font-size: 9px;
+  top: -4px;
+  right: -2px;
 }
 
 .footer__price--green.footer---percentage-sign {
@@ -104,8 +104,8 @@
 .footer--arrowUp::before {
   content: "\1f861";
   color: var(--green-color);
-  top: -3px;
-  font-size: 10px;
+  top: -4px;
+  font-size: 9px;
   display: inline-block;
   position: relative;
   width: 7px;
@@ -114,8 +114,8 @@
 .footer--arrowDown::before {
   content: "\1f863";
   color: var(--red-color);
-  top: -3px;
-  font-size: 10px;
+  top: -4px;
+  font-size: 9px;
   display: inline-block;
   position: relative;
   width: 7px;

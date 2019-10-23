@@ -20,10 +20,13 @@
 
 .key-stats__table td:nth-child(odd) {
   color: var(--table-child-news-source);
+  font-family: Lato-Light;
+  font-size: 14px;
 }
 
 .key-stats__table td:nth-child(even) {
   text-align: right;
+  font-size: 16px;
 }
 
 @media only screen and (max-width: 750px) {
