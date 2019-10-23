@@ -48,7 +48,8 @@
 .footer---dollar-sign::before {
   position: relative;
   content: "$";
-  top: -5px;
+  top: -4px;
+  left: -1px;
   font-size: 8px;
 }
 
