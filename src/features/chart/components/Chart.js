@@ -73,12 +73,13 @@ export const Chart = () => {
       <div className="chart__wrapper">
         {selectedChartData.length !== 0 ? (
           tenors.map(({ value, label }) => {
-            const activeClass = selectedChartRange === value ? "--active" : "";
+            const activeClass =
+              selectedChartRange === value ? "chart__button--active" : "";
 
             return (
               <button
                 key={label}
-                className={`chart__button chart__button${activeClass}`}
+                className={`chart__button ${activeClass}`}
                 onClick={onClickHandler}
                 value={value}
               >
@@ -108,7 +109,6 @@ export const Chart = () => {
           </defs>
           <CartesianGrid opacity="0.2" />
           <XAxis
-            domain={["auto", "auto"]}
             dataKey="date"
             minTickGap={10}
             interval="preserveStart"

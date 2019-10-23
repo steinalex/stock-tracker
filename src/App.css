@@ -92,4 +92,7 @@
     grid-column: 1 / 4;
     grid-row: 2;
   }
+  .grid-container {
+    grid-template-rows: max-content max-content max-content;
+  }
 }

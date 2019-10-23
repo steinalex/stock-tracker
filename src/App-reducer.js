@@ -13,7 +13,6 @@ export const stockReducer = (state = initialState, { type, payload }) => {
       };
     case RESET:
       return { ...initialState, selectedStock: state.selectedStock };
-
     default:
       return state;
   }

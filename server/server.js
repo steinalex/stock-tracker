@@ -74,9 +74,7 @@ io.on("connection", socket => {
 server.listen(port, () => console.log(`Listening on port ${port}`));
 
 const HOST = "https://sandbox.iexapis.com/stable";
-exports.HOST = HOST;
 const TOKEN = "Tsk_d2f1890612194476b41d39992a3ad835";
-exports.TOKEN = TOKEN;
 
 const startIntervals = (socket, stockName, timeRange, allSymbols) => {
   stockTicker(socket, stockName, HOST, TOKEN);
@@ -107,17 +105,11 @@ const getCompanySymbols = async () => {
 const searchQuery = async (socket, inputQuery, allSymbols) => {
   try {
     const symbols = await allSymbols;
-    const symbolWithNames = symbols.map(data => ({
-      symbol: data.symbol,
-      name: data.name,
-      exchange: data.exchange
-    }));
-    const filteredData = symbolWithNames.filter(
+    const filteredData = symbols.filter(
       search =>
         search.symbol.toLowerCase().indexOf(inputQuery.toLowerCase()) !== -1 ||
         search.name.toLowerCase().indexOf(inputQuery.toLowerCase()) !== -1
     );
-
     const topTen = filteredData.slice(0, 10);
     socket.emit("companySymbols", topTen);
   } catch (error) {
