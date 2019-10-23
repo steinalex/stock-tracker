@@ -42,7 +42,7 @@
   grid-column-gap: 55px;
   grid-row-gap: 4px;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 200px 450px max-content;
+  grid-template-rows: 169px 450px max-content;
   grid-template-areas:
     "header header header"
     "chart chart latest-news"
