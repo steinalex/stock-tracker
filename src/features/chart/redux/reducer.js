@@ -10,7 +10,8 @@ export const chartReducer = (state = initialState, { type, payload }) => {
     case UPDATE_CHART_RANGE:
       return {
         ...state,
-        selectedChartRange: payload
+        selectedChartRange: payload,
+        selectedChartData: null
       };
     case UPDATE_CHART_DATA:
       return {
