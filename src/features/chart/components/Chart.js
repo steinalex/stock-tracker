@@ -94,7 +94,7 @@ export const Chart = () => {
         height="100%"
         width="100%"
         minHeight="420px"
-        maxHeight="420px"
+        maxHeight="500px"
       >
         <AreaChart
           data={chartData}
@@ -118,6 +118,7 @@ export const Chart = () => {
             orientation="right"
             dataKey="close"
             tick={{ fill: "#ffffff" }}
+            tickCount={10}
             tickFormatter={yaxisFormat}
             domain={["auto", "auto"]}
           />

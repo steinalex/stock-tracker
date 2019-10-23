@@ -6,5 +6,12 @@
   height: 50px;
   -webkit-animation: spin 2s linear infinite;
   animation: spin 2s linear infinite;
-  margin: auto;
+  /* margin: auto; */
+}
+
+.center-spinner {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
