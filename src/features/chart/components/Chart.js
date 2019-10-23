@@ -25,6 +25,29 @@ const tenors = [
   { value: "max", label: "MAX" }
 ];
 
+const formatDate = (isoDate, ChartRange) => {
+  const date = new Date(isoDate);
+  switch (ChartRange) {
+    case "max":
+    case "5y":
+    case "1y":
+    case "1m":
+      return Intl.DateTimeFormat("en-US", {
+        year: "2-digit",
+        month: "short"
+      }).format(date);
+    case "5d":
+      return Intl.DateTimeFormat("en-US", { weekday: "short" }).format(date);
+    case "1d":
+      return Intl.DateTimeFormat("en-US", {
+        hour: "2-digit",
+        minute: "2-digit"
+      }).format(date);
+    default:
+      return isoDate;
+  }
+};
+
 export const Chart = () => {
   const dispatch = useDispatch();
   const { selectedChartData, selectedChartRange } = useSelector(
@@ -36,49 +59,12 @@ export const Chart = () => {
     updateChartRange(event.target.value);
   };
 
-  const formatDate = isoDate => {
-    const date = new Date(isoDate);
-    switch (selectedChartRange) {
-      case "max":
-        return Intl.DateTimeFormat("en-US", {
-          year: "2-digit",
-          month: "short"
-        }).format(date);
-      case "5y":
-        return Intl.DateTimeFormat("en-US", {
-          year: "2-digit",
-          month: "short"
-        }).format(date);
-      case "1y":
-        return Intl.DateTimeFormat("en-US", {
-          year: "2-digit",
-          month: "short"
-        }).format(date);
-      case "1m":
-        return Intl.DateTimeFormat("en-US", {
-          year: "2-digit",
-          month: "short"
-        }).format(date);
-      case "5d":
-        return Intl.DateTimeFormat("en-US", { weekday: "short" }).format(date);
-      case "1d":
-        return Intl.DateTimeFormat("en-US", {
-          hour: "2-digit",
-          minute: "2-digit"
-        }).format(date);
-      default:
-        return isoDate;
-    }
-  };
-
   const chartData =
     selectedChartData &&
     selectedChartData.map(data => ({
-      date: formatDate(data.date),
+      date: formatDate(data.date, selectedChartRange),
       close: data.close
     }));
-
-  console.log(chartData);
 
   const renderChartComponent = () => (
     <>
@@ -122,7 +108,6 @@ export const Chart = () => {
           <XAxis
             domain={["auto", "auto"]}
             dataKey="date"
-            tickFormatter={chartData}
             minTickGap="10"
             interval="preserveStart"
             tick={{ fill: "#ffffff" }}

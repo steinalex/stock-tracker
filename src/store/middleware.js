@@ -15,7 +15,6 @@ import { updateKeyStatsAction } from "../features/key-stats";
 import { updateStockTickerAction } from "../features/stock-ticker";
 import { updateChartDataAction } from "../features/chart";
 import { resetAction } from "../App-actions";
-import { resetChartDataAction } from "../features/chart/redux/actions";
 
 const io = require("socket.io-client");
 
@@ -67,7 +66,6 @@ export const stockMiddleware = store => next => action => {
       store.getState().chartData.selectedChartRange
     );
   } else if (action.type === UPDATE_CHART_RANGE) {
-    store.dispatch(resetChartDataAction());
     socket.emit(
       "timeRange",
       store.getState().stockData.selectedStock.symbol,
