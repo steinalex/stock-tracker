@@ -94,7 +94,7 @@ export const Chart = () => {
         height="100%"
         width="100%"
         minHeight="420px"
-        maxHeight="500px"
+        maxHeight="450px"
       >
         <AreaChart
           data={chartData}

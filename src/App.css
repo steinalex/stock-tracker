@@ -42,7 +42,7 @@
   grid-column-gap: 55px;
   grid-row-gap: 4px;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 200px 500px max-content;
+  grid-template-rows: 200px 450px max-content;
   grid-template-areas:
     "header header header"
     "chart chart latest-news"
@@ -77,6 +77,9 @@
   .grid-container {
     grid-template-areas: "header header header" "chart chart chart" "latest-news latest-news latest-news" "key-stats  key-stats key-stats" "company-overview company-overview company-overview";
     padding: 5px 20px;
+  }
+  .latest-news {
+    min-height: 100%;
   }
 }
 
