@@ -25,6 +25,8 @@ const tenors = [
   { value: "max", label: "MAX" }
 ];
 
+const yaxisFormat = item => item.toFixed(2);
+
 const formatDate = (isoDate, ChartRange) => {
   const date = new Date(isoDate);
   switch (ChartRange) {
@@ -96,7 +98,7 @@ export const Chart = () => {
       >
         <AreaChart
           data={chartData}
-          margin={{ top: 10, right: -22, left: 0, bottom: 28 }}
+          margin={{ top: 10, right: -18, left: 0, bottom: 28 }}
         >
           <defs>
             <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
@@ -114,7 +116,9 @@ export const Chart = () => {
           />
           <YAxis
             orientation="right"
+            dataKey="close"
             tick={{ fill: "#ffffff" }}
+            tickFormatter={yaxisFormat}
             domain={["auto", "auto"]}
           />
           <Tooltip />
