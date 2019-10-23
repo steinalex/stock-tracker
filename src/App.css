@@ -1,6 +1,7 @@
 .header {
   grid-area: header;
   position: relative;
+  min-height: 170px;
 }
 
 .search-bar__wrapper {
@@ -13,6 +14,7 @@
 
 .latest-news {
   grid-area: latest-news;
+  min-height: 410px;
 }
 
 .key-stats {
@@ -22,6 +24,7 @@
 .company-overview {
   position: relative;
   grid-area: company-overview;
+  min-height: 310px;
 }
 
 .peers {
