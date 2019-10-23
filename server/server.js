@@ -20,6 +20,11 @@ const io = socketIo(server);
 
 const oneDay = 24 * 60 * 60 * 1000;
 
+function callAndStartIntervals(fn, interval, ...args) {
+  fn(...args);
+  return setInterval(() => fn(...args), interval);
+}
+
 io.on("connection", socket => {
   const timerIDs = {};
   const allSymbols = getCompanySymbols();
@@ -32,29 +37,64 @@ io.on("connection", socket => {
 
     Object.values(timerIDs).forEach(clearInterval);
 
-    startIntervals(socket, stockName, timeRange, allSymbols);
-
-    timerIDs.stockTicker = setInterval(() => {
-      stockTicker(socket, stockName, HOST, TOKEN);
-    }, 5000);
-    timerIDs.keyStats = setInterval(() => {
-      keyStats(socket, stockName, HOST, TOKEN);
-    }, oneDay);
-    timerIDs.latestNews = setInterval(() => {
-      latestNewsInterval(socket, stockName, HOST, TOKEN);
-    }, oneDay);
-    timerIDs.companyOverview = setInterval(() => {
-      companyOverview(socket, stockName, HOST, TOKEN);
-    }, oneDay);
-    timerIDs.topPeers = setInterval(() => {
-      topPeers(socket, stockName, HOST, TOKEN, allSymbols);
-    }, oneDay);
-    timerIDs.chartData = setInterval(() => {
-      chartData(socket, stockName, timeRange, HOST, TOKEN);
-    }, oneDay);
-    timerIDs.sectorInformation = setInterval(() => {
-      sectorInformation(socket, stockName, HOST, TOKEN);
-    }, oneDay);
+    timerIDs.stockTicker = callAndStartIntervals(
+      stockTicker,
+      5000,
+      socket,
+      stockName,
+      HOST,
+      TOKEN
+    );
+    timerIDs.keyStats = callAndStartIntervals(
+      keyStats,
+      oneDay,
+      socket,
+      stockName,
+      HOST,
+      TOKEN
+    );
+    timerIDs.latestNews = callAndStartIntervals(
+      latestNewsInterval,
+      oneDay,
+      socket,
+      stockName,
+      HOST,
+      TOKEN
+    );
+    timerIDs.companyOverview = callAndStartIntervals(
+      companyOverview,
+      oneDay,
+      socket,
+      stockName,
+      HOST,
+      TOKEN
+    );
+    timerIDs.topPeers = callAndStartIntervals(
+      topPeers,
+      oneDay,
+      socket,
+      stockName,
+      HOST,
+      TOKEN,
+      allSymbols
+    );
+    timerIDs.chartData = callAndStartIntervals(
+      chartData,
+      oneDay,
+      socket,
+      stockName,
+      timeRange,
+      HOST,
+      TOKEN
+    );
+    timerIDs.sectorInformation = callAndStartIntervals(
+      sectorInformation,
+      oneDay,
+      socket,
+      stockName,
+      HOST,
+      TOKEN
+    );
   });
 
   socket.on("searchQuery", inputQuery => {
@@ -75,16 +115,6 @@ server.listen(port, () => console.log(`Listening on port ${port}`));
 
 const HOST = "https://sandbox.iexapis.com/stable";
 const TOKEN = "Tsk_d2f1890612194476b41d39992a3ad835";
-
-const startIntervals = (socket, stockName, timeRange, allSymbols) => {
-  stockTicker(socket, stockName, HOST, TOKEN);
-  keyStats(socket, stockName, HOST, TOKEN);
-  latestNewsInterval(socket, stockName, HOST, TOKEN);
-  companyOverview(socket, stockName, HOST, TOKEN);
-  topPeers(socket, stockName, HOST, TOKEN, allSymbols);
-  chartData(socket, stockName, timeRange, HOST, TOKEN);
-  sectorInformation(socket, stockName, HOST, TOKEN);
-};
 
 const getCompanySymbols = async () => {
   try {
