@@ -1,0 +1,42 @@
+.chart {
+  grid-area: chart;
+  min-height: 410px;
+}
+
+.chart__wrapper {
+  position: relative;
+  z-index: 1;
+  float: right;
+}
+
+.chart__button {
+  background: none;
+  border: none;
+  color: var(--table-child-news-source);
+  opacity: 0.6;
+  font-size: 12px;
+  font-family: Lato-Regular;
+}
+
+.chart__button:hover {
+  color: #fff;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.chart__button--active {
+  color: #fff;
+  opacity: 1;
+}
+
+.chart__button--inactive {
+  color: #3f5bd7;
+}
+
+.recharts-text.recharts-cartesian-axis-tick-value {
+  font-family: Lato-Light;
+  font-size: 10px;
+}
+.recharts-text.recharts-label {
+  font-size: 10px;
+}

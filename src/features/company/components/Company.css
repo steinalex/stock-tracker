@@ -1,0 +1,29 @@
+.company-overview tr:first-child {
+  font-size: 24px;
+}
+
+.company-overview__website {
+  text-decoration: none;
+  color: var(--table-child-news-source);
+  font-family: Lato-Italic;
+  font-size: 14px;
+}
+
+.company-overview__website:hover {
+  color: var(--yellow-color);
+}
+
+.company-overview__title {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.company-overview__text {
+  max-height: 115px;
+  overflow: auto;
+  margin: 8px 0 16px;
+}
+
+.company-overview__text p {
+  margin: 0;
+}

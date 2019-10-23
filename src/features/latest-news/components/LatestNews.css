@@ -1,0 +1,27 @@
+/* Latest news */
+.latest-news__grid {
+  display: grid;
+}
+
+a.latest-news__link {
+  text-decoration: none;
+  color: white;
+}
+
+.latest-news__wrapper {
+  margin: 9px 0;
+}
+
+.latest-news__link:hover {
+  color: var(--yellow-color);
+}
+
+.latest-news__source {
+  font-size: 14px;
+  color: var(--table-child-news-source);
+  font-family: Lato-Light;
+}
+
+.latest-news__text {
+  margin-bottom: 4px;
+}

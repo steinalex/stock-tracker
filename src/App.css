@@ -1,30 +1,20 @@
-@font-face {
-  font-family: Lato-Regular;
-  src: url(./assets/font/Lato-Regular.ttf);
-}
-
-body {
-  background-color: #011738;
-  font-family: Lato-Regular;
-}
-
 .header {
   grid-area: header;
+  position: relative;
+  min-height: 170px;
 }
 
-.search-bar {
+.search-bar__wrapper {
   grid-area: search-bar;
-}
-
-.quotes{
-  grid-area: quotes;
-}
-.chart {
-  grid-area: chart;
+  position: relative;
+  border-bottom: 2px solid var(--searchBar-tags);
+  display: grid;
+  grid-template-columns: 1fr 2fr;
 }
 
 .latest-news {
   grid-area: latest-news;
+  min-height: 410px;
 }
 
 .key-stats {
@@ -32,93 +22,74 @@ body {
 }
 
 .company-overview {
+  position: relative;
   grid-area: company-overview;
+  min-height: 310px;
 }
 
 .peers {
   grid-area: peers;
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
 .grid-container {
   display: grid;
-  grid-gap: 20px;
+  grid-column-gap: 55px;
+  grid-row-gap: 4px;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-areas: "header header header" 
-                        "chart chart latest-news" 
-                        "key-stats  key-stats  company-overview";
-  color: #fff;
-}
-
-h1.title {
-  border-bottom: 2px solid rgb(167, 165, 255);
-  color: rgb(167, 165, 255);
-  text-transform: uppercase;
-  font-size: 18px;
-  padding: 0 0 3px;
-}
-
-.header__logo{
-  width:150px;
-}
-.search-bar__input {
+  grid-template-rows: 200px 450px max-content;
+  grid-template-areas:
+    "header header header"
+    "chart chart latest-news"
+    "key-stats key-stats company-overview";
+  color: #ffffff;
+  padding: 10px 45px 40px;
+  margin: 0px auto 0px;
+  max-width: 1500px;
+  overflow: auto;
   width: 100%;
-  background: none;
-  border: none;
-  border-bottom: 2px solid #fff;
-  font-size: 26px;
-  color: #fff;
+  height: 100%;
+  box-sizing: border-box;
+  flex: 1 1 0px;
 }
 
-.key-stats__wrapper {
-  column-count: 2;
+.search-bar {
+  margin-bottom: 6px;
+  position: relative;
+  grid-column: 1 / 3;
+  grid-row: 1;
+  padding-left: 28px;
 }
 
-.key-stats__table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.key-stats__table td {
-  padding: 15px 0;
-  border-bottom: 1px solid rgb(52, 67, 109);
-}
-
-.key-stats__table td:nth-child(odd) {
-  color: rgb(138, 149, 179);
-}
-
-.key-stats__table td:nth-child(even) {
+.quotes {
+  grid-column: 3;
+  grid-row: 1;
   text-align: right;
+  margin-bottom: 4px;
 }
 
-.header__stock-price {
-  display: inline-block;
-  padding-right: 10px;
-}
-
-.header__stock-price span.green {
-  color: green;
-}
-
-.header__stock-price span.red {
-  color: red;
-}
-
-.latest-news tr:first-child {
-  color: rgb(243, 239, 130);
-}
-
-.latest-news tr:nth-child(even) {
-  color: rgb(138, 149, 179);
-}
-
-
-/* Media Queries */
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1200px) {
   .grid-container {
     grid-template-areas: "header header header" "chart chart chart" "latest-news latest-news latest-news" "key-stats  key-stats key-stats" "company-overview company-overview company-overview";
+    padding: 5px 20px;
   }
-  .key-stats__wrapper {
-    column-count: 1;
+  .latest-news {
+    min-height: 100%;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .quotes {
+    grid-column: 1 / 4;
+    grid-row: 1;
+  }
+  .search-bar {
+    grid-column: 1 / 4;
+    grid-row: 2;
   }
 }
