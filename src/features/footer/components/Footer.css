@@ -5,6 +5,9 @@
   grid-row: 2;
   grid-template-columns: 1fr 1fr;
   flex: 0 0 auto;
+  /* position: fixed;
+  bottom: 0;
+  width: 100%; */
 }
 
 .footer__items {
@@ -45,16 +48,17 @@
 .footer---dollar-sign::before {
   position: relative;
   content: "$";
-  top: -3px;
-  font-size: 10px;
+  top: -4px;
+  left: -1px;
+  font-size: 8px;
 }
 
 .footer---percentage-sign::after {
   position: relative;
   content: "%";
-  font-size: 10px;
-  top: -3px;
-  right: -1px;
+  font-size: 9px;
+  top: -4px;
+  right: -2px;
 }
 
 .footer__price--green.footer---percentage-sign {
@@ -104,8 +108,8 @@
 .footer--arrowUp::before {
   content: "\1f861";
   color: var(--green-color);
-  top: -3px;
-  font-size: 10px;
+  top: -4px;
+  font-size: 9px;
   display: inline-block;
   position: relative;
   width: 7px;
@@ -114,8 +118,8 @@
 .footer--arrowDown::before {
   content: "\1f863";
   color: var(--red-color);
-  top: -3px;
-  font-size: 10px;
+  top: -4px;
+  font-size: 9px;
   display: inline-block;
   position: relative;
   width: 7px;

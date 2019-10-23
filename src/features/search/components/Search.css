@@ -33,7 +33,7 @@
   );
   box-shadow: 0 2px 4px 0 #00000080;
   margin: 0;
-  top: 55px;
+  top: calc(100% + 3px);
   padding: 15px 0;
   z-index: 10;
   border-collapse: collapse;
