@@ -110,7 +110,7 @@ export const Chart = () => {
           <XAxis
             domain={["auto", "auto"]}
             dataKey="date"
-            minTickGap="10"
+            minTickGap={10}
             interval="preserveStart"
             tick={{ fill: "#ffffff" }}
           />
