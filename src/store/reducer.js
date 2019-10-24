@@ -6,7 +6,7 @@ import { keyStatsReducer } from "../features/key-stats";
 import { stockTickerReducer } from "../features/stock-ticker";
 import { chartReducer } from "../features/chart";
 import { headlineReducer } from "../features/headline";
-import { stockReducer } from "../App-reducer";
+import { stockReducer } from "../reducer";
 
 export const combinedReducer = combineReducers({
   stockData: stockReducer,
