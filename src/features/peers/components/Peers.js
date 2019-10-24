@@ -2,7 +2,7 @@ import React from "react";
 import { Loading } from "../../loading";
 import { ErrorMessage } from "../../error-message";
 import { useDispatch } from "react-redux";
-import { updateStockAction } from "../../../App-actions";
+import { updateStockAction } from "../../../actions";
 import "./Peers.css";
 
 export const Peers = ({ peers }) => {

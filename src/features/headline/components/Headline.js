@@ -2,7 +2,7 @@ import React from "react";
 import logo from "./adaptive-logo.png";
 import { Search } from "../../search";
 import { useDispatch, useSelector } from "react-redux";
-import { updateStockAction } from "../../../App-actions";
+import { updateStockAction } from "../../../actions";
 import { StockTicker } from "../../stock-ticker";
 import { MarketStatus } from "../../market-status";
 import "./Headline.css";

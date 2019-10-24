@@ -14,7 +14,7 @@ import { updateLatestNewsAction } from "../features/latest-news";
 import { updateKeyStatsAction } from "../features/key-stats";
 import { updateStockTickerAction } from "../features/stock-ticker";
 import { updateChartDataAction } from "../features/chart";
-import { resetAction } from "../App-actions";
+import { resetAction } from "../actions";
 
 const io = require("socket.io-client");
 
