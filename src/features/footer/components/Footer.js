@@ -1,77 +1,85 @@
 import React from "react";
 import "./Footer.css";
 
+const NUMBER_FORMATTER = new Intl.NumberFormat();
+const getSign = value => (value > 0 ? "positive" : "negative");
+
+const FooterItem = ({ exchange, price, priceChange, percentageChange }) => {
+  const roundValue = parseFloat(
+    Math.round(priceChange * 100 * 100) / 100
+  ).toFixed(2);
+  return (
+    <div>
+      <span className="footer__list__exchange">{exchange}</span>
+      <span className="footer__dollar-sign">
+        {NUMBER_FORMATTER.format(price)}
+      </span>
+      <span
+        className={`footer__price--${getSign(roundValue)} footer--${getSign(
+          roundValue
+        )}`}
+      >
+        {Math.abs(priceChange)}
+      </span>
+      <span
+        className={`footer__price--${getSign(
+          percentageChange
+        )} footer__percentage-sign`}
+      >
+        {Math.abs(percentageChange)}
+      </span>
+    </div>
+  );
+};
+
 export const Footer = () => {
+  // <FooterItem />
   return (
     <div className="footer">
       <div className="footer__items">
         <div className="footer__text">US Market</div>
         <div className="footer__list">
-          <div>
-            <span className="footer__list__exchange">NASDAQ</span>
-            <span className="footer---dollar-sign">6,850.05</span>{" "}
-            <span className="footer__price--green footer--arrowUp">
-              {" "}
-              72.89{" "}
-            </span>{" "}
-            <span className={"footer__price--green footer---percentage-sign"}>
-              1.08
-            </span>
-          </div>
-          <div>
-            <span className="footer__list__exchange">DJIA</span>
-            <span className="footer---dollar-sign">23,026.35</span>{" "}
-            <span className="footer__price--green footer--arrowUp">
-              {" "}
-              165.89{" "}
-            </span>{" "}
-            <span className="footer__price--green footer---percentage-sign">
-              0.7
-            </span>
-          </div>
-          <div>
-            <span className="footer__list__exchange">S&P</span>
-            <span className="footer---dollar-sign">2,605.35</span>{" "}
-            <span className="footer__price--green footer--arrowUp">
-              {" "}
-              23.35{" "}
-            </span>{" "}
-            <span className="footer__price--green footer---percentage-sign">
-              0.94
-            </span>
-          </div>
+          <FooterItem
+            exchange="NASDAQ"
+            price={6850.05}
+            priceChange={72.89}
+            percentageChange={1.08}
+          />
+          <FooterItem
+            exchange="DJIA"
+            price={23026.35}
+            priceChange={165.89}
+            percentageChange={0.7}
+          />
+          <FooterItem
+            exchange="S&amp;P"
+            price={2605.35}
+            priceChange={23.35}
+            percentageChange={0.94}
+          />
         </div>
       </div>
       <div className="footer__items">
         <div className="footer__text">Favorites</div>
         <div className="footer__list">
-          <div>
-            <span className="footer__list__exchange">MSFT</span>
-            <span className="footer---dollar-sign">86.92</span>{" "}
-            <span className="footer__price--green footer--arrowUp"> 1.91 </span>{" "}
-            <span className="footer__price--green footer---percentage-sign">
-              2.25
-            </span>
-          </div>
-          <div>
-            <span className="footer__list__exchange">AAPL</span>
-            <span className="footer---dollar-sign">160.03</span>{" "}
-            <span className="footer__price--red footer--arrowDown"> 2.94 </span>{" "}
-            <span className="footer__price--red footer---percentage-sign">
-              1.88
-            </span>
-          </div>
-          <div>
-            <span className="footer__list__exchange">GOOG</span>
-            <span className="footer---dollar-sign">1,017.49</span>{" "}
-            <span className="footer__price--green footer--arrowUp">
-              {" "}
-              15.97{" "}
-            </span>{" "}
-            <span className="footer__price--green footer---percentage-sign">
-              1.59
-            </span>
-          </div>
+          <FooterItem
+            exchange="MSFT"
+            price={86.92}
+            priceChange={1.91}
+            percentageChange={2.25}
+          />
+          <FooterItem
+            exchange="AAPL"
+            price={160.03}
+            priceChange={-2.94}
+            percentageChange={-1.88}
+          />
+          <FooterItem
+            exchange="GOOG"
+            price={1017.49}
+            priceChange={15.97}
+            percentageChange={1.59}
+          />
         </div>
       </div>
     </div>
