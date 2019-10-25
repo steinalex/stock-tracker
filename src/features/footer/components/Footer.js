@@ -3,7 +3,6 @@ import "./Footer.css";
 import { FooterItem } from "./FooterItem";
 
 export const Footer = () => {
-  // <FooterItem />
   return (
     <div className="footer">
       <div className="footer__items">
