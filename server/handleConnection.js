@@ -7,7 +7,7 @@ const {
   stockTicker,
   chartData,
   searchQuery,
-  getAllCompanys
+  getAllCompanies
 } = require("./components");
 
 const TOKEN = process.env.TOKEN;
@@ -22,8 +22,9 @@ function callAndStartIntervals(fn, interval, ...args) {
 
 const handleConnection = socket => {
   const timerIDs = {};
-  const allSymbols = getAllCompanys(HOST, TOKEN);
+  const allSymbols = getAllCompanies(HOST, TOKEN);
   console.info("New client connected");
+
   socket.on("stockName", async (stockName, timeRange) => {
     if (stockName === "") {
       return false;
@@ -89,12 +90,15 @@ const handleConnection = socket => {
       TOKEN
     );
   });
+
   socket.on("searchQuery", inputQuery => {
     searchQuery(socket, inputQuery, allSymbols);
   });
+
   socket.on("timeRange", (stockName, timeRange) => {
     chartData(socket, stockName, timeRange, HOST, TOKEN);
   });
+
   socket.on("disconnect", () => {
     Object.values(timerIDs).forEach(clearInterval);
     console.info("Client disconnected");

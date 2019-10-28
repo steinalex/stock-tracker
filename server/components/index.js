@@ -6,7 +6,7 @@ const { keyStats } = require("./keyStats");
 const { stockTicker } = require("./stockTicker");
 const { chartData } = require("./chartData");
 const { searchQuery } = require("./searchQuery");
-const { getAllCompanys } = require("./getAllCompanys");
+const { getAllCompanies } = require("./getAllCompanies");
 
 module.exports = {
   sectorInformation,
@@ -17,5 +17,5 @@ module.exports = {
   stockTicker,
   chartData,
   searchQuery,
-  getAllCompanys
+  getAllCompanies
 };
