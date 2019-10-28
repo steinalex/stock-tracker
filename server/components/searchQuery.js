@@ -1,4 +1,4 @@
-const searchQuery = async (socket, inputQuery, allSymbols) => {
+const emitSearchQuery = async (socket, inputQuery, allSymbols) => {
   try {
     const symbols = await allSymbols;
     const filteredData = symbols.filter(
@@ -12,4 +12,4 @@ const searchQuery = async (socket, inputQuery, allSymbols) => {
     console.error(`Error: ${error}`);
   }
 };
-exports.searchQuery = searchQuery;
+exports.emitSearchQuery = emitSearchQuery;

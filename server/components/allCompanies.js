@@ -1,5 +1,5 @@
 const axios = require("axios");
-const getAllCompanies = async (HOST, TOKEN) => {
+const emitAllCompanies = async (HOST, TOKEN) => {
   try {
     const companySymbols = await axios.get(
       `${HOST}/ref-data/symbols?token=${TOKEN}`
@@ -13,4 +13,4 @@ const getAllCompanies = async (HOST, TOKEN) => {
     console.error(`Error: ${error}`);
   }
 };
-exports.getAllCompanies = getAllCompanies;
+exports.emitAllCompanies = emitAllCompanies;

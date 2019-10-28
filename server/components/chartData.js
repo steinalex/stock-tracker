@@ -1,5 +1,5 @@
 const axios = require("axios");
-const chartData = async (socket, stockName, timeRange, HOST, TOKEN) => {
+const emitChartData = async (socket, stockName, timeRange, HOST, TOKEN) => {
   try {
     const chart = await axios.get(
       `${HOST}/stock/${stockName}/chart/${timeRange}?token=${TOKEN}`
@@ -19,4 +19,4 @@ const chartData = async (socket, stockName, timeRange, HOST, TOKEN) => {
     console.error(`Error: ${error}`);
   }
 };
-exports.chartData = chartData;
+exports.emitChartData = emitChartData;
