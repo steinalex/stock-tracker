@@ -1,5 +1,5 @@
 const axios = require("axios");
-const emitCompanyOverview = async (socket, stockName, HOST, TOKEN) => {
+exports.emitCompanyOverview = async (socket, stockName, HOST, TOKEN) => {
   try {
     const company = await axios.get(
       `${HOST}/stock/${stockName}/company?token=${TOKEN}`
@@ -11,9 +11,9 @@ const emitCompanyOverview = async (socket, stockName, HOST, TOKEN) => {
       symbol,
       companyName
     };
+
     socket.emit("companyOverview", companyOverview);
   } catch (error) {
     console.error(`Error: ${error}`);
   }
 };
-exports.emitCompanyOverview = emitCompanyOverview;

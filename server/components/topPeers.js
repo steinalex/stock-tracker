@@ -1,5 +1,5 @@
 const axios = require("axios");
-const emitTopPeers = async (
+exports.emitTopPeers = async (
   socket,
   stockName,
   HOST,
@@ -15,9 +15,9 @@ const emitTopPeers = async (
       const { name } = allSymbols.find(data => data.symbol === symbol) || {};
       return { symbol, name };
     });
+
     socket.emit("topPeers", peersList);
   } catch (error) {
     console.error(`Error: ${error}`);
   }
 };
-exports.emitTopPeers = emitTopPeers;

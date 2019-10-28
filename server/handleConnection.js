@@ -7,7 +7,7 @@ const {
   emitStockTicker,
   emitChartData,
   emitSearchQuery,
-  emitAllCompanies
+  getAllCompanies
 } = require("./components");
 
 const TOKEN = process.env.TOKEN;
@@ -20,9 +20,9 @@ function callAndStartIntervals(fn, interval, ...args) {
   return setInterval(() => fn(...args), interval);
 }
 
-const handleConnection = socket => {
+exports.handleConnection = socket => {
   const timerIDs = {};
-  const allSymbols = emitAllCompanies(HOST, TOKEN);
+  const allSymbols = getAllCompanies(HOST, TOKEN);
   console.info("New client connected");
 
   socket.on("stockName", async (stockName, timeRange) => {
@@ -104,5 +104,3 @@ const handleConnection = socket => {
     console.info("Client disconnected");
   });
 };
-
-exports.handleConnection = handleConnection;

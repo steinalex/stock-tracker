@@ -1,5 +1,5 @@
 const axios = require("axios");
-const emitLatestNews = async (socket, stockName, HOST, TOKEN) => {
+exports.emitLatestNews = async (socket, stockName, HOST, TOKEN) => {
   try {
     const news = await axios.get(
       `${HOST}/stock/${stockName}/news?token=${TOKEN}`
@@ -10,9 +10,9 @@ const emitLatestNews = async (socket, stockName, HOST, TOKEN) => {
       date: data.datetime,
       url: data.url
     }));
+
     socket.emit("latestNews", top5news);
   } catch (error) {
     console.error(`Error: ${error}`);
   }
 };
-exports.emitLatestNews = emitLatestNews;

@@ -1,5 +1,5 @@
 const axios = require("axios");
-const emitKeyStats = async (socket, stockName, HOST, TOKEN) => {
+exports.emitKeyStats = async (socket, stockName, HOST, TOKEN) => {
   try {
     const quote = await axios.get(
       `${HOST}/stock/${stockName}/quote?token=${TOKEN}`
@@ -25,8 +25,10 @@ const emitKeyStats = async (socket, stockName, HOST, TOKEN) => {
       ytdChange,
       isUSMarketOpen
     } = quote.data;
+
     const earningsPerShare =
       typeof earnings.data === "number" ? earnings.data : null;
+
     const keyStats = {
       companyName,
       symbol,
@@ -46,9 +48,9 @@ const emitKeyStats = async (socket, stockName, HOST, TOKEN) => {
       isUSMarketOpen,
       eps: earningsPerShare
     };
+
     socket.emit("keyStats", keyStats);
   } catch (error) {
     console.error(`Error: ${error}`);
   }
 };
-exports.emitKeyStats = emitKeyStats;

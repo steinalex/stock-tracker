@@ -6,7 +6,7 @@ const { emitKeyStats } = require("./keyStats");
 const { emitStockTicker } = require("./stockTicker");
 const { emitChartData } = require("./chartData");
 const { emitSearchQuery } = require("./searchQuery");
-const { emitAllCompanies } = require("./allCompanies");
+const { getAllCompanies } = require("./allCompanies");
 
 module.exports = {
   emitSectorInformation,
@@ -17,5 +17,5 @@ module.exports = {
   emitStockTicker,
   emitChartData,
   emitSearchQuery,
-  emitAllCompanies
+  getAllCompanies
 };
