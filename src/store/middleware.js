@@ -15,17 +15,11 @@ import { updateKeyStatsAction } from "../features/key-stats";
 import { updateStockTickerAction } from "../features/stock-ticker";
 import { updateChartDataAction } from "../features/chart";
 import { resetAction } from "../actions";
-
-const io = require("socket.io-client");
-
-const HOST = window.location.hostname;
-const PORT = 4000;
-const SERVER = `${HOST}:${PORT}`;
-
-const socket = io(SERVER);
+import { socketService } from "../services";
 
 export const startupMiddleware = store => next => action => {
   if (action.type === BOOTSTRAP) {
+    const socket = socketService.get();
     socket.on("chartData", payload => {
       store.dispatch(updateChartDataAction(payload));
     });
@@ -58,19 +52,23 @@ export const startupMiddleware = store => next => action => {
 export const stockMiddleware = store => next => action => {
   if (action.type === UPDATE_SELECTED_STOCK) {
     store.dispatch(resetAction());
-    socket.emit(
-      "stockName",
-      action.payload.symbol,
-      store.getState().chartData.selectedChartRange
-    );
+    socketService
+      .get()
+      .emit(
+        "stockName",
+        action.payload.symbol,
+        store.getState().chartData.selectedChartRange
+      );
   } else if (action.type === UPDATE_CHART_RANGE) {
-    socket.emit(
-      "timeRange",
-      store.getState().stockData.selectedStock.symbol,
-      action.payload
-    );
+    socketService
+      .get()
+      .emit(
+        "timeRange",
+        store.getState().stockData.selectedStock.symbol,
+        action.payload
+      );
   } else if (action.type === UPDATE_SEARCH_QUERY) {
-    socket.emit("searchQuery", action.payload);
+    socketService.get().emit("searchQuery", action.payload);
   }
   return next(action);
 };
