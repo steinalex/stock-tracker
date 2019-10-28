@@ -42,7 +42,7 @@
   margin-left: 8px;
 }
 
-.footer---dollar-sign::before {
+.footer__dollar-sign::before {
   position: relative;
   content: "$";
   top: -4px;
@@ -50,7 +50,7 @@
   font-size: 8px;
 }
 
-.footer---percentage-sign::after {
+.footer__percentage-sign::after {
   position: relative;
   content: "%";
   font-size: 9px;
@@ -58,17 +58,17 @@
   right: -2px;
 }
 
-.footer__price--green.footer---percentage-sign {
+.footer__price--positive.footer---percentage-sign {
   position: relative;
   margin-left: 5px;
 }
 
-.footer__price--red.footer---percentage-sign {
+.footer__price--negative.footer---percentage-sign {
   position: relative;
   margin-left: 5px;
 }
 
-.footer__price--green.footer---percentage-sign::before {
+.footer__price--positive.footer__percentage-sign::before {
   position: absolute;
   content: "";
   top: 1px;
@@ -81,7 +81,7 @@
   opacity: 0.6;
 }
 
-.footer__price--red.footer---percentage-sign::before {
+.footer__price--negative.footer__percentage-sign::before {
   position: absolute;
   content: "";
   top: 1px;
@@ -94,15 +94,17 @@
   opacity: 0.6;
 }
 
-.footer__price--green {
+.footer__price--positive {
+  position: relative;
   color: var(--green-color);
 }
 
-.footer__price--red {
+.footer__price--negative {
+  position: relative;
   color: var(--red-color);
 }
 
-.footer--arrowUp::before {
+.footer--positive::before {
   content: "\1f861";
   color: var(--green-color);
   top: -4px;
@@ -112,7 +114,7 @@
   width: 7px;
 }
 
-.footer--arrowDown::before {
+.footer--negative::before {
   content: "\1f863";
   color: var(--red-color);
   top: -4px;
