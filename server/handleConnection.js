@@ -1,12 +1,12 @@
 const {
-  sectorInformation,
-  topPeers,
-  companyOverview,
-  latestNewsInterval,
-  keyStats,
-  stockTicker,
-  chartData,
-  searchQuery,
+  emitSectorInformation,
+  emitTopPeers,
+  emitCompanyOverview,
+  emitLatestNews,
+  emitKeyStats,
+  emitStockTicker,
+  emitChartData,
+  emitSearchQuery,
   getAllCompanies
 } = require("./components");
 
@@ -20,7 +20,7 @@ function callAndStartIntervals(fn, interval, ...args) {
   return setInterval(() => fn(...args), interval);
 }
 
-const handleConnection = socket => {
+exports.handleConnection = socket => {
   const timerIDs = {};
   const allSymbols = getAllCompanies(HOST, TOKEN);
   console.info("New client connected");
@@ -32,7 +32,7 @@ const handleConnection = socket => {
     console.info("Stock entered: ", stockName);
     Object.values(timerIDs).forEach(clearInterval);
     timerIDs.stockTicker = callAndStartIntervals(
-      stockTicker,
+      emitStockTicker,
       5000,
       socket,
       stockName,
@@ -40,7 +40,7 @@ const handleConnection = socket => {
       TOKEN
     );
     timerIDs.keyStats = callAndStartIntervals(
-      keyStats,
+      emitKeyStats,
       ONE_DAY_IN_MS,
       socket,
       stockName,
@@ -48,7 +48,7 @@ const handleConnection = socket => {
       TOKEN
     );
     timerIDs.latestNews = callAndStartIntervals(
-      latestNewsInterval,
+      emitLatestNews,
       ONE_DAY_IN_MS,
       socket,
       stockName,
@@ -56,7 +56,7 @@ const handleConnection = socket => {
       TOKEN
     );
     timerIDs.companyOverview = callAndStartIntervals(
-      companyOverview,
+      emitCompanyOverview,
       ONE_DAY_IN_MS,
       socket,
       stockName,
@@ -64,7 +64,7 @@ const handleConnection = socket => {
       TOKEN
     );
     timerIDs.topPeers = callAndStartIntervals(
-      topPeers,
+      emitTopPeers,
       ONE_DAY_IN_MS,
       socket,
       stockName,
@@ -73,7 +73,7 @@ const handleConnection = socket => {
       allSymbols
     );
     timerIDs.chartData = callAndStartIntervals(
-      chartData,
+      emitChartData,
       ONE_DAY_IN_MS,
       socket,
       stockName,
@@ -82,7 +82,7 @@ const handleConnection = socket => {
       TOKEN
     );
     timerIDs.sectorInformation = callAndStartIntervals(
-      sectorInformation,
+      emitSectorInformation,
       ONE_DAY_IN_MS,
       socket,
       stockName,
@@ -92,11 +92,11 @@ const handleConnection = socket => {
   });
 
   socket.on("searchQuery", inputQuery => {
-    searchQuery(socket, inputQuery, allSymbols);
+    emitSearchQuery(socket, inputQuery, allSymbols);
   });
 
   socket.on("timeRange", (stockName, timeRange) => {
-    chartData(socket, stockName, timeRange, HOST, TOKEN);
+    emitChartData(socket, stockName, timeRange, HOST, TOKEN);
   });
 
   socket.on("disconnect", () => {
@@ -104,5 +104,3 @@ const handleConnection = socket => {
     console.info("Client disconnected");
   });
 };
-
-exports.handleConnection = handleConnection;
