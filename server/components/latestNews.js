@@ -2,16 +2,16 @@ const axios = require("axios");
 exports.emitLatestNews = async (socket, stockName, HOST, TOKEN) => {
   try {
     const news = await axios.get(
-      `${HOST}/stock/${stockName}/news?token=${TOKEN}`
+      `${HOST}/stock/${stockName}/news/last/5?token=${TOKEN}`
     );
-    const top5news = news.data.slice(0, 5).map(data => ({
+    const latestNews = news.data.map(data => ({
       headline: data.headline,
       source: data.source,
       date: data.datetime,
       url: data.url
     }));
 
-    socket.emit("latestNews", top5news);
+    socket.emit("latestNews", latestNews);
   } catch (error) {
     console.error(`Error: ${error}`);
   }
