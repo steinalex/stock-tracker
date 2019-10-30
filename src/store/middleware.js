@@ -15,14 +15,19 @@ import { updateKeyStatsAction } from "../features/key-stats";
 import { updateStockTickerAction } from "../features/stock-ticker";
 import { updateChartDataAction } from "../features/chart";
 import { resetAction } from "../actions";
-import { socketService } from "../services";
 
-export const startupMiddleware = store => next => action => {
+const dataTofetch = [["chartData", updateChartDataAction]];
+
+export const startupMiddleware = socketService => store => next => action => {
   if (action.type === BOOTSTRAP) {
     const socket = socketService.get();
-    socket.on("chartData", payload => {
-      store.dispatch(updateChartDataAction(payload));
+
+    dataTofetch.forEach(([name, action]) => {
+      socket.on(name, payload => {
+        store.dispatch(action(payload));
+      });
     });
+
     socket.on("keyStats", payload => {
       store.dispatch(updateKeyStatsAction(payload));
     });
@@ -49,7 +54,7 @@ export const startupMiddleware = store => next => action => {
   return next(action);
 };
 
-export const stockMiddleware = store => next => action => {
+export const stockMiddleware = socketService => store => next => action => {
   if (action.type === UPDATE_SELECTED_STOCK) {
     store.dispatch(resetAction());
     socketService
@@ -59,7 +64,12 @@ export const stockMiddleware = store => next => action => {
         action.payload.symbol,
         store.getState().chartData.selectedChartRange
       );
-  } else if (action.type === UPDATE_CHART_RANGE) {
+  }
+  return next(action);
+};
+
+export const chartMiddleware = socketService => store => next => action => {
+  if (action.type === UPDATE_CHART_RANGE) {
     socketService
       .get()
       .emit(
@@ -67,7 +77,12 @@ export const stockMiddleware = store => next => action => {
         store.getState().stockData.selectedStock.symbol,
         action.payload
       );
-  } else if (action.type === UPDATE_SEARCH_QUERY) {
+  }
+  return next(action);
+};
+
+export const searchMiddleware = socketService => store => next => action => {
+  if (action.type === UPDATE_SEARCH_QUERY) {
     socketService.get().emit("searchQuery", action.payload);
   }
   return next(action);
