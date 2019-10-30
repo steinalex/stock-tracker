@@ -2,9 +2,11 @@ exports.emitSearchQuery = async (socket, inputQuery, allSymbols) => {
   try {
     const symbols = await allSymbols;
 
-    const filterData = symbols.filter(item => {
-      return item.symbol.toLowerCase().indexOf(inputQuery.toLowerCase()) !== -1;
-    });
+    const filterData = symbols.filter(
+      search =>
+        search.symbol.toLowerCase().indexOf(inputQuery.toLowerCase()) !== -1 ||
+        search.name.toLowerCase().indexOf(inputQuery.toLowerCase()) !== -1
+    );
 
     const dataSort = filterData.sort((a, b) => {
       const aStart =
