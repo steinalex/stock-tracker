@@ -1,4 +1,4 @@
-const regExp = input => new RegExp("^" + input.toUpperCase());
+const matchInput = input => new RegExp("^" + input.toUpperCase());
 
 exports.emitSearchQuery = async (socket, inputQuery, allSymbols) => {
   try {
@@ -11,8 +11,8 @@ exports.emitSearchQuery = async (socket, inputQuery, allSymbols) => {
     );
 
     const sortDataByRelevance = filterData.sort((a, b) => {
-      const aStart = a.symbol.match(regExp(inputQuery)) || [];
-      const bStart = b.symbol.match(regExp(inputQuery)) || [];
+      const aStart = a.symbol.match(matchInput(inputQuery)) || [];
+      const bStart = b.symbol.match(matchInput(inputQuery)) || [];
 
       if (aStart.length != bStart.length) return bStart.length - aStart.length;
       return a.symbol > b.symbol ? 1 : -1;
