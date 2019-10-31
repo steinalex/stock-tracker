@@ -1,6 +1,8 @@
 import { UPDATE_CHART_RANGE } from "../../../store/constants";
 
-export const chartMiddleware = socketService => store => next => action => {
+export const chartMiddleware = ({
+  socketService
+}) => store => next => action => {
   if (action.type === UPDATE_CHART_RANGE) {
     socketService
       .get()
