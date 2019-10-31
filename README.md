@@ -14,6 +14,11 @@ An `env` file is required to access the IEXCloud service, which is the API used 
 Ensure a .env file is created in the root project directory, with a `TOKEN` entry that's assigned to your unique API key. E.g. `TOKEN=Tsk_d2f189.........9992a3ad744`
 
 ### Client
-The client side is build on React with Redux.
+The client side is build with:
+* React
+* Redux
 
 To start the client, type `npm start` from the main project directory.
+
+#### Running Tests
+To run a test, run `npm run test` 
