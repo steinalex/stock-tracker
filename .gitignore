@@ -17,8 +17,8 @@
 .env
 
 #vscode
-.vscode/settings.js
-.vscode/
+.vscode.*
+.vscode
 
 npm-debug.log*
 yarn-debug.log*
