@@ -1,3 +1,5 @@
+const regExp = input => new RegExp("^" + input.toUpperCase());
+
 exports.emitSearchQuery = async (socket, inputQuery, allSymbols) => {
   try {
     const symbols = await allSymbols;
@@ -8,17 +10,15 @@ exports.emitSearchQuery = async (socket, inputQuery, allSymbols) => {
         search.name.toLowerCase().indexOf(inputQuery.toLowerCase()) !== -1
     );
 
-    const dataSort = filterData.sort((a, b) => {
-      const aStart =
-        a.symbol.match(new RegExp("^" + inputQuery.toUpperCase())) || [];
-      const bStart =
-        b.symbol.match(new RegExp("^" + inputQuery.toUpperCase())) || [];
+    const sortDataByRelevance = filterData.sort((a, b) => {
+      const aStart = a.symbol.match(regExp(inputQuery)) || [];
+      const bStart = b.symbol.match(regExp(inputQuery)) || [];
 
       if (aStart.length != bStart.length) return bStart.length - aStart.length;
-      else return a.symbol > b.symbol ? 1 : -1;
+      return a.symbol > b.symbol ? 1 : -1;
     });
 
-    socket.emit("companySymbols", dataSort.slice(0, 10));
+    socket.emit("companySymbols", sortDataByRelevance.slice(0, 10));
   } catch (error) {
     console.error(`Error: ${error}`);
   }
