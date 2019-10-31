@@ -16,7 +16,16 @@ import { updateStockTickerAction } from "../features/stock-ticker";
 import { updateChartDataAction } from "../features/chart";
 import { resetAction } from "../actions";
 
-const dataTofetch = [["chartData", updateChartDataAction]];
+const dataTofetch = [
+  ["chartData", updateChartDataAction],
+  ["keyStats", updateKeyStatsAction],
+  ["latestNews", updateLatestNewsAction],
+  ["companyOverview", updateCompanyOverviewAction],
+  ["topPeers", updateTopPeersAction],
+  ["sectorInformation", updateSearchAction],
+  ["companySymbols", updateCompanySymbolsAction],
+  ["stockTicker", updateStockTickerAction]
+];
 
 export const startupMiddleware = socketService => store => next => action => {
   if (action.type === BOOTSTRAP) {
@@ -26,28 +35,6 @@ export const startupMiddleware = socketService => store => next => action => {
       socket.on(name, payload => {
         store.dispatch(action(payload));
       });
-    });
-
-    socket.on("keyStats", payload => {
-      store.dispatch(updateKeyStatsAction(payload));
-    });
-    socket.on("latestNews", payload => {
-      store.dispatch(updateLatestNewsAction(payload));
-    });
-    socket.on("companyOverview", payload => {
-      store.dispatch(updateCompanyOverviewAction(payload));
-    });
-    socket.on("topPeers", payload => {
-      store.dispatch(updateTopPeersAction(payload));
-    });
-    socket.on("sectorInformation", payload => {
-      store.dispatch(updateSearchAction(payload));
-    });
-    socket.on("companySymbols", payload => {
-      store.dispatch(updateCompanySymbolsAction(payload));
-    });
-    socket.on("stockTicker", payload => {
-      store.dispatch(updateStockTickerAction(payload));
     });
   }
 
