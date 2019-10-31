@@ -1,10 +1,8 @@
 import { createStore, applyMiddleware, compose } from "redux";
-import {
-  startupMiddleware,
-  stockMiddleware,
-  searchMiddleware,
-  chartMiddleware
-} from "./middleware";
+import { startupMiddleware } from "./middleware";
+import { stockMiddleware } from "../features/stock-ticker";
+import { searchMiddleware } from "../features/search";
+import { chartMiddleware } from "../features/chart";
 import { combinedReducer } from "./reducer";
 import { socketService } from "../services";
 
