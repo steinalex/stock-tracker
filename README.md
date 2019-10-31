@@ -1,12 +1,17 @@
 ## Getting started
 There are two elements required to run this project, the `server` and `client`.
 
-Open a terminal and run `npm i` to install all dependencies.
+Open a terminal and run `npm i` first to install all dependencies.
 
 ### Server
 The server is a Node.js server, which uses the Express framework in order to use Socket.io
 
-To start the server, type `nodemon server/server` from the main project directory.
+To start up the server, type `nodemon server/server` from the main project directory.
+
+* socket.io: a library that enables real-time, bidirectional and event-based communication between browser and server.
+* axios: an npm package to help fetch data
+* express: fast, unopinionated, minimalist web framework for Node.js
+
 
 #### Env file
 An `env` file is required to access the IEXCloud service, which is the API used to fetch stock data.
