@@ -21,7 +21,9 @@ const dataTofetch = [
   ["stockTicker", updateStockTickerAction]
 ];
 
-export const startupMiddleware = socketService => store => next => action => {
+export const startupMiddleware = ({
+  socketService
+}) => store => next => action => {
   if (action.type === BOOTSTRAP) {
     const socket = socketService.get();
 
