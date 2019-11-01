@@ -8,9 +8,8 @@ exports.emitSearchQuery = async (socket, inputQuery, allSymbols) => {
         search.symbol.toLowerCase().indexOf(inputQuery.toLowerCase()) !== -1 ||
         search.name.toLowerCase().indexOf(inputQuery.toLowerCase()) !== -1
     );
-    const topTen = filteredData.slice(0, 10);
 
-    const sortDataByRelevance = filterData.sort((a, b) => {
+    const sortDataByRelevance = filteredData.sort((a, b) => {
       const aStart = a.symbol.match(matchInput(inputQuery)) || [];
       const bStart = b.symbol.match(matchInput(inputQuery)) || [];
 
