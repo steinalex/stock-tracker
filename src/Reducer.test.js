@@ -1,17 +1,8 @@
 import { combinedReducer, UPDATE_SELECTED_STOCK } from "./store";
-import {
-  UPDATE_CHART_DATA,
-  UPDATE_CHART_RANGE
-} from "./features/chart/redux/constants";
 import { UPDATE_COMPANY_OVERVIEW } from "./features/company/redux/constants";
 import { UPDATE_LATEST_NEWS } from "./features/latest-news/redux/constants";
 import { UPDATE_KEY_STATS } from "./features/key-stats/redux/constants";
 import { UPDATE_TOP_PEERS } from "./features/peers/redux/constants";
-import {
-  UPDATE_COMPANY_SYMBOLS,
-  UPDATE_SEARCH,
-  UPDATE_SEARCH_QUERY
-} from "./features/headline/redux/constants";
 import { UPDATE_STOCK_TICKER } from "./features/stock-ticker/redux/constants";
 
 const createInitialState = () => ({
@@ -53,24 +44,6 @@ describe('When the "Stock Reducer" is called', () => {
     });
   });
 
-  describe("with an UPDATE_CHART_RANGE action", () => {
-    let newState;
-
-    beforeAll(() => {
-      const _init = createInitialState();
-      const initialState = {
-        ..._init,
-        chartData: { ..._init.chartData, selectedChartRange: "5y" }
-      };
-      const action = { type: UPDATE_CHART_RANGE, payload: "2y" };
-      newState = combinedReducer(initialState, action);
-    });
-
-    it("it updates the selected chart range to 2y", () => {
-      expect(newState.chartData.selectedChartRange).toBe("2y");
-    });
-  });
-
   describe("with an UPDATE_SELECTED_STOCK action", () => {
     let newState;
 
@@ -86,66 +59,6 @@ describe('When the "Stock Reducer" is called', () => {
 
     it('it updates the selected stock to "AAPL"', () => {
       expect(newState.stockData.selectedStock).toBe("AAPL");
-    });
-  });
-
-  describe("with an UPDATE_SEARCH action", () => {
-    let newState;
-
-    beforeAll(() => {
-      const _init = createInitialState();
-      const initialState = {
-        ..._init,
-        headlineData: { ..._init.headlineData, selectedSearch: "" }
-      };
-      const action = { type: UPDATE_SEARCH, payload: "AA" };
-      newState = combinedReducer(initialState, action);
-    });
-
-    it('it updates the search query to be "AA"', () => {
-      expect(newState.headlineData.selectedSearch).toBe("AA");
-    });
-  });
-
-  describe("with an UPDATE_SEARCH_QUERY action", () => {
-    let newState;
-
-    beforeAll(() => {
-      const _init = createInitialState();
-      const initialState = {
-        ..._init,
-        headlineData: { ..._init.headlineData, enteredSearchQuery: "" }
-      };
-      const action = { type: UPDATE_SEARCH_QUERY, payload: "ECOR" };
-      newState = combinedReducer(initialState, action);
-    });
-
-    it('it updates the search query to be "ECOR"', () => {
-      expect(newState.headlineData.enteredSearchQuery).toBe("ECOR");
-    });
-  });
-
-  describe("with an UPDATE_COMPANY_SYMBOLS action", () => {
-    let newState;
-
-    beforeAll(() => {
-      const _init = createInitialState();
-      const initialState = {
-        ..._init,
-        headlineData: { ..._init.headlineData, selectedCompanySymbols: [] }
-      };
-      const action = {
-        type: UPDATE_COMPANY_SYMBOLS,
-        payload: ["AAPL", "AA"]
-      };
-      newState = combinedReducer(initialState, action);
-    });
-
-    it('it updates the company symbol array with two elements "(AAPL, AA)"', () => {
-      expect(newState.headlineData.selectedCompanySymbols).toEqual([
-        "AAPL",
-        "AA"
-      ]);
     });
   });
 
@@ -223,24 +136,6 @@ describe('When the "Stock Reducer" is called', () => {
 
     it('it updates top peers to "Peers"', () => {
       expect(newState.peerData.selectedTopPeers).toEqual("Peers");
-    });
-  });
-
-  describe("with an UPDATE_CHART_DATA action", () => {
-    let newState;
-
-    beforeAll(() => {
-      const _init = createInitialState();
-      const initialState = {
-        ..._init,
-        chartData: { ..._init.chartData, selectedChartData: "" }
-      };
-      const action = { type: UPDATE_CHART_DATA, payload: "Chart Data" };
-      newState = combinedReducer(initialState, action);
-    });
-
-    it('it updates the chart to "Chart Data"', () => {
-      expect(newState.chartData.selectedChartData).toEqual("Chart Data");
     });
   });
 
