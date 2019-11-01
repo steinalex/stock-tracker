@@ -1,8 +1,5 @@
-import {
-  UPDATE_CHART_DATA,
-  UPDATE_CHART_RANGE,
-  RESET
-} from "../../../store/constants";
+import { RESET } from "../../../store/constants";
+import { UPDATE_CHART_RANGE, UPDATE_CHART_DATA } from "./constants";
 
 const initialState = { selectedChartRange: "5y", selectedChartData: null };
 export const chartReducer = (state = initialState, { type, payload }) => {

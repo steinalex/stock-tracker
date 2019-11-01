@@ -1,4 +1,4 @@
-import { UPDATE_COMPANY_OVERVIEW } from "../../../store/constants";
+import { UPDATE_COMPANY_OVERVIEW } from "./constants";
 
 export const updateCompanyOverviewAction = action => ({
   type: UPDATE_COMPANY_OVERVIEW,

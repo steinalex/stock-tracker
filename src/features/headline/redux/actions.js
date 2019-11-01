@@ -2,7 +2,7 @@ import {
   UPDATE_SEARCH,
   UPDATE_COMPANY_SYMBOLS,
   UPDATE_SEARCH_QUERY
-} from "../../../store/constants";
+} from "./constants";
 
 export const updateSearchAction = action => ({
   type: UPDATE_SEARCH,

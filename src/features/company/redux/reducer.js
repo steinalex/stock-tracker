@@ -1,4 +1,5 @@
-import { UPDATE_COMPANY_OVERVIEW, RESET } from "../../../store/constants";
+import { RESET } from "../../../store/constants";
+import { UPDATE_COMPANY_OVERVIEW } from "./constants";
 
 const initialState = { selectedCompanyOverview: null };
 export const companyOverviewReducer = (

@@ -1,5 +1,6 @@
 import { BOOTSTRAP } from "../../../store/constants";
 import { updateCompanySymbolsAction, updateSearchAction } from "./actions";
+import { UPDATE_SEARCH_QUERY } from "./constants";
 const dataTofetch = [
   ["sectorInformation", updateSearchAction],
   ["companySymbols", updateCompanySymbolsAction]
@@ -15,6 +16,9 @@ export const headlineMiddleware = ({
         store.dispatch(action(payload));
       });
     });
+  }
+  if (action.type === UPDATE_SEARCH_QUERY) {
+    socketService.get().emit("searchQuery", action.payload);
   }
   return next(action);
 };

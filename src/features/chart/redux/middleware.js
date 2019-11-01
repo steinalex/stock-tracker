@@ -1,4 +1,5 @@
-import { UPDATE_CHART_RANGE, BOOTSTRAP } from "../../../store/constants";
+import { BOOTSTRAP } from "../../../store/constants";
+import { UPDATE_CHART_RANGE } from "./constants";
 import { updateChartDataAction } from "./actions";
 
 export const chartMiddleware = ({

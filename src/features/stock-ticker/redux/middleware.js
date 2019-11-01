@@ -1,4 +1,5 @@
-import { UPDATE_SELECTED_STOCK, BOOTSTRAP } from "../../../store/constants";
+import { BOOTSTRAP } from "../../../store/constants";
+import { UPDATE_SELECTED_STOCK } from "./constants";
 import { resetAction } from "../../../actions";
 import { updateStockTickerAction } from "./actions";
 
