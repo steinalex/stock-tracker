@@ -1,5 +1,6 @@
-import { UPDATE_SELECTED_STOCK } from "../../../store/constants";
+import { UPDATE_SELECTED_STOCK, BOOTSTRAP } from "../../../store/constants";
 import { resetAction } from "../../../actions";
+import { updateStockTickerAction } from "./actions";
 
 export const stockMiddleware = ({
   socketService
@@ -13,6 +14,12 @@ export const stockMiddleware = ({
         action.payload.symbol,
         store.getState().chartData.selectedChartRange
       );
+  }
+  if (action.type === BOOTSTRAP) {
+    const socket = socketService.get();
+    socket.on("stockTicker", payload => {
+      store.dispatch(updateStockTickerAction(payload));
+    });
   }
   return next(action);
 };
