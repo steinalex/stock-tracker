@@ -1,9 +1,9 @@
+import { RESET } from "../../../store/constants";
 import {
-  UPDATE_SEARCH,
   UPDATE_COMPANY_SYMBOLS,
-  UPDATE_SEARCH_QUERY,
-  RESET
-} from "../../../store/constants";
+  UPDATE_SEARCH,
+  UPDATE_SEARCH_QUERY
+} from "./constants";
 
 const initialState = {
   selectedSearch: "",

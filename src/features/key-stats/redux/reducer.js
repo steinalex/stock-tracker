@@ -1,4 +1,5 @@
-import { UPDATE_KEY_STATS, RESET } from "../../../store/constants";
+import { RESET } from "../../../store/constants";
+import { UPDATE_KEY_STATS } from "./constants";
 
 const initialState = { selectedKeyStats: "" };
 export const keyStatsReducer = (state = initialState, { type, payload }) => {

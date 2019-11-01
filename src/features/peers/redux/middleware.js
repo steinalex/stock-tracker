@@ -1,13 +1,13 @@
 import { BOOTSTRAP } from "../../../store/constants";
-import { updateStockTickerAction } from "./actions";
+import { updateTopPeersAction } from "./actions";
 
-export const stockTickerMiddleware = ({
+export const topPeersMiddleware = ({
   socketService
 }) => store => next => action => {
   if (action.type === BOOTSTRAP) {
     const socket = socketService.get();
-    socket.on("stockTicker", payload => {
-      store.dispatch(updateStockTickerAction(payload));
+    socket.on("topPeers", payload => {
+      store.dispatch(updateTopPeersAction(payload));
     });
   }
   return next(action);

@@ -1,7 +1,4 @@
-import {
-  UPDATE_CHART_RANGE,
-  UPDATE_CHART_DATA
-} from "../../../store/constants";
+import { UPDATE_CHART_RANGE, UPDATE_CHART_DATA } from "./constants";
 
 export const updateChartAction = action => ({
   type: UPDATE_CHART_RANGE,
