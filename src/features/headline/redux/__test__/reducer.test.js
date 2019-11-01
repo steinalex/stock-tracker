@@ -5,17 +5,11 @@ import {
 } from "../constants";
 import { headlineReducer } from "../reducer";
 
-const createInitialState = {
-  selectedSearch: "",
-  enteredSearchQuery: "",
-  selectedCompanySymbols: []
-};
 describe("with an UPDATE_SEARCH action", () => {
   let newState;
 
   beforeAll(() => {
     const initialState = {
-      ...createInitialState,
       selectedSearch: ""
     };
     const action = { type: UPDATE_SEARCH, payload: "AA" };
@@ -32,7 +26,6 @@ describe("with an UPDATE_SEARCH_QUERY action", () => {
 
   beforeAll(() => {
     const initialState = {
-      ...createInitialState,
       enteredSearchQuery: ""
     };
     const action = { type: UPDATE_SEARCH_QUERY, payload: "ECOR" };
@@ -49,7 +42,6 @@ describe("with an UPDATE_COMPANY_SYMBOLS action", () => {
 
   beforeAll(() => {
     const initialState = {
-      ...createInitialState,
       selectedCompanySymbols: []
     };
     const action = {
