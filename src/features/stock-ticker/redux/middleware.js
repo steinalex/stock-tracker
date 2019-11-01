@@ -1,21 +1,9 @@
 import { BOOTSTRAP } from "../../../store/constants";
-import { UPDATE_SELECTED_STOCK } from "./constants";
-import { resetAction } from "../../../actions";
 import { updateStockTickerAction } from "./actions";
 
-export const stockMiddleware = ({
+export const stockTickerMiddleware = ({
   socketService
 }) => store => next => action => {
-  if (action.type === UPDATE_SELECTED_STOCK) {
-    store.dispatch(resetAction());
-    socketService
-      .get()
-      .emit(
-        "stockName",
-        action.payload.symbol,
-        store.getState().chartData.selectedChartRange
-      );
-  }
   if (action.type === BOOTSTRAP) {
     const socket = socketService.get();
     socket.on("stockTicker", payload => {
