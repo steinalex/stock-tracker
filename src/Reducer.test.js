@@ -1,13 +1,11 @@
 import { UPDATE_SELECTED_STOCK } from "./store";
 import { stockReducer } from "./reducer";
 
-const createInitialState = { selectedStock: "" };
 describe("with an UPDATE_SELECTED_STOCK action", () => {
   let newState;
 
   beforeAll(() => {
     const initialState = {
-      ...createInitialState,
       selectedStock: ""
     };
     const action = { type: UPDATE_SELECTED_STOCK, payload: "AAPL" };

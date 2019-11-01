@@ -6,7 +6,6 @@ export const chartReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case UPDATE_CHART_RANGE:
       return {
-        ...state,
         selectedChartRange: payload,
         selectedChartData: null
       };

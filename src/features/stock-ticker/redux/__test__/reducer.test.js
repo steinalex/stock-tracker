@@ -1,13 +1,11 @@
 import { UPDATE_STOCK_TICKER } from "../constants";
 import { stockTickerReducer } from "../reducer";
 
-const createInitialState = { selectedStockTicker: "" };
 describe("with an UPDATE_STOCK_TICKER action", () => {
   let newState;
 
   beforeAll(() => {
     const initialState = {
-      ...createInitialState,
       selectedStockTicker: ""
     };
     const action = { type: UPDATE_STOCK_TICKER, payload: "Stock" };
