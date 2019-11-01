@@ -1,17 +1,18 @@
+import { combinedReducer, UPDATE_SELECTED_STOCK } from "./store";
 import {
-  combinedReducer,
   UPDATE_CHART_DATA,
-  UPDATE_CHART_RANGE,
-  UPDATE_COMPANY_OVERVIEW,
+  UPDATE_CHART_RANGE
+} from "./features/chart/redux/constants";
+import { UPDATE_COMPANY_OVERVIEW } from "./features/company/redux/constants";
+import { UPDATE_LATEST_NEWS } from "./features/latest-news/redux/constants";
+import { UPDATE_KEY_STATS } from "./features/key-stats/redux/constants";
+import { UPDATE_TOP_PEERS } from "./features/peers/redux/constants";
+import {
   UPDATE_COMPANY_SYMBOLS,
-  UPDATE_KEY_STATS,
-  UPDATE_LATEST_NEWS,
   UPDATE_SEARCH,
-  UPDATE_SEARCH_QUERY,
-  UPDATE_SELECTED_STOCK,
-  UPDATE_STOCK_TICKER,
-  UPDATE_TOP_PEERS
-} from "./store";
+  UPDATE_SEARCH_QUERY
+} from "./features/headline/redux/constants";
+import { UPDATE_STOCK_TICKER } from "./features/stock-ticker/redux/constants";
 
 const createInitialState = () => ({
   stockData: {
