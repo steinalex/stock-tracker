@@ -2,6 +2,10 @@
   float: right;
 }
 
+.market > p {
+  margin: 8px 0;
+}
+
 .market__text {
   color: #ffffff96;
   font-size: 14px;
