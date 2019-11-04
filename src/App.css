@@ -14,7 +14,7 @@
 
 .latest-news {
   grid-area: latest-news;
-  min-height: 410px;
+  min-height: 370px;
 }
 
 .key-stats {
@@ -24,7 +24,7 @@
 .company-overview {
   position: relative;
   grid-area: company-overview;
-  min-height: 310px;
+  min-height: 270px;
 }
 
 .peers {
@@ -42,13 +42,13 @@
   grid-column-gap: 55px;
   grid-row-gap: 4px;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 169px 450px max-content;
+  grid-template-rows: max-content max-content max-content;
   grid-template-areas:
     "header header header"
     "chart chart latest-news"
     "key-stats key-stats company-overview";
   color: #ffffff;
-  padding: 10px 45px 40px;
+  padding: 10px 45px 0;
   margin: 0px auto 0px;
   max-width: 1500px;
   overflow: auto;
