@@ -33,7 +33,7 @@ exports.handleConnection = socket => {
     Object.values(timerIDs).forEach(clearInterval);
     timerIDs.stockTicker = callAndStartIntervals(
       emitStockTicker,
-      5000,
+      ONE_DAY_IN_MS,
       socket,
       stockName,
       HOST,

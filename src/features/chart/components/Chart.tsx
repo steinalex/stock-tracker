@@ -25,9 +25,9 @@ const tenors = [
   { value: "max", label: "MAX" }
 ];
 
-const yaxisFormat = item => item.toFixed(2);
+const yaxisFormat = (item: number) => item.toFixed(2);
 
-const formatDate = (isoDate, ChartRange) => {
+const formatDate = (isoDate: Date, ChartRange: string) => {
   const date = new Date(isoDate);
   switch (ChartRange) {
     case "max":
@@ -50,20 +50,32 @@ const formatDate = (isoDate, ChartRange) => {
   }
 };
 
+interface ChartDataValue {
+  date: Date;
+  close: string;
+}
+interface StateType {
+  chartData: { selectedChartData: []; selectedChartRange: string };
+  stockTickerData: { selectedStockTicker: { latestPrice: number } };
+}
+
 export const Chart = () => {
   const dispatch = useDispatch();
   const { selectedChartData, selectedChartRange } = useSelector(
-    state => state.chartData
+    (state: StateType) => state.chartData
   );
-  const { selectedStockTicker } = useSelector(state => state.stockTickerData);
-  const updateChartRange = stock => dispatch(updateChartAction(stock));
-  const onClickHandler = event => {
-    updateChartRange(event.target.value);
-  };
+  const { selectedStockTicker } = useSelector(
+    (state: StateType) => state.stockTickerData
+  );
+  const updateChartRange = (stock: string) =>
+    dispatch(updateChartAction(stock));
+  // const onClickHandler = (event: MouseEvent<HTMLButtonElement>) => {
+  //   updateChartRange(event.target.value);
+  // };
 
   const chartData =
     selectedChartData &&
-    selectedChartData.map(data => ({
+    selectedChartData.map((data: ChartDataValue) => ({
       date: formatDate(data.date, selectedChartRange),
       close: data.close
     }));
@@ -80,7 +92,7 @@ export const Chart = () => {
               <button
                 key={label}
                 className={`chart__button ${activeClass}`}
-                onClick={onClickHandler}
+                onClick={() => updateChartRange(value)}
                 value={value}
               >
                 {label}
@@ -125,11 +137,13 @@ export const Chart = () => {
           <Tooltip />
           <ReferenceLine
             y={selectedStockTicker.latestPrice}
-            label={{
-              value: String(selectedStockTicker.latestPrice),
-              position: "right",
-              fill: "#e95656"
-            }}
+            label={
+              {
+                value: String(selectedStockTicker.latestPrice),
+                position: "right",
+                fill: "#e95656"
+              } as any
+            }
             stroke="#e95656"
             strokeDasharray="3 3"
           />

@@ -5,7 +5,7 @@ const PORT = 4000;
 const SERVER = `${HOST}:${PORT}`;
 
 const createSocketService = () => {
-  let socket;
+  let socket: SocketIOClient.Socket;
 
   function get() {
     return socket || (socket = io(SERVER));
