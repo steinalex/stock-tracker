@@ -1,16 +1,11 @@
 import { RESET } from "../../../store/constants";
 import { UPDATE_CHART_RANGE, UPDATE_CHART_DATA } from "./constants";
-import { UpdateChartDataAction, UpdateChartRangeAction } from "./actions";
+import { ChartActions, ChartData } from "./actions";
 import { Reducer } from "react";
-
-interface Chart {
-  close: number;
-  date: string;
-}
 
 interface ChartState {
   selectedChartRange: string;
-  selectedChartData: null | Chart[];
+  selectedChartData: null | ChartData[];
 }
 
 const initialState: ChartState = {
@@ -18,10 +13,10 @@ const initialState: ChartState = {
   selectedChartData: null
 };
 
-export const chartReducer: Reducer<
-  ChartState,
-  UpdateChartDataAction | UpdateChartRangeAction
-> = (state = initialState, action) => {
+export const chartReducer: Reducer<ChartState, ChartActions> = (
+  state = initialState,
+  action
+) => {
   switch (action.type) {
     case UPDATE_CHART_RANGE:
       return {
