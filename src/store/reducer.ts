@@ -18,3 +18,5 @@ export const combinedReducer = combineReducers({
   chartData: chartReducer,
   headlineData: headlineReducer
 });
+
+export type GlobalState = ReturnType<typeof combinedReducer>;

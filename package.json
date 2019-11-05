@@ -20,19 +20,20 @@
     "socket.io-client": "^2.2.0"
   },
   "devDependencies": {
-    "@types/react-redux": "^7.1.5",
     "@types/jest": "^24.0.21",
     "@types/node": "^12.12.5",
     "@types/react": "^16.9.11",
     "@types/react-dom": "^16.9.3",
+    "@types/react-redux": "^7.1.5",
     "@types/recharts": "^1.8.1",
+    "@types/socket.io-client": "^1.4.32",
     "dotenv": "^8.2.0",
     "husky": "^3.0.8",
     "nodemon": "^1.19.2",
     "prettier": "^1.18.2",
     "pretty-quick": "^1.11.1",
-    "typescript": "^3.6.4",
-    "react-image-webp": "^0.3.1"
+    "react-image-webp": "^0.3.1",
+    "typescript": "^3.6.4"
   },
   "scripts": {
     "start": "react-scripts start",

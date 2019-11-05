@@ -15,8 +15,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { updateChartRangeAction } from "../redux/actions";
 import { Loading } from "../../loading";
 import { ErrorMessage } from "../../error-message";
-import { ChartState } from "../redux/reducer";
 import "./Chart.css";
+import { GlobalState } from "../../../store";
 
 const tenors = [
   { value: "1d", label: "1D" },
@@ -54,10 +54,9 @@ const formatDate = (isoDate: string, chartRange: string) => {
 
 export const Chart = () => {
   const dispatch = useDispatch();
-  const { selectedChartData, selectedChartRange } = useSelector<
-    any,
-    ChartState
-  >(state => state.chartData);
+  const { selectedChartData, selectedChartRange } = useSelector(
+    (state: GlobalState) => state.chartData
+  );
   const { selectedStockTicker } = useSelector(
     (state: any) => state.stockTickerData
   );
@@ -67,38 +66,34 @@ export const Chart = () => {
     updateChartRange(event.currentTarget.value);
   };
 
-  const chartData =
-    selectedChartData &&
-    selectedChartData.map(data => ({
-      date: formatDate(data.date, selectedChartRange),
-      close: data.close
-    }));
+  const chartData = selectedChartData
+    ? selectedChartData.map(data => ({
+        date: formatDate(data.date, selectedChartRange),
+        close: data.close
+      }))
+    : [];
 
   const renderChartComponent = () => (
     <>
       <div className="chart__wrapper">
-        {selectedChartData ? (
-          selectedChartData.length !== 0 ? (
-            tenors.map(({ value, label }) => {
-              const activeClass =
-                selectedChartRange === value ? "chart__button--active" : "";
+        {chartData.length !== 0 ? (
+          tenors.map(({ value, label }) => {
+            const activeClass =
+              selectedChartRange === value ? "chart__button--active" : "";
 
-              return (
-                <button
-                  key={label}
-                  className={`chart__button ${activeClass}`}
-                  onClick={onClickHandler}
-                  value={value}
-                >
-                  {label}
-                </button>
-              );
-            })
-          ) : (
-            <ErrorMessage message="Chart data N/A" />
-          )
+            return (
+              <button
+                key={label}
+                className={`chart__button ${activeClass}`}
+                onClick={onClickHandler}
+                value={value}
+              >
+                {label}
+              </button>
+            );
+          })
         ) : (
-          ""
+          <ErrorMessage message="Chart data N/A" />
         )}
       </div>
       <ResponsiveContainer
@@ -108,7 +103,7 @@ export const Chart = () => {
         maxHeight="370px"
       >
         <AreaChart
-          data={Array.isArray(chartData) ? chartData : undefined}
+          data={chartData}
           margin={{ top: 10, right: -18, left: 0, bottom: 10 }}
         >
           <defs>
