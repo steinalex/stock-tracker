@@ -11,7 +11,7 @@ import {
 } from "recharts";
 
 import { useSelector, useDispatch } from "react-redux";
-import { updateChartAction } from "../redux/actions";
+import { updateChartDataAction } from "../redux/actions";
 import { Loading } from "../../loading";
 import { ErrorMessage } from "../../error-message";
 import "./Chart.css";
@@ -56,7 +56,7 @@ export const Chart = () => {
     state => state.chartData
   );
   const { selectedStockTicker } = useSelector(state => state.stockTickerData);
-  const updateChartRange = stock => dispatch(updateChartAction(stock));
+  const updateChartRange = stock => dispatch(updateChartDataAction(stock));
   const onClickHandler = event => {
     updateChartRange(event.target.value);
   };
