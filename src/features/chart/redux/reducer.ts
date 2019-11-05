@@ -3,7 +3,7 @@ import { ChartActions } from "./actions";
 
 export type ChartState = {
   selectedChartRange: string;
-  selectedChartData: any[] | null; // TODO: Create proper structure
+  selectedChartData: Object[] | null; // TODO: Create proper structure
 };
 export type ResetAction = {
   type: typeof RESET;

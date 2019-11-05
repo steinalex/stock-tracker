@@ -1,4 +1,4 @@
-import React from "react";
+import React, { MouseEventHandler } from "react";
 import {
   AreaChart,
   Area,
@@ -69,8 +69,8 @@ export const Chart = () => {
   );
   const updateChartRange = (stock: string) =>
     dispatch(updateChartAction(stock));
-  // const onClickHandler = (event: MouseEvent<HTMLButtonElement>) => {
-  //   updateChartRange(event.target.value);
+  // const onClickHandler: MouseEventHandler<HTMLButtonElement> = (event) => {
+  //   updateChartRange(event.currentTarget.value);
   // };
 
   const chartData =
@@ -93,6 +93,7 @@ export const Chart = () => {
                 key={label}
                 className={`chart__button ${activeClass}`}
                 onClick={() => updateChartRange(value)}
+                // onClick={onClickHandler}
                 value={value}
               >
                 {label}

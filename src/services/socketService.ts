@@ -15,3 +15,6 @@ const createSocketService = () => {
 };
 
 export const socketService = createSocketService();
+export type SocketSerivce = {
+  socketService: ReturnType<typeof createSocketService>;
+};
