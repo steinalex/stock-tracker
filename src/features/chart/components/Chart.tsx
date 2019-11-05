@@ -7,11 +7,12 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-  ReferenceLine
+  ReferenceLine,
+  Label
 } from "recharts";
 
 import { useSelector, useDispatch } from "react-redux";
-import { updateChartDataAction } from "../redux/actions";
+import { updateChartRangeAction } from "../redux/actions";
 import { Loading } from "../../loading";
 import { ErrorMessage } from "../../error-message";
 import "./Chart.css";
@@ -25,9 +26,9 @@ const tenors = [
   { value: "max", label: "MAX" }
 ];
 
-const yaxisFormat = item => item.toFixed(2);
+const yaxisFormat = (item: any) => item.toFixed(2);
 
-const formatDate = (isoDate, ChartRange) => {
+const formatDate = (isoDate: any, ChartRange: any) => {
   const date = new Date(isoDate);
   switch (ChartRange) {
     case "max":
@@ -53,17 +54,22 @@ const formatDate = (isoDate, ChartRange) => {
 export const Chart = () => {
   const dispatch = useDispatch();
   const { selectedChartData, selectedChartRange } = useSelector(
-    state => state.chartData
+    (state: any) => state.chartData
   );
-  const { selectedStockTicker } = useSelector(state => state.stockTickerData);
-  const updateChartRange = stock => dispatch(updateChartDataAction(stock));
-  const onClickHandler = event => {
-    updateChartRange(event.target.value);
+  const { selectedStockTicker } = useSelector(
+    (state: any) => state.stockTickerData
+  );
+  const updateChartRange = (stock: any) =>
+    dispatch(updateChartRangeAction(stock));
+  const onClickHandler: React.MouseEventHandler<HTMLButtonElement> = event => {
+    updateChartRange(event.currentTarget.value);
   };
+
+  console.log(selectedChartData);
 
   const chartData =
     selectedChartData &&
-    selectedChartData.map(data => ({
+    selectedChartData.map((data: any) => ({
       date: formatDate(data.date, selectedChartRange),
       close: data.close
     }));
@@ -125,11 +131,13 @@ export const Chart = () => {
           <Tooltip />
           <ReferenceLine
             y={selectedStockTicker.latestPrice}
-            label={{
-              value: String(selectedStockTicker.latestPrice),
-              position: "right",
-              fill: "#e95656"
-            }}
+            label={
+              <Label
+                value={selectedStockTicker.latestPrice}
+                position="right"
+                fill="#e95656"
+              />
+            }
             stroke="#e95656"
             strokeDasharray="3 3"
           />
