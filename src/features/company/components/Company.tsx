@@ -3,31 +3,39 @@ import { Peers } from "../../peers";
 import { useSelector } from "react-redux";
 import { Loading } from "../../loading";
 import "./Company.css";
+import { GlobalState } from "../../../store";
 
 export const Company = () => {
   const { selectedCompanyOverview } = useSelector(
-    state => state.companyOverviewData
+    (state: GlobalState) => state.companyOverviewData
   );
-  const { selectedTopPeers } = useSelector(state => state.peerData);
+  const { selectedTopPeers } = useSelector(
+    (state: GlobalState) => state.peerData
+  );
 
   const renderCompanyComponent = () => (
     <>
       <div className="company-overview__title">
-        {selectedCompanyOverview.companyName || "N/A"} (
-        {selectedCompanyOverview.symbol || "N/A"})
+        {(selectedCompanyOverview && selectedCompanyOverview.companyName) ||
+          "N/A"}{" "}
+        ({(selectedCompanyOverview && selectedCompanyOverview.symbol) || "N/A"})
       </div>
       <div>
         <a
           target="_blank"
           rel="noopener noreferrer"
           className="company-overview__website"
-          href={`${selectedCompanyOverview.website}`}
+          href={`${selectedCompanyOverview && selectedCompanyOverview.website}`}
         >
-          {selectedCompanyOverview.website || "N/A"}
+          {(selectedCompanyOverview && selectedCompanyOverview.website) ||
+            "N/A"}
         </a>
       </div>
       <div className="company-overview__text">
-        <p>{selectedCompanyOverview.description || "N/A"}</p>
+        <p>
+          {(selectedCompanyOverview && selectedCompanyOverview.description) ||
+            "N/A"}
+        </p>
       </div>
     </>
   );
@@ -36,7 +44,7 @@ export const Company = () => {
     <div className="company-overview">
       <h1 className="title">Company Overview</h1>
       <Loading
-        loaded={selectedCompanyOverview !== null}
+        loaded={selectedCompanyOverview !== undefined}
         render={renderCompanyComponent}
       />
       <Peers peers={selectedTopPeers} />
