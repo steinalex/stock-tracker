@@ -58,7 +58,7 @@ export const Chart = () => {
     (state: GlobalState) => state.chartData
   );
   const { selectedStockTicker } = useSelector(
-    (state: any) => state.stockTickerData
+    (state: GlobalState) => state.stockTickerData
   );
   const updateChartRange = (stock: string) =>
     dispatch(updateChartRangeAction(stock));
