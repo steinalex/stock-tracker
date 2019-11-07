@@ -16,9 +16,10 @@ export const Company = () => {
   const renderCompanyComponent = () => (
     <>
       <div className="company-overview__title">
-        {(selectedCompanyOverview && selectedCompanyOverview.companyName) ||
-          "N/A"}{" "}
-        ({(selectedCompanyOverview && selectedCompanyOverview.symbol) || "N/A"})
+        {`${(selectedCompanyOverview && selectedCompanyOverview.companyName) ||
+          "N/A"} (${(selectedCompanyOverview &&
+          selectedCompanyOverview.symbol) ||
+          "N/A"})`}
       </div>
       <div>
         <a
