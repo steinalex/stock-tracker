@@ -1,10 +1,17 @@
 import { BOOTSTRAP } from "../../../store/constants";
 import { UPDATE_CHART_RANGE } from "./constants";
-import { updateChartDataAction } from "./actions";
+import { updateChartDataAction, ChartData } from "./actions";
+import { SocketService } from "../../../services";
+import { Middleware } from "redux";
+import { GlobalState } from "../../../store";
+
+type Dependancies = {
+  socketService: SocketService;
+};
 
 export const chartMiddleware = ({
   socketService
-}) => store => next => action => {
+}: Dependancies): Middleware<{}, GlobalState> => store => next => action => {
   if (action.type === UPDATE_CHART_RANGE) {
     socketService
       .get()
@@ -16,7 +23,7 @@ export const chartMiddleware = ({
   }
   if (action.type === BOOTSTRAP) {
     const socket = socketService.get();
-    socket.on("chartData", payload => {
+    socket.on("chartData", (payload: ChartData[]) => {
       store.dispatch(updateChartDataAction(payload));
     });
   }
