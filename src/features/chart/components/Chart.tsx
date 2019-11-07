@@ -16,7 +16,7 @@ import { updateChartRangeAction } from "../redux/actions";
 import { Loading } from "../../loading";
 import { ErrorMessage } from "../../error-message";
 import "./Chart.css";
-import { GlobalState } from "../../../store";
+import { AppState } from "../../../store";
 
 const tenors = [
   { value: "1d", label: "1D" },
@@ -55,10 +55,10 @@ const formatDate = (isoDate: string, chartRange: string) => {
 export const Chart = () => {
   const dispatch = useDispatch();
   const { selectedChartData, selectedChartRange } = useSelector(
-    (state: GlobalState) => state.chartData
+    (state: AppState) => state.chartData
   );
   const { selectedStockTicker } = useSelector(
-    (state: GlobalState) => state.stockTickerData
+    (state: AppState) => state.stockTickerData
   );
   const updateChartRange = (stock: string) =>
     dispatch(updateChartRangeAction(stock));

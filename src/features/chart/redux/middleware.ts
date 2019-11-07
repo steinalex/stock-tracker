@@ -3,7 +3,7 @@ import { UPDATE_CHART_RANGE } from "./constants";
 import { updateChartDataAction, ChartData } from "./actions";
 import { SocketService } from "../../../services";
 import { Middleware } from "redux";
-import { GlobalState } from "../../../store";
+import { AppState } from "../../../store";
 
 type Dependancies = {
   socketService: SocketService;
@@ -11,7 +11,7 @@ type Dependancies = {
 
 export const chartMiddleware = ({
   socketService
-}: Dependancies): Middleware<{}, GlobalState> => store => next => action => {
+}: Dependancies): Middleware<{}, AppState> => store => next => action => {
   if (action.type === UPDATE_CHART_RANGE) {
     socketService
       .get()

@@ -3,15 +3,13 @@ import { Peers } from "../../peers";
 import { useSelector } from "react-redux";
 import { Loading } from "../../loading";
 import "./Company.css";
-import { GlobalState } from "../../../store";
+import { AppState } from "../../../store";
 
 export const Company = () => {
   const { selectedCompanyOverview } = useSelector(
-    (state: GlobalState) => state.companyOverviewData
+    (state: AppState) => state.companyOverviewData
   );
-  const { selectedTopPeers } = useSelector(
-    (state: GlobalState) => state.peerData
-  );
+  const { selectedTopPeers } = useSelector((state: AppState) => state.peerData);
 
   const renderCompanyComponent = () => (
     <>

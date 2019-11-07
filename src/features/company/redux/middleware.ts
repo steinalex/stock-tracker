@@ -2,7 +2,7 @@ import { BOOTSTRAP } from "../../../store/constants";
 import { updateCompanyOverviewAction, CompanyOverview } from "./actions";
 import { SocketService } from "../../../services";
 import { Middleware } from "redux";
-import { GlobalState } from "../../../store";
+import { AppState } from "../../../store";
 
 type Dependancies = {
   socketService: SocketService;
@@ -10,7 +10,7 @@ type Dependancies = {
 
 export const companyMiddleware = ({
   socketService
-}: Dependancies): Middleware<{}, GlobalState> => store => next => action => {
+}: Dependancies): Middleware<{}, AppState> => store => next => action => {
   if (action.type === BOOTSTRAP) {
     const socket = socketService.get();
     socket.on("companyOverview", (payload: CompanyOverview) => {
