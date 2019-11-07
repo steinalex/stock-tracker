@@ -5,13 +5,13 @@ import { SocketService } from "../../../services";
 import { Middleware } from "redux";
 import { AppState } from "../../../store";
 
-type Dependancies = {
+type Dependencies = {
   socketService: SocketService;
 };
 
 export const chartMiddleware = ({
   socketService
-}: Dependancies): Middleware<{}, AppState> => store => next => action => {
+}: Dependencies): Middleware<{}, AppState> => store => next => action => {
   if (action.type === UPDATE_CHART_RANGE) {
     socketService
       .get()
