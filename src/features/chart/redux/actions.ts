@@ -25,7 +25,7 @@ export type UpdateChartDataAction = ActionWithPayload<
 >;
 
 export const updateChartDataAction = (
-  chartData: []
+  chartData: ChartData[]
 ): UpdateChartDataAction => ({
   type: UPDATE_CHART_DATA,
   payload: chartData

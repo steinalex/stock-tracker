@@ -19,4 +19,4 @@ export const combinedReducer = combineReducers({
   headlineData: headlineReducer
 });
 
-export type GlobalState = ReturnType<typeof combinedReducer>;
+export type AppState = ReturnType<typeof combinedReducer>;
