@@ -2,26 +2,32 @@ import React, { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateSearchQueryAction } from "../../headline";
 import "./Search.css";
+import { AppState } from "../../../store";
 
-export const Search = ({ updateStock }) => {
+export const Search = ({ updateStock }: any) => {
   const dispatch = useDispatch();
   const filteredSymbols = useSelector(
-    state => state.headlineData.selectedCompanySymbols
+    (state: AppState) => state.headlineData.selectedCompanySymbols
   );
   const { name: companyName, symbol: companySymbol } =
-    useSelector(state => state.stockData.selectedStock) || {};
+    useSelector((state: AppState) => state.stockData.selectedStock) || {};
   const [isOpen, toggleIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const dropSelect = useRef(null);
-  const inputSelect = useRef(null);
+  const dropSelect = useRef<HTMLTableElement>(null);
+  const inputSelect = useRef<HTMLInputElement>(null);
 
-  const onChange = ({ target: { value } }) => {
+  const onChange: React.ChangeEventHandler<HTMLInputElement> = ({
+    currentTarget: { value }
+  }) => {
     setSearchQuery(value);
     dispatch(updateSearchQueryAction(value));
     toggleIsOpen(value.length > 0);
   };
 
-  const onSubmit = ({ key, target: { value: symbol } }) => {
+  const onSubmit: React.KeyboardEventHandler<HTMLInputElement> = ({
+    key,
+    currentTarget: { value: symbol }
+  }) => {
     const symbolUpper = symbol.toUpperCase();
     if (key === "Enter") {
       const selectedDatum = filteredSymbols.find(
@@ -33,14 +39,24 @@ export const Search = ({ updateStock }) => {
     }
   };
 
-  const selectOption = data => {
+  type SelectedOption = {
+    symbol: string;
+    name: string;
+  };
+
+  const selectOption = (data: SelectedOption) => {
     updateStock(data);
     toggleIsOpen(false);
-    inputSelect.current.blur();
+    if (inputSelect && inputSelect.current) {
+      inputSelect.current.blur();
+    }
   };
 
   const handleBlur = () => {
     requestAnimationFrame(() => {
+      if (!inputSelect.current || !dropSelect.current) {
+        throw Error("Reference not found");
+      }
       if (
         !inputSelect.current.contains(document.activeElement) &&
         !dropSelect.current.contains(document.activeElement)
@@ -56,11 +72,7 @@ export const Search = ({ updateStock }) => {
     filteredSymbols.length > 0 ? (
       filteredSymbols.map(data => {
         return (
-          <tr
-            onClick={() => selectOption(data)}
-            value={data.symbol}
-            key={data.symbol}
-          >
+          <tr onClick={() => selectOption(data)} key={data.symbol}>
             <td>
               <span className="company-symbol__dropdown">{data.symbol}</span>
             </td>

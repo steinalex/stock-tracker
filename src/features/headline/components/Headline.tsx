@@ -2,21 +2,35 @@ import React from "react";
 import logo from "./adaptive-logo.png";
 import { Search } from "../../search";
 import { useDispatch, useSelector } from "react-redux";
-import { updateStockAction } from "../../../actions";
+import { updateStockAction, UpdateStockAction } from "../../../actions";
 import { StockTicker } from "../../stock-ticker";
 import { MarketStatus } from "../../market-status";
 import "./Headline.css";
+import { AppState } from "../../../store";
 
 export const Headline = () => {
-  const { selectedStockTicker } = useSelector(state => state.stockTickerData);
-  const { selectedKeyStats } = useSelector(state => state.keyStatsData);
+  const { selectedStockTicker } = useSelector(
+    (state: AppState) => state.stockTickerData
+  );
+  const { selectedKeyStats } = useSelector(
+    (state: AppState) => state.keyStatsData
+  );
   const {
     selectedSearch,
     enteredSearchQuery,
     selectedCompanySymbols
-  } = useSelector(state => state.headlineData);
+  } = useSelector((state: AppState) => state.headlineData);
+
+  console.log(selectedSearch);
 
   const dispatch = useDispatch();
+
+  type ISelectedSearch = {
+    companyName: string;
+    curreny: string;
+    sector: string;
+    symbol: string;
+  };
 
   const labels =
     selectedSearch &&
@@ -33,7 +47,7 @@ export const Headline = () => {
         <Search
           searchQuery={enteredSearchQuery}
           symbol={selectedCompanySymbols}
-          updateStock={stock => dispatch(updateStockAction(stock))}
+          updateStock={(stock: string) => dispatch(updateStockAction(stock))}
         />
         {selectedSearch && <StockTicker stock={selectedStockTicker} />}
       </div>
