@@ -21,8 +21,6 @@ export const Headline = () => {
     selectedCompanySymbols
   } = useSelector((state: AppState) => state.headlineData);
 
-  console.log(selectedSearch);
-
   const dispatch = useDispatch();
 
   const labels =
