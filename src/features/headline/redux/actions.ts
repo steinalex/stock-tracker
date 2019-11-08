@@ -9,6 +9,7 @@ import { ResetAction } from "../../../store/constants";
 export interface SearchData {
   symbol: string;
   name: string;
+  exchange: string;
 }
 
 export type UpdateSearchAction = ActionWithPayload<UPDATE_SEARCH, string>;
