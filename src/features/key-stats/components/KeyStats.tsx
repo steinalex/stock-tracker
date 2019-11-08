@@ -2,13 +2,24 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Loading } from "../../loading";
 import "./KeyStats.css";
+import { AppState } from "../../../store";
+import { IKeyStats } from "../redux/actions";
+import { ErrorMessage } from "../../error-message";
 
 const NUMBER_FORMATTER = new Intl.NumberFormat();
 
-const DEFAULT_FORMATTER = (data, key) =>
-  data[key] != null ? data[key] : "N/A";
+const DEFAULT_FORMATTER = (keyStatsData: IKeyStats, key: keyof IKeyStats) =>
+  keyStatsData[key] !== null ? keyStatsData[key] : "N/A";
 
-const schema = [
+type Formatter = (keyStatsData: IKeyStats) => string;
+
+type Schema = {
+  key: keyof IKeyStats;
+  label: string;
+  formatter?: Formatter;
+}[];
+
+const schema: Schema = [
   {
     key: "previousClose",
     label: "Previous Close"
@@ -22,12 +33,12 @@ const schema = [
   {
     key: "previousVolume",
     label: "Volume",
-    formatter: (data, key) => NUMBER_FORMATTER.format(data[key])
+    formatter: data => NUMBER_FORMATTER.format(data.previousVolume)
   },
   {
     key: "marketCap",
     label: "Market Cap",
-    formatter: (data, key) => NUMBER_FORMATTER.format(data[key])
+    formatter: data => NUMBER_FORMATTER.format(data.marketCap)
   },
   {
     key: "peRatio",
@@ -45,7 +56,7 @@ const schema = [
   {
     key: "avgTotalVolume",
     label: "Total Avg. Volume",
-    formatter: (data, key) => NUMBER_FORMATTER.format(data[key])
+    formatter: data => NUMBER_FORMATTER.format(data.avgTotalVolume)
   },
   {
     key: "eps",
@@ -54,21 +65,25 @@ const schema = [
   {
     key: "ytdChange",
     label: "Dividend & Yield",
-    formatter: (data, key) => (data[key] * 100).toPrecision(3) + "%"
+    formatter: data => (data.ytdChange * 100).toPrecision(3) + "%"
   }
 ];
 
 export const KeyStats = () => {
-  const { selectedKeyStats } = useSelector(state => state.keyStatsData);
+  const { selectedKeyStats } = useSelector(
+    (state: AppState) => state.keyStatsData
+  );
 
   const renderKeystatsComponent = React.useCallback(() => {
-    const tableData = schema.map(
-      ({ key, label, formatter = DEFAULT_FORMATTER }) => (
+    const tableData = selectedKeyStats ? (
+      schema.map(({ key, label, formatter = DEFAULT_FORMATTER }) => (
         <tr key={key}>
           <td>{label}</td>
           <td>{formatter(selectedKeyStats, key)}</td>
         </tr>
-      )
+      ))
+    ) : (
+      <ErrorMessage message="KeyStats data N/A" />
     );
 
     return (
@@ -84,7 +99,7 @@ export const KeyStats = () => {
     <div className="key-stats">
       <h1 className="title">Key Stats</h1>
       <Loading
-        loaded={selectedKeyStats.length !== 0}
+        loaded={selectedKeyStats !== null}
         render={renderKeystatsComponent}
       />
     </div>
