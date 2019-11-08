@@ -67,7 +67,7 @@ export const Chart = () => {
   };
 
   const chartData = selectedChartData
-    ? selectedChartData.map((data: any) => ({
+    ? selectedChartData.map(data => ({
         date: formatDate(data.date, selectedChartRange),
         close: data.close
       }))

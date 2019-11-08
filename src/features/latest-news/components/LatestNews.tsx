@@ -16,7 +16,7 @@ export const LatestNews = () => {
   const renderLatestNewsComponent = () => (
     <div className="latest-news__grid">
       {selectedLatestNews && selectedLatestNews.length !== 0 ? (
-        selectedLatestNews.map((data: any) => (
+        selectedLatestNews.map(data => (
           <div key={data.headline} className="latest-news__wrapper">
             <div className="latest-news__text">
               <a
