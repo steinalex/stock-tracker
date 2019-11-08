@@ -25,13 +25,6 @@ export const Headline = () => {
 
   const dispatch = useDispatch();
 
-  type ISelectedSearch = {
-    companyName: string;
-    curreny: string;
-    sector: string;
-    symbol: string;
-  };
-
   const labels =
     selectedSearch &&
     Object.keys(selectedSearch)
