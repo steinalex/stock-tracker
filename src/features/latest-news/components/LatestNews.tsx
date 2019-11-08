@@ -4,15 +4,18 @@ import { useSelector } from "react-redux";
 import { Loading } from "../../loading";
 import { ErrorMessage } from "../../error-message";
 import "./LatestNews.css";
+import { AppState } from "../../../store";
 
-const timeFormat = date => moment(date).fromNow();
+const timeFormat = (date: string) => moment(date).fromNow();
 
 export const LatestNews = () => {
-  const { selectedLatestNews } = useSelector(state => state.latestNewsData);
+  const { selectedLatestNews } = useSelector(
+    (state: AppState) => state.latestNewsData
+  );
 
   const renderLatestNewsComponent = () => (
     <div className="latest-news__grid">
-      {selectedLatestNews.length !== 0 ? (
+      {selectedLatestNews && selectedLatestNews.length !== 0 ? (
         selectedLatestNews.map(data => (
           <div key={data.headline} className="latest-news__wrapper">
             <div className="latest-news__text">
