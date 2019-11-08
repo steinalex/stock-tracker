@@ -1,7 +1,7 @@
 import { RESET } from "../../../store/constants";
 import { UPDATE_LATEST_NEWS } from "./constants";
 import { ILatestNews, LatestNewsActions } from "./actions";
-import { Reducer } from "react";
+import { Reducer } from "redux";
 
 export interface LatestNewsState {
   selectedLatestNews: ILatestNews[] | null;

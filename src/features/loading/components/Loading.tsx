@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import "./Loading.css";
 
 type Loading = {
-  loaded: string;
+  loaded: boolean;
   render: () => JSX.Element;
 };
 

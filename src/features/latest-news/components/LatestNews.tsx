@@ -5,7 +5,6 @@ import { Loading } from "../../loading";
 import { ErrorMessage } from "../../error-message";
 import "./LatestNews.css";
 import { AppState } from "../../../store";
-import { ILatestNews } from "../redux/actions";
 
 const timeFormat = (date: string) => moment(date).fromNow();
 
@@ -16,8 +15,8 @@ export const LatestNews = () => {
 
   const renderLatestNewsComponent = () => (
     <div className="latest-news__grid">
-      {selectedLatestNews.length !== 0 ? (
-        selectedLatestNews.map((data: ILatestNews) => (
+      {selectedLatestNews && selectedLatestNews.length !== 0 ? (
+        selectedLatestNews.map((data: any) => (
           <div key={data.headline} className="latest-news__wrapper">
             <div className="latest-news__text">
               <a
