@@ -1,1 +1,0 @@
-export const UPDATE_LATEST_NEWS = "UPDATE_LATEST_NEWS";

@@ -1,7 +1,12 @@
-import React from "react";
+import React, { FC } from "react";
 import "./Loading.css";
 
-export const Loading = ({ loaded, render }) => {
+type Loading = {
+  loaded: string;
+  render: () => JSX.Element;
+};
+
+export const Loading: FC<Loading> = ({ loaded, render }) => {
   if (!loaded) {
     return (
       <div className="center-spinner">
