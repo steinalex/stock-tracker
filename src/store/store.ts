@@ -10,7 +10,8 @@ import { headlineMiddleware } from "../features/headline";
 import { stockTickerMiddleware } from "../features/stock-ticker";
 import { stockMiddleware } from "../middleware";
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers =
+  (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const middleware = [
   chartMiddleware({ socketService }),
   companyMiddleware({ socketService }),
