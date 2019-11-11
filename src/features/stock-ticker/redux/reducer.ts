@@ -1,18 +1,25 @@
 import { RESET } from "../../../store/constants";
 import { UPDATE_STOCK_TICKER } from "./constants";
 import { Reducer } from "redux";
+import { IStockTicker, StockTickerActions } from "./actions";
 
-const initialState = { selectedStockTicker: "" };
+export interface StockState {
+  selectedStockTicker: IStockTicker | undefined;
+}
 
-export const stockTickerReducer: Reducer = (
+const initialState: StockState = {
+  selectedStockTicker: undefined
+};
+
+export const stockTickerReducer: Reducer<StockState, StockTickerActions> = (
   state = initialState,
-  { type, payload }
+  action
 ) => {
-  switch (type) {
+  switch (action.type) {
     case UPDATE_STOCK_TICKER:
       return {
         ...state,
-        selectedStockTicker: payload
+        selectedStockTicker: action.payload
       };
     case RESET:
       return { ...initialState };

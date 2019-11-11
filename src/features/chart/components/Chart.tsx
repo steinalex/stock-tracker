@@ -129,10 +129,10 @@ export const Chart = () => {
           />
           <Tooltip />
           <ReferenceLine
-            y={selectedStockTicker.latestPrice}
+            y={selectedStockTicker && selectedStockTicker.latestPrice}
             label={
               <Label
-                value={selectedStockTicker.latestPrice}
+                value={selectedStockTicker && selectedStockTicker.latestPrice}
                 position="right"
                 fill="#e95656"
               />
