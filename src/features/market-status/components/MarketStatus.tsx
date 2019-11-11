@@ -2,9 +2,11 @@ import React from "react";
 import moment from "moment";
 import "./MarketStatus.css";
 
-const marketSign = value => (value === null ? "market---moon" : "market---sun");
-const formatDate = date => new Date(date);
-export const MarketStatus = ({ stock, keyStats }) => {
+const marketSign = (value: number) =>
+  value === null ? "market---moon" : "market---sun";
+const formatDate = (date: Date) => new Date(date);
+
+export const MarketStatus = ({ stock, keyStats }: any) => {
   const UKTime = formatDate(stock.latestUpdate);
   const USTime = formatDate(UKTime).toLocaleString("en-US", {
     timeZone: "America/New_York"

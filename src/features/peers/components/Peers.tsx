@@ -4,12 +4,13 @@ import { ErrorMessage } from "../../error-message";
 import { useDispatch } from "react-redux";
 import { updateStockAction } from "../../../actions";
 import "./Peers.css";
+import { IPeers } from "../redux/actions";
 
-export const Peers = ({ peers }) => {
+export const Peers = ({ peers }: any) => {
   const dispatch = useDispatch();
-  const onClickHandler = event => {
-    const symbol = event.target.value;
-    const peerStock = peers.find(peer => peer.symbol === symbol);
+  const onClickHandler: React.MouseEventHandler<HTMLButtonElement> = event => {
+    const symbol = event.currentTarget.value;
+    const peerStock = peers.find((peer: IPeers) => peer.symbol === symbol);
     if (peerStock && peerStock.name) {
       dispatch(updateStockAction(peerStock));
     }
@@ -17,7 +18,7 @@ export const Peers = ({ peers }) => {
   const renderPeersComponent = () => (
     <ul className="peers__list">
       {peers.length !== 0 ? (
-        peers.map(({ symbol }) => (
+        peers.map(({ symbol }: IPeers) => (
           <button
             onClick={onClickHandler}
             value={symbol}

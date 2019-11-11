@@ -1,1 +1,0 @@
-export const UPDATE_TOP_PEERS = "UPDATE_TOP_PEERS";
