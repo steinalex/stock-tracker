@@ -12,6 +12,7 @@ export interface ISelectedSearch {
   primaryExchange: string;
   sector: string;
   symbol: string;
+  name: string;
 }
 
 export type UpdateSearchAction = ActionWithPayload<
