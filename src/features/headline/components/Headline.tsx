@@ -2,7 +2,7 @@ import React from "react";
 import logo from "./adaptive-logo.png";
 import { Search } from "../../search";
 import { useDispatch, useSelector } from "react-redux";
-import { updateStockAction, UpdateStockAction } from "../../../actions";
+import { updateStockAction } from "../../../actions";
 import { StockTicker } from "../../stock-ticker";
 import { MarketStatus } from "../../market-status";
 import "./Headline.css";
@@ -23,13 +23,16 @@ export const Headline = () => {
 
   const dispatch = useDispatch();
 
-  const labels =
-    selectedSearch &&
-    Object.keys(selectedSearch)
-      .filter(
-        key => key !== "companyName" && key !== "symbol" && selectedSearch[key]
-      )
-      .map(key => <li key={key}>{selectedSearch[key]}</li>);
+  console.log(selectedSearch);
+  const labels = selectedSearch && (
+    <ul>
+      {selectedSearch.primaryExchange && (
+        <li>{selectedSearch.primaryExchange}</li>
+      )}
+      {selectedSearch.sector && <li>{selectedSearch.sector}</li>}
+      {selectedSearch.symbol && <li>{selectedSearch.symbol}</li>}
+    </ul>
+  );
 
   return (
     <div className="header">

@@ -7,9 +7,11 @@ import { ActionWithPayload } from "../../../utils/actions";
 import { ResetAction } from "../../../store/constants";
 
 export interface ISelectedSearch {
+  companyName: string;
+  currency: string;
+  primaryExchange: string;
+  sector: string;
   symbol: string;
-  name: string;
-  exchange: string;
 }
 
 export type UpdateSearchAction = ActionWithPayload<

@@ -1,5 +1,9 @@
 import { BOOTSTRAP } from "../../../store/constants";
-import { updateCompanySymbolsAction, updateSearchAction } from "./actions";
+import {
+  updateCompanySymbolsAction,
+  updateSearchAction,
+  ISelectedSearch
+} from "./actions";
 import { UPDATE_SEARCH_QUERY } from "./constants";
 import { SocketService } from "../../../services";
 import { Middleware } from "redux";
@@ -19,7 +23,7 @@ export const headlineMiddleware = ({
       store.dispatch(updateCompanySymbolsAction(payload));
     });
 
-    socket.on("sectorInformation", (payload: string) => {
+    socket.on("sectorInformation", (payload: ISelectedSearch) => {
       store.dispatch(updateSearchAction(payload));
     });
   }
