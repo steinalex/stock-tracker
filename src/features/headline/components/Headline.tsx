@@ -1,13 +1,11 @@
 import React, { FC } from "react";
 import logo from "./adaptive-logo.png";
 import { Search } from "../../search";
-import { useDispatch, useSelector } from "react-redux";
-import { updateStockAction } from "../../../actions";
+import { useSelector } from "react-redux";
 import { StockTicker } from "../../stock-ticker";
 import { MarketStatus } from "../../market-status";
 import "./Headline.css";
 import { AppState } from "../../../store";
-import { ISelectedSearch } from "../redux/actions";
 
 export const Headline: FC = () => {
   const { selectedStockTicker } = useSelector(
@@ -16,15 +14,10 @@ export const Headline: FC = () => {
   const { selectedKeyStats } = useSelector(
     (state: AppState) => state.keyStatsData
   );
-  const {
-    selectedSearch,
-    enteredSearchQuery,
-    selectedCompanySymbols
-  } = useSelector((state: AppState) => state.headlineData);
+  const { selectedSearch } = useSelector(
+    (state: AppState) => state.headlineData
+  );
 
-  const dispatch = useDispatch();
-
-  console.log(selectedSearch);
   const labels = selectedSearch && (
     <ul>
       {selectedSearch.primaryExchange && (
@@ -39,13 +32,7 @@ export const Headline: FC = () => {
     <div className="header">
       <img className="header__logo" src={logo} alt="Adaptive Logo" />
       <div className="search-bar__wrapper">
-        <Search
-          searchQuery={enteredSearchQuery}
-          symbol={selectedCompanySymbols}
-          updateStock={(stock: ISelectedSearch) =>
-            dispatch(updateStockAction(stock))
-          }
-        />
+        <Search />
         {selectedSearch && selectedStockTicker && (
           <StockTicker stock={selectedStockTicker} />
         )}
