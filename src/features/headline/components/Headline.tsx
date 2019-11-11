@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import logo from "./adaptive-logo.png";
 import { Search } from "../../search";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,7 +9,7 @@ import "./Headline.css";
 import { AppState } from "../../../store";
 import { ISelectedSearch } from "../redux/actions";
 
-export const Headline = () => {
+export const Headline: FC = () => {
   const { selectedStockTicker } = useSelector(
     (state: AppState) => state.stockTickerData
   );

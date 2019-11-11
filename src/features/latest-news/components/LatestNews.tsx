@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import moment from "moment";
 import { useSelector } from "react-redux";
 import { Loading } from "../../loading";
@@ -8,7 +8,7 @@ import { AppState } from "../../../store";
 
 const timeFormat = (date: string) => moment(date).fromNow();
 
-export const LatestNews = () => {
+export const LatestNews: FC = () => {
   const { selectedLatestNews } = useSelector(
     (state: AppState) => state.latestNewsData
   );

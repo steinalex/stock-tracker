@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import { useSelector } from "react-redux";
 import { Loading } from "../../loading";
 import "./KeyStats.css";
@@ -69,7 +69,7 @@ const schema: Schema = [
   }
 ];
 
-export const KeyStats = () => {
+export const KeyStats: FC = () => {
   const { selectedKeyStats } = useSelector(
     (state: AppState) => state.keyStatsData
   );

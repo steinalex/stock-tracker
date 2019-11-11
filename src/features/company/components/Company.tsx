@@ -1,11 +1,11 @@
-import React from "react";
+import React, { FC } from "react";
 import { Peers } from "../../peers";
 import { useSelector } from "react-redux";
 import { Loading } from "../../loading";
 import "./Company.css";
 import { AppState } from "../../../store";
 
-export const Company = () => {
+export const Company: FC = () => {
   const { selectedCompanyOverview } = useSelector(
     (state: AppState) => state.companyOverviewData
   );
