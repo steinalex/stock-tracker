@@ -7,9 +7,12 @@ import { KeyStats } from "./features/key-stats";
 import { Company } from "./features/company";
 import { Footer } from "./features/footer";
 import "./App.css";
+import { AppState } from "./store";
 
 const App = () => {
-  const selectedStock = useSelector(state => state.stockData.selectedStock);
+  const selectedStock = useSelector(
+    (state: AppState) => state.stockData.selectedStock
+  );
 
   return (
     <>
