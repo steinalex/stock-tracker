@@ -1,9 +1,14 @@
-import React from "react";
+import React, { FC } from "react";
 import "./StockTicker.css";
+import { IStockTicker } from "../redux/actions";
 
 const getSign = (value: number) => (value > 0 ? "positive" : "negative");
 
-export const StockTicker = ({ stock }: any) => {
+type StockProps = {
+  stock: IStockTicker;
+};
+
+export const StockTicker: FC<StockProps> = ({ stock }) => {
   const changePercent = Math.round(stock.changePercent * 100 * 100) / 100;
 
   return (
