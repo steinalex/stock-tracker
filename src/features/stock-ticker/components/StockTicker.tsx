@@ -1,12 +1,11 @@
 import React from "react";
 import "./StockTicker.css";
 
-const getSign = value => (value > 0 ? "positive" : "negative");
+const getSign = (value: number) => (value > 0 ? "positive" : "negative");
 
-export const StockTicker = ({ stock }) => {
-  const changePercent = parseFloat(
-    Math.round(stock.changePercent * 100 * 100) / 100
-  ).toFixed(2);
+export const StockTicker = ({ stock }: any) => {
+  const changePercent = Math.round(stock.changePercent * 100 * 100) / 100;
+  const toFixed = changePercent.toFixed(2);
 
   return (
     <div className="quotes">
