@@ -7,6 +7,7 @@ import { StockTicker } from "../../stock-ticker";
 import { MarketStatus } from "../../market-status";
 import "./Headline.css";
 import { AppState } from "../../../store";
+import { ISelectedSearch } from "../redux/actions";
 
 export const Headline = () => {
   const { selectedStockTicker } = useSelector(
@@ -41,9 +42,13 @@ export const Headline = () => {
         <Search
           searchQuery={enteredSearchQuery}
           symbol={selectedCompanySymbols}
-          updateStock={(stock: string) => dispatch(updateStockAction(stock))}
+          updateStock={(stock: ISelectedSearch) =>
+            dispatch(updateStockAction(stock))
+          }
         />
-        {selectedSearch && <StockTicker stock={selectedStockTicker} />}
+        {selectedSearch && selectedStockTicker && (
+          <StockTicker stock={selectedStockTicker} />
+        )}
       </div>
       {selectedSearch && (
         <>
