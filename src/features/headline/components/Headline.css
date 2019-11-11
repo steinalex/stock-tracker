@@ -7,8 +7,13 @@
 }
 
 .stockInfo__list {
-  list-style-type: none;
   padding-top: 8px;
+}
+
+.stockInfo__list ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
 .stockInfo__list li {
