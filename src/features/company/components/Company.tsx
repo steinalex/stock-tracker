@@ -46,7 +46,7 @@ export const Company: FC = () => {
         loaded={selectedCompanyOverview !== undefined}
         render={renderCompanyComponent}
       />
-      <Peers peers={selectedTopPeers} />
+      <Peers peers={selectedTopPeers && selectedTopPeers} />
     </div>
   );
 };

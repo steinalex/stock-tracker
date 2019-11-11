@@ -13,7 +13,7 @@ export const topPeersMiddleware = ({
 }: Dependencies): Middleware<{}, AppState> => store => next => action => {
   if (action.type === BOOTSTRAP) {
     const socket = socketService.get();
-    socket.on("topPeers", (payload: IPeers) => {
+    socket.on("topPeers", (payload: IPeers[]) => {
       store.dispatch(updateTopPeersAction(payload));
     });
   }
