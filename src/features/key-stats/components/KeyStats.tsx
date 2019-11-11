@@ -27,18 +27,18 @@ const schema: Schema = [
   {
     key: "low",
     label: "Day Range",
-    formatter: data =>
-      data.low && data.high ? `${data.low}-${data.high}` : "N/A"
+    formatter: stats =>
+      stats.low && stats.high ? `${stats.low}-${stats.high}` : "N/A"
   },
   {
     key: "previousVolume",
     label: "Volume",
-    formatter: data => NUMBER_FORMATTER.format(data.previousVolume)
+    formatter: stats => NUMBER_FORMATTER.format(stats.previousVolume)
   },
   {
     key: "marketCap",
     label: "Market Cap",
-    formatter: data => NUMBER_FORMATTER.format(data.marketCap)
+    formatter: stats => NUMBER_FORMATTER.format(stats.marketCap)
   },
   {
     key: "peRatio",
@@ -51,12 +51,12 @@ const schema: Schema = [
   {
     key: "week52Low",
     label: "52 Week Range",
-    formatter: data => `${data.week52Low}-${data.week52High}`
+    formatter: stats => `${stats.week52Low}-${stats.week52High}`
   },
   {
     key: "avgTotalVolume",
     label: "Total Avg. Volume",
-    formatter: data => NUMBER_FORMATTER.format(data.avgTotalVolume)
+    formatter: stats => NUMBER_FORMATTER.format(stats.avgTotalVolume)
   },
   {
     key: "eps",
@@ -65,7 +65,7 @@ const schema: Schema = [
   {
     key: "ytdChange",
     label: "Dividend & Yield",
-    formatter: data => (data.ytdChange * 100).toPrecision(3) + "%"
+    formatter: stats => (stats.ytdChange * 100).toPrecision(3) + "%"
   }
 ];
 
