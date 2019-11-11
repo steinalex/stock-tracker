@@ -6,28 +6,37 @@ import {
 import { ActionWithPayload } from "../../../utils/actions";
 import { ResetAction } from "../../../store/constants";
 
-export interface SearchData {
+export interface ISelectedSearch {
   symbol: string;
   name: string;
   exchange: string;
 }
 
-export type UpdateSearchAction = ActionWithPayload<UPDATE_SEARCH, string>;
+export type UpdateSearchAction = ActionWithPayload<
+  UPDATE_SEARCH,
+  ISelectedSearch
+>;
 
 export const updateSearchAction = (
-  updateSearch: string
+  updateSearch: ISelectedSearch
 ): UpdateSearchAction => ({
   type: UPDATE_SEARCH,
   payload: updateSearch
 });
 
+export interface ISelectedSymbols {
+  symbol: string;
+  name: string;
+  exchange: string;
+}
+
 export type UpdateCompanySymbolsAction = ActionWithPayload<
   UPDATE_COMPANY_SYMBOLS,
-  SearchData[]
+  ISelectedSymbols[]
 >;
 
 export const updateCompanySymbolsAction = (
-  updateCompanySymbols: SearchData[]
+  updateCompanySymbols: ISelectedSymbols[]
 ) => ({
   type: UPDATE_COMPANY_SYMBOLS,
   payload: updateCompanySymbols

@@ -5,13 +5,13 @@ import {
   UPDATE_SEARCH_QUERY
 } from "./constants";
 import { Reducer } from "redux";
-import { HeadlineActions } from "./actions";
-import { SearchData } from "./actions";
+import { HeadlineActions, ISelectedSearch } from "./actions";
+import { ISelectedSymbols } from "./actions";
 
 export interface HeadlineState {
-  selectedSearch: string;
+  selectedSearch: ISelectedSearch | "";
   enteredSearchQuery: string;
-  selectedCompanySymbols: SearchData[];
+  selectedCompanySymbols: ISelectedSymbols[];
 }
 
 const initialState: HeadlineState = {
