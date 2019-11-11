@@ -4,7 +4,7 @@ import { IPeers, TopPeersActions } from "./actions";
 import { Reducer } from "redux";
 
 export interface TopPeersState {
-  selectedTopPeers: IPeers | null;
+  selectedTopPeers: IPeers[] | null;
 }
 
 const initialState: TopPeersState = {

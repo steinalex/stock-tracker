@@ -1,10 +1,10 @@
 import { UPDATE_SELECTED_STOCK, RESET } from "./store/constants";
 import { Reducer } from "redux";
 import { UpdateStockAction } from "./actions";
-import { ISelectedSearch } from "./features/headline/redux/actions";
+import { ISelectedOption } from "./features/search/components/Search";
 
 export interface StockState {
-  selectedStock: ISelectedSearch | undefined;
+  selectedStock: ISelectedOption | undefined;
 }
 
 const initialState: StockState = {

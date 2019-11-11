@@ -1,16 +1,24 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateSearchQueryAction } from "../../headline";
 import "./Search.css";
 import { AppState } from "../../../store";
+import { updateStockAction } from "../../../actions";
 
-export const Search = ({ updateStock }: any) => {
+export type ISelectedOption = {
+  symbol: string;
+  name: string;
+};
+
+export const Search: FC = () => {
   const dispatch = useDispatch();
   const filteredSymbols = useSelector(
     (state: AppState) => state.headlineData.selectedCompanySymbols
   );
   const { name: companyName, symbol: companySymbol } =
     useSelector((state: AppState) => state.stockData.selectedStock) || {};
+  const updateStock = (stock: ISelectedOption) =>
+    dispatch(updateStockAction(stock));
   const [isOpen, toggleIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const dropSelect = useRef<HTMLTableElement>(null);
@@ -39,12 +47,7 @@ export const Search = ({ updateStock }: any) => {
     }
   };
 
-  type SelectedOption = {
-    symbol: string;
-    name: string;
-  };
-
-  const selectOption = (data: SelectedOption) => {
+  const selectOption = (data: ISelectedOption) => {
     updateStock(data);
     toggleIsOpen(false);
     if (inputSelect && inputSelect.current) {

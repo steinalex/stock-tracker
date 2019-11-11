@@ -1,8 +1,8 @@
-import React from "react";
+import React, { FC } from "react";
 import "./Footer.css";
 import { FooterItem } from "./FooterItem";
 
-export const Footer = () => {
+export const Footer: FC = () => {
   return (
     <div className="footer">
       <div className="footer__items">
