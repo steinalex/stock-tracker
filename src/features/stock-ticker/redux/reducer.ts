@@ -4,11 +4,11 @@ import { Reducer } from "redux";
 import { IStockTicker, StockTickerActions } from "./actions";
 
 export interface StockState {
-  selectedStockTicker: IStockTicker | "";
+  selectedStockTicker: IStockTicker | undefined;
 }
 
 const initialState: StockState = {
-  selectedStockTicker: ""
+  selectedStockTicker: undefined
 };
 
 export const stockTickerReducer: Reducer<StockState, StockTickerActions> = (

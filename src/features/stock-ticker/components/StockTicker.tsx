@@ -5,12 +5,13 @@ const getSign = (value: number) => (value > 0 ? "positive" : "negative");
 
 export const StockTicker = ({ stock }: any) => {
   const changePercent = Math.round(stock.changePercent * 100 * 100) / 100;
-  const toFixed = changePercent.toFixed(2);
 
   return (
     <div className="quotes">
       <p className="quotes__stock-price">
-        <span className="quotes_dollar-sign">{stock.latestPrice}</span>
+        <span className="quotes_dollar-sign">
+          {stock.latestPrice.toFixed(2)}
+        </span>
       </p>
       <p className="quotes__stock-price">
         <span
@@ -25,7 +26,9 @@ export const StockTicker = ({ stock }: any) => {
         <span
           className={`change-${getSign(changePercent)} quotes__percentage-sign`}
         >
-          {changePercent > 0 ? changePercent : -changePercent}
+          {changePercent > 0
+            ? changePercent.toFixed(2)
+            : -changePercent.toFixed(2)}
         </span>
       </p>
     </div>
