@@ -20,10 +20,10 @@ const initialState: HeadlineState = {
   selectedCompanySymbols: []
 };
 
-export const headlineReducer: Reducer<HeadlineState, HeadlineActions> = (
-  state = initialState,
-  action
-) => {
+export const headlineReducer: Reducer<
+  Readonly<HeadlineState>,
+  HeadlineActions
+> = (state = initialState, action) => {
   switch (action.type) {
     case UPDATE_SEARCH:
       return {

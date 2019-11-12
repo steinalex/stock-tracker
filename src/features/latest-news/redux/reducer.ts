@@ -11,10 +11,10 @@ const initialState: LatestNewsState = {
   selectedLatestNews: null
 };
 
-export const latestNewsReducer: Reducer<LatestNewsState, LatestNewsActions> = (
-  state = initialState,
-  action
-) => {
+export const latestNewsReducer: Reducer<
+  Readonly<LatestNewsState>,
+  LatestNewsActions
+> = (state = initialState, action) => {
   switch (action.type) {
     case UPDATE_LATEST_NEWS:
       return {

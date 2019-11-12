@@ -11,10 +11,10 @@ const initialState: KeyStatsState = {
   selectedKeyStats: null
 };
 
-export const keyStatsReducer: Reducer<KeyStatsState, KeyStatsActions> = (
-  state = initialState,
-  action
-) => {
+export const keyStatsReducer: Reducer<
+  Readonly<KeyStatsState>,
+  KeyStatsActions
+> = (state = initialState, action) => {
   switch (action.type) {
     case UPDATE_KEY_STATS:
       return {

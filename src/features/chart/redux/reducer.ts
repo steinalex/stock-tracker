@@ -13,7 +13,7 @@ const initialState: ChartState = {
   selectedChartData: null
 };
 
-export const chartReducer: Reducer<ChartState, ChartActions> = (
+export const chartReducer: Reducer<Readonly<ChartState>, ChartActions> = (
   state = initialState,
   action
 ) => {
