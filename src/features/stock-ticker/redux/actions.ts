@@ -1,6 +1,6 @@
 import { UPDATE_STOCK_TICKER } from "./constants";
-import { ActionWithPayload } from "../../../utils/actions";
-import { ResetAction } from "../../../store/constants";
+import { ActionWithPayload } from "utils/actions";
+import { ResetAction } from "store/constants";
 
 export type UpdateStockTickerAction = ActionWithPayload<
   typeof UPDATE_STOCK_TICKER,

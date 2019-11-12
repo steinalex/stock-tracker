@@ -3,7 +3,7 @@ import { Peers } from "../../peers";
 import { useSelector } from "react-redux";
 import { Loading } from "../../loading";
 import "./Company.css";
-import { AppState } from "../../../store";
+import { AppState } from "store";
 
 export const Company: FC = () => {
   const { selectedCompanyOverview } = useSelector(

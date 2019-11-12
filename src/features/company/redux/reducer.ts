@@ -1,4 +1,4 @@
-import { RESET } from "../../../store/constants";
+import { RESET } from "store/constants";
 import { UPDATE_COMPANY_OVERVIEW } from "./constants";
 import { CompanyOverview, CompanyActions } from "./actions";
 import { Reducer } from "redux";

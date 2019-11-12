@@ -1,6 +1,6 @@
 import { UPDATE_COMPANY_OVERVIEW } from "./constants";
-import { ActionWithPayload } from "../../../utils/actions";
-import { ResetAction } from "../../../store/constants";
+import { ActionWithPayload } from "utils/actions";
+import { ResetAction } from "store/constants";
 
 export type UpdateCompanyOverviewAction = ActionWithPayload<
   typeof UPDATE_COMPANY_OVERVIEW,

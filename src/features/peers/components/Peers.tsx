@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { Loading } from "../../loading";
 import { ErrorMessage } from "../../error-message";
 import { useDispatch } from "react-redux";
-import { updateStockAction } from "../../../actions";
+import { updateStockAction } from "actions";
 import "./Peers.css";
 import { IPeers } from "../redux/actions";
 

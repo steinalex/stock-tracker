@@ -1,4 +1,4 @@
-import { RESET } from "../../../store/constants";
+import { RESET } from "store/constants";
 import { UPDATE_STOCK_TICKER } from "./constants";
 import { Reducer } from "redux";
 import { IStockTicker, StockTickerActions } from "./actions";

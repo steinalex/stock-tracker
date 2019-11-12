@@ -1,9 +1,9 @@
-import { BOOTSTRAP } from "../../../store/constants";
+import { BOOTSTRAP } from "store/constants";
 import { UPDATE_CHART_RANGE } from "./constants";
 import { updateChartDataAction, ChartData } from "./actions";
-import { SocketService } from "../../../services";
+import { SocketService } from "services";
 import { Middleware } from "redux";
-import { AppState } from "../../../store";
+import { AppState } from "store";
 
 type Dependencies = {
   socketService: SocketService;

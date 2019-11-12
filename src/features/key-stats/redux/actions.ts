@@ -1,6 +1,6 @@
 import { UPDATE_KEY_STATS } from "./constants";
-import { ActionWithPayload } from "../../../utils/actions";
-import { ResetAction } from "../../../store/constants";
+import { ActionWithPayload } from "utils/actions";
+import { ResetAction } from "store/constants";
 
 export type UpdateKeyStatsAction = ActionWithPayload<
   typeof UPDATE_KEY_STATS,

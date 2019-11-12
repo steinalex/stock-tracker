@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { StockTicker } from "../../stock-ticker";
 import { MarketStatus } from "../../market-status";
 import "./Headline.css";
-import { AppState } from "../../../store";
+import { AppState } from "store";
 
 export const Headline: FC = () => {
   const { selectedStockTicker } = useSelector(

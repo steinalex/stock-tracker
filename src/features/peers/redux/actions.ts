@@ -1,6 +1,6 @@
 import { UPDATE_TOP_PEERS } from "./constants";
-import { ActionWithPayload } from "../../../utils/actions";
-import { ResetAction } from "../../../store/constants";
+import { ActionWithPayload } from "utils/actions";
+import { ResetAction } from "store/constants";
 
 export interface IPeers {
   symbol: string;
