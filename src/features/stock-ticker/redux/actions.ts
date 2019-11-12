@@ -9,7 +9,7 @@ export type UpdateStockTickerAction = ActionWithPayload<
 
 export interface IStockTicker {
   latestPrice: number;
-  latestUpdate: number;
+  latestUpdate: Date;
   change: number;
   changePercent: number;
 }

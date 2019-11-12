@@ -13,16 +13,16 @@ type MarketStatusProps = {
   keyStats: IKeyStats | null;
 };
 
-export const MarketStatus: FC<MarketStatusProps> = ({
-  stock,
-  keyStats
-}: any) => {
-  const UKTime = formatDate(stock.latestUpdate);
-  const USTime = formatDate(UKTime).toLocaleString("en-US", {
-    timeZone: "America/New_York"
-  });
-  const correctFormat = moment(new Date(USTime)).format("lll");
-  const marketStatus = keyStats.open === null ? "Market Closed" : "Market Open";
+export const MarketStatus: FC<MarketStatusProps> = ({ stock, keyStats }) => {
+  const UKTime = stock && formatDate(stock.latestUpdate);
+  const USTime =
+    UKTime &&
+    formatDate(UKTime).toLocaleString("en-US", {
+      timeZone: "America/New_York"
+    });
+  const correctFormat = USTime && moment(new Date(USTime)).format("lll");
+  const marketStatus =
+    keyStats && keyStats.open === null ? "Market Closed" : "Market Open";
 
   return (
     <div className="market">
@@ -30,7 +30,9 @@ export const MarketStatus: FC<MarketStatusProps> = ({
         <span className="market__text">
           Real-Time Price as of {correctFormat} EST
         </span>{" "}
-        <span className={marketSign(keyStats.open)}> {marketStatus}</span>
+        {keyStats && (
+          <span className={marketSign(keyStats.open)}> {marketStatus}</span>
+        )}
       </p>
     </div>
   );
