@@ -1,15 +1,15 @@
 import { RESET } from "../../../store/constants";
 import { UPDATE_CHART_RANGE, UPDATE_CHART_DATA } from "./constants";
-import { ChartActions, ChartData } from "./actions";
+import { ChartActions, ChartData, ChartRange } from "./actions";
 import { Reducer } from "redux";
 
 export interface ChartState {
-  selectedChartRange: string;
+  selectedChartRange: ChartRange;
   selectedChartData: null | ChartData[];
 }
 
 const initialState: ChartState = {
-  selectedChartRange: "5y",
+  selectedChartRange: "5Y",
   selectedChartData: null
 };
 
