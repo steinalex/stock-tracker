@@ -6,7 +6,6 @@ import { IStockTicker } from "../../stock-ticker/redux/actions";
 
 const marketSign = (value: number) =>
   value === null ? "market---moon" : "market---sun";
-const formatDate = (date: Date) => new Date(date);
 
 type MarketStatusProps = {
   stock: IStockTicker | undefined;
@@ -14,13 +13,7 @@ type MarketStatusProps = {
 };
 
 export const MarketStatus: FC<MarketStatusProps> = ({ stock, keyStats }) => {
-  const UKTime = stock && formatDate(stock.latestUpdate);
-  const USTime =
-    UKTime &&
-    formatDate(UKTime).toLocaleString("en-US", {
-      timeZone: "America/New_York"
-    });
-  const correctFormat = USTime && moment(new Date(USTime)).format("lll");
+  const dateFormat = stock && moment(stock.latestUpdate).format("lll");
   const marketStatus =
     keyStats && keyStats.open === null ? "Market Closed" : "Market Open";
 
@@ -28,7 +21,7 @@ export const MarketStatus: FC<MarketStatusProps> = ({ stock, keyStats }) => {
     <div className="market">
       <p>
         <span className="market__text">
-          Real-Time Price as of {correctFormat} EST
+          Real-Time Price as of {dateFormat} EST
         </span>{" "}
         {keyStats && (
           <span className={marketSign(keyStats.open)}> {marketStatus}</span>
