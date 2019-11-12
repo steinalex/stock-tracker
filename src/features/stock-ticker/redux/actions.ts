@@ -3,7 +3,7 @@ import { ActionWithPayload } from "../../../utils/actions";
 import { ResetAction } from "../../../store/constants";
 
 export type UpdateStockTickerAction = ActionWithPayload<
-  UPDATE_STOCK_TICKER,
+  typeof UPDATE_STOCK_TICKER,
   IStockTicker
 >;
 

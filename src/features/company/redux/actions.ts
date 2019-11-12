@@ -3,7 +3,7 @@ import { ActionWithPayload } from "../../../utils/actions";
 import { ResetAction } from "../../../store/constants";
 
 export type UpdateCompanyOverviewAction = ActionWithPayload<
-  UPDATE_COMPANY_OVERVIEW,
+  typeof UPDATE_COMPANY_OVERVIEW,
   CompanyOverview
 >;
 

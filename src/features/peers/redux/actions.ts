@@ -7,7 +7,7 @@ export interface IPeers {
   name: string;
 }
 export type UpdateTopPeersAction = ActionWithPayload<
-  UPDATE_TOP_PEERS,
+  typeof UPDATE_TOP_PEERS,
   IPeers[]
 >;
 

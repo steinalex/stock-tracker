@@ -3,7 +3,7 @@ import { ActionWithPayload } from "../../../utils/actions";
 import { ResetAction } from "../../../store/constants";
 
 export type UpdateLatestNewsAction = ActionWithPayload<
-  UPDATE_LATEST_NEWS,
+  typeof UPDATE_LATEST_NEWS,
   ILatestNews[]
 >;
 

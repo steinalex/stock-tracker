@@ -8,7 +8,7 @@ export interface ChartData {
 }
 
 export type UpdateChartRangeAction = ActionWithPayload<
-  UPDATE_CHART_RANGE,
+  typeof UPDATE_CHART_RANGE,
   string
 >;
 
@@ -20,7 +20,7 @@ export const updateChartRangeAction = (
 });
 
 export type UpdateChartDataAction = ActionWithPayload<
-  UPDATE_CHART_DATA,
+  typeof UPDATE_CHART_DATA,
   ChartData[]
 >;
 
