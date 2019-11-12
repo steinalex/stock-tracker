@@ -3,7 +3,7 @@ import { ActionWithPayload } from "../../../utils/actions";
 import { ResetAction } from "../../../store/constants";
 
 export type UpdateKeyStatsAction = ActionWithPayload<
-  UPDATE_KEY_STATS,
+  typeof UPDATE_KEY_STATS,
   IKeyStats
 >;
 

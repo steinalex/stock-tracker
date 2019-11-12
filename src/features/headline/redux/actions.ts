@@ -16,7 +16,7 @@ export interface ISelectedSearch {
 }
 
 export type UpdateSearchAction = ActionWithPayload<
-  UPDATE_SEARCH,
+  typeof UPDATE_SEARCH,
   ISelectedSearch
 >;
 
@@ -34,7 +34,7 @@ export interface ISelectedSymbols {
 }
 
 export type UpdateCompanySymbolsAction = ActionWithPayload<
-  UPDATE_COMPANY_SYMBOLS,
+  typeof UPDATE_COMPANY_SYMBOLS,
   ISelectedSymbols[]
 >;
 
@@ -46,7 +46,7 @@ export const updateCompanySymbolsAction = (
 });
 
 export type UpdateSearchQueryAction = ActionWithPayload<
-  UPDATE_SEARCH_QUERY,
+  typeof UPDATE_SEARCH_QUERY,
   string
 >;
 

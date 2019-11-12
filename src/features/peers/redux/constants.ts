@@ -1,2 +1,1 @@
 export const UPDATE_TOP_PEERS = "UPDATE_TOP_PEERS";
-export type UPDATE_TOP_PEERS = typeof UPDATE_TOP_PEERS;
