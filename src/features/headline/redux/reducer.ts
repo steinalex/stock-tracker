@@ -1,4 +1,4 @@
-import { RESET } from "../../../store/constants";
+import { RESET } from "store/constants";
 import {
   UPDATE_COMPANY_SYMBOLS,
   UPDATE_SEARCH,

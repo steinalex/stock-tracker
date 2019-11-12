@@ -1,4 +1,4 @@
-import { RESET } from "../../../store/constants";
+import { RESET } from "store/constants";
 import { UPDATE_CHART_RANGE, UPDATE_CHART_DATA } from "./constants";
 import { ChartActions, ChartData, ChartRange } from "./actions";
 import { Reducer } from "redux";

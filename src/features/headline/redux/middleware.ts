@@ -1,13 +1,13 @@
-import { BOOTSTRAP } from "../../../store/constants";
+import { BOOTSTRAP } from "store/constants";
 import {
   updateCompanySymbolsAction,
   updateSearchAction,
   ISelectedSearch
 } from "./actions";
 import { UPDATE_SEARCH_QUERY } from "./constants";
-import { SocketService } from "../../../services";
+import { SocketService } from "services";
 import { Middleware } from "redux";
-import { AppState } from "../../../store";
+import { AppState } from "store";
 
 type Dependencies = {
   socketService: SocketService;

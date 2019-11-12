@@ -1,6 +1,6 @@
 import { UPDATE_CHART_RANGE, UPDATE_CHART_DATA } from "./constants";
-import { ActionWithPayload } from "../../../utils/actions";
-import { ResetAction } from "../../../store/constants";
+import { ActionWithPayload } from "utils/actions";
+import { ResetAction } from "store/constants";
 
 export interface ChartData {
   close: number;

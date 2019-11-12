@@ -3,8 +3,8 @@ import {
   UPDATE_COMPANY_SYMBOLS,
   UPDATE_SEARCH_QUERY
 } from "./constants";
-import { ActionWithPayload } from "../../../utils/actions";
-import { ResetAction } from "../../../store/constants";
+import { ActionWithPayload } from "utils/actions";
+import { ResetAction } from "store/constants";
 
 export interface ISelectedSearch {
   companyName: string;

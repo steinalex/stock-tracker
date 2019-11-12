@@ -16,7 +16,7 @@ import { updateChartRangeAction, ChartRange } from "../redux/actions";
 import { Loading } from "../../loading";
 import { ErrorMessage } from "../../error-message";
 import "./Chart.css";
-import { AppState } from "../../../store";
+import { AppState } from "store";
 
 const chartValues: ChartRange[] = ["1D", "5D", "1M", "1Y", "5Y", "MAX"];
 
