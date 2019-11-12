@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { Loading } from "../../loading";
 import { ErrorMessage } from "../../error-message";
 import "./LatestNews.css";
-import { AppState } from "../../../store";
+import { AppState } from "store";
 
 const timeFormat = (date: string) => moment(date).fromNow();
 

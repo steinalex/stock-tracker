@@ -1,4 +1,4 @@
-import { RESET } from "../../../store/constants";
+import { RESET } from "store/constants";
 import { UPDATE_KEY_STATS } from "./constants";
 import { Reducer } from "redux";
 import { KeyStatsActions, IKeyStats } from "./actions";

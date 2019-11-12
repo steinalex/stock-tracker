@@ -1,4 +1,4 @@
-import { RESET } from "../../../store/constants";
+import { RESET } from "store/constants";
 import { UPDATE_TOP_PEERS } from "./constants";
 import { IPeers, TopPeersActions } from "./actions";
 import { Reducer } from "redux";

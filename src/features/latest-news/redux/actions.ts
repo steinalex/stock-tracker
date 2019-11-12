@@ -1,6 +1,6 @@
 import { UPDATE_LATEST_NEWS } from "./constants";
-import { ActionWithPayload } from "../../../utils/actions";
-import { ResetAction } from "../../../store/constants";
+import { ActionWithPayload } from "utils/actions";
+import { ResetAction } from "store/constants";
 
 export type UpdateLatestNewsAction = ActionWithPayload<
   typeof UPDATE_LATEST_NEWS,

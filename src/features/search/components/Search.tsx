@@ -2,8 +2,8 @@ import React, { useState, useRef, useEffect, FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateSearchQueryAction } from "../../headline";
 import "./Search.css";
-import { AppState } from "../../../store";
-import { updateStockAction } from "../../../actions";
+import { AppState } from "store";
+import { updateStockAction } from "actions";
 
 export type ISelectedOption = {
   symbol: string;
