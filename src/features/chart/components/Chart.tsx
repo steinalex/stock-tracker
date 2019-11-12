@@ -12,37 +12,30 @@ import {
 } from "recharts";
 
 import { useSelector, useDispatch } from "react-redux";
-import { updateChartRangeAction } from "../redux/actions";
+import { updateChartRangeAction, ChartRange } from "../redux/actions";
 import { Loading } from "../../loading";
 import { ErrorMessage } from "../../error-message";
 import "./Chart.css";
 import { AppState } from "../../../store";
 
-const tenors = [
-  { value: "1d", label: "1D" },
-  { value: "5d", label: "5D" },
-  { value: "1m", label: "1M" },
-  { value: "1y", label: "1Y" },
-  { value: "5y", label: "5Y" },
-  { value: "max", label: "MAX" }
-];
+const chartValues: ChartRange[] = ["1D", "5D", "1M", "1Y", "5Y", "MAX"];
 
 const yaxisFormat = (item: number) => item.toFixed(2);
 
-const formatDate = (isoDate: string, chartRange: string) => {
+const formatDate = (isoDate: string, chartRange: ChartRange) => {
   const date = new Date(isoDate);
   switch (chartRange) {
-    case "max":
-    case "5y":
-    case "1y":
-    case "1m":
+    case "MAX":
+    case "5Y":
+    case "1Y":
+    case "1M":
       return Intl.DateTimeFormat("en-US", {
         year: "2-digit",
         month: "short"
       }).format(date);
-    case "5d":
+    case "5D":
       return Intl.DateTimeFormat("en-US", { weekday: "short" }).format(date);
-    case "1d":
+    case "1D":
       return Intl.DateTimeFormat("en-US", {
         hour: "2-digit",
         minute: "2-digit"
@@ -60,11 +53,8 @@ export const Chart: FC = () => {
   const { selectedStockTicker } = useSelector(
     (state: AppState) => state.stockTickerData
   );
-  const updateChartRange = (stock: string) =>
+  const updateChartRange = (stock: ChartRange) =>
     dispatch(updateChartRangeAction(stock));
-  const onClickHandler: React.MouseEventHandler<HTMLButtonElement> = event => {
-    updateChartRange(event.currentTarget.value);
-  };
 
   const chartData = selectedChartData
     ? selectedChartData.map(data => ({
@@ -77,18 +67,18 @@ export const Chart: FC = () => {
     <>
       <div className="chart__wrapper">
         {chartData.length !== 0 ? (
-          tenors.map(({ value, label }) => {
+          chartValues.map(range => {
             const activeClass =
-              selectedChartRange === value ? "chart__button--active" : "";
+              selectedChartRange === range ? "chart__button--active" : "";
 
             return (
               <button
-                key={label}
+                key={range}
                 className={`chart__button ${activeClass}`}
-                onClick={onClickHandler}
-                value={value}
+                onClick={() => updateChartRange(range)}
+                value={range}
               >
-                {label}
+                {range}
               </button>
             );
           })

@@ -7,12 +7,12 @@ describe("with an UPDATE_CHART_RANGE action", () => {
 
   beforeAll(() => {
     const initialState: ChartState = {
-      selectedChartRange: "5y",
+      selectedChartRange: "5Y",
       selectedChartData: null
     };
     const action: UpdateChartRangeAction = {
       type: UPDATE_CHART_RANGE,
-      payload: "2y"
+      payload: "2Y"
     };
     newState = chartReducer(initialState, action);
   });
@@ -28,7 +28,7 @@ describe("with an UPDATE_CHART_DATA action", () => {
   beforeAll(() => {
     const initialState: ChartState = {
       selectedChartData: null,
-      selectedChartRange: "5y"
+      selectedChartRange: "5Y"
     };
     const action: UpdateChartDataAction = {
       type: UPDATE_CHART_DATA,

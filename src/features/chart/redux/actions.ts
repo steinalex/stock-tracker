@@ -7,13 +7,15 @@ export interface ChartData {
   date: string;
 }
 
+export type ChartRange = "1D" | "5D" | "1M" | "1Y" | "5Y" | "MAX";
+
 export type UpdateChartRangeAction = ActionWithPayload<
   typeof UPDATE_CHART_RANGE,
-  string
+  ChartRange
 >;
 
 export const updateChartRangeAction = (
-  chartRange: string
+  chartRange: ChartRange
 ): UpdateChartRangeAction => ({
   type: UPDATE_CHART_RANGE,
   payload: chartRange
