@@ -7,18 +7,18 @@ describe("with an UPDATE_CHART_RANGE action", () => {
 
   beforeAll(() => {
     const initialState: ChartState = {
-      selectedChartRange: "5Y",
+      selectedChartRange: "1Y",
       selectedChartData: null
     };
     const action: UpdateChartRangeAction = {
       type: UPDATE_CHART_RANGE,
-      payload: "2Y"
+      payload: "5Y"
     };
     newState = chartReducer(initialState, action);
   });
 
-  it("it updates the selected chart range to 2y", () => {
-    expect(newState.selectedChartRange).toBe("2y");
+  it("it updates the selected chart range to 5Y", () => {
+    expect(newState.selectedChartRange).toBe("5Y");
   });
 });
 
