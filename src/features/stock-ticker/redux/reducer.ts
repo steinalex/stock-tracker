@@ -11,10 +11,10 @@ const initialState: StockState = {
   selectedStockTicker: undefined
 };
 
-export const stockTickerReducer: Reducer<StockState, StockTickerActions> = (
-  state = initialState,
-  action
-) => {
+export const stockTickerReducer: Reducer<
+  Readonly<StockState>,
+  StockTickerActions
+> = (state = initialState, action) => {
   switch (action.type) {
     case UPDATE_STOCK_TICKER:
       return {

@@ -11,10 +11,10 @@ const initialState: CompanyState = {
   selectedCompanyOverview: null
 };
 
-export const companyOverviewReducer: Reducer<CompanyState, CompanyActions> = (
-  state = initialState,
-  action
-) => {
+export const companyOverviewReducer: Reducer<
+  Readonly<CompanyState>,
+  CompanyActions
+> = (state = initialState, action) => {
   switch (action.type) {
     case UPDATE_COMPANY_OVERVIEW:
       return {

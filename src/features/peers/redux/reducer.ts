@@ -11,7 +11,7 @@ const initialState: TopPeersState = {
   selectedTopPeers: null
 };
 
-export const peerReducer: Reducer<TopPeersState, TopPeersActions> = (
+export const peerReducer: Reducer<Readonly<TopPeersState>, TopPeersActions> = (
   state = initialState,
   action
 ) => {
