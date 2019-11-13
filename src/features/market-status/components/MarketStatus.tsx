@@ -13,7 +13,6 @@ type MarketStatusProps = {
 };
 
 export const MarketStatus: FC<MarketStatusProps> = ({ stock, keyStats }) => {
-  console.log(keyStats);
   const dateFormat = stock && moment(stock.latestUpdate).format("lll");
   const marketStatus =
     keyStats && keyStats.isUSMarketOpen === false
