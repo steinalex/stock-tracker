@@ -23,7 +23,7 @@ export interface IKeyStats {
   week52High: number;
   week52Low: number;
   ytdChange: number;
-  isUSMarketOpen: string;
+  isUSMarketOpen: boolean;
   eps: number;
 }
 
