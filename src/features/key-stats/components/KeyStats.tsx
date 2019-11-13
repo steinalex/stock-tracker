@@ -6,15 +6,22 @@ import { AppState } from "store";
 import { IKeyStats } from "../redux/actions";
 import { ErrorMessage } from "../../error-message";
 
+type RenderedKeyStats = Omit<IKeyStats, "isUSMarketOpen">;
+
 const NUMBER_FORMATTER = new Intl.NumberFormat();
 
-const DEFAULT_FORMATTER = (keyStatsData: IKeyStats, key: keyof IKeyStats) =>
-  keyStatsData[key] !== null ? keyStatsData[key] : "N/A";
+type Formatter = (
+  keyStatsData: RenderedKeyStats,
+  key: keyof RenderedKeyStats
+) => string | number;
 
-type Formatter = (keyStatsData: IKeyStats) => string;
+const DEFAULT_FORMATTER: Formatter = (
+  keyStatsData: RenderedKeyStats,
+  key: keyof RenderedKeyStats
+) => (keyStatsData[key] !== null ? keyStatsData[key] : "N/A");
 
 type Schema = {
-  key: keyof IKeyStats;
+  key: keyof RenderedKeyStats;
   label: string;
   formatter?: Formatter;
 }[];
