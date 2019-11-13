@@ -11,13 +11,13 @@ import { ISelectedSymbols } from "./actions";
 export interface HeadlineState {
   selectedSearch: ISelectedSearch | "";
   enteredSearchQuery: string;
-  selectedCompanySymbols: ISelectedSymbols[];
+  selectedCompanySymbols: ISelectedSymbols[] | undefined;
 }
 
 const initialState: HeadlineState = {
   selectedSearch: "",
   enteredSearchQuery: "",
-  selectedCompanySymbols: []
+  selectedCompanySymbols: undefined
 };
 
 export const headlineReducer: Reducer<
