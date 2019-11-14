@@ -1,5 +1,5 @@
 const axios = require("axios");
-const sectorInformation = async (socket, stockName, HOST, TOKEN) => {
+exports.emitSectorInformation = async (socket, stockName, HOST, TOKEN) => {
   try {
     const quote = await axios.get(
       `${HOST}/stock/${stockName}/quote?token=${TOKEN}`
@@ -11,9 +11,12 @@ const sectorInformation = async (socket, stockName, HOST, TOKEN) => {
       `${HOST}/stock/${stockName}/company?token=${TOKEN}`
     );
     const { primaryExchange, companyName, symbol } = quote.data;
+
     const currency =
       (dividends.data.length > 0 && dividends.data[0].currency) || null;
+
     const { sector } = company.data;
+
     const sectorInformation = {
       primaryExchange,
       sector,
@@ -21,9 +24,9 @@ const sectorInformation = async (socket, stockName, HOST, TOKEN) => {
       companyName,
       symbol
     };
+
     socket.emit("sectorInformation", sectorInformation);
   } catch (error) {
     console.error(`Error: ${error}`);
   }
 };
-exports.sectorInformation = sectorInformation;

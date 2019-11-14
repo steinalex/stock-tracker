@@ -2,6 +2,10 @@
   float: right;
 }
 
+.market > p {
+  margin: 8px 0;
+}
+
 .market__text {
   color: #ffffff96;
   font-size: 14px;
@@ -20,6 +24,7 @@
   top: 0px;
   font-size: 14px;
   color: #ffbb5e;
+  padding-right: 3px;
 }
 
 .market span.market---sun {
@@ -33,4 +38,5 @@
   top: 0px;
   font-size: 14px;
   color: rgb(224, 251, 0);
+  padding-right: 3px;
 }
