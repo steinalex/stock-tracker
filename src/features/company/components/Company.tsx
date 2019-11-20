@@ -43,7 +43,7 @@ export const Company: FC = () => {
     <div className="company-overview">
       <h1 className="title">Company Overview</h1>
       <Loading
-        loaded={selectedCompanyOverview !== undefined}
+        loaded={selectedCompanyOverview !== null}
         render={renderCompanyComponent}
       />
       <Peers peers={selectedTopPeers} />
