@@ -19,7 +19,7 @@ export const headlineMiddleware = ({
   if (action.type === BOOTSTRAP) {
     const socket = socketService.get();
 
-    socket.on("companySymbols", (payload: []) => {
+    socket.on("suggestedCompanies", (payload: []) => {
       store.dispatch(updateCompanySymbolsAction(payload));
     });
 
@@ -28,7 +28,7 @@ export const headlineMiddleware = ({
     });
   }
   if (action.type === UPDATE_SEARCH_QUERY) {
-    socketService.get().emit("searchQuery", action.payload);
+    socketService.get().emit("enteredSearchQuery", action.payload);
   }
   return next(action);
 };

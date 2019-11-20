@@ -17,7 +17,7 @@ exports.emitSearchQuery = async (socket, inputQuery, allSymbols) => {
       return a.symbol > b.symbol ? 1 : -1;
     });
 
-    socket.emit("companySymbols", sortDataByRelevance.slice(0, 10));
+    socket.emit("suggestedCompanies", sortDataByRelevance.slice(0, 10));
   } catch (error) {
     console.error(`Error: ${error}`);
   }

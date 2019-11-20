@@ -16,7 +16,7 @@ export const stockMiddleware = ({
     socketService
       .get()
       .emit(
-        "stockName",
+        "enteredStockName",
         action.payload.symbol,
         store.getState().chartData.selectedChartRange
       );
