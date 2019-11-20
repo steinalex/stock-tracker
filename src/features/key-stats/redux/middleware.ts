@@ -1,4 +1,4 @@
-import { BOOTSTRAP } from "store/constants";
+import { BOOTSTRAP, UPDATE_SELECTED_STOCK } from "store/constants";
 import { updateKeyStatsAction, IKeyStats } from "./actions";
 import { SocketService } from "services";
 import { Middleware } from "redux";
@@ -11,6 +11,9 @@ type Dependencies = {
 export const keyStatsMiddleware = ({
   socketService
 }: Dependencies): Middleware<{}, AppState> => store => next => action => {
+  if (action.type === UPDATE_SELECTED_STOCK) {
+    socketService.get().emit("getKeyStatsData", action.payload.symbol);
+  }
   if (action.type === BOOTSTRAP) {
     const socket = socketService.get();
     socket.on("keyStats", (keyStats: IKeyStats) => {

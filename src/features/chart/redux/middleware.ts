@@ -1,4 +1,4 @@
-import { BOOTSTRAP } from "store/constants";
+import { BOOTSTRAP, UPDATE_SELECTED_STOCK } from "store/constants";
 import { UPDATE_CHART_RANGE } from "./constants";
 import { updateChartDataAction, ChartData } from "./actions";
 import { SocketService } from "services";
@@ -12,6 +12,15 @@ type Dependencies = {
 export const chartMiddleware = ({
   socketService
 }: Dependencies): Middleware<{}, AppState> => store => next => action => {
+  if (action.type === UPDATE_SELECTED_STOCK) {
+    socketService
+      .get()
+      .emit(
+        "getChartData",
+        action.payload.symbol,
+        store.getState().chartData.selectedChartRange
+      );
+  }
   if (action.type === UPDATE_CHART_RANGE) {
     socketService
       .get()

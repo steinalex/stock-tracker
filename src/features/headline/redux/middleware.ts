@@ -1,4 +1,4 @@
-import { BOOTSTRAP } from "store/constants";
+import { BOOTSTRAP, UPDATE_SELECTED_STOCK } from "store/constants";
 import {
   updateCompanySymbolsAction,
   updateSearchAction,
@@ -16,6 +16,10 @@ type Dependencies = {
 export const headlineMiddleware = ({
   socketService
 }: Dependencies): Middleware<{}, AppState> => store => next => action => {
+  if (action.type === UPDATE_SELECTED_STOCK) {
+    socketService.get().emit("getSectorData", action.payload.symbol);
+  }
+
   if (action.type === BOOTSTRAP) {
     const socket = socketService.get();
 

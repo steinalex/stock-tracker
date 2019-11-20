@@ -25,7 +25,7 @@ exports.handleConnection = socket => {
   const allSymbols = getAllCompanies(HOST, TOKEN);
   console.info("New client connected");
 
-  socket.on("enteredStockName", async stockName => {
+  socket.on("getStockTicker", async stockName => {
     if (stockName === "") {
       return false;
     }
