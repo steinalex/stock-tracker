@@ -19,7 +19,7 @@ export const headlineMiddleware = ({
   if (action.type === BOOTSTRAP) {
     const socket = socketService.get();
 
-    socket.on("companySymbols", (payload: []) => {
+    socket.on("suggestedCompanies", (payload: []) => {
       store.dispatch(updateCompanySymbolsAction(payload));
     });
 
