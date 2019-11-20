@@ -1,9 +1,5 @@
 import { chartMiddleware } from "../middleware";
-import {
-  updateChartRangeAction,
-  updateChartDataAction,
-  ChartData
-} from "../actions";
+import { updateChartRangeAction, ChartData } from "../actions";
 import { BOOTSTRAP } from "store";
 
 jest.mock("services/socketService");
