@@ -28,7 +28,7 @@ export const headlineMiddleware = ({
     });
   }
   if (action.type === UPDATE_SEARCH_QUERY) {
-    socketService.get().emit("searchQuery", action.payload);
+    socketService.get().emit("enteredSearchQuery", action.payload);
   }
   return next(action);
 };

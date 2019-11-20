@@ -25,7 +25,7 @@ exports.handleConnection = socket => {
   const allSymbols = getAllCompanies(HOST, TOKEN);
   console.info("New client connected");
 
-  socket.on("stockName", async (stockName, timeRange) => {
+  socket.on("enteredStockName", async (stockName, timeRange) => {
     if (stockName === "") {
       return false;
     }
@@ -91,7 +91,7 @@ exports.handleConnection = socket => {
     );
   });
 
-  socket.on("searchQuery", inputQuery => {
+  socket.on("enteredSearchQuery", inputQuery => {
     emitSearchQuery(socket, inputQuery, allSymbols);
   });
 
