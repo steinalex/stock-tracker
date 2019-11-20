@@ -25,7 +25,7 @@ exports.handleConnection = socket => {
   const allSymbols = getAllCompanies(HOST, TOKEN);
   console.info("New client connected");
 
-  socket.on("enteredStockName", async (stockName, timeRange) => {
+  socket.on("enteredStockName", async stockName => {
     if (stockName === "") {
       return false;
     }
@@ -39,39 +39,13 @@ exports.handleConnection = socket => {
       HOST,
       TOKEN
     );
-    timerIDs.keyStats = callAndStartIntervals(
-      emitKeyStats,
-      ONE_DAY_IN_MS,
-      socket,
-      stockName,
-      HOST,
-      TOKEN
-    );
-    timerIDs.latestNews = callAndStartIntervals(
-      emitLatestNews,
-      ONE_DAY_IN_MS,
-      socket,
-      stockName,
-      HOST,
-      TOKEN
-    );
-    timerIDs.companyOverview = callAndStartIntervals(
-      emitCompanyOverview,
-      ONE_DAY_IN_MS,
-      socket,
-      stockName,
-      HOST,
-      TOKEN
-    );
-    timerIDs.topPeers = callAndStartIntervals(
-      emitTopPeers,
-      ONE_DAY_IN_MS,
-      socket,
-      stockName,
-      HOST,
-      TOKEN,
-      allSymbols
-    );
+  });
+
+  socket.on("enteredSearchQuery", inputQuery => {
+    emitSearchQuery(socket, inputQuery, allSymbols);
+  });
+
+  socket.on("getChartData", (stockName, timeRange) => {
     timerIDs.chartData = callAndStartIntervals(
       emitChartData,
       ONE_DAY_IN_MS,
@@ -81,8 +55,11 @@ exports.handleConnection = socket => {
       HOST,
       TOKEN
     );
-    timerIDs.sectorInformation = callAndStartIntervals(
-      emitSectorInformation,
+  });
+
+  socket.on("getKeyStatsData", stockName => {
+    timerIDs.keyStats = callAndStartIntervals(
+      emitKeyStats,
       ONE_DAY_IN_MS,
       socket,
       stockName,
@@ -91,8 +68,49 @@ exports.handleConnection = socket => {
     );
   });
 
-  socket.on("enteredSearchQuery", inputQuery => {
-    emitSearchQuery(socket, inputQuery, allSymbols);
+  socket.on("getLatestNewsData", stockName => {
+    timerIDs.latestNews = callAndStartIntervals(
+      emitLatestNews,
+      ONE_DAY_IN_MS,
+      socket,
+      stockName,
+      HOST,
+      TOKEN
+    );
+  });
+
+  socket.on("getCompanyOverviewData", stockName => {
+    timerIDs.companyOverview = callAndStartIntervals(
+      emitCompanyOverview,
+      ONE_DAY_IN_MS,
+      socket,
+      stockName,
+      HOST,
+      TOKEN
+    );
+  });
+
+  socket.on("getTopPeersData", stockName => {
+    timerIDs.topPeers = callAndStartIntervals(
+      emitTopPeers,
+      ONE_DAY_IN_MS,
+      socket,
+      stockName,
+      HOST,
+      TOKEN,
+      allSymbols
+    );
+  });
+
+  socket.on("getSectorData", stockName => {
+    timerIDs.sectorInformation = callAndStartIntervals(
+      emitSectorInformation,
+      ONE_DAY_IN_MS,
+      socket,
+      stockName,
+      HOST,
+      TOKEN
+    );
   });
 
   socket.on("timeRange", (stockName, timeRange) => {
