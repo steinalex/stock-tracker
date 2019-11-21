@@ -1,49 +1,39 @@
-const {
-  emitSectorInformation,
-  emitTopPeers,
-  emitCompanyOverview,
-  emitLatestNews,
-  emitKeyStats,
-  emitStockTicker,
-  emitChartData,
-  emitSearchQuery,
-  getAllCompanies
-} = require("./components");
+const { getNews } = require("./components/latestNews");
+const { getSectorInformation } = require("./components/sectorInformation");
+const { getChart } = require("./components/chartData");
 
 const TOKEN = process.env.TOKEN;
 const HOST = "https://sandbox.iexapis.com/stable";
 
-// const ONE_DAY_IN_MS = 24 * 60 * 60 * 1000;
+const sectorInformation = getSectorInformation(HOST, TOKEN);
+const newsService = getNews(HOST, TOKEN);
+const chartService = getChart(HOST, TOKEN);
 
-// function callAndStartIntervals(fn, interval, ...args) {
-//   fn(...args);
-//   return setInterval(() => fn(...args), interval);
-// }
-
-const getSectorInformation = emitSectorInformation(HOST, TOKEN);
-
-// const returnFunction = (fn, host, token) => {
-//   const newFunc = fn(host, token)
-//   return newFunc
-// }
-// const getPeers = returnFunction(emitTopPeers, HOST, TOKEN)
+const requestReply = async (socket, promise, replyTo) => {
+  try {
+    const result = await promise;
+    socket.emit(replyTo, { status: "OK", data: result });
+  } catch (err) {
+    socket.emit(replyTo, { status: "ERROR" });
+  }
+};
 
 exports.handleConnection = socket => {
-  //const timerIDs = {};
-  //const allSymbols = getAllCompanies(HOST, TOKEN);
   console.info("New client connected");
 
-  socket.on("getSectorData", async stockName => {
-    try {
-      const sectorInfo = await getSectorInformation(stockName);
-      socket.emit("getSectorDataResult", sectorInfo);
-    } catch (err) {
-      socket.emit("getSectorDataResult", err);
-    }
+  socket.on("getSectorData", async (replyTo, stockName) => {
+    requestReply(socket, sectorInformation(stockName), replyTo);
+  });
+
+  socket.on("getNews", async (replyTo, stockName) => {
+    requestReply(socket, newsService(stockName), replyTo);
+  });
+
+  socket.on("getChart", async (replyTo, stockName, timeRange) => {
+    requestReply(socket, chartService(stockName, timeRange), replyTo);
   });
 
   socket.on("disconnect", () => {
-    // Object.values(timerIDs).forEach(clearInterval);
     console.info("Client disconnected");
   });
 };
@@ -66,19 +56,6 @@ exports.handleConnection = socket => {
 
 //   socket.on("enteredSearchQuery", inputQuery => {
 //     emitSearchQuery(socket, inputQuery, allSymbols);
-//   });
-
-//   socket.on("getChartData", (stockName, timeRange) => {
-
-//     timerIDs.chartData = callAndStartIntervals(
-//       emitChartData,
-//       ONE_DAY_IN_MS,
-//       socket,
-//       stockName,
-//       timeRange,
-//       HOST,
-//       TOKEN
-//     );
 //   });
 
 //   socket.on("getKeyStatsData", stockName => {

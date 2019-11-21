@@ -1,6 +1,6 @@
 const axios = require("axios");
 
-exports.emitSectorInformation = (HOST, TOKEN) => async stockName => {
+exports.getSectorInformation = (HOST, TOKEN) => async stockName => {
   try {
     const quote = await axios.get(
       `${HOST}/stock/${stockName}/quote?token=${TOKEN}`
