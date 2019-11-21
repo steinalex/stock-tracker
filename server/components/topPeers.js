@@ -4,7 +4,8 @@ exports.emitTopPeers = async (
   stockName,
   HOST,
   TOKEN,
-  allSymbolsPromise
+  allSymbolsPromise,
+  tempRoomId
 ) => {
   try {
     const peers = await axios.get(
@@ -16,7 +17,7 @@ exports.emitTopPeers = async (
       return { symbol, name };
     });
 
-    socket.emit("topPeers", peersList);
+    socket.emit(tempRoomId, peersList);
   } catch (error) {
     console.error(`Error: ${error}`);
   }
