@@ -5,11 +5,15 @@ import { ILatestNews } from "features/latest-news/redux/actions";
 import { IStockTicker } from "features/stock-ticker/redux/actions";
 import { ChartData } from "features/chart/redux/actions";
 import { IKeyStats } from "features/key-stats/redux/actions";
+import { CompanyOverview } from "features/company/redux/actions";
+import { IPeers } from "features/peers/redux/actions";
 
 interface StockAPI {
   getSectorData: (stockName: string) => Promise<ISelectedSearch>;
   getNews: (stockName: string) => Promise<ILatestNews>;
   getChart: (stockName: string, timeRange: string) => Promise<ChartData>;
+  getKeyStats: (stockName: string) => Promise<IKeyStats>;
+  getCompanyOverview: (stockName: string) => Promise<CompanyOverview>;
   getStockTicker?: (
     stockName: string,
     onPrice: (price: IStockTicker) => void
@@ -31,6 +35,8 @@ const SECTOR_DATA_TOPIC = "getSectorData";
 const NEWS_TOPIC = "getNews";
 const CHART_TOPIC = "getChart";
 const KEY_STATS_TOPIC = "getKeyStats";
+const COMPANY_OVERVIEW_DATA = "getCompanyOverview";
+const TOP_PEERS_DATA = "getTopPeers";
 
 class StockService implements StockAPI {
   constructor(private socket: SocketIOClient.Socket) {}
@@ -75,12 +81,25 @@ class StockService implements StockAPI {
     return this.rpc<IKeyStats, string>(KEY_STATS_TOPIC, "KEY_STATS", stockName);
   }
 
+  getCompanyOverview(stockName: string) {
+    return this.rpc<CompanyOverview, string>(
+      COMPANY_OVERVIEW_DATA,
+      "COMPANY_OVERVIEW",
+      stockName
+    );
+  }
+
+  getTopPeers(stockName: string) {
+    return this.rpc<IPeers, string>(TOP_PEERS_DATA, "TOP_PEERS", stockName);
+  }
+
   getEverything(stockName: string, timeRange: string) {
     return Promise.all([
       this.getNews(stockName),
       this.getSectorData(stockName),
       this.getChart(stockName, timeRange),
-      this.getKeyStats(stockName)
+      this.getKeyStats(stockName),
+      this.getTopPeers(stockName)
     ]);
   }
 }
@@ -100,7 +119,17 @@ export const Rig = () => {
       .catch(console.log);
 
     service
+      .getKeyStats("AAPL")
+      .then(console.log)
+      .catch(console.log);
+
+    service
       .getChart("AAPL", "1D")
+      .then(console.log)
+      .catch(console.log);
+
+    service
+      .getCompanyOverview("AAPL")
       .then(console.log)
       .catch(console.log);
   }, []);

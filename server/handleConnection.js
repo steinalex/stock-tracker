@@ -1,6 +1,9 @@
 const { getNews } = require("./components/latestNews");
 const { getSectorInformation } = require("./components/sectorInformation");
 const { getChart } = require("./components/chartData");
+const { getKeyStats } = require("./components/keyStats");
+const { getCompanyOverview } = require("./components/companyOverview");
+const { getTopPeers } = require("./components/topPeers");
 
 const TOKEN = process.env.TOKEN;
 const HOST = "https://sandbox.iexapis.com/stable";
@@ -8,6 +11,9 @@ const HOST = "https://sandbox.iexapis.com/stable";
 const sectorInformation = getSectorInformation(HOST, TOKEN);
 const newsService = getNews(HOST, TOKEN);
 const chartService = getChart(HOST, TOKEN);
+const keyStatsService = getKeyStats(HOST, TOKEN);
+const companyOverviewService = getCompanyOverview(HOST, TOKEN);
+const topPeersService = getTopPeers(HOST, TOKEN);
 
 const requestReply = async (socket, promise, replyTo) => {
   try {
@@ -33,6 +39,18 @@ exports.handleConnection = socket => {
     requestReply(socket, chartService(stockName, timeRange), replyTo);
   });
 
+  socket.on("getKeyStats", async (replyTo, stockName) => {
+    requestReply(socket, keyStatsService(stockName), replyTo);
+  });
+
+  socket.on("getCompanyOverview", async (replyTo, stockName) => {
+    requestReply(socket, companyOverviewService(stockName), replyTo);
+  });
+
+  socket.on("getTopPeers", async (replyTo, stockName) => {
+    requestReply(socket, topPeersService(stockName, companySymbols), replyTo);
+  });
+
   socket.on("disconnect", () => {
     console.info("Client disconnected");
   });
@@ -56,68 +74,6 @@ exports.handleConnection = socket => {
 
 //   socket.on("enteredSearchQuery", inputQuery => {
 //     emitSearchQuery(socket, inputQuery, allSymbols);
-//   });
-
-//   socket.on("getKeyStatsData", stockName => {
-//     timerIDs.keyStats = callAndStartIntervals(
-//       emitKeyStats,
-//       ONE_DAY_IN_MS,
-//       socket,
-//       stockName,
-//       HOST,
-//       TOKEN
-//     );
-//   });
-
-//   socket.on("getLatestNewsData", stockName => {
-//     timerIDs.latestNews = callAndStartIntervals(
-//       emitLatestNews,
-//       ONE_DAY_IN_MS,
-//       socket,
-//       stockName,
-//       HOST,
-//       TOKEN
-//     );
-//   });
-
-//   socket.on("getCompanyOverviewData", stockName => {
-//     timerIDs.companyOverview = callAndStartIntervals(
-//       emitCompanyOverview,
-//       ONE_DAY_IN_MS,
-//       socket,
-//       stockName,
-//       HOST,
-//       TOKEN
-//     );
-//   });
-
-// socket.on("getTopPeersData", stockName => {
-
-//   console.info(stockName)
-//   // timerIDs.topPeers = callAndStartIntervals(
-//   //   emitTopPeers,
-//   //   ONE_DAY_IN_MS,
-//   //   socket,
-//   //   stockName,
-//   //   HOST,
-//   //   TOKEN,
-//   //   allSymbols
-//   // );
-// });
-
-//   socket.on("getSectorData", stockName => {
-//     timerIDs.sectorInformation = callAndStartIntervals(
-//       emitSectorInformation,
-//       ONE_DAY_IN_MS,
-//       socket,
-//       stockName,
-//       HOST,
-//       TOKEN
-//     );
-//   });
-
-//   socket.on("timeRange", (stockName, timeRange) => {
-//     emitChartData(socket, stockName, timeRange, HOST, TOKEN);
 //   });
 
 //};
