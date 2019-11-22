@@ -1,110 +1,13 @@
 import React, { useEffect } from "react";
-import { socketService } from "./services";
-import { ISelectedSearch } from "features/headline/redux/actions";
-import { ILatestNews } from "features/latest-news/redux/actions";
-import { IStockTicker } from "features/stock-ticker/redux/actions";
-import { ChartData } from "features/chart/redux/actions";
-import { IKeyStats } from "features/key-stats/redux/actions";
-import { CompanyOverview } from "features/company/redux/actions";
-import { IPeers } from "features/peers/redux/actions";
+import io from "socket.io-client";
+import { stockService, createRpcClient } from "services";
 
-interface StockAPI {
-  getSectorData: (stockName: string) => Promise<ISelectedSearch>;
-  getNews: (stockName: string) => Promise<ILatestNews>;
-  getChart: (stockName: string, timeRange: string) => Promise<ChartData>;
-  getKeyStats: (stockName: string) => Promise<IKeyStats>;
-  getCompanyOverview: (stockName: string) => Promise<CompanyOverview>;
-  getStockTicker?: (
-    stockName: string,
-    onPrice: (price: IStockTicker) => void
-  ) => void;
-}
+const HOST = window.location.hostname;
+const PORT = 4000;
+const SERVER = `${HOST}:${PORT}`;
 
-interface BadResult {
-  status: "ERROR";
-}
-
-interface GoodResult<T> {
-  status: "OK";
-  data: T;
-}
-
-type Result<T> = BadResult | GoodResult<T>;
-
-const SECTOR_DATA_TOPIC = "getSectorData";
-const NEWS_TOPIC = "getNews";
-const CHART_TOPIC = "getChart";
-const KEY_STATS_TOPIC = "getKeyStats";
-const COMPANY_OVERVIEW_DATA = "getCompanyOverview";
-const TOP_PEERS_DATA = "getTopPeers";
-
-class StockService implements StockAPI {
-  constructor(private socket: SocketIOClient.Socket) {}
-
-  private createTopicName(service: string) {
-    return service + Math.abs(Math.random() * 1000).toFixed(0);
-  }
-
-  private rpc<TResult, A>(topic: string, prefix: string, ...args: A[]) {
-    return new Promise<TResult>((resolve, reject) => {
-      const replyTo = this.createTopicName(prefix);
-      this.socket.emit(topic, replyTo, ...args);
-      this.socket.on(replyTo, (result: Result<TResult>) => {
-        this.socket.off(replyTo);
-        result.status === "OK" ? resolve(result.data) : reject(result.status);
-      });
-    });
-  }
-
-  getSectorData(stockName: string) {
-    return this.rpc<ISelectedSearch, string>(
-      SECTOR_DATA_TOPIC,
-      "SECTOR",
-      stockName
-    );
-  }
-
-  getNews(stockName: string) {
-    return this.rpc<ILatestNews, string>(NEWS_TOPIC, "NEWS", stockName);
-  }
-
-  getChart(stockName: string, timeRange: string) {
-    return this.rpc<ChartData, string>(
-      CHART_TOPIC,
-      "CHART",
-      stockName,
-      timeRange
-    );
-  }
-
-  getKeyStats(stockName: string) {
-    return this.rpc<IKeyStats, string>(KEY_STATS_TOPIC, "KEY_STATS", stockName);
-  }
-
-  getCompanyOverview(stockName: string) {
-    return this.rpc<CompanyOverview, string>(
-      COMPANY_OVERVIEW_DATA,
-      "COMPANY_OVERVIEW",
-      stockName
-    );
-  }
-
-  getTopPeers(stockName: string) {
-    return this.rpc<IPeers, string>(TOP_PEERS_DATA, "TOP_PEERS", stockName);
-  }
-
-  getEverything(stockName: string, timeRange: string) {
-    return Promise.all([
-      this.getNews(stockName),
-      this.getSectorData(stockName),
-      this.getChart(stockName, timeRange),
-      this.getKeyStats(stockName),
-      this.getTopPeers(stockName)
-    ]);
-  }
-}
-
-const service = new StockService(socketService.get());
+const rpcClient = createRpcClient(io(SERVER));
+const service = stockService(rpcClient);
 
 export const Rig = () => {
   useEffect(() => {
