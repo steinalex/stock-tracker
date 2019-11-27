@@ -1,11 +1,5 @@
 const axios = require("axios");
-exports.emitTopPeers = async (
-  socket,
-  stockName,
-  HOST,
-  TOKEN,
-  allSymbolsPromise
-) => {
+exports.getTopPeers = (HOST, TOKEN) => async (stockName, allSymbolsPromise) => {
   try {
     const peers = await axios.get(
       `${HOST}/stock/${stockName}/peers?token=${TOKEN}`
@@ -16,8 +10,8 @@ exports.emitTopPeers = async (
       return { symbol, name };
     });
 
-    socket.emit("topPeers", peersList);
+    return peersList;
   } catch (error) {
-    console.error(`Error: ${error}`);
+    return error;
   }
 };

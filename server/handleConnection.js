@@ -1,106 +1,79 @@
-const {
-  emitSectorInformation,
-  emitTopPeers,
-  emitCompanyOverview,
-  emitLatestNews,
-  emitKeyStats,
-  emitStockTicker,
-  emitChartData,
-  emitSearchQuery,
-  getAllCompanies
-} = require("./components");
+const { getNews } = require("./components/latestNews");
+const { getSectorInformation } = require("./components/sectorInformation");
+const { getChart } = require("./components/chartData");
+const { getKeyStats } = require("./components/keyStats");
+const { getCompanyOverview } = require("./components/companyOverview");
+const { getTopPeers } = require("./components/topPeers");
 
 const TOKEN = process.env.TOKEN;
 const HOST = "https://sandbox.iexapis.com/stable";
 
-const ONE_DAY_IN_MS = 24 * 60 * 60 * 1000;
+const sectorInformation = getSectorInformation(HOST, TOKEN);
+const newsService = getNews(HOST, TOKEN);
+const chartService = getChart(HOST, TOKEN);
+const keyStatsService = getKeyStats(HOST, TOKEN);
+const companyOverviewService = getCompanyOverview(HOST, TOKEN);
+const topPeersService = getTopPeers(HOST, TOKEN);
 
-function callAndStartIntervals(fn, interval, ...args) {
-  fn(...args);
-  return setInterval(() => fn(...args), interval);
-}
+const requestReply = async (socket, promise, replyTo) => {
+  try {
+    const result = await promise;
+    socket.emit(replyTo, { status: "OK", data: result });
+  } catch (err) {
+    socket.emit(replyTo, { status: "ERROR" });
+  }
+};
 
 exports.handleConnection = socket => {
-  const timerIDs = {};
-  const allSymbols = getAllCompanies(HOST, TOKEN);
   console.info("New client connected");
 
-  socket.on("enteredStockName", async (stockName, timeRange) => {
-    if (stockName === "") {
-      return false;
-    }
-    console.info("Stock entered: ", stockName);
-    Object.values(timerIDs).forEach(clearInterval);
-    timerIDs.stockTicker = callAndStartIntervals(
-      emitStockTicker,
-      5000,
-      socket,
-      stockName,
-      HOST,
-      TOKEN
-    );
-    timerIDs.keyStats = callAndStartIntervals(
-      emitKeyStats,
-      ONE_DAY_IN_MS,
-      socket,
-      stockName,
-      HOST,
-      TOKEN
-    );
-    timerIDs.latestNews = callAndStartIntervals(
-      emitLatestNews,
-      ONE_DAY_IN_MS,
-      socket,
-      stockName,
-      HOST,
-      TOKEN
-    );
-    timerIDs.companyOverview = callAndStartIntervals(
-      emitCompanyOverview,
-      ONE_DAY_IN_MS,
-      socket,
-      stockName,
-      HOST,
-      TOKEN
-    );
-    timerIDs.topPeers = callAndStartIntervals(
-      emitTopPeers,
-      ONE_DAY_IN_MS,
-      socket,
-      stockName,
-      HOST,
-      TOKEN,
-      allSymbols
-    );
-    timerIDs.chartData = callAndStartIntervals(
-      emitChartData,
-      ONE_DAY_IN_MS,
-      socket,
-      stockName,
-      timeRange,
-      HOST,
-      TOKEN
-    );
-    timerIDs.sectorInformation = callAndStartIntervals(
-      emitSectorInformation,
-      ONE_DAY_IN_MS,
-      socket,
-      stockName,
-      HOST,
-      TOKEN
-    );
+  socket.on("getSectorData", async (replyTo, stockName) => {
+    requestReply(socket, sectorInformation(stockName), replyTo);
   });
 
-  socket.on("enteredSearchQuery", inputQuery => {
-    emitSearchQuery(socket, inputQuery, allSymbols);
+  socket.on("getNews", async (replyTo, stockName) => {
+    requestReply(socket, newsService(stockName), replyTo);
   });
 
-  socket.on("timeRange", (stockName, timeRange) => {
-    emitChartData(socket, stockName, timeRange, HOST, TOKEN);
+  socket.on("getChart", async (replyTo, stockName, timeRange) => {
+    requestReply(socket, chartService(stockName, timeRange), replyTo);
+  });
+
+  socket.on("getKeyStats", async (replyTo, stockName) => {
+    requestReply(socket, keyStatsService(stockName), replyTo);
+  });
+
+  socket.on("getCompanyOverview", async (replyTo, stockName) => {
+    requestReply(socket, companyOverviewService(stockName), replyTo);
+  });
+
+  socket.on("getTopPeers", async (replyTo, stockName) => {
+    requestReply(socket, topPeersService(stockName, companySymbols), replyTo);
   });
 
   socket.on("disconnect", () => {
-    Object.values(timerIDs).forEach(clearInterval);
     console.info("Client disconnected");
   });
 };
+
+// socket.on("getStockTicker", async stockName => {
+//   if (stockName === "") {
+//     return false;
+//   }
+//   console.info("Stock entered: ", stockName);
+//   Object.values(timerIDs).forEach(clearInterval);
+//   timerIDs.stockTicker = callAndStartIntervals(
+//     emitStockTicker,
+//     5000,
+//     socket,
+//     stockName,
+//     HOST,
+//     TOKEN
+//   );
+// });
+
+//   socket.on("enteredSearchQuery", inputQuery => {
+//     emitSearchQuery(socket, inputQuery, allSymbols);
+//   });
+
+//};
