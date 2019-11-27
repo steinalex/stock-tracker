@@ -44,7 +44,9 @@ exports.handleConnection = socket => {
   });
 
   socket.on("getCompanyOverview", async (replyTo, stockName) => {
-    requestReply(socket, companyOverviewService(stockName), replyTo);
+    setTimeout(() => {
+      requestReply(socket, companyOverviewService(stockName), replyTo);
+    }, 6000);
   });
 
   socket.on("getTopPeers", async (replyTo, stockName) => {
