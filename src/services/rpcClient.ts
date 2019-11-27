@@ -26,13 +26,14 @@ export const createRpcClient = (
   return new Promise<TResult>((resolve, reject) => {
     const replyTo = requestTopicGenerator(topic);
     socket.emit(topic, replyTo, ...args);
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       reject("Connection timeout");
       socket.off(replyTo);
     }, 5000);
     socket.on(replyTo, (result: Result<TResult>) => {
       console.log("Socket created for ", replyTo);
       socket.off(replyTo);
+      clearInterval(timeout);
       result.status === "OK" ? resolve(result.data) : reject(result.status);
     });
   });
